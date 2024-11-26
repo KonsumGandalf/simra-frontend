@@ -1,0 +1,8 @@
+<div
+  class="o-simra-map"
+  leaflet
+  [leafletOptions]="options"
+  [leafletLayers]="_layers$()"
+  [leafletLayersControl]="_layerControl"
+  (leafletMapReady)="onMapReady($event)"
+></div>
