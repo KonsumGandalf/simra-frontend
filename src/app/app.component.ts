@@ -14,8 +14,4 @@ import { RouterModule } from '@angular/router';
   },
 })
 export class AppComponent {
-  title = 'simra';
-  constructor() {
-    console.log('API URL:', process.env.SIMRA_API_URL);
-  }
 }

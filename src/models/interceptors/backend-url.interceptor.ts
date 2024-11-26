@@ -16,8 +16,6 @@ export function backendUrlInterceptor(
 	const apiUrl = inject(APP_CONFIG).apiUrl;
 	let constructedUrl = `${apiUrl}`;
 
-	console.log(req.url);
-
 	if (!req.url.startsWith(API_BASE_SEGMENT) && !req.url.startsWith(JPA_API_BASE_SEGMENT)) {
 		return next(req);
 	}
