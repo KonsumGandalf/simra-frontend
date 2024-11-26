@@ -4,7 +4,11 @@ const nx = require('@nx/eslint-plugin');
 module.exports = [
   ...baseConfig,
   {
-    ignores: ['**/dist'],
+    ignores: [
+      '**/dist',
+      'node_modules',
+      'libs/shared/common/styles/*'
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -30,6 +34,12 @@ module.exports = [
           type: 'element',
           prefix: 'app',
           style: 'kebab-case',
+        },
+      ],
+      '@angular-eslint/component-class-suffix': [
+        'error',
+        {
+          suffixes: ['Component', 'Page'],
         },
       ],
     },
