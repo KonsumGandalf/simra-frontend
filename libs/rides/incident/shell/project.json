@@ -4,7 +4,7 @@
   "sourceRoot": "libs/rides/incident/shell/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["shell"],
+  "tags": ["type:master-feature", "domain:rides"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

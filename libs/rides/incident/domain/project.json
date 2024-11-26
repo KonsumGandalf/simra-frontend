@@ -4,7 +4,7 @@
   "sourceRoot": "libs/rides/incident/domain/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["infrastrcuture"],
+  "tags": ["domain:rides", "type:util-feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
