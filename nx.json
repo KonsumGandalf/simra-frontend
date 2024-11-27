@@ -12,7 +12,10 @@
 			"!{projectRoot}/src/test-setup.[jt]s",
 			"!{projectRoot}/test-setup.[jt]s"
 		],
-		"sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+		"sharedGlobals": [
+			"{workspaceRoot}/.github/workflows/ci.yml",
+			"{workspaceRoot}/.github/workflows/ci.yml"
+		]
 	},
 	"nxCloudId": "67339512c466af08ceadee01",
 	"targetDefaults": {
@@ -81,5 +84,6 @@
 			"style": "scss"
 		}
 	},
-	"defaultProject": "simra"
+	"defaultProject": "simra",
+	"neverConnectToCloud": true
 }
