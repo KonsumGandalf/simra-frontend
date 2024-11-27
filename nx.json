@@ -84,6 +84,5 @@
 			"style": "scss"
 		}
 	},
-	"defaultProject": "simra",
-	"neverConnectToCloud": true
+	"defaultProject": "simra"
 }
