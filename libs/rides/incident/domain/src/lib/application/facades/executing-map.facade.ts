@@ -5,9 +5,9 @@ import { IncidentRepository } from '../../infrastructure/incident.repository';
 
 @Injectable({ providedIn: 'root' })
 export class ExecutingMapFacade {
-  private readonly _incidentRepository = inject(IncidentRepository);
+	private readonly _incidentRepository = inject(IncidentRepository);
 
-  public getIncidents(): Observable<RideManualDescriptionInterface[]> {
-    return this._incidentRepository.getincidents();
-  }
+	public getIncidents(): Observable<RideManualDescriptionInterface[]> {
+		return this._incidentRepository.getincidents();
+	}
 }

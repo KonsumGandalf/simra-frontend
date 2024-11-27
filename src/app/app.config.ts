@@ -6,14 +6,15 @@ import { backendUrlInterceptor } from '../models/interceptors/backend-url.interc
 import { APP_ROUTES } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(APP_ROUTES, withComponentInputBinding()),
-    {
-      provide: APP_CONFIG,
-      useValue: {
-        apiUrl: process.env.SIMRA_API_URL,
-      } as AppEnvironmentInterface },
-    provideHttpClient(withInterceptors([ backendUrlInterceptor ])),
-  ],
+	providers: [
+		provideZoneChangeDetection({ eventCoalescing: true }),
+		provideRouter(APP_ROUTES, withComponentInputBinding()),
+		{
+			provide: APP_CONFIG,
+			useValue: {
+				apiUrl: process.env.SIMRA_API_URL,
+			} as AppEnvironmentInterface,
+		},
+		provideHttpClient(withInterceptors([backendUrlInterceptor])),
+	],
 };

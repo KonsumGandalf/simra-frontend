@@ -7,18 +7,17 @@ import { RidesManualDescriptionResponseDto } from '../models/dtos/rides-manual-d
 
 @Injectable({ providedIn: 'root' })
 export class IncidentRepository {
-  private readonly _http = inject(HttpClient);
+	private readonly _http = inject(HttpClient);
 
-  public getincidents(): Observable<RideManualDescriptionInterface[]> {
-    const params = new HttpParams().set('size', '200');
+	public getincidents(): Observable<RideManualDescriptionInterface[]> {
+		const params = new HttpParams().set('size', '200');
 
-    return this._http.get('/api/jpa/rideManualDescriptions', { params }).pipe(
-      tap((reponse) => console.log(reponse)),
-      map(
-        (response) =>
-          plainToInstance(RidesManualDescriptionResponseDto, response)._embedded
-            .rideManualDescriptions
-      )
-    );
-  }
+		return this._http.get('/api/jpa/rideManualDescriptions', { params }).pipe(
+			map(
+				(response) =>
+					plainToInstance(RidesManualDescriptionResponseDto, response)._embedded
+						.rideManualDescriptions,
+			),
+		);
+	}
 }
