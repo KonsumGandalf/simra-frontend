@@ -1,5 +1,7 @@
 const nx = require('@nx/eslint-plugin');
 
+const simpleImportSort = require('eslint-plugin-simple-import-sort');
+
 module.exports = [
 	...nx.configs['flat/base'],
 	...nx.configs['flat/typescript'],
@@ -104,7 +106,7 @@ module.exports = [
 						},
 						{
 							sourceTag: 'domain:incident',
-							onlyDependOnLibsWithTags: ['domain:shared', 'domain:incident'],
+							onlyDependOnLibsWithTags: ['domain:shared', 'domain:incident', 'domain:rides'],
 						}
 					],
 				},
@@ -117,22 +119,15 @@ module.exports = [
 		rules: {},
 	},
 	{
-		files: ['*.scss'],
-		extends: ['stylelint'],
-		rules: {},
-	},
-	{
 		files: ['*.ts', '*.tsx'],
-		extends: [
-			'plugin:@nx/typescript',
-			'plugin:@typescript-eslint/eslint-recommended',
-			'plugin:@typescript-eslint/recommended',
-		],
-		plugins: ['simple-import-sort', 'prettier'],
+
+		plugins: {
+			'simple-import-sort': simpleImportSort,
+
+		},
 		rules: {
 			'simple-import-sort/imports': 'error',
-			'@typescript-eslint/no-explicit-any': 'off',
-			'prettier/prettier': 'error',
+			'@typescript-eslint/no-explicit-any': 'off'
 		},
 	},
 ];

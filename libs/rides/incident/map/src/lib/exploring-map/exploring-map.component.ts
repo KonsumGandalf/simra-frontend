@@ -18,10 +18,9 @@ import {
 	MapOptions,
 	marker,
 	polygon,
-	polyline,
 	tileLayer,
 } from 'leaflet';
-import { filter, firstValueFrom, map, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { icon, Marker, Map } from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import * as L from 'leaflet';
@@ -62,8 +61,7 @@ export class ExploringMapComponent {
 						lng: incident.lng,
 						label: incident.description,
 					})),
-			),
-			tap((incidents) => console.log(incidents)),
+			)
 		),
 	);
 	protected readonly options: MapOptions = {
