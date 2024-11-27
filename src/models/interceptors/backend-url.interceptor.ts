@@ -20,9 +20,9 @@ export function backendUrlInterceptor(
 		return next(req);
 	}
 
-	if(req.url.startsWith(JPA_API_BASE_SEGMENT)) {
-		constructedUrl += `${req.url.replace(/^\/api\/jpa/, "")}`;
-	} else if(req.url.startsWith(API_BASE_SEGMENT))  {
+	if (req.url.startsWith(JPA_API_BASE_SEGMENT)) {
+		constructedUrl += `${req.url.replace(/^\/api\/jpa/, '')}`;
+	} else if (req.url.startsWith(API_BASE_SEGMENT)) {
 		constructedUrl += `${req.url}`;
 	}
 
