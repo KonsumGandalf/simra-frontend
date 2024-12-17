@@ -15,11 +15,17 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@simra/common-components": ["libs/common/components/src/index.ts"],
 			"@simra/common-models": ["libs/common/models/src/index.ts"],
+			"@simra/common-utils": ["libs/common/utils/src/index.ts"],
 			"@simra/rides-common-models": ["libs/rides/common/models/src/index.ts"],
 			"@simra/rides-incident-domain": ["libs/rides/incident/domain/src/index.ts"],
 			"@simra/rides-incident-map": ["libs/rides/incident/map/src/index.ts"],
-			"@simra/rides-incident-shell": ["libs/rides/incident/shell/src/index.ts"]
+			"@simra/rides-incident-shell": ["libs/rides/incident/shell/src/index.ts"],
+			"@simra/streets-common": ["libs/streets/common/src/index.ts"],
+			"@simra/streets-domain": ["libs/streets/domain/src/index.ts"],
+			"@simra/streets-map": ["libs/streets/map/src/index.ts"],
+			"@simra/streets-shell": ["libs/streets/shell/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

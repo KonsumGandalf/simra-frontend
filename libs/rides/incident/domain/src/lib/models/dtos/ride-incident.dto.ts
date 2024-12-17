@@ -2,7 +2,10 @@ import { RideManualDescriptionInterface } from '@simra/rides-common-models';
 import { Type } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
 
-export class RideManualDescriptionDto implements RideManualDescriptionInterface {
+/*+
+ * Data transfer object which represents a ride incident.
+ */
+export class RideIncidentDto implements RideManualDescriptionInterface {
 	@IsNumber()
 	id = 0;
 

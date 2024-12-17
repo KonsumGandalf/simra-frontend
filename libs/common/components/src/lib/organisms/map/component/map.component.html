@@ -1,0 +1,10 @@
+<div
+	class="o-simra-map"
+	leaflet
+	[leafletOptions]="initialOptions"
+	[leafletLayersControl]="layerControl"
+	[leafletLayers]="combinedLayers$()"
+	(leafletMapReady)="onMapReady($event)"
+	(leafletMapZoom)="onMapChange($event)"
+	(leafletMapMoveEnd)="onMapChange($event)"
+></div>>

@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { IncidentRepository } from '../../infrastructure/incident.repository';
 
 @Injectable({ providedIn: 'root' })
-export class ExecutingMapFacade {
+export class ExploringMapFacade {
 	private readonly _incidentRepository = inject(IncidentRepository);
 
 	public getIncidents(): Observable<RideManualDescriptionInterface[]> {
-		return this._incidentRepository.getincidents();
+		return this._incidentRepository.getIncidents();
 	}
 }

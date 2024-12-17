@@ -1,20 +1,19 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ExecutingMapFacade } from '@simra/rides-incident-domain';
-import { from, of } from 'rxjs';
-import { ExploringMapComponent } from './exploring-map.component';
+import { ExploringMapFacade } from '@simra/rides-incident-domain';
+import { of } from 'rxjs';
+import { IncidentExploringMapPage } from './incident-exploring-map.page';
 
 describe('ExploringMapComponent', () => {
-	let component: ExploringMapComponent;
-	let fixture: ComponentFixture<ExploringMapComponent>;
-	let executingMapFacade: ExecutingMapFacade;
+	let component: IncidentExploringMapPage;
+	let fixture: ComponentFixture<IncidentExploringMapPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [ExploringMapComponent],
+			imports: [IncidentExploringMapPage],
 			providers: [
 				{
-					provide: ExecutingMapFacade,
+					provide: ExploringMapFacade,
 					useValue: {
 						getIncidents: jest.fn().mockReturnValue(of([])),
 					},
@@ -22,7 +21,7 @@ describe('ExploringMapComponent', () => {
 				],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(ExploringMapComponent);
+		fixture = TestBed.createComponent(IncidentExploringMapPage);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

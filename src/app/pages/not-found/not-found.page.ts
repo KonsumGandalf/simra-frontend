@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-not-found',
-	standalone: true,
 	imports: [CommonModule, RouterLink],
 	templateUrl: './not-found.page.html',
 	styleUrl: './not-found.page.scss',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 	host: {
 		class: 'app-not-found',
 	},

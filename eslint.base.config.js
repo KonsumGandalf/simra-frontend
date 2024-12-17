@@ -1,5 +1,6 @@
 const nx = require('@nx/eslint-plugin');
 
+const unusedImports = require('eslint-plugin-unused-imports');
 const simpleImportSort = require('eslint-plugin-simple-import-sort');
 
 module.exports = [
@@ -64,6 +65,8 @@ module.exports = [
 								'type:atoms-ui',
 								'type:molecules-ui',
 								'type:organisms-ui',
+								'type:common-model',
+								'type:util',
 							],
 						},
 						{
@@ -97,16 +100,20 @@ module.exports = [
 							],
 						},
 						{
-							sourceTag: 'domain:shared',
-							onlyDependOnLibsWithTags: ['domain:shared'],
+							sourceTag: 'domain:common',
+							onlyDependOnLibsWithTags: ['domain:common'],
 						},
 						{
 							sourceTag: 'domain:rides',
-							onlyDependOnLibsWithTags: ['domain:shared', 'domain:rides'],
+							onlyDependOnLibsWithTags: ['domain:common', 'domain:rides'],
+						},
+						{
+							sourceTag: 'domain:streets',
+							onlyDependOnLibsWithTags: ['domain:common', 'domain:streets'],
 						},
 						{
 							sourceTag: 'domain:incident',
-							onlyDependOnLibsWithTags: ['domain:shared', 'domain:incident', 'domain:rides'],
+							onlyDependOnLibsWithTags: ['domain:common', 'domain:incident', 'domain:rides'],
 						}
 					],
 				},
@@ -115,19 +122,44 @@ module.exports = [
 	},
 	{
 		files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-		// Override or add rules here
-		rules: {},
+		plugins: {
+			'unused-imports': unusedImports,
+		},
+		rules: {
+			'@typescript-eslint/no-unused-vars': 'error',
+			"no-unused-vars": "off",
+			"unused-imports/no-unused-imports": "error",
+		},
+	},
+	{
+		files: ['**/*.page.ts'],
+		rules: {
+			'@angular-eslint/component-class-suffix': [
+				'error',
+				{
+					suffixes: ['Page'],
+				},
+			],
+		},
+	},
+	{
+		files: ['**/*.component.ts'],
+		rules: {
+			'@angular-eslint/component-class-suffix': [
+				'error',
+				{
+					suffixes: ['Component'],
+				},
+			],
+		},
 	},
 	{
 		files: ['*.ts', '*.tsx'],
-
 		plugins: {
 			'simple-import-sort': simpleImportSort,
-
 		},
 		rules: {
 			'simple-import-sort/imports': 'error',
-			'@typescript-eslint/no-explicit-any': 'off'
 		},
 	},
 ];
