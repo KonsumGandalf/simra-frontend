@@ -15,8 +15,8 @@ import { MapComponent } from '@simra/common-components';
 @Component({
 	selector: 'simra-streets-exploring-map',
 	imports: [CommonModule, LeafletModule, MapComponent],
-	templateUrl: './exploring-map.page.html',
-	styleUrl: './exploring-map.page.scss',
+	templateUrl: './streets-exploring-map-page.component.html',
+	styleUrl: './streets-exploring-map-page.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
@@ -24,7 +24,7 @@ import { MapComponent } from '@simra/common-components';
 		class: 'o-simra-exploring-map',
 	},
 })
-export class ExploringMapPage {
+export class StreetsExploringMapPage {
 	private readonly _exploringMapFacade = inject(StreetsExploringMapFacade);
 
 	readonly _lp: ModelSignal<MapPositionInterface> = model({
