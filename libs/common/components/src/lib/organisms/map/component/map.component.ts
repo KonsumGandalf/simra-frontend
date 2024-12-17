@@ -9,7 +9,7 @@ import { MapPositionInterface } from '@simra/common-models';
  * This component allows to interact with the leaflet map smoothly
  */
 @Component({
-	selector: 'o-map-componenent',
+	selector: 't-map-componenent',
 	standalone: true,
 	imports: [CommonModule, LeafletModule],
 	templateUrl: './map.component.html',
