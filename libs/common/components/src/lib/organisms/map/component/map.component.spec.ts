@@ -1,21 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Layer, tileLayer } from 'leaflet';
 import { MapComponent } from './map.component';
+import { Component } from '@angular/core';
 
-describe('MapComponent', () => {
-	let component: MapComponent;
-	let fixture: ComponentFixture<MapComponent>;
+@Component({
+	selector: 't-map-host',
+	template: `<t-map-componenent [overlayLayers]="mockOverlayLayers"></t-map-componenent>`,
+	standalone: true,
+	imports: [MapComponent],
+})
+class TestHostComponent {
+	mockOverlayLayers: Layer[] = [tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')];
+}
+
+describe('Integration Test MapComponent', () => {
+	let fixture: ComponentFixture<TestHostComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [MapComponent],
+			imports: [TestHostComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(MapComponent);
-		component = fixture.componentInstance;
+		fixture = TestBed.createComponent(TestHostComponent);
 		fixture.detectChanges();
 	});
 
 	it('should create', () => {
-		expect(component).toBeTruthy();
+		expect(fixture.componentInstance).toBeTruthy();
 	});
 });
