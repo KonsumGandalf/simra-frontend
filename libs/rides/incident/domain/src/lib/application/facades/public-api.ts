@@ -1,1 +1,1 @@
-export * from './executing-map.facade';
+export * from './exploring-map.facade';
