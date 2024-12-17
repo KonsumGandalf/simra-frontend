@@ -7,7 +7,7 @@ export const STREET_SHELL_ROUTES: Route[] = [
 			{
 				path: 'exploring-map',
 				loadComponent: () =>
-					import('@simra/streets-map').then((m) => m.ExploringMapPage),
+					import('@simra/streets-map').then((m) => m.StreetsExploringMapPage),
 			},
 			{
 				path: '**',
