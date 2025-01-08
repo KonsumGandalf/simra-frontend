@@ -1,9 +1,21 @@
 import { Component, computed, input, model, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
-import { Control, icon, latLng, Layer, LeafletEvent, Map, MapOptions, Marker, tileLayer } from 'leaflet';
+import {
+	Control,
+	icon,
+	latLng,
+	Layer,
+	LeafletEvent,
+	Map,
+	MapOptions,
+	Marker,
+	tileLayer,
+} from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { MapPositionInterface } from '@simra/common-models';
+import { PopoverModule } from 'primeng/popover';
+import { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-bar/component/dangerous-score-bar.component';
 
 /**
  * This component allows to interact with the leaflet map smoothly
@@ -11,7 +23,7 @@ import { MapPositionInterface } from '@simra/common-models';
 @Component({
 	selector: 't-map-componenent',
 	standalone: true,
-	imports: [CommonModule, LeafletModule],
+	imports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],
 	templateUrl: './map.component.html',
 	styleUrl: './map.component.scss',
 	host: {
@@ -38,10 +50,13 @@ export class MapComponent {
 	/**
 	 * The base layer on which other objects are projected to
 	 */
-	private readonly _baseLayer: Layer = tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-		maxZoom: 18,
-		attribution: '...',
-	});
+	private readonly _baseLayer: Layer = tileLayer(
+		'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+		{
+			maxZoom: 18,
+			attribution: '...',
+		},
+	);
 
 	/**
 	 * The overall layer containing the base layer with overlays
@@ -68,8 +83,7 @@ export class MapComponent {
 				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 			}),
 		},
-		overlays: {
-		},
+		overlays: {},
 	};
 
 	constructor() {

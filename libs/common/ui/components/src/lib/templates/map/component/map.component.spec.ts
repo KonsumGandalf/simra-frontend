@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { Layer, tileLayer } from 'leaflet';
 import { MapComponent } from './map.component';
 import { Component } from '@angular/core';
@@ -10,7 +11,9 @@ import { Component } from '@angular/core';
 	imports: [MapComponent],
 })
 class TestHostComponent {
-	mockOverlayLayers: Layer[] = [tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')];
+	mockOverlayLayers: Layer[] = [
+		tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'),
+	];
 }
 
 describe('Integration Test MapComponent', () => {
@@ -18,7 +21,11 @@ describe('Integration Test MapComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [TestHostComponent],
+			imports: [
+				TestHostComponent,
+
+				TranslateModule.forRoot()
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TestHostComponent);

@@ -1,0 +1,62 @@
+{
+    "ATOMS": {
+
+    },
+    "MOLECULES": {
+        "DANGEROUS_SCORE_BAR": {
+            "BAR_LABEL": {
+                "LOW_RISK": "Niedriges Risiko",
+                "HIGH_RISK": "Hohes Risiko"
+            },
+            "WEEK_DAYS": {
+                "TOOLTIP": {
+                    "MONDAY": "Montag",
+                    "TUESDAY": "Dienstag",
+                    "WEDNESDAY": "Mittwoch",
+                    "THURSDAY": "Donnerstag",
+                    "FRIDAY": "Freitag",
+                    "SATURDAY": "Samstag",
+                    "SUNDAY": "Sonntag"
+                },
+                "LABEL": {
+                    "MONDAY": "M",
+                    "TUESDAY": "D",
+                    "WEDNESDAY": "M",
+                    "THURSDAY": "D",
+                    "FRIDAY": "F",
+                    "SATURDAY": "S",
+                    "SUNDAY": "S"
+                }
+            },
+            "TRAFFIC_TIMES": {
+                "LABEL": {
+                    "ALL_DAY": "Den ganzen Tag",
+                    "EARLY_MORNING": "Früher Morgen",
+                    "EARLY_RUSH_HOUR": "Früher Berufsverkehr",
+                    "LATE_MORNING": "Später Vormittag",
+                    "EARLY_AFTERNOON": "Früher Nachmittag",
+                    "AFTERNOON": "Nachmittag",
+                    "LATE_RUSH_HOUR": "Später Berufsverkehr",
+                    "EVENING": "Abend",
+                    "LATE_EVENING": "Später Abend",
+                    "NIGHT": "Nacht"
+                },
+                "TOOLTIP": {
+                    "ALL_DAY": "Beinhaltet alle Tagesstunden",
+                    "EARLY_MORNING": "Beinhaltet Stunden zwischen 6:00 und 9:59 Uhr",
+                    "EARLY_RUSH_HOUR": "Beinhaltet Stunden zwischen 7:30 und 9:29 Uhr",
+                    "LATE_MORNING": "Beinhaltet Stunden zwischen 10:00 und 11:59 Uhr",
+                    "EARLY_AFTERNOON": "Beinhaltet Stunden zwischen 12:00 und 13:59 Uhr",
+                    "AFTERNOON": "Beinhaltet Stunden zwischen 14:00 und 16:59 Uhr",
+                    "LATE_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 17:29 Uhr",
+                    "EVENING": "Beinhaltet Stunden zwischen 17:00 und 19:59 Uhr",
+                    "LATE_EVENING": "Beinhaltet Stunden zwischen 20:00 und 22:59 Uhr",
+                    "NIGHT": "Beinhaltet Stunden zwischen 23:00 und 5:59 Uhr"
+                }
+            }
+        }
+    },
+    "ORGANISMS": {
+
+    }
+}
