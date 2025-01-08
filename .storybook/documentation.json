@@ -1,0 +1,1091 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "ButtonDarkModeComponent",
+            "id": "component-ButtonDarkModeComponent-39d3361b86a8676a33bd77f698c3f34c2cb85b174e50ed45943efe72ef05b809fb0730794fb40673e2f6eb1952646d5659148b5c41706068c70e27efaad881ec",
+            "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "m-button-dark-mode",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./button-dark-mode.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "toggleDarkMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "Button"
+                },
+                {
+                    "name": "ToggleSwitch"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>The component allows to toggle between dark and light mode</p>\n",
+            "rawdescription": "\n\nThe component allows to toggle between dark and light mode\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { Button } from 'primeng/button';\nimport { ToggleSwitch } from 'primeng/toggleswitch';\n\n/**\n * The component allows to toggle between dark and light mode\n */\n@Component({\n\tselector: 'm-button-dark-mode',\n\tstandalone: true,\n\timports: [CommonModule, Button, ToggleSwitch, FormsModule],\n\ttemplateUrl: './button-dark-mode.component.html',\n\tstyleUrl: './button-dark-mode.component.scss',\n\thost: {\n\t\tclass: 'm-button-dark-mode',\n\t},\n\tencapsulation: ViewEncapsulation.None,\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonDarkModeComponent {\n\ttoggleDarkMode() {\n\t\tconst element = document.querySelector('html');\n\t\telement?.classList.toggle('dark');\n\t}\n}\n",
+            "styleUrl": "./button-dark-mode.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p-toggleswitch (onChange)=\"toggleDarkMode()\">\n\t<ng-template #handle let-checked=\"checked\">\n\t\t<i [ngClass]=\"['!text-xs', 'pi', checked ? 'pi-moon' : 'pi-sun']\"></i>\n\t</ng-template>\n</p-toggleswitch>\n"
+        },
+        {
+            "name": "ColorBlockComponent",
+            "id": "component-ColorBlockComponent-8dbca063a456a78ddc4c26c9385198fc5e07cc2a2b5ad32e53d798b8ad8e9c04b2b21dea427ea711491f52bd030fc15963a9b80f5d3c507862d6d28b5243335b",
+            "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "a-color-block",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./color-block.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Determines the color of the block</p>\n",
+                    "line": 26,
+                    "rawdescription": "\n\nDetermines the color of the block\n",
+                    "required": true
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Determines the color of the block</p>\n",
+                    "line": 26,
+                    "rawdescription": "\n\nDetermines the color of the block\n",
+                    "required": true
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "style.--color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RangePipe",
+                    "type": "pipe"
+                },
+                {
+                    "name": "Tooltip"
+                }
+            ],
+            "description": "<p>The displays a horizontal color block with the given color</p>\n",
+            "rawdescription": "\n\nThe displays a horizontal color block with the given color\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding, input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { EDangerousColors } from '@simra/common-models';\nimport { Tooltip } from 'primeng/tooltip';\nimport { RangePipe } from '../pipes/range.pipe';\n\n/**\n * The displays a horizontal color block with the given color\n */\n@Component({\n\tselector: 'a-color-block',\n\tstandalone: true,\n\timports: [CommonModule, RangePipe, Tooltip],\n\ttemplateUrl: './color-block.component.html',\n\tstyleUrl: './color-block.component.scss',\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'a-color-block',\n\t},\n})\nexport class ColorBlockComponent {\n\t/**\n\t * Determines the color of the block\n\t */\n\tcolor = input.required<EDangerousColors>(); // Default color\n\n\t@HostBinding('style.--color') get hostColor() {\n\t\treturn this.color();\n\t}\n}\n",
+            "styleUrl": "./color-block.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "hostColor": {
+                    "name": "hostColor",
+                    "getSignature": {
+                        "name": "hostColor",
+                        "type": "",
+                        "returnType": "",
+                        "line": 28
+                    }
+                }
+            },
+            "templateData": "<div [pTooltip]=\"color() | rangePipe\"></div>\n\n"
+        },
+        {
+            "name": "DangerousScoreBarComponent",
+            "id": "component-DangerousScoreBarComponent-f9ac91f6620a2210d930fb3f80e0bf2e7d12de590021a5a8f1938bf45877db1492a1e9eb938f369648498b4bb88c303874c0f5988911df7afd915f12f09202d8",
+            "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "m-dangerous-score-bar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./dangerous-score-bar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_allTrafficTimes",
+                    "defaultValue": "transformMapToList(TrafficTimesToLabels)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 47,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "_allWeekDays",
+                    "defaultValue": "transformMapToList(WeekDaysToLabels)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "_selectedTrafficTime",
+                    "defaultValue": "this._allTrafficTimes[0]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Indicates which traffic time is selected to filter on the map</p>\n",
+                    "line": 53,
+                    "rawdescription": "\n\nIndicates which traffic time is selected to filter on the map\n\n",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1801,
+                            "end": 1814,
+                            "kind": 335,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1802,
+                                "end": 1811,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "protected"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "_selectedWeekDay",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Contains all selected weekdays</p>\n",
+                    "line": 61,
+                    "rawdescription": "\n\nContains all selected weekdays\n\n",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1999,
+                            "end": 2012,
+                            "kind": 335,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 2000,
+                                "end": 2009,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "protected"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "EDangerousColors",
+                    "defaultValue": "EDangerousColors",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ColorBlockComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SelectButton"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "Button"
+                },
+                {
+                    "name": "ButtonDarkModeComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "Card"
+                },
+                {
+                    "name": "Select"
+                },
+                {
+                    "name": "Popover"
+                },
+                {
+                    "name": "TranslatePipe",
+                    "type": "pipe"
+                },
+                {
+                    "name": "Tooltip"
+                }
+            ],
+            "description": "<p>This component indicates the coloring of the map and allows to filter</p>\n",
+            "rawdescription": "\n\nThis component indicates the coloring of the map and allows to filter\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { TranslatePipe } from '@ngx-translate/core';\nimport { EDangerousColors } from '@simra/common-models';\nimport { transformMapToList } from '@simra/common-utils';\nimport { Button } from 'primeng/button';\nimport { Card } from 'primeng/card';\nimport { Popover } from 'primeng/popover';\nimport { Select } from 'primeng/select';\nimport { SelectButton } from 'primeng/selectbutton';\nimport { Tooltip } from 'primeng/tooltip';\nimport { ButtonDarkModeComponent } from '../../../atoms/button-dark-mode/component/button-dark-mode.component';\nimport { ColorBlockComponent } from '../../../atoms/color-block/component/color-block.component';\nimport { TrafficTimesToLabels } from '../models/maps/traffic-times-to-labels';\nimport { WeekDaysToLabels } from '../models/maps/week-days-to-labels';\n\n/**\n * This component indicates the coloring of the map and allows to filter\n */\n@Component({\n\tselector: 'm-dangerous-score-bar',\n\tstandalone: true,\n\timports: [\n\t\tCommonModule,\n\t\tColorBlockComponent,\n\t\tSelectButton,\n\t\tFormsModule,\n\t\tButton,\n\t\tButtonDarkModeComponent,\n\t\tCard,\n\t\tSelect,\n\t\tPopover,\n\t\tTranslatePipe,\n\t\tTooltip,\n\t],\n\ttemplateUrl: './dangerous-score-bar.component.html',\n\tstyleUrl: './dangerous-score-bar.component.scss',\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'm-dangerous-score-bar',\n\t},\n})\nexport class DangerousScoreBarComponent {\n\tprotected readonly EDangerousColors = EDangerousColors;\n\tprotected readonly _allTrafficTimes = transformMapToList(TrafficTimesToLabels);\n\t/**\n\t * Indicates which traffic time is selected to filter on the map\n\t *\n\t * @protected\n\t */\n\tprotected _selectedTrafficTime = this._allTrafficTimes[0];\n\n\tprotected readonly _allWeekDays = transformMapToList(WeekDaysToLabels);\n\t/**\n\t * Contains all selected weekdays\n\t *\n\t * @protected\n\t */\n\tprotected _selectedWeekDay = [];\n}\n",
+            "styleUrl": "./dangerous-score-bar.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<!--<brn-select class=\"inline-block\" placeholder=\"Select an option\">\n\t<hlm-select-trigger>\n\t\t<hlm-select-value />\n\t</hlm-select-trigger>\n\t<hlm-select-content class=\"w-56\">\n\t\t@for (dayTime of _allTrafficTimes; track dayTime ){\n\t\t\t<hlm-option [value]=\"dayTime\">\n\t\t\t\t{{ dayTime }}\n\t\t\t</hlm-option>\n\t\t}\n\t</hlm-select-content>\n</brn-select>-->\n<p-card>\n\t<p-popover #op >\n\t\t<div class=\"flex flex-col space-y-2.5 \">\n\t\t\t<p-select class=\"mx-auto\" [options]=\"_allTrafficTimes\" [(ngModel)]=\"_selectedTrafficTime\" size=\"small\" variant=\"filled\">\n\t\t\t\t<ng-template #selectedItem let-selectedOption>\n\t\t\t\t\t<div class=\"flex items-center gap-2\">\n\t\t\t\t\t\t<span [pTooltip]=\"selectedOption.tooltip | translate\" >{{ selectedOption.label | translate }}</span>\n\t\t\t\t\t\t@if (selectedOption.includesRushHour){\n\t\t\t\t\t\t\t<i class=\"pi pi-car\"></i>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t\t<ng-template let-trafficTime #item>\n\t\t\t\t\t<div class=\"flex items-center gap-2 justify-between flex-nowrap flex-grow\">\n\t\t\t\t\t\t<div [pTooltip]=\"trafficTime.tooltip | translate\" >{{ trafficTime.label | translate }}</div>\n\t\t\t\t\t\t@if (trafficTime.includesRushHour){\n\t\t\t\t\t\t\t<div class=\"pi pi-car\" pTooltip=\"Indicates this timeset includes a rush hour\"></div>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t</p-select>\n\t\t\t<p-selectButton [options]=\"_allWeekDays\" [(ngModel)]=\"_selectedWeekDay\" size=\"small\" [multiple]=\"true\">\n\t\t\t\t<ng-template #item let-weekday>\n\t\t\t\t\t<span [pTooltip]=\"weekday.tooltip | translate\" >{{ weekday.label | translate }}</span>\n\t\t\t\t</ng-template>\n\t\t\t</p-selectButton>\n\t\t</div>\n\t</p-popover>\n\t<div class=\"flex flex-wrap justify-around w-full\">\n\t\t<div class=\"flex items-center justify-around flex-wrap flex-grow\">\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.LOW_RISK' | translate}}</p>\n\t\t\t<div>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.GREEN_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.LIME_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.AMBER_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.ORANGE_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.RED_500\"></a-color-block>\n\t\t\t</div>\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.HIGH_RISK' | translate}}</p>\n\t\t</div>\n\t\t<p-button icon=\"pi pi-cog\" size=\"small\" severity=\"secondary\" [rounded]=\"true\" [outlined]=\"true\" (click)=\"op.toggle($event)\"></p-button>\n\t</div>\n</p-card>\n"
+        },
+        {
+            "name": "MapComponent",
+            "id": "component-MapComponent-0f42785f4faa9580a9ba610bbdae91f017222c7ddcdce80e0422e07f4ff7ee0730808d757586a33147aa395138896ad9dc789fa058474c73db54cba944d60379",
+            "file": "libs/common/ui/components/src/lib/templates/map/component/map.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "t-map-componenent",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./map.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_baseLayer",
+                    "defaultValue": "tileLayer(\n\t\t'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',\n\t\t{\n\t\t\tmaxZoom: 18,\n\t\t\tattribution: '...',\n\t\t},\n\t)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Layer",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The base layer on which other objects are projected to</p>\n",
+                    "line": 53,
+                    "rawdescription": "\n\nThe base layer on which other objects are projected to\n",
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                },
+                {
+                    "name": "_leafletPosition",
+                    "defaultValue": "model<MapPositionInterface>({\n\t\tlat: 52.522,\n\t\tlng: 13.413,\n\t\tzoom: 14,\n\t})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
+                    "modifierKind": [
+                        125,
+                        148
+                    ]
+                },
+                {
+                    "name": "combinedLayers$",
+                    "defaultValue": "computed(() => {\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Signal<Layer[]>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The overall layer containing the base layer with overlays</p>\n",
+                    "line": 64,
+                    "rawdescription": "\n\nThe overall layer containing the base layer with overlays\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "initialOptions",
+                    "defaultValue": "{\n\t\tzoom: this._leafletPosition().zoom,\n\t\tcenter: latLng(this._leafletPosition().lat, this._leafletPosition().lng),\n\t\tpreferCanvas: true,\n\t}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MapOptions",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "layerControl",
+                    "defaultValue": "{\n\t\tbaseLayers: {\n\t\t\t'Open Cycle Map': tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 18,\n\t\t\t\tattribution: '...',\n\t\t\t}),\n\t\t\t'Osm Liberty': tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 30,\n\t\t\t\tminZoom: 12,\n\t\t\t}),\n\t\t\tgoogle: tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {\n\t\t\t\tmaxZoom: 20,\n\t\t\t\tsubdomains: ['mt0', 'mt1', 'mt2', 'mt3'],\n\t\t\t}),\n\t\t},\n\t\toverlays: {},\n\t}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "LeafletControlLayersConfig",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The appearance options the user can choose from when using the map</p>\n",
+                    "line": 71,
+                    "rawdescription": "\n\nThe appearance options the user can choose from when using the map\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "overlayLayers",
+                    "defaultValue": "input.required<Layer[]>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays</p>\n",
+                    "line": 42,
+                    "rawdescription": "\n\nRepresents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays\n",
+                    "modifierKind": [
+                        125,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onMapChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "LeafletEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 120,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nThis function handles changes to the position of the map f.e. when the user zooms in\n\n",
+                    "description": "<p>This function handles changes to the position of the map f.e. when the user zooms in</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3255,
+                                "end": 3260,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "event"
+                            },
+                            "type": "LeafletEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3249,
+                                "end": 3254,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>the leaflet event emitted</li>\n</ul>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "onMapReady",
+                    "args": [
+                        {
+                            "name": "map",
+                            "type": "Map",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 101,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "map",
+                            "type": "Map",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "LeafletModule",
+                    "type": "module"
+                },
+                {
+                    "name": "DangerousScoreBarComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "PopoverModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>This component allows to interact with the leaflet map smoothly</p>\n",
+            "rawdescription": "\n\nThis component allows to interact with the leaflet map smoothly\n",
+            "type": "component",
+            "sourceCode": "import { Component, computed, input, model, Signal } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';\nimport {\n\tControl,\n\ticon,\n\tlatLng,\n\tLayer,\n\tLeafletEvent,\n\tMap,\n\tMapOptions,\n\tMarker,\n\ttileLayer,\n} from 'leaflet';\nimport { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';\nimport { MapPositionInterface } from '@simra/common-models';\nimport { PopoverModule } from 'primeng/popover';\nimport { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-bar/component/dangerous-score-bar.component';\n\n/**\n * This component allows to interact with the leaflet map smoothly\n */\n@Component({\n\tselector: 't-map-componenent',\n\tstandalone: true,\n\timports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],\n\ttemplateUrl: './map.component.html',\n\tstyleUrl: './map.component.scss',\n\thost: {\n\t\tclass: 'o-simra-map',\n\t},\n})\nexport class MapComponent {\n\tpublic readonly _leafletPosition = model<MapPositionInterface>({\n\t\tlat: 52.522,\n\t\tlng: 13.413,\n\t\tzoom: 14,\n\t});\n\t/**\n\t * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays\n\t */\n\tpublic readonly overlayLayers = input.required<Layer[]>();\n\n\tprotected readonly initialOptions: MapOptions = {\n\t\tzoom: this._leafletPosition().zoom,\n\t\tcenter: latLng(this._leafletPosition().lat, this._leafletPosition().lng),\n\t\tpreferCanvas: true,\n\t};\n\n\t/**\n\t * The base layer on which other objects are projected to\n\t */\n\tprivate readonly _baseLayer: Layer = tileLayer(\n\t\t'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',\n\t\t{\n\t\t\tmaxZoom: 18,\n\t\t\tattribution: '...',\n\t\t},\n\t);\n\n\t/**\n\t * The overall layer containing the base layer with overlays\n\t */\n\tprotected readonly combinedLayers$: Signal<Layer[]> = computed(() => {\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t});\n\n\t/**\n\t * The appearance options the user can choose from when using the map\n\t */\n\tprotected readonly layerControl: LeafletControlLayersConfig = {\n\t\tbaseLayers: {\n\t\t\t'Open Cycle Map': tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 18,\n\t\t\t\tattribution: '...',\n\t\t\t}),\n\t\t\t'Osm Liberty': tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 30,\n\t\t\t\tminZoom: 12,\n\t\t\t}),\n\t\t\tgoogle: tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {\n\t\t\t\tmaxZoom: 20,\n\t\t\t\tsubdomains: ['mt0', 'mt1', 'mt2', 'mt3'],\n\t\t\t}),\n\t\t},\n\t\toverlays: {},\n\t};\n\n\tconstructor() {\n\t\tMarker.prototype.options.icon = icon({\n\t\t\ticonUrl: 'assets/leaflet/marker-icon.png',\n\t\t\ticonRetinaUrl: 'assets/leaflet/marker-icon-2x.png',\n\t\t\tshadowUrl: 'assets/leaflet/marker-shadow.png',\n\t\t\ticonSize: [25, 41],\n\t\t\ticonAnchor: [12, 41],\n\t\t\tpopupAnchor: [1, -34],\n\t\t\tshadowSize: [41, 41],\n\t\t});\n\t}\n\n\tonMapReady(map: Map): void {\n\t\tconst provider = new OpenStreetMapProvider();\n\t\tconst searchControl: Control = GeoSearchControl({\n\t\t\tprovider,\n\t\t\tstyle: 'bar',\n\t\t\tshowMarker: true,\n\t\t\tretainZoomLevel: false,\n\t\t\tautoClose: true,\n\t\t\tautoCompleteDelay: 50,\n\t\t});\n\n\t\tmap.addControl(searchControl);\n\t}\n\n\t/**\n\t * This function handles changes to the position of the map f.e. when the user zooms in\n\t *\n\t * @param event - the leaflet event emitted\n\t */\n\tonMapChange(event: LeafletEvent): void {\n\t\tthis._leafletPosition.set({\n\t\t\tzoom: event.sourceTarget.getZoom(),\n\t\t\t...event.sourceTarget.getCenter(),\n\t\t});\n\t}\n}\n",
+            "styleUrl": "./map.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 87
+            },
+            "extends": [],
+            "templateData": "<m-dangerous-score-bar></m-dangerous-score-bar>\n<div\n\tclass=\"o-simra-map\"\n\tleaflet\n\t[leafletOptions]=\"initialOptions\"\n\t[leafletLayersControl]=\"layerControl\"\n\t[leafletLayers]=\"combinedLayers$()\"\n\t(leafletMapReady)=\"onMapReady($event)\"\n\t(leafletMapZoom)=\"onMapChange($event)\"\n\t(leafletMapMoveEnd)=\"onMapChange($event)\"\n></div>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "config",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/main.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StorybookConfig",
+                "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n\targs: {\n\t\tcolor: EDangerousColors.AMBER_500\n\t},\n\targTypes: {\n\t\tcolor: {\n\t\t\tcontrol: {\n\t\t\t\ttype: 'select',\n\t\t\t\tlabels: {\n\t\t\t\t\t[EDangerousColors.AMBER_500]: 'Amber 500',\n\t\t\t\t\t[EDangerousColors.RED_500]: 'Red 500',\n\t\t\t\t\t[EDangerousColors.ORANGE_500]: 'Orange 500',\n\t\t\t\t\t[EDangerousColors.GREEN_500]: 'Green 500',\n\t\t\t\t\t[EDangerousColors.NEUTRAL_200]: 'Neutral 200',\n\t\t\t\t\t[EDangerousColors.LIME_500]: 'Lime 500',\n\t\t\t\t}\n\t\t\t},\n\t\t\toptions: Object.values(EDangerousColors),\n\t\t}\n\t}\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n\targs: {},\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ColorBlockComponent>",
+                "defaultValue": "{\n\tcomponent: ColorBlockComponent,\n\ttitle: 'ColorBlock',\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonDarkModeComponent>",
+                "defaultValue": "{\n\tcomponent: ButtonDarkModeComponent,\n\ttitle: 'ButtonDarkMode',\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DangerousScoreBarComponent>",
+                "defaultValue": "{\n\tcomponent: DangerousScoreBarComponent,\n\ttitle: 'DangerousScoreBarComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule]\n\t\t})\n\t]\n}"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t}\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t}\n\t}\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n\targs: {},\n}"
+            }
+        ],
+        "functions": [
+            {
+                "name": "provideTheme",
+                "file": ".storybook/preview.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "config",
+                        "type": "PrimeNG",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "config",
+                        "type": "PrimeNG",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ColorBlockComponent>",
+                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ButtonDarkModeComponent>",
+                "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<DangerousScoreBarComponent>",
+                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            ".storybook/main.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/main.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StorybookConfig",
+                    "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
+                }
+            ],
+            "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n\targs: {\n\t\tcolor: EDangerousColors.AMBER_500\n\t},\n\targTypes: {\n\t\tcolor: {\n\t\t\tcontrol: {\n\t\t\t\ttype: 'select',\n\t\t\t\tlabels: {\n\t\t\t\t\t[EDangerousColors.AMBER_500]: 'Amber 500',\n\t\t\t\t\t[EDangerousColors.RED_500]: 'Red 500',\n\t\t\t\t\t[EDangerousColors.ORANGE_500]: 'Orange 500',\n\t\t\t\t\t[EDangerousColors.GREEN_500]: 'Green 500',\n\t\t\t\t\t[EDangerousColors.NEUTRAL_200]: 'Neutral 200',\n\t\t\t\t\t[EDangerousColors.LIME_500]: 'Lime 500',\n\t\t\t\t}\n\t\t\t},\n\t\t\toptions: Object.values(EDangerousColors),\n\t\t}\n\t}\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ColorBlockComponent>",
+                    "defaultValue": "{\n\tcomponent: ColorBlockComponent,\n\ttitle: 'ColorBlock',\n}"
+                }
+            ],
+            "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n\targs: {},\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DangerousScoreBarComponent>",
+                    "defaultValue": "{\n\tcomponent: DangerousScoreBarComponent,\n\ttitle: 'DangerousScoreBarComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule]\n\t\t})\n\t]\n}"
+                }
+            ],
+            "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonDarkModeComponent>",
+                    "defaultValue": "{\n\tcomponent: ButtonDarkModeComponent,\n\ttitle: 'ButtonDarkMode',\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n\targs: {},\n}"
+                }
+            ],
+            ".storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t}\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t}\n\t}\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            ".storybook/preview.ts": [
+                {
+                    "name": "provideTheme",
+                    "file": ".storybook/preview.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "PrimeNG",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "PrimeNG",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ColorBlockComponent>",
+                    "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonDarkModeComponent>",
+                    "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DangerousScoreBarComponent>",
+                    "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 14,
+        "status": "low",
+        "files": [
+            {
+                "filePath": ".storybook/main.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "provideTheme",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonDarkModeComponent",
+                "coveragePercent": 50,
+                "coverageCount": "1/2",
+                "status": "medium"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ColorBlockComponent",
+                "coveragePercent": 75,
+                "coverageCount": "3/4",
+                "status": "good"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DangerousScoreBarComponent",
+                "coveragePercent": 50,
+                "coverageCount": "3/6",
+                "status": "medium"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/templates/map/component/map.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MapComponent",
+                "coveragePercent": 60,
+                "coverageCount": "6/10",
+                "status": "good"
+            }
+        ]
+    }
+}
