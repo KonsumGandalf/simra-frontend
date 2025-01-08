@@ -13,4 +13,6 @@ import { RouterModule } from '@angular/router';
 		class: 'app-not-found',
 	},
 })
-export class AppComponent {}
+export class AppComponent {
+
+}
