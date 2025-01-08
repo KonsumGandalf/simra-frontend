@@ -11,7 +11,6 @@ import { firstValueFrom, isObservable, Observable } from 'rxjs';
 export function asyncComputed<T>(
 	computation: () => Observable<T> | Promise<T> | T | undefined | null,
 ): Signal<T> {
-	console.log('computation', computation);
 	const resultSignal = signal<T>(undefined as unknown as T);
 
 	effect(
