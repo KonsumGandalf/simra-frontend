@@ -15,8 +15,8 @@ import { MapComponent } from '@simra/common-components';
 @Component({
 	selector: 'simra-streets-exploring-map',
 	imports: [CommonModule, LeafletModule, MapComponent],
-	templateUrl: './streets-exploring-map-page.component.html',
-	styleUrl: './streets-exploring-map-page.component.scss',
+	templateUrl: './streets-exploring-map.page.html',
+	styleUrl: './streets-exploring-map.page.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,

@@ -1,9 +1,10 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { StreetsExploringMapFacade } from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject } from 'rxjs';
-import { StreetsExploringMapPage } from './streets-exploring-map-page.component';
+import { StreetsExploringMapPage } from './streets-exploring-map.page';
 
 describe('ExploringMapComponent', () => {
 	let component: StreetsExploringMapPage;
@@ -11,7 +12,11 @@ describe('ExploringMapComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [StreetsExploringMapPage],
+			imports: [
+				StreetsExploringMapPage,
+
+				TranslateModule.forRoot()
+			],
 			providers: [
 				{
 					provide: StreetsExploringMapFacade,

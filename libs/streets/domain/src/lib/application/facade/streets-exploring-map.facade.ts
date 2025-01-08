@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
 import { map, Subject } from 'rxjs';
-import { MapPositionInterface } from '@simra/common-models';
+import { EDangerousColors, MapPositionInterface } from '@simra/common-models';
 import { StreetRepository } from '../../infrastructure/street.repository';
 import { StreetInformationDto } from '../../models/dtos/street-information.dto';
 import * as L from 'leaflet';
@@ -19,14 +19,17 @@ export class StreetsExploringMapFacade {
 
 				const updatedCache: GeoJSON<any, Geometry>[] = [];
 				for (const streetInformation of response) {
+					if (streetInformation.dangerousColor == EDangerousColors.NEUTRAL_200) {
+						continue;
+					}
+
 					updatedCache.push(L.geoJSON(JSON.parse(`${streetInformation.way}`), {
 						style: {
-							color: 'blue',
-							weight: 1.5,
+							color: streetInformation.dangerousColor,
+							weight: 2.5,
 						},
 					}));
 				}
-				console.log(response.length)
 
 				this._streetCache.next(updatedCache);
 			}),

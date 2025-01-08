@@ -10,7 +10,6 @@ export class StreetRepository {
 	private readonly _http = inject(HttpClient);
 
 	public getStreetInformation(requestParams: GetStreetInformationInterface): Observable<StreetInformationDto[]> {
-		console.log('requestParams', requestParams);
 		return this._http.get<StreetInformationDto[]>('/api/streets', { params: { ...requestParams } }).pipe(
 			map((response) => plainToInstance(StreetInformationDto, response)),
 		);
