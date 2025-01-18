@@ -1,0 +1,39 @@
+m-safety-metrics-panel{
+    p-card {
+        .p-card-body {
+            @apply pb-4;
+            @apply pt-4;
+            @apply px-2;
+        }
+
+        p-carousel {
+            .p-carousel-item {
+                box-sizing: border-box;
+                max-height: 17.5rem;
+
+                @apply overflow-hidden;
+            }
+
+            .p-carousel-indicator-list {
+                @apply pb-0;
+                @apply pt-4;
+            }
+
+            p-chart{
+                canvas {
+                    max-height: 16.5rem;
+                }
+            }
+        }
+    }
+    p-button {
+        padding: 0!important;
+        button {
+            padding: 0.125rem !important;
+        }
+
+        .p-button-icon-only {
+            width: auto; /* or any other desired width */
+        }
+    }
+}
