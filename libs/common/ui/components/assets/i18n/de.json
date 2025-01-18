@@ -1,0 +1,46 @@
+{
+    "ATOMS": {
+
+    },
+    "MOLECULES": {
+        "DANGEROUS_SCORE_BAR": {
+            "BAR_LABEL": {
+                "LOW_RISK": "Niedriges Risiko",
+                "HIGH_RISK": "Hohes Risiko"
+            },
+            "WEEK_DAYS": {
+                "TOOLTIP": {
+                    "WEEK": "Die Tage von Montag bis Freitag",
+                    "WEEKEND": "Die Tage Samstag und Sonntag",
+                    "ALL_WEEK": "Alle Tage der Woche"
+                },
+                "LABEL": {
+                    "WEEK": "Werktag",
+                    "WEEKEND": "Wochenende",
+                    "ALL_WEEK": "Gesamte Woche"
+                }
+            },
+            "TRAFFIC_TIMES": {
+                "PLACEHOLDER": "Wählen sie eine Tageszeit",
+                "ICON_TOOLTIP": "Zeigt an, dass es in diesem Zeitraum besonders viel Verkehr gibt.",
+                "LABEL": {
+                    "ALL_DAY": "Der ganze Tag",
+                    "EARLY_RUSH_HOUR": "Früher Berufsverkehr",
+                    "MID_DAY": "Mittag und Nachmittag",
+                    "LATE_RUSH_HOUR": "Später Berufsverkehr",
+                    "EVENING_NIGHT_MORNING": "Abend und Nacht"
+                },
+                "TOOLTIP": {
+                    "ALL_DAY": "Beinhaltet alle Tagesstunden",
+                    "EARLY_RUSH_HOUR": "Beinhaltet Stunden zwischen 7:30 und 9:59 Uhr",
+                    "MID_DAY": "Beinhaltet Stunden zwischen 10:00 und 15:29 Uhr",
+                    "LATE_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
+                    "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 5:59 Uhr"
+                }
+            }
+        }
+    },
+    "ORGANISMS": {
+
+    }
+}

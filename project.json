@@ -25,13 +25,28 @@
 						"input": "public"
 					},
 					"src/favicon.ico",
-					"src/assets"
+					"src/assets",
+					{
+						"input": "libs/common/ui/components/assets/i18n",
+						"glob": "**/*",
+						"output": "assets/i18n/common/ui/components"
+					},
+					{
+						"input": "libs/streets/map/assets/i18n",
+						"glob": "**/*",
+						"output": "assets/i18n/streets/map"
+					}
 				],
 				"styles": [
 					"./src/styles.scss",
 					"./node_modules/leaflet/dist/leaflet.css",
 					"./node_modules/leaflet-geosearch/dist/geosearch.css"
 				],
+				"stylePreprocessorOptions": {
+					"includePaths": [
+						"libs/common/ui/styles/src/scss"
+					]
+				},
 				"scripts": [],
 				"browser": "./src/main.ts"
 			},
@@ -97,6 +112,69 @@
 				"buildTarget": "simra:build",
 				"port": 4200,
 				"spa": true
+			}
+		},
+		"storybook": {
+			"executor": "@storybook/angular:start-storybook",
+			"options": {
+				"port": 4400,
+				"configDir": "./.storybook",
+				"browserTarget": "simra:build-storybook",
+				"compodoc": true,
+				"compodocArgs": ["-e", "json", "-d", "./.storybook"],
+				"styles": ["./src/styles.scss"],
+				"stylePreprocessorOptions": {
+					"includePaths": [
+						"libs/common/ui/styles/src/scss"
+					]
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@storybook/angular:build-storybook",
+			"outputs": ["{options.outputDir}"],
+			"options": {
+				"outputDir": "dist/storybook/simra",
+				"configDir": "./.storybook",
+				"browserTarget": "simra:build-storybook",
+				"compodoc": true,
+				"compodocArgs": ["-e", "json", "-d", "./.storybook"],
+				"styles": ["./src/styles.scss"],
+				"stylePreprocessorOptions": {
+					"includePaths": [
+						"libs/common/ui/styles/src/scss"
+					]
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"test-storybook": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "test-storybook -c ./.storybook --url=http://localhost:4400"
+			}
+		},
+		"static-storybook": {
+			"executor": "@nx/web:file-server",
+			"dependsOn": ["build-storybook"],
+			"options": {
+				"buildTarget": "simra:build-storybook",
+				"staticFilePath": "dist/storybook/simra",
+				"spa": true
+			},
+			"configurations": {
+				"ci": {
+					"buildTarget": "simra:build-storybook:ci"
+				}
 			}
 		}
 	}

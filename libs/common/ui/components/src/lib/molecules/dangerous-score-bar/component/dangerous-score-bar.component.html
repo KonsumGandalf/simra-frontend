@@ -1,0 +1,43 @@
+<p-card>
+	<p-popover #op >
+		<div class="popover-container">
+			<p-select class="mx-auto" [options]="_allTrafficTimes" [placeholder]="'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.PLACEHOLDER' | translate" [(ngModel)]="_selectedTrafficTime" size="small" variant="filled">
+				<ng-template #selectedItem let-selectedOption>
+					<div class="flex items-center gap-2">
+						<span [pTooltip]="selectedOption.tooltip | translate" >{{ selectedOption.label | translate }}</span>
+						@if (selectedOption.includesRushHour){
+							<i class="pi pi-car"></i>
+						}
+					</div>
+				</ng-template>
+				<ng-template let-trafficTime #item>
+					<div class="flex items-center gap-2 justify-between flex-nowrap flex-grow">
+						<div [pTooltip]="trafficTime.tooltip | translate" >{{ trafficTime.label | translate }}</div>
+						@if (trafficTime.includesRushHour){
+							<div class="pi pi-car" [pTooltip]="'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.ICON_TOOLTIP' | translate" ></div>
+						}
+					</div>
+				</ng-template>
+			</p-select>
+			<p-selectButton [options]="_allWeekDays" [(ngModel)]="_selectedWeekDays" size="small" [multiple]="true">
+				<ng-template #item let-weekday>
+					<span [pTooltip]="weekday.tooltip | translate" >{{ weekday.label | translate }}</span>
+				</ng-template>
+			</p-selectButton>
+		</div>
+	</p-popover>
+	<div class="flex flex-wrap justify-around w-full">
+		<div class="flex items-center justify-around flex-wrap flex-grow">
+			<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.LOW_RISK' | translate}}</p>
+			<div>
+				<a-color-block [color]="EDangerousColors.GREEN_500"></a-color-block>
+				<a-color-block [color]="EDangerousColors.LIME_500"></a-color-block>
+				<a-color-block [color]="EDangerousColors.AMBER_500"></a-color-block>
+				<a-color-block [color]="EDangerousColors.ORANGE_500"></a-color-block>
+				<a-color-block [color]="EDangerousColors.RED_500"></a-color-block>
+			</div>
+			<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.HIGH_RISK' | translate}}</p>
+		</div>
+		<p-button icon="pi pi-cog" size="small" severity="secondary" [rounded]="true" [outlined]="true" (click)="op.toggle($event)"></p-button>
+	</div>
+</p-card>
