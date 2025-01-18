@@ -1,5 +1,4 @@
 .m-dangerous-score-bar {
-
     p-card {
         .p-card-body {
             padding: 0.5rem;
@@ -19,11 +18,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
-
-
                 }
-
-
             }
 
             p {
@@ -52,4 +47,11 @@
 
         }
     }
+}
+
+.popover-container {
+    @apply flex;
+    @apply flex-col;
+    @apply space-y-2.5;
+    @apply items-center;
 }

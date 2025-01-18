@@ -21,7 +21,7 @@ import { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-b
  * This component allows to interact with the leaflet map smoothly
  */
 @Component({
-	selector: 't-map-componenent',
+	selector: 't-map-component',
 	standalone: true,
 	imports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],
 	templateUrl: './map.component.html',
@@ -31,10 +31,10 @@ import { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-b
 	},
 })
 export class MapComponent {
-	public readonly _leafletPosition = model<MapPositionInterface>({
+	public readonly leafletPosition = model<MapPositionInterface>({
 		lat: 52.522,
 		lng: 13.413,
-		zoom: 14,
+		zoom: 14
 	});
 	/**
 	 * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays
@@ -42,8 +42,8 @@ export class MapComponent {
 	public readonly overlayLayers = input.required<Layer[]>();
 
 	protected readonly initialOptions: MapOptions = {
-		zoom: this._leafletPosition().zoom,
-		center: latLng(this._leafletPosition().lat, this._leafletPosition().lng),
+		zoom: this.leafletPosition().zoom,
+		center: latLng(this.leafletPosition().lat, this.leafletPosition().lng),
 		preferCanvas: true,
 	};
 
@@ -53,8 +53,7 @@ export class MapComponent {
 	private readonly _baseLayer: Layer = tileLayer(
 		'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 		{
-			maxZoom: 18,
-			attribution: '...',
+			maxZoom: 18
 		},
 	);
 
@@ -118,7 +117,7 @@ export class MapComponent {
 	 * @param event - the leaflet event emitted
 	 */
 	onMapChange(event: LeafletEvent): void {
-		this._leafletPosition.set({
+		this.leafletPosition.set({
 			zoom: event.sourceTarget.getZoom(),
 			...event.sourceTarget.getCenter(),
 		});

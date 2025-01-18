@@ -1,19 +1,7 @@
-<!--<brn-select class="inline-block" placeholder="Select an option">
-	<hlm-select-trigger>
-		<hlm-select-value />
-	</hlm-select-trigger>
-	<hlm-select-content class="w-56">
-		@for (dayTime of _allTrafficTimes; track dayTime ){
-			<hlm-option [value]="dayTime">
-				{{ dayTime }}
-			</hlm-option>
-		}
-	</hlm-select-content>
-</brn-select>-->
 <p-card>
 	<p-popover #op >
-		<div class="flex flex-col space-y-2.5 ">
-			<p-select class="mx-auto" [options]="_allTrafficTimes" [(ngModel)]="_selectedTrafficTime" size="small" variant="filled">
+		<div class="popover-container">
+			<p-select class="mx-auto" [options]="_allTrafficTimes" [placeholder]="'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.PLACEHOLDER' | translate" [(ngModel)]="_selectedTrafficTime" size="small" variant="filled">
 				<ng-template #selectedItem let-selectedOption>
 					<div class="flex items-center gap-2">
 						<span [pTooltip]="selectedOption.tooltip | translate" >{{ selectedOption.label | translate }}</span>
@@ -26,12 +14,12 @@
 					<div class="flex items-center gap-2 justify-between flex-nowrap flex-grow">
 						<div [pTooltip]="trafficTime.tooltip | translate" >{{ trafficTime.label | translate }}</div>
 						@if (trafficTime.includesRushHour){
-							<div class="pi pi-car" pTooltip="Indicates this timeset includes a rush hour"></div>
+							<div class="pi pi-car" [pTooltip]="'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.ICON_TOOLTIP' | translate" ></div>
 						}
 					</div>
 				</ng-template>
 			</p-select>
-			<p-selectButton [options]="_allWeekDays" [(ngModel)]="_selectedWeekDay" size="small" [multiple]="true">
+			<p-selectButton [options]="_allWeekDays" [(ngModel)]="_selectedWeekDays" size="small" [multiple]="true">
 				<ng-template #item let-weekday>
 					<span [pTooltip]="weekday.tooltip | translate" >{{ weekday.label | translate }}</span>
 				</ng-template>

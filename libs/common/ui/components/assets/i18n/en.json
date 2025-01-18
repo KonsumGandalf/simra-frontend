@@ -10,48 +10,32 @@
             },
             "WEEK_DAYS": {
                 "TOOLTIP": {
-                    "MONDAY": "Monday",
-                    "TUESDAY": "Tuesday",
-                    "WEDNESDAY": "Wednesday",
-                    "THURSDAY": "Thursday",
-                    "FRIDAY": "Friday",
-                    "SATURDAY": "Saturday",
-                    "SUNDAY": "Sunday"
+                    "WEEK": "The days from Monday to Friday",
+                    "WEEKEND": "The days Saturday and Sunday",
+                    "ALL_WEEK": "All days of the week"
                 },
                 "LABEL": {
-                    "MONDAY": "M",
-                    "TUESDAY": "T",
-                    "WEDNESDAY": "W",
-                    "THURSDAY": "T",
-                    "FRIDAY": "F",
-                    "SATURDAY": "S",
-                    "SUNDAY": "S"
+                    "WEEK": "Weekday",
+                    "WEEKEND": "Weekend",
+                    "ALL_WEEK": "All Week"
                 }
             },
             "TRAFFIC_TIMES":{
+                "PLACEHOLDER": "Select a time of day",
+                "ICON_TOOLTIP": "Indicates this timeset includes a rush hour",
                 "LABEL": {
                     "ALL_DAY": "All Day",
-                    "EARLY_MORNING": "Early Morning",
                     "EARLY_RUSH_HOUR": "Early Rush Hour",
-                    "LATE_MORNING": "Late Morning",
-                    "EARLY_AFTERNOON": "Early Afternoon",
-                    "AFTERNOON": "Afternoon",
+                    "MID_DAY": "Midday and Afternoon",
                     "LATE_RUSH_HOUR": "Late Rush Hour",
-                    "EVENING": "Evening",
-                    "LATE_EVENING": "Late Evening",
-                    "NIGHT": "Night"
+                    "EVENING_NIGHT_MORNING": "Evening and Night"
                 },
                 "TOOLTIP": {
                     "ALL_DAY": "Includes all hours of the day",
-                    "EARLY_MORNING": "Includes hours between 6:00 AM and 9:59 AM",
-                    "EARLY_RUSH_HOUR": "Includes hours between 7:30 and 9:29 AM",
-                    "LATE_MORNING": "Includes hours between 10:00 AM and 11:59 AM",
-                    "EARLY_AFTERNOON": "Includes hours between 12:00 AM and 1:59 PM",
-                    "AFTERNOON": "Includes hours between 2:00 PM and 4:59 PM",
-                    "LATE_RUSH_HOUR": "Includes hours between 3:30 PM and 5:29 PM",
-                    "EVENING": "Includes hours between 5:00 PM and 7:59 PM",
-                    "LATE_EVENING": "Includes hours between 8:00 PM and 10:59 PM",
-                    "NIGHT": "Includes hours between 11:00 PM and 5:59 AM"
+                    "EARLY_RUSH_HOUR": "Includes hours between 7:30 and 9:59",
+                    "MID_DAY": "Includes hours between 10:00 and 15:29",
+                    "LATE_RUSH_HOUR": "Includes hours between 15:30 and 18:59",
+                    "EVENING_NIGHT_MORNING": "Includes hours between 19:00 and 5:59"
                 }
             }
         }

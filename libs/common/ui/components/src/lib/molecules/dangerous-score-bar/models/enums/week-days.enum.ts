@@ -1,9 +1,0 @@
-export enum EWeekDays {
-	MONDAY,
-	TUESDAY,
-	WEDNESDAY,
-	THURSDAY,
-	FRIDAY,
-	SATURDAY,
-	SUNDAY,
-}
