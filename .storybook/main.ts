@@ -15,11 +15,19 @@ const config: StorybookConfig = {
 			directory: '../libs/common/ui/components/src/lib/templates',
 			titlePrefix: 'Templates/'
 		},
+		{
+			directory: '../libs/streets/map',
+			titlePrefix: 'Streets Map/'
+		}
 	],
 	staticDirs: [
 		{
 			from: '../libs/common/ui/components/assets/i18n',
 			to: '/assets/i18n/common/ui/components'
+		},
+		{
+			from: '../libs/streets/map/assets/i18n',
+			to: '/assets/i18n/streets/map'
 		}
 	],
 	addons: [

@@ -11,7 +11,12 @@ export function httpLoaderFactory(http: HttpClient) {
 			{
 				baseTranslateUrl,
 				moduleName: 'components',
-				pathTemplate: 'http://localhost:4400/assets/i18n/common/ui/components/de'
+				pathTemplate: `${baseTranslateUrl}/common/ui/components/de`
+			},
+			{
+				baseTranslateUrl,
+				moduleName: 'streets.map',
+				pathTemplate: `${baseTranslateUrl}/streets/map/de`
 			}
 		],
 	};
