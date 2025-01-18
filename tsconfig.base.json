@@ -17,6 +17,7 @@
 		"paths": {
 			"@simra/common-components": ["libs/common/ui/components/src/index.ts"],
 			"@simra/common-models": ["libs/common/models/src/index.ts"],
+			"@simra/common-state": ["libs/common/state/src/index.ts"],
 			"@simra/common-utils": ["libs/common/utils/src/index.ts"],
 			"@simra/helpers": ["libs/common/ui/helpers/src/index.ts"],
 			"@simra/rides-common-models": ["libs/rides/common/models/src/index.ts"],

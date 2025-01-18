@@ -13,7 +13,12 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 				baseTranslateUrl,
 				moduleName: 'components',
 				pathTemplate: '{baseTranslateUrl}/common/ui/components/{language}'
-			}
+			},
+			{
+				baseTranslateUrl,
+				moduleName: 'streets.map',
+				pathTemplate: '{baseTranslateUrl}/streets/map/{language}'
+			},
 		]
 
 	}

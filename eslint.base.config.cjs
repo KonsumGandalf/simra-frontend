@@ -34,6 +34,7 @@ module.exports = [
                                 'type:util-feature',
                                 'type:util',
                                 'type:common-model',
+                                'type:state'
                             ],
                         },
                         {
@@ -44,6 +45,7 @@ module.exports = [
                                 'type:util',
                                 'type:common-model',
                                 'type:ui',
+                                'type:state'
                             ],
                         },
                         {
@@ -52,11 +54,16 @@ module.exports = [
                                 'type:util',
                                 'type:util-feature',
                                 'type:common-model',
+                                'type:state'
                             ],
                         },
                         {
                             sourceTag: 'type:util',
                             onlyDependOnLibsWithTags: ['type:util', 'type:common-model'],
+                        },
+                        {
+                            sourceTag: 'type:state',
+                            onlyDependOnLibsWithTags: ['type:state', 'type:common-model', 'type:util'],
                         },
                         {
                             sourceTag: 'type:common-model',
@@ -66,41 +73,9 @@ module.exports = [
                             sourceTag: 'type:ui',
                             onlyDependOnLibsWithTags: [
                                 'type:ui',
-                                'type:atoms-ui',
-                                'type:molecules-ui',
-                                'type:organisms-ui',
                                 'type:common-model',
                                 'type:util',
-                            ],
-                        },
-                        {
-                            sourceTag: 'type:atoms-ui',
-                            onlyDependOnLibsWithTags: ['type:ui'],
-                        },
-                        {
-                            sourceTag: 'type:molecules-ui',
-                            onlyDependOnLibsWithTags: [
-                                'type:ui',
-                                'type:atoms-ui',
-                                'type:molecules-ui',
-                            ],
-                        },
-                        {
-                            sourceTag: 'type:organisms-ui',
-                            onlyDependOnLibsWithTags: [
-                                'type:ui',
-                                'type:atoms-ui',
-                                'type:molecules-ui',
-                                'type:organisms-ui',
-                            ],
-                        },
-                        {
-                            sourceTag: 'type:page-ui',
-                            onlyDependOnLibsWithTags: [
-                                'type:ui',
-                                'type:atoms-ui',
-                                'type:molecules-ui',
-                                'type:organisms-ui',
+                                'type:state'
                             ],
                         },
                         {

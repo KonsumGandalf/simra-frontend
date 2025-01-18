@@ -30,6 +30,11 @@
 						"input": "libs/common/ui/components/assets/i18n",
 						"glob": "**/*",
 						"output": "assets/i18n/common/ui/components"
+					},
+					{
+						"input": "libs/streets/map/assets/i18n",
+						"glob": "**/*",
+						"output": "assets/i18n/streets/map"
 					}
 				],
 				"styles": [
