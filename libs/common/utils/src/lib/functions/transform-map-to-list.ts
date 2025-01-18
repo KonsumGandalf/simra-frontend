@@ -17,6 +17,10 @@ import { defaults, map } from 'lodash';
  * 			{ key: 'key2', prop: 'value2' },
  * ]
  */
-export function transformMapToList<K extends keyof any, V>(mapValue: Record<K, V>): Array<{ key: string } & V> {
-	return map(mapValue, (value, key) => defaults({ key }, value));
+export function transformMapToList<K extends keyof any, V extends object>(
+	mapValue: Partial<Record<K, V>>
+): Array<{ key: string } & V> {
+	return map(mapValue, (value, key) =>
+		defaults({ key } as { key: string } & Partial<V>, value)
+	) as Array<{ key: string } & V>;
 }
