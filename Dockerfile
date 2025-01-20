@@ -22,15 +22,3 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
-
-FROM node:23-alpine AS dev
-
-COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/app
-
-RUN npm install -g http-server
-
-WORKDIR /usr/share/app
-
-EXPOSE 80
-
-CMD ["http-server", ".", "-p", "80"]
