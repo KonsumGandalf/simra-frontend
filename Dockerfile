@@ -1,4 +1,4 @@
-FROM node:23-alpine as builder
+FROM node:23-alpine AS builder
 
 WORKDIR /usr/src/app
 
@@ -9,15 +9,14 @@ ENV NX_DAEMON=false
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install --force
 RUN npm install -g nx
 
 COPY . .
 
-RUN ls -l && echo "Current directory contents listed above"
 RUN nx build --skip-nx-cache --prod
 
-FROM nginx:stable-alpine as production
+FROM nginx:stable-alpine AS production
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
