@@ -9,12 +9,11 @@ ENV NX_DAEMON=false
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install --force
 RUN npm install -g nx
 
 COPY . .
 
-RUN ls -l && echo "Current directory contents listed above"
 RUN nx build --skip-nx-cache --prod
 
 FROM nginx:stable-alpine as production
