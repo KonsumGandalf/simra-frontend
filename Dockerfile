@@ -27,6 +27,8 @@ FROM node:23-alpine AS dev
 
 COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/app
 
+RUN npm install -g http-server
+
 WORKDIR /usr/share/app
 
 EXPOSE 80
