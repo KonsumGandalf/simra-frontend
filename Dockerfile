@@ -9,7 +9,7 @@ ENV NX_DAEMON=false
 
 COPY package*.json ./
 
-RUN npm install --force
+RUN npm ci
 RUN npm install -g nx
 
 COPY . .
