@@ -1,7 +1,0 @@
-{
-    "/api": {
-        "target": "http://konsumpi:8081",
-        "secure": false,
-        "changeOrigin": true
-    }
-}
