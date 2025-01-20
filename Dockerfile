@@ -9,7 +9,7 @@ ENV NX_DAEMON=false
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm ci --ignore-scripts
 RUN npm install -g nx
 
 COPY . .
