@@ -8,7 +8,6 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-            target: production
             args:
                 SIMRA_API_URL: ${SIMRA_API_URL}
         ports:

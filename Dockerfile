@@ -9,7 +9,7 @@ ENV NX_DAEMON=false
 
 COPY package*.json ./
 
-RUN npm install --force
+RUN npm ci --ignore-scripts
 RUN npm install -g nx
 
 COPY . .
@@ -22,3 +22,4 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
+
