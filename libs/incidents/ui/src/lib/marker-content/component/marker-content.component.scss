@@ -1,0 +1,37 @@
+.m-marker-content {
+    table {
+        tbody {
+
+            tr {
+                @apply max-w-sm;
+                @apply flex;
+                @apply justify-between;
+
+                td {
+                    @apply text-sm;
+                }
+
+                &:not(:last-child) {
+                    @apply mb-1;
+                }
+
+                &.icon-box{
+                    @apply space-x-4 mb-3;
+                }
+            }
+        }
+    }
+
+
+    &:not(.incident-icon--is-scary) {
+        a-icon {
+            @apply bg-blue-200;
+        }
+    }
+
+    &.incident-icon--is-scary {
+        a-icon {
+            @apply bg-red-200;
+        }
+    }
+}

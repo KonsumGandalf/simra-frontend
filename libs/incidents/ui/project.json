@@ -1,0 +1,20 @@
+{
+	"name": "incidents-ui",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/incidents/ui/src",
+	"prefix": "lib",
+	"projectType": "library",
+	"tags": ["domain:incidents", "type:ui"],
+	"targets": {
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/incidents/ui/jest.config.ts"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

@@ -1,0 +1,7 @@
+.a-icon {
+    @apply w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center;
+
+    i {
+        @apply text-2xl;
+    }
+}

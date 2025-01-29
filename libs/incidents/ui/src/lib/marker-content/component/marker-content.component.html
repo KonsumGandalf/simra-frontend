@@ -1,0 +1,53 @@
+<table>
+	<tbody>
+		<tr class="icon-box">
+			<a-icon
+				[tooltip]="(incidentTypeToIcon[incident.incidentType]).tooltip"
+				[name]="(incidentTypeToIcon[incident.incidentType]).name"></a-icon>
+			<a-icon
+				[tooltip]="(phoneLocationToIcon[incident.phoneLocation]).tooltip"
+				[name]="(phoneLocationToIcon[incident.phoneLocation]).name"></a-icon>
+			@if (incident.participantsInvolved.length >= 1) {
+				<a-icon
+					[tooltip]="(participantToIcon[incident.participantsInvolved[0]]).tooltip"
+					[name]="(participantToIcon[incident.participantsInvolved[0]]).name"></a-icon>
+			} @else {
+				<a-icon
+					[tooltip]="(participantToIcon[EIncidentType.OTHER]).tooltip"
+					[name]="(participantToIcon[EIncidentType.OTHER]).name"></a-icon>
+			}
+		</tr>
+		<tr>
+			<td>
+				ID
+			</td>
+			<td class="data-display">
+				{{incident.id}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{'INCIDENTS.UI.MARKER_CONTENT.LABELS.TIMESTAMP' | translate}}
+			</td>
+			<td class="data-display">
+				{{incident.timeStamp | date: 'dd/MM/yyyy HH:mm'	}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{'INCIDENTS.UI.MARKER_CONTENT.LABELS.BIKE_TYPE' | translate}}
+			</td>
+			<td class="data-display">
+				{{bikeTypeToTranslation[incident.bike] | translate}}
+			</td>
+		</tr>
+		@if(incident.description) {
+			<tr>
+				<div class="data-display">
+					{{incident.description | translate}}
+				</div>
+			</tr>
+		}
+	</tbody>
+</table>
+
