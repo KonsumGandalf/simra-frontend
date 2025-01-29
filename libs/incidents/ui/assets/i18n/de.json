@@ -1,0 +1,56 @@
+{
+    "PHONE_LOCATIONS": {
+        "POCKET": "Tasche",
+        "HANDLEBAR": "Lenker",
+        "JACKET_POCKET": "Jackentasche",
+        "HAND": "Hand",
+        "BASKET_PANNIER": "Korb/Satteltasche",
+        "BACKPACK_BAG": "Rucksack/Tasche",
+        "OTHER": "Andere"
+    },
+    "PARTICIPANTS": {
+        "BUS_COACH": "Bus/Coach",
+        "CYCLIST": "Radfahrer",
+        "PEDESTRIAN": "Fußgänger",
+        "DELIVERY_VAN": "Lieferwagen",
+        "LORRY_TRUCK": "Lkw",
+        "MOTORCYCLIST": "Motorradfahrer",
+        "CAR": "Auto",
+        "TAXI_CAB": "Taxi",
+        "OTHER": "Andere",
+        "ELECTRIC_SCOOTER": "Elektroroller"
+    },
+    "INCIDENT_TYPES": {
+        "DUMMY_INCIDENT": "Dummy Vorfall",
+        "NOTHING": "Nichts",
+        "CLOSE_PASS": "Knappes Überholen",
+        "PULLING_IN_OUT": "Ein- und Ausfahren",
+        "NEAR_LEFT_RIGHT_HOOK": "Beinahe-Linker-Rechts-Haken",
+        "HEAD_ON_APPROACH": "Kopf-an-Kopf Annäherung",
+        "TAILGATING": "Heckauffahren",
+        "NEAR_DOORING": "Beinahe-Dooring",
+        "DODGING_OBSTACLE": "Ausweichen vor Hindernis",
+        "OTHER": "Andere"
+    },
+    "BIKE_TYPES": {
+        "NOT_CHOSEN": "Nicht gewählt",
+        "CITY_TREKKING_BIKE": "City-/Trekkingrad",
+        "ROAD_RACING_BIKE": "Rennrad",
+        "E_BIKE": "E-Bike",
+        "RECUMBENT_BICYCLE": "Liegerad",
+        "FREIGHT_BICYCLE": "Lastenrad",
+        "TANDEM_BICYCLE": "Tandem",
+        "MOUNTAIN_BIKE": "Mountainbike",
+        "OTHER": "Andere"
+    },
+    "MARKER_CONTENT": {
+        "LABELS": {
+            "BIKE_TYPE": "Fahrradtyp",
+            "PHONE_LOCATION": "Telefonposition",
+            "TYPE": "Typ",
+            "DESCRIPTION": "Beschreibung",
+            "TIMESTAMP": "Datum",
+            "PARTICIPANTS": "Teilnehmer"
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "PHONE_LOCATIONS": {
+        "POCKET": "Pocket",
+        "HANDLEBAR": "Handlebar",
+        "JACKET_POCKET": "Jacket pocket",
+        "HAND": "Hand",
+        "BASKET_PANNIER": "Basket/pannier",
+        "BACKPACK_BAG": "Backpack/bag",
+        "OTHER": "Other"
+    },
+    "PARTICIPANTS": {
+        "BUS_COACH": "Bus/coach",
+        "CYCLIST": "Cyclist",
+        "PEDESTRIAN": "Pedestrian",
+        "DELIVERY_VAN": "Delivery van",
+        "LORRY_TRUCK": "Lorry/truck",
+        "MOTORCYCLIST": "Motorcyclist",
+        "CAR": "Car",
+        "TAXI_CAB": "Taxi",
+        "OTHER": "Other",
+        "ELECTRIC_SCOOTER": "Electric scooter"
+    },
+    "INCIDENT_TYPES": {
+        "DUMMY_INCIDENT": "Dummy incident",
+        "NOTHING": "Nothing",
+        "CLOSE_PASS": "Close pass",
+        "PULLING_IN_OUT": "Pulling in/out",
+        "NEAR_LEFT_RIGHT_HOOK": "Near left/right hook",
+        "HEAD_ON_APPROACH": "Head-on approach",
+        "TAILGATING": "Tailgating",
+        "NEAR_DOORING": "Near dooring",
+        "DODGING_OBSTACLE": "Dodging obstacle",
+        "OTHER": "Other"
+    },
+    "BIKE_TYPES": {
+        "NOT_CHOSEN": "Not chosen",
+        "CITY_TREKKING_BIKE": "City/trekking bike",
+        "ROAD_RACING_BIKE": "Road/racing bike",
+        "E_BIKE": "E-bike",
+        "RECUMBENT_BICYCLE": "Recumbent bicycle",
+        "FREIGHT_BICYCLE": "Freight bicycle",
+        "TANDEM_BICYCLE": "Tandem bicycle",
+        "MOUNTAIN_BIKE": "Mountain bike",
+        "OTHER": "Other"
+    },
+    "MARKER_CONTENT": {
+        "LABELS": {
+            "BIKE_TYPE": "Bike type",
+            "PHONE_LOCATION": "Phone location",
+            "TYPE": "Type",
+            "DESCRIPTION": "Description",
+            "TIMESTAMP": "Date",
+            "PARTICIPANTS": "Participants"
+        }
+    }
+}
