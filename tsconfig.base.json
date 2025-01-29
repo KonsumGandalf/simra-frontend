@@ -22,7 +22,6 @@
 			"@simra/helpers": ["libs/common/ui/helpers/src/index.ts"],
 			"@simra/incidents-models": ["libs/incidents/models/src/index.ts"],
 			"@simra/incidents-ui": ["libs/incidents/ui/src/index.ts"],
-			"@simra/incidents-utils": ["libs/incidents/utils/src/index.ts"],
 			"@simra/rides-common-models": ["libs/rides/common/models/src/index.ts"],
 			"@simra/rides-incident-domain": ["libs/rides/incident/domain/src/index.ts"],
 			"@simra/rides-incident-map": ["libs/rides/incident/map/src/index.ts"],
