@@ -18,6 +18,10 @@ const config: StorybookConfig = {
 		{
 			directory: '../libs/streets/map',
 			titlePrefix: 'Streets Map/'
+		},
+		{
+			directory: '../libs/incidents/ui',
+			titlePrefix: 'Incidents'
 		}
 	],
 	staticDirs: [
@@ -28,6 +32,10 @@ const config: StorybookConfig = {
 		{
 			from: '../libs/streets/map/assets/i18n',
 			to: '/assets/i18n/streets/map'
+		},
+		{
+			from: '../libs/incidents/ui/assets/i18n',
+			to: '/assets/i18n/incidents/ui'
 		}
 	],
 	addons: [

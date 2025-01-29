@@ -177,7 +177,7 @@
         },
         {
             "name": "DangerousScoreBarComponent",
-            "id": "component-DangerousScoreBarComponent-9c7c7460d4f2e1464a8077114e239a09ea2d87b1049b65ebacc09b9732bbae0ecde8426ac1b962a06e98df8f21c753ab2e0bd40130105e905ddffb02fd831a48",
+            "id": "component-DangerousScoreBarComponent-1f3363d36d0a0c8fa657da3c2ab223b523167774a1c3133f63c05628f9cf6e835eba580d1046b9e467ce2718c356fb1a8baac83da960949f886e8a4354f57f66",
             "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -245,16 +245,16 @@
                     ],
                     "jsdoctags": [
                         {
-                            "pos": 2123,
-                            "end": 2136,
+                            "pos": 2107,
+                            "end": 2120,
                             "kind": 335,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 2124,
-                                "end": 2133,
+                                "pos": 2108,
+                                "end": 2117,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -281,16 +281,16 @@
                     ],
                     "jsdoctags": [
                         {
-                            "pos": 2345,
-                            "end": 2358,
+                            "pos": 2329,
+                            "end": 2342,
                             "kind": 335,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 2346,
-                                "end": 2355,
+                                "pos": 2330,
+                                "end": 2339,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -381,7 +381,7 @@
             "description": "<p>This component indicates the coloring of the map and allows to filter</p>\n",
             "rawdescription": "\n\nThis component indicates the coloring of the map and allows to filter\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, effect, inject, model, OnInit, output, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { TranslatePipe } from '@ngx-translate/core';\nimport { Store } from '@ngxs/store';\nimport { EDangerousColors, ETrafficTimes, EWeekDays } from '@simra/common-models';\nimport { UpdateFilterOptions } from '@simra/common-state';\nimport { transformMapToList } from '@simra/common-utils';\nimport { first } from 'lodash';\nimport { Button } from 'primeng/button';\nimport { Card } from 'primeng/card';\nimport { Popover } from 'primeng/popover';\nimport { Select } from 'primeng/select';\nimport { SelectButton } from 'primeng/selectbutton';\nimport { Tooltip } from 'primeng/tooltip';\nimport { ButtonDarkModeComponent } from '../../../atoms/button-dark-mode/component/button-dark-mode.component';\nimport { ColorBlockComponent } from '../../../atoms/color-block/component/color-block.component';\nimport { MapSelectOptions } from '../models/interfaces/map-select-options.interface';\nimport { TrafficTimesToLabels } from '../models/maps/traffic-times-to-labels';\nimport { WeekDaysToLabels } from '../models/maps/week-days-to-labels';\n\n/**\n * This component indicates the coloring of the map and allows to filter\n */\n@Component({\n\tselector: 'm-dangerous-score-bar',\n\tstandalone: true,\n\timports: [\n\t\tCommonModule,\n\t\tColorBlockComponent,\n\t\tSelectButton,\n\t\tFormsModule,\n\t\tButton,\n\t\tButtonDarkModeComponent,\n\t\tCard,\n\t\tSelect,\n\t\tPopover,\n\t\tTranslatePipe,\n\t\tTooltip,\n\t],\n\ttemplateUrl: './dangerous-score-bar.component.html',\n\tstyleUrl: './dangerous-score-bar.component.scss',\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'm-dangerous-score-bar',\n\t},\n})\nexport class DangerousScoreBarComponent {\n\tprivate readonly _store = inject(Store);\n\n\tprotected readonly EDangerousColors = EDangerousColors;\n\tprotected readonly _allTrafficTimes = transformMapToList(TrafficTimesToLabels);\n\t/**\n\t * Indicates which traffic time is selected to filter on the map\n\t *\n\t * @protected\n\t */\n\tprotected _selectedTrafficTime = model<MapSelectOptions & {key: ETrafficTimes}>();\n\n\tprotected readonly _allWeekDays = transformMapToList(WeekDaysToLabels);\n\t/**\n\t * Contains all selected weekdays\n\t *\n\t * @protected\n\t */\n\tprotected _selectedWeekDays = model<MapSelectOptions & {key: EWeekDays}[]>();\n\n\tconstructor() {\n\t\teffect(() => {\n\t\t\tconst selectedWeekDays = this._selectedWeekDays();\n\n\t\t\tlet weekDay: EWeekDays | undefined;\n\t\t\tif (!selectedWeekDays || selectedWeekDays?.length === 0 || selectedWeekDays?.length === 2) {\n\t\t\t\tweekDay = EWeekDays.ALL_WEEK;\n\t\t\t} else {\n\t\t\t\tweekDay = first(selectedWeekDays)?.key;\n\t\t\t}\n\n\t\t\tthis._store.dispatch(new UpdateFilterOptions({\n\t\t\t\ttrafficTime: this._selectedTrafficTime()?.key,\n\t\t\t\tweekDay: weekDay\n\t\t\t}));\n\t\t})\n\t}\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, effect, inject, model, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { TranslatePipe } from '@ngx-translate/core';\nimport { Store } from '@ngxs/store';\nimport { EDangerousColors, ETrafficTimes, EWeekDays } from '@simra/common-models';\nimport { UpdateFilterOptions } from '@simra/common-state';\nimport { transformMapToList } from '@simra/common-utils';\nimport { first } from 'lodash';\nimport { Button } from 'primeng/button';\nimport { Card } from 'primeng/card';\nimport { Popover } from 'primeng/popover';\nimport { Select } from 'primeng/select';\nimport { SelectButton } from 'primeng/selectbutton';\nimport { Tooltip } from 'primeng/tooltip';\nimport { ButtonDarkModeComponent } from '../../../atoms/button-dark-mode/component/button-dark-mode.component';\nimport { ColorBlockComponent } from '../../../atoms/color-block/component/color-block.component';\nimport { MapSelectOptions } from '../models/interfaces/map-select-options.interface';\nimport { TrafficTimesToLabels } from '../models/maps/traffic-times-to-labels';\nimport { WeekDaysToLabels } from '../models/maps/week-days-to-labels';\n\n/**\n * This component indicates the coloring of the map and allows to filter\n */\n@Component({\n\tselector: 'm-dangerous-score-bar',\n\tstandalone: true,\n\timports: [\n\t\tCommonModule,\n\t\tColorBlockComponent,\n\t\tSelectButton,\n\t\tFormsModule,\n\t\tButton,\n\t\tButtonDarkModeComponent,\n\t\tCard,\n\t\tSelect,\n\t\tPopover,\n\t\tTranslatePipe,\n\t\tTooltip,\n\t],\n\ttemplateUrl: './dangerous-score-bar.component.html',\n\tstyleUrl: './dangerous-score-bar.component.scss',\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'm-dangerous-score-bar',\n\t},\n})\nexport class DangerousScoreBarComponent {\n\tprivate readonly _store = inject(Store);\n\n\tprotected readonly EDangerousColors = EDangerousColors;\n\tprotected readonly _allTrafficTimes = transformMapToList(TrafficTimesToLabels);\n\t/**\n\t * Indicates which traffic time is selected to filter on the map\n\t *\n\t * @protected\n\t */\n\tprotected _selectedTrafficTime = model<MapSelectOptions & {key: ETrafficTimes}>();\n\n\tprotected readonly _allWeekDays = transformMapToList(WeekDaysToLabels);\n\t/**\n\t * Contains all selected weekdays\n\t *\n\t * @protected\n\t */\n\tprotected _selectedWeekDays = model<MapSelectOptions & {key: EWeekDays}[]>();\n\n\tconstructor() {\n\t\teffect(() => {\n\t\t\tconst selectedWeekDays = this._selectedWeekDays();\n\n\t\t\tlet weekDay: EWeekDays | undefined;\n\t\t\tif (!selectedWeekDays || selectedWeekDays?.length === 0 || selectedWeekDays?.length === 2) {\n\t\t\t\tweekDay = EWeekDays.ALL_WEEK;\n\t\t\t} else {\n\t\t\t\tweekDay = first(selectedWeekDays)?.key;\n\t\t\t}\n\n\t\t\tthis._store.dispatch(new UpdateFilterOptions({\n\t\t\t\ttrafficTime: this._selectedTrafficTime()?.key,\n\t\t\t\tweekDay: weekDay\n\t\t\t}));\n\t\t})\n\t}\n}\n",
             "styleUrl": "./dangerous-score-bar.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -395,11 +395,99 @@
                 "line": 67
             },
             "extends": [],
-            "templateData": "<!--<brn-select class=\"inline-block\" placeholder=\"Select an option\">\n\t<hlm-select-trigger>\n\t\t<hlm-select-value />\n\t</hlm-select-trigger>\n\t<hlm-select-content class=\"w-56\">\n\t\t@for (dayTime of _allTrafficTimes; track dayTime ){\n\t\t\t<hlm-option [value]=\"dayTime\">\n\t\t\t\t{{ dayTime }}\n\t\t\t</hlm-option>\n\t\t}\n\t</hlm-select-content>\n</brn-select>-->\n<p-card>\n\t<p-popover #op >\n\t\t<div class=\"flex flex-col space-y-2.5 \">\n\t\t\t<p-select class=\"mx-auto\" [options]=\"_allTrafficTimes\" [placeholder]=\"'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.PLACEHOLDER' | translate\" [(ngModel)]=\"_selectedTrafficTime\" size=\"small\" variant=\"filled\">\n\t\t\t\t<ng-template #selectedItem let-selectedOption>\n\t\t\t\t\t<div class=\"flex items-center gap-2\">\n\t\t\t\t\t\t<span [pTooltip]=\"selectedOption.tooltip | translate\" >{{ selectedOption.label | translate }}</span>\n\t\t\t\t\t\t@if (selectedOption.includesRushHour){\n\t\t\t\t\t\t\t<i class=\"pi pi-car\"></i>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t\t<ng-template let-trafficTime #item>\n\t\t\t\t\t<div class=\"flex items-center gap-2 justify-between flex-nowrap flex-grow\">\n\t\t\t\t\t\t<div [pTooltip]=\"trafficTime.tooltip | translate\" >{{ trafficTime.label | translate }}</div>\n\t\t\t\t\t\t@if (trafficTime.includesRushHour){\n\t\t\t\t\t\t\t<div class=\"pi pi-car\" pTooltip=\"Indicates this timeset includes a rush hour\"></div>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t</p-select>\n\t\t\t<p-selectButton [options]=\"_allWeekDays\" [(ngModel)]=\"_selectedWeekDays\" size=\"small\" [multiple]=\"true\">\n\t\t\t\t<ng-template #item let-weekday>\n\t\t\t\t\t<span [pTooltip]=\"weekday.tooltip | translate\" >{{ weekday.label | translate }}</span>\n\t\t\t\t</ng-template>\n\t\t\t</p-selectButton>\n\t\t</div>\n\t</p-popover>\n\t<div class=\"flex flex-wrap justify-around w-full\">\n\t\t<div class=\"flex items-center justify-around flex-wrap flex-grow\">\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.LOW_RISK' | translate}}</p>\n\t\t\t<div>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.GREEN_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.LIME_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.AMBER_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.ORANGE_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.RED_500\"></a-color-block>\n\t\t\t</div>\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.HIGH_RISK' | translate}}</p>\n\t\t</div>\n\t\t<p-button icon=\"pi pi-cog\" size=\"small\" severity=\"secondary\" [rounded]=\"true\" [outlined]=\"true\" (click)=\"op.toggle($event)\"></p-button>\n\t</div>\n</p-card>\n"
+            "templateData": "<p-card>\n\t<p-popover #op >\n\t\t<div class=\"popover-container\">\n\t\t\t<p-select class=\"mx-auto\" [options]=\"_allTrafficTimes\" [placeholder]=\"'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.PLACEHOLDER' | translate\" [(ngModel)]=\"_selectedTrafficTime\" size=\"small\" variant=\"filled\">\n\t\t\t\t<ng-template #selectedItem let-selectedOption>\n\t\t\t\t\t<div class=\"flex items-center gap-2\">\n\t\t\t\t\t\t<span [pTooltip]=\"selectedOption.tooltip | translate\" >{{ selectedOption.label | translate }}</span>\n\t\t\t\t\t\t@if (selectedOption.includesRushHour){\n\t\t\t\t\t\t\t<i class=\"pi pi-car\"></i>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t\t<ng-template let-trafficTime #item>\n\t\t\t\t\t<div class=\"flex items-center gap-2 justify-between flex-nowrap flex-grow\">\n\t\t\t\t\t\t<div [pTooltip]=\"trafficTime.tooltip | translate\" >{{ trafficTime.label | translate }}</div>\n\t\t\t\t\t\t@if (trafficTime.includesRushHour){\n\t\t\t\t\t\t\t<div class=\"pi pi-car\" [pTooltip]=\"'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.ICON_TOOLTIP' | translate\" ></div>\n\t\t\t\t\t\t}\n\t\t\t\t\t</div>\n\t\t\t\t</ng-template>\n\t\t\t</p-select>\n\t\t\t<p-selectButton [options]=\"_allWeekDays\" [(ngModel)]=\"_selectedWeekDays\" size=\"small\" [multiple]=\"true\">\n\t\t\t\t<ng-template #item let-weekday>\n\t\t\t\t\t<span [pTooltip]=\"weekday.tooltip | translate\" >{{ weekday.label | translate }}</span>\n\t\t\t\t</ng-template>\n\t\t\t</p-selectButton>\n\t\t</div>\n\t</p-popover>\n\t<div class=\"flex flex-wrap justify-around w-full\">\n\t\t<div class=\"flex items-center justify-around flex-wrap flex-grow\">\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.LOW_RISK' | translate}}</p>\n\t\t\t<div>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.GREEN_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.LIME_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.AMBER_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.ORANGE_500\"></a-color-block>\n\t\t\t\t<a-color-block [color]=\"EDangerousColors.RED_500\"></a-color-block>\n\t\t\t</div>\n\t\t\t<p>{{'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.BAR_LABEL.HIGH_RISK' | translate}}</p>\n\t\t</div>\n\t\t<p-button icon=\"pi pi-cog\" size=\"small\" severity=\"secondary\" [rounded]=\"true\" [outlined]=\"true\" (click)=\"op.toggle($event)\"></p-button>\n\t</div>\n</p-card>\n"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-0dabf0fb2bc2ebed83af918493564654e1853b45502f1e8040a60bd3801e88279a1fc278625aeda9a24e9476ae71f615c2c9581d0a48f4fbb9e94c5afaeceb70",
+            "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "a-icon",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "base",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": true
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "base",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": true
+                },
+                {
+                    "name": "weight",
+                    "defaultValue": "input<string>('regular')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "TranslatePipe",
+                    "type": "pipe"
+                },
+                {
+                    "name": "Tooltip"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TranslatePipe } from '@ngx-translate/core';\nimport { Tooltip } from 'primeng/tooltip';\nimport { IconTooltipInterface } from '../models/icon-tooltip.interface';\n\n@Component({\n\tselector: 'a-icon',\n\tstandalone: true,\n\timports: [CommonModule, TranslatePipe, Tooltip],\n\ttemplateUrl: './icon.component.html',\n\tstyleUrl: './icon.component.scss',\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'a-icon',\n\t},\n})\nexport class IconComponent {\n\tbase = input.required<IconTooltipInterface>();\n\tweight = input<string>('regular');\n}\n",
+            "styleUrl": "./icon.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<i class=\"ph {{weight()}} ph-{{base().name}}\" [pTooltip]=\"base().tooltip | translate\"></i>\n"
         },
         {
             "name": "MapComponent",
-            "id": "component-MapComponent-04a834d458a7a41f4ed980bf6fa4a0eaf02d1b24e79d3eae612cfe2c656e2e20584294e0cfb55ea614be4b08ff2d76b3396b62dd595eaff87bdff0031f6a2f63",
+            "id": "component-MapComponent-ab2a15840d1eef0ba3f537d6eaea6cbfd9fdcfa07265e3b8c95730d9b4e8c2a653489f111de8790f85065b5ec1c92001d6968c2dc545bad6707ba36288e81a93",
             "file": "libs/common/ui/components/src/lib/templates/map/component/map.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -436,7 +524,7 @@
                 },
                 {
                     "name": "combinedLayers$",
-                    "defaultValue": "computed(() => {\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t})",
+                    "defaultValue": "computed(() => {\n\t\tconsole.log('layer', this.overlayLayers());\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t})",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Signal<Layer[]>",
@@ -474,7 +562,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>The appearance options the user can choose from when using the map</p>\n",
-                    "line": 70,
+                    "line": 71,
                     "rawdescription": "\n\nThe appearance options the user can choose from when using the map\n",
                     "modifierKind": [
                         124,
@@ -527,7 +615,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 119,
+                    "line": 120,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThis function handles changes to the position of the map f.e. when the user zooms in\n\n",
@@ -535,8 +623,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3224,
-                                "end": 3229,
+                                "pos": 3270,
+                                "end": 3275,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -547,8 +635,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3218,
-                                "end": 3223,
+                                "pos": 3264,
+                                "end": 3269,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -572,7 +660,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 101,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -614,7 +702,7 @@
             "description": "<p>This component allows to interact with the leaflet map smoothly</p>\n",
             "rawdescription": "\n\nThis component allows to interact with the leaflet map smoothly\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, input, model, Signal } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';\nimport {\n\tControl,\n\ticon,\n\tlatLng,\n\tLayer,\n\tLeafletEvent,\n\tMap,\n\tMapOptions,\n\tMarker,\n\ttileLayer,\n} from 'leaflet';\nimport { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';\nimport { MapPositionInterface } from '@simra/common-models';\nimport { PopoverModule } from 'primeng/popover';\nimport { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-bar/component/dangerous-score-bar.component';\n\n/**\n * This component allows to interact with the leaflet map smoothly\n */\n@Component({\n\tselector: 't-map-component',\n\tstandalone: true,\n\timports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],\n\ttemplateUrl: './map.component.html',\n\tstyleUrl: './map.component.scss',\n\thost: {\n\t\tclass: 'o-simra-map',\n\t},\n})\nexport class MapComponent {\n\tpublic readonly leafletPosition = model<MapPositionInterface>({\n\t\tlat: 52.522,\n\t\tlng: 13.413,\n\t\tzoom: 14\n\t});\n\t/**\n\t * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays\n\t */\n\tpublic readonly overlayLayers = input.required<Layer[]>();\n\n\tprotected readonly initialOptions: MapOptions = {\n\t\tzoom: this.leafletPosition().zoom,\n\t\tcenter: latLng(this.leafletPosition().lat, this.leafletPosition().lng),\n\t\tpreferCanvas: true,\n\t};\n\n\t/**\n\t * The base layer on which other objects are projected to\n\t */\n\tprivate readonly _baseLayer: Layer = tileLayer(\n\t\t'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',\n\t\t{\n\t\t\tmaxZoom: 18\n\t\t},\n\t);\n\n\t/**\n\t * The overall layer containing the base layer with overlays\n\t */\n\tprotected readonly combinedLayers$: Signal<Layer[]> = computed(() => {\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t});\n\n\t/**\n\t * The appearance options the user can choose from when using the map\n\t */\n\tprotected readonly layerControl: LeafletControlLayersConfig = {\n\t\tbaseLayers: {\n\t\t\t'Open Cycle Map': tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 18,\n\t\t\t\tattribution: '...',\n\t\t\t}),\n\t\t\t'Osm Liberty': tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 30,\n\t\t\t\tminZoom: 12,\n\t\t\t}),\n\t\t\tgoogle: tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {\n\t\t\t\tmaxZoom: 20,\n\t\t\t\tsubdomains: ['mt0', 'mt1', 'mt2', 'mt3'],\n\t\t\t}),\n\t\t},\n\t\toverlays: {},\n\t};\n\n\tconstructor() {\n\t\tMarker.prototype.options.icon = icon({\n\t\t\ticonUrl: 'assets/leaflet/marker-icon.png',\n\t\t\ticonRetinaUrl: 'assets/leaflet/marker-icon-2x.png',\n\t\t\tshadowUrl: 'assets/leaflet/marker-shadow.png',\n\t\t\ticonSize: [25, 41],\n\t\t\ticonAnchor: [12, 41],\n\t\t\tpopupAnchor: [1, -34],\n\t\t\tshadowSize: [41, 41],\n\t\t});\n\t}\n\n\tonMapReady(map: Map): void {\n\t\tconst provider = new OpenStreetMapProvider();\n\t\tconst searchControl: Control = GeoSearchControl({\n\t\t\tprovider,\n\t\t\tstyle: 'bar',\n\t\t\tshowMarker: true,\n\t\t\tretainZoomLevel: false,\n\t\t\tautoClose: true,\n\t\t\tautoCompleteDelay: 50,\n\t\t});\n\n\t\tmap.addControl(searchControl);\n\t}\n\n\t/**\n\t * This function handles changes to the position of the map f.e. when the user zooms in\n\t *\n\t * @param event - the leaflet event emitted\n\t */\n\tonMapChange(event: LeafletEvent): void {\n\t\tthis.leafletPosition.set({\n\t\t\tzoom: event.sourceTarget.getZoom(),\n\t\t\t...event.sourceTarget.getCenter(),\n\t\t});\n\t}\n}\n",
+            "sourceCode": "import { Component, computed, input, model, Signal } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';\nimport {\n\tControl,\n\ticon,\n\tlatLng,\n\tLayer,\n\tLeafletEvent,\n\tMap,\n\tMapOptions,\n\tMarker,\n\ttileLayer,\n} from 'leaflet';\nimport { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';\nimport { MapPositionInterface } from '@simra/common-models';\nimport { PopoverModule } from 'primeng/popover';\nimport { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-bar/component/dangerous-score-bar.component';\n\n/**\n * This component allows to interact with the leaflet map smoothly\n */\n@Component({\n\tselector: 't-map-component',\n\tstandalone: true,\n\timports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],\n\ttemplateUrl: './map.component.html',\n\tstyleUrl: './map.component.scss',\n\thost: {\n\t\tclass: 'o-simra-map',\n\t},\n})\nexport class MapComponent {\n\tpublic readonly leafletPosition = model<MapPositionInterface>({\n\t\tlat: 52.522,\n\t\tlng: 13.413,\n\t\tzoom: 14\n\t});\n\t/**\n\t * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays\n\t */\n\tpublic readonly overlayLayers = input.required<Layer[]>();\n\n\tprotected readonly initialOptions: MapOptions = {\n\t\tzoom: this.leafletPosition().zoom,\n\t\tcenter: latLng(this.leafletPosition().lat, this.leafletPosition().lng),\n\t\tpreferCanvas: true,\n\t};\n\n\t/**\n\t * The base layer on which other objects are projected to\n\t */\n\tprivate readonly _baseLayer: Layer = tileLayer(\n\t\t'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',\n\t\t{\n\t\t\tmaxZoom: 18\n\t\t},\n\t);\n\n\t/**\n\t * The overall layer containing the base layer with overlays\n\t */\n\tprotected readonly combinedLayers$: Signal<Layer[]> = computed(() => {\n\t\tconsole.log('layer', this.overlayLayers());\n\t\treturn [this._baseLayer, ...(this.overlayLayers() || [])];\n\t});\n\n\t/**\n\t * The appearance options the user can choose from when using the map\n\t */\n\tprotected readonly layerControl: LeafletControlLayersConfig = {\n\t\tbaseLayers: {\n\t\t\t'Open Cycle Map': tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 18,\n\t\t\t\tattribution: '...',\n\t\t\t}),\n\t\t\t'Osm Liberty': tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {\n\t\t\t\tmaxZoom: 30,\n\t\t\t\tminZoom: 12,\n\t\t\t}),\n\t\t\tgoogle: tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {\n\t\t\t\tmaxZoom: 20,\n\t\t\t\tsubdomains: ['mt0', 'mt1', 'mt2', 'mt3'],\n\t\t\t}),\n\t\t},\n\t\toverlays: {},\n\t};\n\n\tconstructor() {\n\t\tMarker.prototype.options.icon = icon({\n\t\t\ticonUrl: 'assets/leaflet/marker-icon.png',\n\t\t\ticonRetinaUrl: 'assets/leaflet/marker-icon-2x.png',\n\t\t\tshadowUrl: 'assets/leaflet/marker-shadow.png',\n\t\t\ticonSize: [25, 41],\n\t\t\ticonAnchor: [12, 41],\n\t\t\tpopupAnchor: [1, -34],\n\t\t\tshadowSize: [41, 41],\n\t\t});\n\t}\n\n\tonMapReady(map: Map): void {\n\t\tconst provider = new OpenStreetMapProvider();\n\t\tconst searchControl: Control = GeoSearchControl({\n\t\t\tprovider,\n\t\t\tstyle: 'bar',\n\t\t\tshowMarker: true,\n\t\t\tretainZoomLevel: false,\n\t\t\tautoClose: true,\n\t\t\tautoCompleteDelay: 50,\n\t\t});\n\n\t\tmap.addControl(searchControl);\n\t}\n\n\t/**\n\t * This function handles changes to the position of the map f.e. when the user zooms in\n\t *\n\t * @param event - the leaflet event emitted\n\t */\n\tonMapChange(event: LeafletEvent): void {\n\t\tthis.leafletPosition.set({\n\t\t\tzoom: event.sourceTarget.getZoom(),\n\t\t\t...event.sourceTarget.getCenter(),\n\t\t});\n\t}\n}\n",
             "styleUrl": "./map.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -625,10 +713,174 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 86
+                "line": 87
             },
             "extends": [],
             "templateData": "<m-dangerous-score-bar></m-dangerous-score-bar>\n<div\n\tclass=\"o-simra-map\"\n\tleaflet\n\t[leafletOptions]=\"initialOptions\"\n\t[leafletLayersControl]=\"layerControl\"\n\t[leafletLayers]=\"combinedLayers$()\"\n\t(leafletMapReady)=\"onMapReady($event)\"\n\t(leafletMapZoom)=\"onMapChange($event)\"\n\t(leafletMapMoveEnd)=\"onMapChange($event)\"\n></div>\n"
+        },
+        {
+            "name": "MarkerContentComponent",
+            "id": "component-MarkerContentComponent-fd27772b34c4aae78e5e83e31f7f0ce94b75ad8c585b22956746d1ac112df3e5518a3d71555b4b49647caeae939d6142f6b0a0d30c45db4948b1ab87ba812640",
+            "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "host": {},
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "m-marker-content",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./marker-content.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "required": true,
+                    "name": "incident",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "optional": false,
+                    "rawdescription": "\n\nThe incident to display\n",
+                    "description": "<p>The incident to display</p>\n",
+                    "line": 32,
+                    "type": "IncidentInterface",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "bikeTypeToTranslation",
+                    "defaultValue": "bikeTypeToTranslation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "EParticipants",
+                    "defaultValue": "EParticipants",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 37,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "incidentTypeToIcon",
+                    "defaultValue": "incidentTypeToIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 35,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "participantToIcon",
+                    "defaultValue": "participantToIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "phoneLocationToIcon",
+                    "defaultValue": "phoneLocationToIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class.incident-icon--is-scary",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "TranslatePipe",
+                    "type": "pipe"
+                },
+                {
+                    "name": "IconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "<p>This component displays the content of a marker within a popup</p>\n",
+            "rawdescription": "\n\nThis component displays the content of a marker within a popup\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TranslatePipe } from '@ngx-translate/core';\nimport { IconComponent } from '@simra/common-components';\nimport { EParticipants, IncidentInterface } from '@simra/incidents-models';\nimport { bikeTypeToTranslation } from '../../maps/bike-type-to-translation';\nimport { incidentTypeToIcon } from '../../maps/incident-type-to-icon';\nimport { participantToIcon } from '../../maps/participant-to-icon';\nimport { phoneLocationToIcon } from '../../maps/phone-location-to-icon';\n\n/**\n * This component displays the content of a marker within a popup\n */\n@Component({\n\tselector: 'm-marker-content',\n\tstandalone: true,\n\timports: [CommonModule, TranslatePipe, IconComponent],\n\ttemplateUrl: './marker-content.component.html',\n\tstyleUrl: './marker-content.component.scss',\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n\thost: {\n\t\tclass: 'm-marker-content',\n\t},\n\n})\nexport class MarkerContentComponent {\n\t/**\n\t * The incident to display\n\t */\n\t@Input({required: true})\n\tpublic incident!: IncidentInterface;\n\tprotected readonly phoneLocationToIcon = phoneLocationToIcon;\n\tprotected readonly bikeTypeToTranslation = bikeTypeToTranslation;\n\tprotected readonly incidentTypeToIcon = incidentTypeToIcon;\n\tprotected readonly participantToIcon = participantToIcon;\n\tprotected readonly EParticipants = EParticipants;\n\n\t@HostBinding('class.incident-icon--is-scary')\n\tget isSerious() {\n\t\treturn this.incident.scary;\n\t}\n}\n",
+            "styleUrl": "./marker-content.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "isSerious": {
+                    "name": "isSerious",
+                    "getSignature": {
+                        "name": "isSerious",
+                        "type": "",
+                        "returnType": "",
+                        "line": 40
+                    }
+                }
+            },
+            "templateData": "<table>\n\t<tbody>\n\t\t<tr class=\"icon-box\">\n\t\t\t<a-icon [base]=\"incidentTypeToIcon[incident.incidentType]\"></a-icon>\n\t\t\t<a-icon [base]=\"phoneLocationToIcon[incident.phoneLocation]\"></a-icon>\n\t\t\t@if (incident.participantsInvolved.length >= 1) {\n\t\t\t\t<a-icon [base]=\"participantToIcon[incident.participantsInvolved[0]]\"></a-icon>\n\t\t\t} @else {\n\t\t\t\t<a-icon [base]=\"participantToIcon[EParticipants.OTHER]\"></a-icon>\n\t\t\t}\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\tID\n\t\t\t</td>\n\t\t\t<td class=\"data-display\">\n\t\t\t\t{{incident.id}}\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t{{'INCIDENTS.UI.MARKER_CONTENT.LABELS.TIMESTAMP' | translate}}\n\t\t\t</td>\n\t\t\t<td class=\"data-display\">\n\t\t\t\t{{incident.timeStamp | date: 'dd/MM/yyyy HH:mm'\t}}\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t{{'INCIDENTS.UI.MARKER_CONTENT.LABELS.BIKE_TYPE' | translate}}\n\t\t\t</td>\n\t\t\t<td class=\"data-display\">\n\t\t\t\t{{bikeTypeToTranslation[incident.bike] | translate}}\n\t\t\t</td>\n\t\t</tr>\n\t\t@if(incident.description) {\n\t\t\t<tr>\n\t\t\t\t<div class=\"data-display\">\n\t\t\t\t\t{{incident.description | translate}}\n\t\t\t\t</div>\n\t\t\t</tr>\n\t\t}\n\t</tbody>\n</table>\n\n"
         },
         {
             "name": "SafetyMetricsDigitPanelComponent",
@@ -712,7 +964,7 @@
         },
         {
             "name": "SafetyMetricsPanelComponent",
-            "id": "component-SafetyMetricsPanelComponent-db7d4e28479f757d88e55240589464256c7a3ea4cccc8ddf3a4bfcb3e3674af9a80aef5ff1ae84d4a6232031e404eb0f1d81daee6b24969bba7aba7b8b1e67ef",
+            "id": "component-SafetyMetricsPanelComponent-d362352bced0961e62d2712f6c1a8bb8f9e5cf8241c42a64cc927962a070f54a82dd4301cb8d288719ccf42cddd8f294619088fdfc2f9c87aa681476f3b9de50",
             "file": "libs/streets/map/src/lib/components/safety-metrics-panel/component/safety-metrics-panel.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -740,7 +992,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 39,
+                    "line": 36,
                     "modifierKind": [
                         125,
                         148
@@ -751,25 +1003,10 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "_pieMetrics$",
+                    "name": "_barMetricsRideIncidentDistributionData$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Signal<literal type | undefined>",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 41,
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                },
-                {
-                    "name": "_pieMetricsIncidentTypesOptions",
-                    "defaultValue": "{\n\t\tresponsive: true,\n\t\tplugins: {\n\t\t\tlegend: {\n\t\t\t},\n\t\t\ttitle: {\n\t\t\t\tdisplay: true,\n\t\t\t\ttext: 'Chart Title',\n\t\t\t\tpadding: {\n\t\t\t\t\ttop: 20,\n\t\t\t\t\tbottom: 40\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
+                    "type": "Signal<ChartData | undefined>",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
@@ -780,7 +1017,21 @@
                     ]
                 },
                 {
-                    "name": "_safetyMetricsDisplay$",
+                    "name": "_barMetricsRideIncidentDistributionOptions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartOptions",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 49,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "_metricsIncidentTypes$",
                     "defaultValue": "computed(() => {\n\t\tconst metrics = this.safetyMetrics$();\n\t\tif (!metrics) {\n\t\t\treturn;\n\t\t}\n\n\t\treturn drop(safetyMetricsDisplayArray(metrics), 5).filter(res => res.data != 0);\n\t})",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -788,7 +1039,35 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 42,
+                    "line": 40,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "_pieMetricsIncidentTypesData$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Signal<ChartData | undefined>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "_pieMetricsIncidentTypesOptions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChartOptions",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
                     "modifierKind": [
                         124,
                         148
@@ -796,14 +1075,14 @@
                 },
                 {
                     "name": "_templatePages$",
-                    "defaultValue": "computed(() => {\n\t\tconst metrics = this.safetyMetrics$();\n\t\tconst displayedMetrics = this._safetyMetricsDisplay$();\n\t\tif (!metrics || !displayedMetrics || displayedMetrics.length < 1) {\n\t\t\treturn times(1);\n\t\t}\n\n\t\treturn times(2);\n\t})",
+                    "defaultValue": "computed(() => {\n\t\tlet numberOfPages = 3;\n\t\tconst safetyMetrics = this.safetyMetrics$();\n\t\tif (!safetyMetrics) {\n\t\t\treturn times(1);\n\t\t}\n\n\t\tconst safetyMetricsArray = safetyMetricsDisplayArray(safetyMetrics);\n\t\tconst pieMetrics = drop(safetyMetricsArray, 5).filter(res => res.data != 0);\n\n\t\tif (!this._pieMetricsIncidentTypesData$() || pieMetrics.length < 1) {\n\t\t\tnumberOfPages -= 1;\n\t\t}\n\t\treturn times(numberOfPages);\n\t})",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 85,
+                    "line": 149,
                     "modifierKind": [
                         124,
                         148
@@ -818,7 +1097,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 37,
+                    "line": 34,
                     "modifierKind": [
                         124,
                         148
@@ -832,7 +1111,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 39,
+                    "line": 36,
                     "modifierKind": [
                         125,
                         148
@@ -872,7 +1151,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { cdkMigrations } from '@angular/cdk/schematics';\nimport { ChangeDetectionStrategy, Component, computed, effect, HostBinding, inject, input, Signal, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { toObservable, toSignal } from '@angular/core/rxjs-interop';\nimport { TranslatePipe, TranslateService } from '@ngx-translate/core';\nimport { asyncComputed } from '@simra/common-utils';\nimport { SafetyMetricsDto } from '@simra/streets-common';\nimport effects from 'chart.js/dist/helpers/helpers.easing';\nimport { defaults, drop, pick, tail, times, values } from 'lodash';\nimport { Card } from 'primeng/card';\nimport { Carousel } from 'primeng/carousel';\nimport { UIChart } from 'primeng/chart';\nimport { switchMap, tap, map, filter, combineLatest } from 'rxjs';\nimport { safetyMetricsDisplayArray } from '../../../models/const';\nimport { SafetyMetricsDigitPanelComponent } from '../../safety-metrics-digit-panel/component/safety-metrics-digit-panel.component';\n\n@Component({\n\tselector: 'm-safety-metrics-panel',\n\tstandalone: true,\n\timports: [\n\t\tCommonModule,\n\t\tCarousel,\n\t\tSafetyMetricsDigitPanelComponent,\n\t\tUIChart,\n\t\tTranslatePipe,\n\t\tCard,\n\t],\n\ttemplateUrl: './safety-metrics-panel.component.html',\n\tstyleUrl: './safety-metrics-panel.component.scss',\n\thost: {\n\t\tclass: 'm-safety-metrics-panel',\n\t},\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n})\nexport class SafetyMetricsPanelComponent {\n\tprotected readonly _translationService = inject(TranslateService);\n\n\tpublic readonly safetyMetrics$ = input<SafetyMetricsDto>();\n\n\tprotected readonly _pieMetrics$: Signal<({datasets: {data: any[]}[], labels: string[]} | undefined)>;\n\tprotected readonly _safetyMetricsDisplay$ = computed(() => {\n\t\tconst metrics = this.safetyMetrics$();\n\t\tif (!metrics) {\n\t\t\treturn;\n\t\t}\n\n\t\treturn drop(safetyMetricsDisplayArray(metrics), 5).filter(res => res.data != 0);\n\t});\n\tprotected readonly _pieMetricsIncidentTypesOptions = {\n\t\tresponsive: true,\n\t\tplugins: {\n\t\t\tlegend: {\n\t\t\t},\n\t\t\ttitle: {\n\t\t\t\tdisplay: true,\n\t\t\t\ttext: 'Chart Title',\n\t\t\t\tpadding: {\n\t\t\t\t\ttop: 20,\n\t\t\t\t\tbottom: 40\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\tconstructor() {\n\t\tthis._pieMetrics$ = computed(() => {\n\t\t\tconst displayMetrics = this._safetyMetricsDisplay$();\n\t\t\tif (!displayMetrics) {\n\t\t\t\tconsole.log('No metrics');\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tconst labels =  displayMetrics.map(({ label }) => label);\n\n\t\t\tconst translatedLabels = this._translationService.instant(labels);\n\t\t\tconsole.log(translatedLabels)\n\t\t\treturn {\n\t\t\t\tdatasets: [{ data: displayMetrics.map((value) => value.data) }],\n\t\t\t\tlabels: values(translatedLabels),\n\t\t\t}\n\t\t});\n\t}\n\n\tprotected readonly _templatePages$ = computed(() => {\n\t\tconst metrics = this.safetyMetrics$();\n\t\tconst displayedMetrics = this._safetyMetricsDisplay$();\n\t\tif (!metrics || !displayedMetrics || displayedMetrics.length < 1) {\n\t\t\treturn times(1);\n\t\t}\n\n\t\treturn times(2);\n\t});\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, inject, input, Signal, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TranslatePipe, TranslateService } from '@ngx-translate/core';\nimport { SafetyMetricsDto } from '@simra/streets-common';\nimport { ChartData } from 'chart.js';\nimport { ChartOptions, Tick } from 'chart.js/dist/types';\nimport { drop, times, values } from 'lodash';\nimport { Card } from 'primeng/card';\nimport { Carousel } from 'primeng/carousel';\nimport { UIChart } from 'primeng/chart';\nimport { safetyMetricsDisplayArray } from '../../../models/const';\nimport { SafetyMetricsDigitPanelComponent } from '../../safety-metrics-digit-panel/component/safety-metrics-digit-panel.component';\n\n@Component({\n\tselector: 'm-safety-metrics-panel',\n\tstandalone: true,\n\timports: [\n\t\tCommonModule,\n\t\tCarousel,\n\t\tSafetyMetricsDigitPanelComponent,\n\t\tUIChart,\n\t\tTranslatePipe,\n\t\tCard,\n\t],\n\ttemplateUrl: './safety-metrics-panel.component.html',\n\tstyleUrl: './safety-metrics-panel.component.scss',\n\thost: {\n\t\tclass: 'm-safety-metrics-panel',\n\t},\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\tencapsulation: ViewEncapsulation.None,\n})\nexport class SafetyMetricsPanelComponent {\n\tprotected readonly _translationService = inject(TranslateService);\n\n\tpublic readonly safetyMetrics$ = input<SafetyMetricsDto>();\n\n\tprotected readonly _pieMetricsIncidentTypesOptions: ChartOptions;\n\tprotected readonly _pieMetricsIncidentTypesData$: Signal<(ChartData | undefined)>;\n\tprotected readonly _metricsIncidentTypes$ = computed(() => {\n\t\tconst metrics = this.safetyMetrics$();\n\t\tif (!metrics) {\n\t\t\treturn;\n\t\t}\n\n\t\treturn drop(safetyMetricsDisplayArray(metrics), 5).filter(res => res.data != 0);\n\t});\n\n\tprotected readonly _barMetricsRideIncidentDistributionOptions: ChartOptions;\n\tprotected readonly _barMetricsRideIncidentDistributionData$: Signal<(ChartData | undefined)>;\n\n\n\tconstructor() {\n\t\tthis._pieMetricsIncidentTypesData$ = computed(() => {\n\t\t\tconst metrics = this.safetyMetrics$();\n\t\t\tif (!metrics) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tconst displayMetrics = drop(safetyMetricsDisplayArray(metrics), 5).filter(res => res.data != 0)\n\n\t\t\tif (!displayMetrics || displayMetrics.length < 1) {\n\t\t\t\treturn undefined;\n\t\t\t}\n\n\t\t\tconst labels =  displayMetrics.map(({ label }) => label);\n\n\t\t\tconst translatedLabels = this._translationService.instant(labels);\n\t\t\treturn {\n\t\t\t\tdatasets: [{ data: displayMetrics.map((value) => value.data) }],\n\t\t\t\tlabels: values(translatedLabels),\n\t\t\t}\n\t\t});\n\t\tthis._pieMetricsIncidentTypesOptions = {\n\t\t\tresponsive: true,\n\t\t\tmaintainAspectRatio: false,\n\t\t\tplugins: {\n\t\t\t\ttitle: {\n\t\t\t\t\tdisplay: true,\n\t\t\t\t\ttext: this._translationService.instant('STREETS.MAP.COMPONENTS.SAFETY_METRICS_PANEL.CHARTS.INCIDENT_TYPES.TITLE'),\n\t\t\t\t\tpadding: {\n\t\t\t\t\t\ttop: 5,\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tthis._barMetricsRideIncidentDistributionData$ = computed(() => {\n\n\t\t\tconst metrics = this.safetyMetrics$();\n\t\t\tif (!metrics) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tconst displayMetrics = safetyMetricsDisplayArray(metrics).slice(2, 5)\n\n\t\t\tif (!displayMetrics || displayMetrics.length < 1) {\n\t\t\t\treturn undefined;\n\t\t\t}\n\n\t\t\tconst labels =  displayMetrics.map(({ label }) => label);\n\n\t\t\tconst translatedLabels = this._translationService.instant(labels);\n\t\t\treturn {\n\t\t\t\tdatasets: [{\n\t\t\t\t\tdata: displayMetrics.map((value) => value.data),\n\t\t\t\t\tbackgroundColor: ['#36a2eb', '#ffcd56', '#ff6483'],\n\t\t\t\t}],\n\t\t\t\tlabels: values(translatedLabels)\n\t\t\t}\n\t\t});\n\n\t\tthis._barMetricsRideIncidentDistributionOptions = {\n\t\t\tresponsive: true,\n\t\t\taspectRatio: 0.6,\n\t\t\tplugins: {\n\t\t\t\ttitle: {\n\t\t\t\t\tdisplay: true,\n\t\t\t\t\ttext: this._translationService.instant('STREETS.MAP.COMPONENTS.SAFETY_METRICS_PANEL.CHARTS.RIDE_INCIDENT_DISTRIBUTION.TITLE'),\n\t\t\t\t\tpadding: {\n\t\t\t\t\t\ttop: 5,\n\t\t\t\t\t\tbottom: 20\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tlegend: {\n\t\t\t\t\tdisplay: false\n\t\t\t\t},\n\t\t\t},\n\t\t\tscales: {\n\t\t\t\ty: {\n\t\t\t\t\tbeginAtZero: true,\n\t\t\t\t\tticks: {\n\t\t\t\t\t\tcount: 11\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\tright: {\n\t\t\t\t\tbeginAtZero: true,\n\t\t\t\t\tposition: 'right',\n\t\t\t\t\tticks: {\n\t\t\t\t\t\tcount: 11,\n\t\t\t\t\t\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\t\t\t\t\t\tcallback: ((tickValue: number | string, _: number, __: Tick[]) => {\n\t\t\t\t\t\t\treturn +tickValue * 100 + '%';\n\t\t\t\t\t\t})\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\tprotected readonly _templatePages$ = computed(() => {\n\t\tlet numberOfPages = 3;\n\t\tconst safetyMetrics = this.safetyMetrics$();\n\t\tif (!safetyMetrics) {\n\t\t\treturn times(1);\n\t\t}\n\n\t\tconst safetyMetricsArray = safetyMetricsDisplayArray(safetyMetrics);\n\t\tconst pieMetrics = drop(safetyMetricsArray, 5).filter(res => res.data != 0);\n\n\t\tif (!this._pieMetricsIncidentTypesData$() || pieMetrics.length < 1) {\n\t\t\tnumberOfPages -= 1;\n\t\t}\n\t\treturn times(numberOfPages);\n\t});\n}\n",
             "styleUrl": "./safety-metrics-panel.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -883,10 +1162,10 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 64
+                "line": 50
             },
             "extends": [],
-            "templateData": "<p-card>\n\t<p-carousel [value]=\"_templatePages$()\" [circular]=\"true\">\n\t\t<ng-template let-element #item>\n\t\t\t@if(element === 0) {\n\t\t\t\t<m-safe-metrics-digit-panel [safetyMetrics]=\"safetyMetrics$()\"></m-safe-metrics-digit-panel>\n\t\t\t}\n\t\t\t@if (_safetyMetricsDisplay$() && _pieMetrics$()) {\n\t\t\t\t@if(element === 1) {\n\t\t\t\t\t\t<p-chart type=\"pie\"\n\t\t\t\t\t\t\t\t [data]=\"_pieMetrics$()\"\n\t\t\t\t\t\t\t\t [responsive]=\"true\"\n\t\t\t\t\t\t\t\t [options]=\"_pieMetricsIncidentTypesOptions\"\n\t\t\t\t\t\t\t\t size=\"small\">\n\t\t\t\t\t\t</p-chart>\n\t\t\t\t}\n\t\t\t}\n\t\t</ng-template>\n\t</p-carousel>\n</p-card>\n"
+            "templateData": "<p-card>\n\t<p-carousel [value]=\"_templatePages$()\" [circular]=\"true\">\n\t\t<ng-template let-element #item>\n\t\t\t@if(element === 0) {\n\t\t\t\t<m-safe-metrics-digit-panel [safetyMetrics]=\"safetyMetrics$()\"></m-safe-metrics-digit-panel>\n\t\t\t}\n\n\t\t\t@if (_metricsIncidentTypes$()) {\n\t\t\t\t@if(element === 1) {\n\t\t\t\t\t<p-chart type=\"bar\"\n\t\t\t\t\t\t\t [data]=\"_barMetricsRideIncidentDistributionData$()\"\n\t\t\t\t\t\t\t [responsive]=\"true\"\n\t\t\t\t\t\t\t [options]=\"_barMetricsRideIncidentDistributionOptions\"\n\t\t\t\t\t\t\t size=\"large\">\n\t\t\t\t\t</p-chart>\n\t\t\t\t}\n\t\t\t\t@if(element === 2) {\n\t\t\t\t\t\t<p-chart type=\"pie\"\n\t\t\t\t\t\t\t\t [data]=\"_pieMetricsIncidentTypesData$()\"\n\t\t\t\t\t\t\t\t [responsive]=\"true\"\n\t\t\t\t\t\t\t\t [options]=\"_pieMetricsIncidentTypesOptions\"\n\t\t\t\t\t\t\t\t size=\"large\">\n\t\t\t\t\t\t</p-chart>\n\t\t\t\t}\n\t\t\t}\n\t\t</ng-template>\n\t</p-carousel>\n</p-card>\n"
         }
     ],
     "modules": [],
@@ -900,7 +1179,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StorybookConfig",
-                "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/streets/map',\n\t\t\ttitlePrefix: 'Streets Map/'\n\t\t}\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/streets/map/assets/i18n',\n\t\t\tto: '/assets/i18n/streets/map'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
+                "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/streets/map',\n\t\t\ttitlePrefix: 'Streets Map/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/incidents/ui',\n\t\t\ttitlePrefix: 'Incidents'\n\t\t}\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/streets/map/assets/i18n',\n\t\t\tto: '/assets/i18n/streets/map'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/incidents/ui/assets/i18n',\n\t\t\tto: '/assets/i18n/incidents/ui'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack',\n\t\t'storybook-addon-deep-controls'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
             },
             {
                 "name": "Default",
@@ -946,11 +1225,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<ColorBlockComponent>",
-                "defaultValue": "{\n\tcomponent: ColorBlockComponent,\n\ttitle: 'ColorBlock',\n}"
+                "type": "Meta<MarkerContentComponent>",
+                "defaultValue": "{\n\tcomponent: MarkerContentComponent,\n\ttitle: 'MarkerContentComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t}),\n\t]\n}"
             },
             {
                 "name": "meta",
@@ -976,21 +1255,41 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<DangerousScoreBarComponent>",
-                "defaultValue": "{\n\tcomponent: DangerousScoreBarComponent,\n\ttitle: 'DangerousScoreBarComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t\tproviders: [\n\t\t\t\t{\n\t\t\t\t\tprovide: Store,\n\t\t\t\t\tuseValue: {},\n\t\t\t\t}\n\t\t\t]\n\t\t})\n\t]\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ButtonDarkModeComponent>",
                 "defaultValue": "{\n\tcomponent: ButtonDarkModeComponent,\n\ttitle: 'ButtonDarkMode',\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ColorBlockComponent>",
+                "defaultValue": "{\n\tcomponent: ColorBlockComponent,\n\ttitle: 'ColorBlock',\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<IconComponent>",
+                "defaultValue": "{\n\tcomponent: IconComponent,\n\ttitle: 'Icon',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t})\n\t]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DangerousScoreBarComponent>",
+                "defaultValue": "{\n\tcomponent: DangerousScoreBarComponent,\n\ttitle: 'DangerousScoreBarComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t\tproviders: [\n\t\t\t\t{\n\t\t\t\t\tprovide: Store,\n\t\t\t\t\tuseValue: {},\n\t\t\t\t}\n\t\t\t]\n\t\t})\n\t]\n}"
             },
             {
                 "name": "preview",
@@ -1000,7 +1299,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t},\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t}\n\t}\n}"
+                "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [ PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t},\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t},\n\t\tdeepControls: {\n\t\t\tenabled: true\n\t\t}\n\t}\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n\targs: {\n\t\tincident: {\n\t\t\t// will not be displayed in the story\n\t\t\tlat: 13,\n\t\t\tlng: 42,\n\t\t\tid: 1,\n\t\t\tincidentType: EIncidentType.CLOSE_PASS,\n\t\t\tbike: EBikeType.MOUNTAIN_BIKE,\n\t\t\tdescription: faker.lorem.paragraph(3),\n\t\t\tparticipantsInvolved: [EParticipants.BUS_COACH, EParticipants.CAR],\n\t\t\tphoneLocation: EPhoneLocations.BACKPACK_BAG,\n\t\t\tscary: true,\n\t\t\ttimeStamp: new Date(),\n\t\t}\n\t},\n}"
             },
             {
                 "name": "Primary",
@@ -1031,6 +1340,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n\targs: {},\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n\targs: {\n\t\tbase: {\n\t\t\tname: 'taxi',\n\t\t\ttooltip: 'Taxi Icon',\n\t\t},\n\t\tweight: 'light'\n\t},\n}"
             }
         ],
         "functions": [
@@ -1068,8 +1387,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<ColorBlockComponent>",
-                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "rawtype": "StoryObj<MarkerContentComponent>",
+                "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1101,8 +1420,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<DangerousScoreBarComponent>",
-                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                "rawtype": "StoryObj<ButtonDarkModeComponent>",
+                "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1112,8 +1431,30 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<ButtonDarkModeComponent>",
-                "file": "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts",
+                "rawtype": "StoryObj<ColorBlockComponent>",
+                "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<IconComponent>",
+                "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<DangerousScoreBarComponent>",
+                "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1131,7 +1472,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StorybookConfig",
-                    "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/streets/map',\n\t\t\ttitlePrefix: 'Streets Map/'\n\t\t}\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/streets/map/assets/i18n',\n\t\t\tto: '/assets/i18n/streets/map'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
+                    "defaultValue": "{\n\tstories: [\n\t\t'../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/atoms',\n\t\t\ttitlePrefix: 'Atoms/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/molecules',\n\t\t\ttitlePrefix: 'Molecules/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/common/ui/components/src/lib/templates',\n\t\t\ttitlePrefix: 'Templates/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/streets/map',\n\t\t\ttitlePrefix: 'Streets Map/'\n\t\t},\n\t\t{\n\t\t\tdirectory: '../libs/incidents/ui',\n\t\t\ttitlePrefix: 'Incidents'\n\t\t}\n\t],\n\tstaticDirs: [\n\t\t{\n\t\t\tfrom: '../libs/common/ui/components/assets/i18n',\n\t\t\tto: '/assets/i18n/common/ui/components'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/streets/map/assets/i18n',\n\t\t\tto: '/assets/i18n/streets/map'\n\t\t},\n\t\t{\n\t\t\tfrom: '../libs/incidents/ui/assets/i18n',\n\t\t\tto: '/assets/i18n/incidents/ui'\n\t\t}\n\t],\n\taddons: [\n        '@storybook/addon-essentials',\n        '@storybook/addon-interactions',\n        '@storybook/addon-styling-webpack',\n\t\t'storybook-addon-deep-controls'\n    ],\n\tframework: {\n\t\tname: '@storybook/angular',\n\t\toptions: {},\n\t},\n\tcore: {\n\t\tbuilder: {\n\t\t\tname: 'webpack5',\n\t\t\toptions: {\n\t\t\t\tlazyCompilation: true,\n\t\t\t\tfsCache: true,\n\t\t\t}\n\t\t}\n\t},\n\tdocs: {\n\t\tdefaultName: 'Docs',\n\t}\n}"
                 }
             ],
             "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts": [
@@ -1242,6 +1583,28 @@
                     "defaultValue": "{\n\targs: {\n\t\tsafetyMetrics: {\n\t\t\tplanetOsmLineId: 21314,\n\t\t\tnumberOfRides: 206,\n\t\t\tnumberOfIncidents: 7,\n\t\t\tnumberOfScaryIncidents: 3,\n\t\t\tdangerousScore: 0.03,\n\t\t\tnumberOfClosePasses: 5,\n\t\t\tnumberOfPullInOuts: 1,\n\t\t\tnumberOfNearLeftRightHooks: 2,\n\t\t\tnumberOfHeadOnApproaches: 4,\n\t\t\tnumberOfTailgating: 2,\n\t\t\tnumberOfNearDoorings: 0,\n\t\t\tnumberOfObstacleDodges: 1,\n\t\t}\n\t}\n}"
                 }
             ],
+            "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MarkerContentComponent>",
+                    "defaultValue": "{\n\tcomponent: MarkerContentComponent,\n\ttitle: 'MarkerContentComponent',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t}),\n\t]\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n\targs: {\n\t\tincident: {\n\t\t\t// will not be displayed in the story\n\t\t\tlat: 13,\n\t\t\tlng: 42,\n\t\t\tid: 1,\n\t\t\tincidentType: EIncidentType.CLOSE_PASS,\n\t\t\tbike: EBikeType.MOUNTAIN_BIKE,\n\t\t\tdescription: faker.lorem.paragraph(3),\n\t\t\tparticipantsInvolved: [EParticipants.BUS_COACH, EParticipants.CAR],\n\t\t\tphoneLocation: EPhoneLocations.BACKPACK_BAG,\n\t\t\tscary: true,\n\t\t\ttimeStamp: new Date(),\n\t\t}\n\t},\n}"
+                }
+            ],
             "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts": [
                 {
                     "name": "meta",
@@ -1264,6 +1627,28 @@
                     "defaultValue": "{\n\targs: {},\n}"
                 }
             ],
+            "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<IconComponent>",
+                    "defaultValue": "{\n\tcomponent: IconComponent,\n\ttitle: 'Icon',\n\tdecorators: [\n\t\tmoduleMetadata({\n\t\t\timports: [StorybookTranslateModule],\n\t\t})\n\t]\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n\targs: {\n\t\tbase: {\n\t\t\tname: 'taxi',\n\t\t\ttooltip: 'Taxi Icon',\n\t\t},\n\t\tweight: 'light'\n\t},\n}"
+                }
+            ],
             ".storybook/preview.ts": [
                 {
                     "name": "preview",
@@ -1273,7 +1658,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t},\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t}\n\t}\n}"
+                    "defaultValue": "{\n\tdecorators: [\n\t\tapplicationConfig({\n\t\t\tproviders: [\n\t\t\t\tprovideAnimations(),\n\t\t\t\t{\n\t\t\t\t\tprovide: APP_INITIALIZER,\n\t\t\t\t\tuseFactory: provideTheme,\n\t\t\t\t\tdeps: [ PrimeNG ],\n\t\t\t\t\tmulti: true,\n\t\t\t\t},\n\t\t\t],\n\t\t}),\n\t],\n\ttags: ['autodocs'],\n\tparameters: {\n\t\tdocs: {\n\t\t\tstory: {\n\t\t\t\tinline: true\n\t\t\t},\n\t\t},\n\t\tcontrols: {\n\t\t\texpanded: true\n\t\t},\n\t\tdeepControls: {\n\t\t\tenabled: true\n\t\t}\n\t}\n}"
                 }
             ]
         },
@@ -1311,13 +1696,13 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts": [
+            "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<ColorBlockComponent>",
-                    "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                    "rawtype": "StoryObj<MarkerContentComponent>",
+                    "file": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1350,19 +1735,6 @@
                     "kind": 183
                 }
             ],
-            "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<DangerousScoreBarComponent>",
-                    "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "libs/common/ui/components/src/lib/atoms/button-dark-mode/component/button-dark-mode.component.stories.ts": [
                 {
                     "name": "Story",
@@ -1375,12 +1747,51 @@
                     "description": "",
                     "kind": 183
                 }
+            ],
+            "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ColorBlockComponent>",
+                    "file": "libs/common/ui/components/src/lib/atoms/color-block/component/color-block.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<IconComponent>",
+                    "file": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DangerousScoreBarComponent>",
+                    "file": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
             ]
         }
     },
     "routes": [],
     "coverage": {
-        "count": 8,
+        "count": 7,
         "status": "low",
         "files": [
             {
@@ -1492,6 +1903,45 @@
                 "status": "good"
             },
             {
+                "filePath": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/common/ui/components/src/lib/atoms/icon/component/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "libs/common/ui/components/src/lib/molecules/dangerous-score-bar/component/dangerous-score-bar.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1538,6 +1988,45 @@
                 "coveragePercent": 60,
                 "coverageCount": "6/10",
                 "status": "good"
+            },
+            {
+                "filePath": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/incidents/ui/src/lib/marker-content/component/marker-content.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MarkerContentComponent",
+                "coveragePercent": 25,
+                "coverageCount": "2/8",
+                "status": "low"
             },
             {
                 "filePath": "libs/streets/map/src/lib/components/safety-metrics-digit-panel/component/safety-metrics-digit-panel.component.stories.ts",
@@ -1634,7 +2123,7 @@
                 "linktype": "component",
                 "name": "SafetyMetricsPanelComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/11",
                 "status": "low"
             }
         ]

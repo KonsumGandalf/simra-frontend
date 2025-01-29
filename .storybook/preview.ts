@@ -25,7 +25,7 @@ const preview: Preview = {
 				{
 					provide: APP_INITIALIZER,
 					useFactory: provideTheme,
-					deps: [PrimeNG ],
+					deps: [ PrimeNG ],
 					multi: true,
 				},
 			],
