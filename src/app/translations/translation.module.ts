@@ -12,16 +12,20 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 			{
 				baseTranslateUrl,
 				moduleName: 'components',
-				pathTemplate: '{baseTranslateUrl}/common/ui/components/{language}'
+				pathTemplate: '{baseTranslateUrl}/common/ui/components/{language}',
 			},
 			{
 				baseTranslateUrl,
 				moduleName: 'streets.map',
-				pathTemplate: '{baseTranslateUrl}/streets/map/{language}'
+				pathTemplate: '{baseTranslateUrl}/streets/map/{language}',
 			},
-		]
-
-	}
+			{
+				baseTranslateUrl,
+				moduleName: 'incidents.ui',
+				pathTemplate: '{baseTranslateUrl}/incidents/ui/{language}',
+			},
+		],
+	};
 
 	return new ModuleTranslateLoader(http, options);
 }
