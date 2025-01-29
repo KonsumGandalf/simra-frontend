@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { IncidentInterface } from '@simra/incidents-models';
 import { GetStreetInformationInterface, SafetyMetricsDto } from '@simra/streets-common';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
@@ -34,14 +35,14 @@ export class StreetsExploringMapFacade {
 		this._streetRequestService.getStreetInformation(requestParams).pipe(
 			take(1),
 			tap((response: StreetInformationDto[]) => {
-				let batch: GeoJSON<any, Geometry>[] = [];
+				const batch: GeoJSON<any, Geometry>[] = [];
 				for (const streetInformation of response) {
 					batch.push(this.toGeoJSON(streetInformation));
 
-					if (batch.length >= this.BATCH_SIZE) {
-						this._store.dispatch(new AddToStreetCache(batch));
-						batch = [];
-					}
+					// if (batch.length >= this.BATCH_SIZE) {
+					// 	this._store.dispatch(new AddToStreetCache(batch));
+					// 	batch = [];
+					// }
 				}
 				if (batch.length > 0) {
 					this._store.dispatch(new AddToStreetCache(batch));
@@ -52,5 +53,9 @@ export class StreetsExploringMapFacade {
 
 	public fetchSafetyMetricsForStreet(streetId: number): Observable<SafetyMetricsDto> {
 		return this._streetRequestService.getSafetyMetricsForStreet(streetId);
+	}
+
+	public fetchIncidentsForStreet(streetId: number): Observable<IncidentInterface[]> {
+		return this._streetRequestService.getIncidentForStreet(streetId)
 	}
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
-import { concat, uniq } from 'lodash';
 import { SetHoveredStreetId, AddToStreetCache } from './street-map.actions';
 
 export interface StreetMapStateModel {
@@ -32,12 +31,13 @@ export class StreetMapState {
 
 	@Action(AddToStreetCache)
 	addToStreetCache(ctx: StateContext<StreetMapStateModel>, action: AddToStreetCache) {
-		const state = ctx.getState();
-		let newCache = uniq(concat(state.streets, action.batch))
+		// const state = ctx.getState();
+		//let newCache = uniq(concat(state.streets, action.batch))
+		const newCache = action.batch;
 
-		while(newCache.length > StreetMapState.CACHE_LIMIT) {
-			newCache = newCache.slice(newCache.length - StreetMapState.CACHE_LIMIT);
-		}
+		// while(newCache.length > StreetMapState.CACHE_LIMIT) {
+		// 	newCache = newCache.slice(newCache.length - StreetMapState.CACHE_LIMIT);
+		// }
 
 		ctx.patchState({
 			streets: newCache
