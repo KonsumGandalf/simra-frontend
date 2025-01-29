@@ -35,6 +35,11 @@
 						"input": "libs/streets/map/assets/i18n",
 						"glob": "**/*",
 						"output": "assets/i18n/streets/map"
+					},
+					{
+						"input": "libs/incidents/ui/assets/i18n",
+						"glob": "**/*",
+						"output": "assets/i18n/incidents/ui"
 					}
 				],
 				"styles": [

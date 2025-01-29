@@ -4,7 +4,7 @@
 	"sourceRoot": "libs/streets/common/src",
 	"prefix": "lib",
 	"projectType": "library",
-	"tags": ["type:common-model", "domain:streets"],
+	"tags": ["type:model", "domain:streets"],
 	"targets": {
 		"test": {
 			"executor": "@nx/jest:jest",

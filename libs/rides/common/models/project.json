@@ -4,7 +4,7 @@
 	"sourceRoot": "libs/rides/common/models/src",
 	"prefix": "lib",
 	"projectType": "library",
-	"tags": ["domain:rides", "type:common-model"],
+	"tags": ["domain:rides", "type:model"],
 	"targets": {
 		"test": {
 			"executor": "@nx/jest:jest",
