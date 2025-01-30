@@ -15,15 +15,16 @@ import { Tooltip } from 'primeng/tooltip';
 })
 export class IncidentIconComponent {
 	@Input({required: true})
-	tooltip!: string;
+	tooltips!: string[];
 
 	@Input()
 	tooltipPrefix ?: string;
 
 	@Input({required: true})
-	name!: string;
+	names!: string[];
 
 	protected totalTooltip(): string {
-		return this.tooltipPrefix ? `${this.tooltipPrefix}: ${this.tooltip}` : this.tooltip;
+		const tooltipContent = this.tooltips.join(', ');
+		return this.tooltipPrefix ? `${this.tooltipPrefix}: ${tooltipContent}` : tooltipContent;
 	}
 }

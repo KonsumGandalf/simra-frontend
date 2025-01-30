@@ -1,1 +1,5 @@
-<i class="ph ph-{{name}}" [pTooltip]="totalTooltip()"></i>
+<div [pTooltip]="totalTooltip()">
+	@for (iconName of names; track iconName) {
+		<i class="ph ph-{{iconName}}"></i>
+	}
+</div>

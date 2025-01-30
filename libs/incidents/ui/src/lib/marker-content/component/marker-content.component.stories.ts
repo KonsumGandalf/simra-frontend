@@ -27,7 +27,7 @@ export const Primary: Story = {
 			incidentType: EIncidentType.CLOSE_PASS,
 			bike: EBikeType.MOUNTAIN_BIKE,
 			description: faker.lorem.paragraph(3),
-			participantsInvolved: [EParticipants.BUS_COACH, EParticipants.CAR],
+			participantsInvolved: [EParticipants.BUS_COACH, EParticipants.CAR, EParticipants.LORRY_TRUCK],
 			phoneLocation: EPhoneLocations.BACKPACK_BAG,
 			scary: true,
 			timeStamp: new Date(),

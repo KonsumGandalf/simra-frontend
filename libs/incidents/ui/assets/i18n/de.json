@@ -9,7 +9,7 @@
         "OTHER": "Andere"
     },
     "PARTICIPANTS": {
-        "BUS_COACH": "Bus/Coach",
+        "BUS_COACH": "Bus",
         "CYCLIST": "Radfahrer",
         "PEDESTRIAN": "Fußgänger",
         "DELIVERY_VAN": "Lieferwagen",
@@ -47,10 +47,10 @@
         "LABELS": {
             "BIKE_TYPE": "Fahrradtyp",
             "PHONE_LOCATION": "Telefonposition",
-            "TYPE": "Typ",
+            "INCIDENT_TYPE": "Unfalltyp",
             "DESCRIPTION": "Beschreibung",
             "TIMESTAMP": "Datum",
-            "PARTICIPANTS": "Teilnehmer"
+            "INCIDENT_PARTICIPANTS": "Unfallteilnehmer"
         }
     }
 }

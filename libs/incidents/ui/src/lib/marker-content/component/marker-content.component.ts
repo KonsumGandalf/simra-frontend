@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { EIncidentType, IncidentInterface } from '@simra/incidents-models';
 import { IncidentIconComponent } from '../../icon/component/incident-icon.component';
 import { bikeTypeToTranslation } from '../../models/maps/bike-type-to-translation';
@@ -24,6 +24,8 @@ import { phoneLocationToIcon } from '../../models/maps/phone-location-to-icon';
 	},
 })
 export class MarkerContentComponent {
+	private readonly _translationService = inject(TranslateService);
+
 	/**
 	 * The incident to display
 	 */
@@ -33,11 +35,22 @@ export class MarkerContentComponent {
 	protected readonly bikeTypeToTranslation = bikeTypeToTranslation;
 	protected readonly incidentTypeToIcon = incidentTypeToIcon;
 	protected readonly participantToIcon = participantToIcon;
+	protected readonly EIncidentType = EIncidentType;
 
 	@HostBinding('class.incident-icon--is-scary')
 	get isSerious() {
 		return this.incident.scary;
 	}
 
-	protected readonly EIncidentType = EIncidentType;
+
+	get participantsTooltips(): string[] {
+		return this.incident.participantsInvolved.map(participant => {
+			const translationKey = this.participantToIcon[participant].tooltip;
+			return this._translationService.instant(translationKey);
+		});
+	}
+
+	get participantIconNames(): string[] {
+		return this.incident.participantsInvolved.map(participant => this.participantToIcon[participant].name);
+	}
 }

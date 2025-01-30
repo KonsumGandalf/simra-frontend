@@ -18,10 +18,10 @@ const meta: Meta<IncidentIconComponent> = {
 		})
 	],
 	argTypes: {
-		name: {
+		names: {
 			options: [...allParticipantIcons, ...allPhoneLocationIcons, ...allIncidentTypeIcons],
 			control: {
-				type: 'select',
+				type: 'check',
 			}
 		}
 	}
@@ -31,7 +31,7 @@ type Story = StoryObj<IncidentIconComponent>;
 
 export const Primary: Story = {
 	args: {
-		name: 'taxi',
-		tooltip: 'Taxi Icon',
+		names: ['taxi'],
+		tooltips: ['Taxi Icon'],
 	},
 };

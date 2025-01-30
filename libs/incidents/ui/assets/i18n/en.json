@@ -9,7 +9,7 @@
         "OTHER": "Other"
     },
     "PARTICIPANTS": {
-        "BUS_COACH": "Bus/coach",
+        "BUS_COACH": "Bus",
         "CYCLIST": "Cyclist",
         "PEDESTRIAN": "Pedestrian",
         "DELIVERY_VAN": "Delivery van",
@@ -47,10 +47,10 @@
         "LABELS": {
             "BIKE_TYPE": "Bike type",
             "PHONE_LOCATION": "Phone location",
-            "TYPE": "Type",
+            "INCIDENT_TYPE": "Incident Type",
             "DESCRIPTION": "Description",
             "TIMESTAMP": "Date",
-            "PARTICIPANTS": "Participants"
+            "INCIDENT_PARTICIPANTS": "Incident Participants"
         }
     }
 }
