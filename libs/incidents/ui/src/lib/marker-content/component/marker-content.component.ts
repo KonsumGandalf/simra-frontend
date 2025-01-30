@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { EIncidentType, EParticipants, IncidentInterface } from '@simra/incidents-models';
+import { EIncidentType, IncidentInterface } from '@simra/incidents-models';
 import { IncidentIconComponent } from '../../icon/component/incident-icon.component';
 import { bikeTypeToTranslation } from '../../models/maps/bike-type-to-translation';
 import { incidentTypeToIcon } from '../../models/maps/incident-type-to-icon';
@@ -33,7 +33,6 @@ export class MarkerContentComponent {
 	protected readonly bikeTypeToTranslation = bikeTypeToTranslation;
 	protected readonly incidentTypeToIcon = incidentTypeToIcon;
 	protected readonly participantToIcon = participantToIcon;
-	protected readonly EParticipants = EParticipants;
 
 	@HostBinding('class.incident-icon--is-scary')
 	get isSerious() {

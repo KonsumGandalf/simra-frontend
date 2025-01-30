@@ -2,17 +2,21 @@
 	<tbody>
 		<tr class="icon-box">
 			<a-icon
+				[tooltipPrefix]="'INCIDENTS.UI.MARKER_CONTENT.LABELS.INCIDENT_TYPE' | translate"
 				[tooltip]="(incidentTypeToIcon[incident.incidentType]).tooltip"
 				[name]="(incidentTypeToIcon[incident.incidentType]).name"></a-icon>
 			<a-icon
-				[tooltip]="(phoneLocationToIcon[incident.phoneLocation]).tooltip"
+				[tooltipPrefix]="'INCIDENTS.UI.MARKER_CONTENT.LABELS.PHONE_LOCATION' | translate"
+				[tooltip]="(phoneLocationToIcon[incident.phoneLocation]).tooltip | translate"
 				[name]="(phoneLocationToIcon[incident.phoneLocation]).name"></a-icon>
 			@if (incident.participantsInvolved.length >= 1) {
 				<a-icon
+					[tooltipPrefix]="'INCIDENTS.UI.MARKER_CONTENT.LABELS.PARTICIPANTS' | translate"
 					[tooltip]="(participantToIcon[incident.participantsInvolved[0]]).tooltip"
 					[name]="(participantToIcon[incident.participantsInvolved[0]]).name"></a-icon>
 			} @else {
 				<a-icon
+					[tooltipPrefix]="'INCIDENTS.UI.MARKER_CONTENT.LABELS.PARTICIPANTS' | translate"
 					[tooltip]="(participantToIcon[EIncidentType.OTHER]).tooltip"
 					[name]="(participantToIcon[EIncidentType.OTHER]).name"></a-icon>
 			}
