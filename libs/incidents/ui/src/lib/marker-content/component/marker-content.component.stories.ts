@@ -24,7 +24,7 @@ export const Primary: Story = {
 			lat: 13,
 			lng: 42,
 			id: 1,
-			incidentType: EIncidentType.CLOSE_PASS,
+			incidentType: EIncidentType.TAILGATING,
 			bike: EBikeType.MOUNTAIN_BIKE,
 			description: faker.lorem.paragraph(3),
 			participantsInvolved: [EParticipants.BUS_COACH, EParticipants.CAR, EParticipants.LORRY_TRUCK],

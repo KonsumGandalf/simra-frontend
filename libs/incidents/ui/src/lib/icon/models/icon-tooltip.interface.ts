@@ -10,5 +10,10 @@ export interface IconTooltipInterface {
 	/**
 	 * The name of the icon to display
 	 */
-	name: string;
+	name?: string;
+
+	/**
+	 * The icon to display
+	 */
+	svgPath?: string;
 }

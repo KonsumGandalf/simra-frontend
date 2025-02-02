@@ -1,5 +1,9 @@
 <div [pTooltip]="totalTooltip()">
-	@for (iconName of names; track iconName) {
-		<i class="ph ph-{{iconName}}"></i>
+	@if(names && names.length >= 1) {
+		@for (iconName of names; track iconName) {
+			<i class="ph ph-{{iconName}}"></i>
+		}
+	} @else if (svgPath) {
+		<img [src]="svgPath" alt="" style="inline-size: 2.5rem">
 	}
 </div>

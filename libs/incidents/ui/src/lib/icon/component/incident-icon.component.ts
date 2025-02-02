@@ -20,8 +20,11 @@ export class IncidentIconComponent {
 	@Input()
 	tooltipPrefix ?: string;
 
-	@Input({required: true})
-	names!: string[];
+	@Input()
+	names?: string[];
+
+	@Input()
+	svgPath?: string;
 
 	protected totalTooltip(): string {
 		const tooltipContent = this.tooltips.join(', ');
