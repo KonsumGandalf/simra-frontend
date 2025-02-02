@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, inject, Input, ViewEnc
 import { CommonModule } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { EIncidentType, IncidentInterface } from '@simra/incidents-models';
+import { Divider } from 'primeng/divider';
 import { IncidentIconComponent } from '../../icon/component/incident-icon.component';
 import { bikeTypeToTranslation } from '../../models/maps/bike-type-to-translation';
 import { incidentTypeToIcon } from '../../models/maps/incident-type-to-icon';
@@ -14,7 +15,7 @@ import { phoneLocationToIcon } from '../../models/maps/phone-location-to-icon';
 @Component({
 	selector: 'm-marker-content',
 	standalone: true,
-	imports: [CommonModule, TranslatePipe, IncidentIconComponent],
+	imports: [CommonModule, TranslatePipe, IncidentIconComponent, Divider],
 	templateUrl: './marker-content.component.html',
 	styleUrl: './marker-content.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,15 +43,16 @@ export class MarkerContentComponent {
 		return this.incident.scary;
 	}
 
-
 	get participantsTooltips(): string[] {
-		return this.incident.participantsInvolved.map(participant => {
+		return this.incident.participantsInvolved.map((participant) => {
 			const translationKey = this.participantToIcon[participant].tooltip;
 			return this._translationService.instant(translationKey);
 		});
 	}
 
 	get participantIconNames(): string[] {
-		return this.incident.participantsInvolved.map(participant => this.participantToIcon[participant].name);
+		return this.incident.participantsInvolved.map(
+			(participant) => this.participantToIcon[participant].name,
+		);
 	}
 }

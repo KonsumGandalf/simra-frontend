@@ -1,9 +1,10 @@
 .m-marker-content {
+    @apply grow-0 w-auto max-w-fit;
     table {
+        @apply w-48;
         tbody {
 
             tr {
-                @apply max-w-sm;
                 @apply flex;
                 @apply justify-between;
 
@@ -16,8 +17,12 @@
                 }
 
                 &.icon-box{
-                    @apply space-x-12 mb-3;
+                    @apply space-x-3 mb-3;
                 }
+            }
+
+            p-divider {
+                @apply my-2;
             }
         }
     }
