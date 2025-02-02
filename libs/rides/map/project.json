@@ -1,0 +1,20 @@
+{
+	"name": "rides-map",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/rides/map/src",
+	"prefix": "lib",
+	"projectType": "library",
+	"tags": ["domain:rides", "type:feature"],
+	"targets": {
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/rides/map/jest.config.ts"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

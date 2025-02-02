@@ -1,0 +1,16 @@
+.p-streets-exploring-map {
+    .o-simra-map {
+        @apply w-screen;
+        @apply h-screen;
+    }
+
+    p-card {
+        position: absolute;
+        bottom: 2%;
+        right: 1%;
+        top: 60%;
+        transform: translateY(-50%);
+        z-index: 500;
+    }
+}
+
