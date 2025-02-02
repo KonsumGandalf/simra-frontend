@@ -30,11 +30,12 @@ module.exports = [
                         {
                             sourceTag: 'type:master-feature',
                             onlyDependOnLibsWithTags: [
+                                'type:master-feature',
                                 'type:feature',
                                 'type:util-feature',
                                 'type:util',
                                 'type:model',
-                                'type:state'
+                                'type:state',
                             ],
                         },
                         {

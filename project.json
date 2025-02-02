@@ -27,6 +27,11 @@
 					"src/favicon.ico",
 					"src/assets",
 					{
+						"input": "libs/incidents/ui/assets/icons",
+						"glob": "**/*",
+						"output": "assets/icons/incidents/ui"
+					},
+					{
 						"input": "libs/common/ui/components/assets/i18n",
 						"glob": "**/*",
 						"output": "assets/i18n/common/ui/components"
