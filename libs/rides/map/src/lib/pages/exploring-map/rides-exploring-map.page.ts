@@ -1,19 +1,15 @@
 import { CommonModule } from '@angular/common';
 import {
-	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
 	computed,
-	effect,
 	inject,
 	model,
 	ModelSignal, Signal,
 	ViewEncapsulation,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { Store } from '@ngxs/store';
 import { MapComponent } from '@simra/common-components';
 import { MapPositionInterface } from '@simra/common-models';
 import { asyncComputed } from '@simra/common-utils';

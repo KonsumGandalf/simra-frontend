@@ -2,6 +2,10 @@ import { Route } from '@angular/router';
 
 export const APP_ROUTES: Route[] = [
 	{
+		path: 'incidents',
+		loadChildren: () => import('@simra/incidents-shell').then((m) => m.RIDE_INCIDENT_SHELL_ROUTES),
+	},
+	{
 		path: 'rides',
 		loadChildren: () => import('@simra/rides-shell').then((m) => m.RIDES_SHELL_ROUTES),
 	},

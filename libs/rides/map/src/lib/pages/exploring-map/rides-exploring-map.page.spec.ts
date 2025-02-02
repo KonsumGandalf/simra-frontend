@@ -1,11 +1,9 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { provideStore } from '@ngxs/store';
-import { MapFilterState } from '@simra/common-state';
-import { StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
+import { RidesExploringFacade } from '@simra/rides-domain';
 import { polyline } from 'leaflet';
-import { BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
 import { RidesExploringMapPage } from './rides-exploring-map.page';
 
 describe('StreetsExploringMapPage', () => {
@@ -21,14 +19,13 @@ describe('StreetsExploringMapPage', () => {
 			],
 			providers: [
 				{
-					provide: StreetsExploringMapFacade,
+					provide: RidesExploringFacade,
 					useValue: {
-						fetchStreetInformation: jest.fn().mockReturnValue(new BehaviorSubject([
+						getRideGeometries: jest.fn().mockReturnValue(of([
 							polyline([[0, 0], [1, 1]]),
 						])),
 					}
 				},
-				provideStore([StreetMapState, MapFilterState]),
 			]
 		}).compileComponents();
 
