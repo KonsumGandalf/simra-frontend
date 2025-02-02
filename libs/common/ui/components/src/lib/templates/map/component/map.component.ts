@@ -1,4 +1,12 @@
-import { Component, computed, input, model, Signal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	input,
+	model,
+	Signal,
+	ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
 import {
@@ -15,7 +23,6 @@ import {
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { MapPositionInterface } from '@simra/common-models';
 import { PopoverModule } from 'primeng/popover';
-import { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-bar/component/dangerous-score-bar.component';
 
 /**
  * This component allows to interact with the leaflet map smoothly
@@ -23,12 +30,14 @@ import { DangerousScoreBarComponent } from '../../../molecules/dangerous-score-b
 @Component({
 	selector: 't-map-component',
 	standalone: true,
-	imports: [CommonModule, LeafletModule, DangerousScoreBarComponent, PopoverModule],
+	imports: [CommonModule, LeafletModule, PopoverModule],
 	templateUrl: './map.component.html',
 	styleUrl: './map.component.scss',
 	host: {
-		class: 'o-simra-map',
+		class: 't-map-component',
 	},
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent {
 	public readonly leafletPosition = model<MapPositionInterface>({

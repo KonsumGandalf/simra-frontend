@@ -1,0 +1,11 @@
+<p-card>
+	<p-inputnumber [(ngModel)]="_counter" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" [inputStyle]="{ width: '3rem' }">
+		<ng-template #incrementbuttonicon>
+			<span class="pi pi-plus"></span>
+		</ng-template>
+		<ng-template #decrementbuttonicon>
+			<span class="pi pi-minus"></span>
+		</ng-template>
+	</p-inputnumber>
+</p-card>
+<t-map-component [overlayLayers]="_geometries$()" [(leafletPosition)]="_mapPosition"></t-map-component>

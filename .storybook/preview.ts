@@ -25,7 +25,7 @@ const preview: Preview = {
 				{
 					provide: APP_INITIALIZER,
 					useFactory: provideTheme,
-					deps: [PrimeNG ],
+					deps: [ PrimeNG ],
 					multi: true,
 				},
 			],
@@ -36,10 +36,11 @@ const preview: Preview = {
 		docs: {
 			story: {
 				inline: true
-			},
+			}
 		},
 		controls: {
-			expanded: true
+			expanded: true,
+			exclude: /^_/,
 		}
 	}
 };

@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 't-map-host',
-	template: `<t-map-componenent [overlayLayers]="mockOverlayLayers"></t-map-componenent>`,
+	template: `
+		<t-map-componenent></t-map-componenent>`,
 	standalone: true,
 	imports: [MapComponent],
 })

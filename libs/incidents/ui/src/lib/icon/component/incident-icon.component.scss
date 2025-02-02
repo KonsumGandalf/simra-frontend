@@ -1,0 +1,12 @@
+.a-icon {
+    flex-grow: 0;
+    @apply bg-blue-200 rounded-full flex items-center justify-center flex-grow  py-2;
+
+    i {
+        @apply text-4xl;
+    }
+
+    img {
+        @apply w-9 h-9;
+    }
+}

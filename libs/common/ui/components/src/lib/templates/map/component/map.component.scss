@@ -1,18 +1,8 @@
 .o-exploring-map {
-	.o-simra-map {
+	.t-map-component {
 		height: 1000px;
 		width: 100%;
 		margin: 0;
 		padding: 0;
 	}
-}
-
-m-dangerous-score-bar {
-	position: absolute;
-	bottom: 2%;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 500;
-	width: 30%;
-	min-width: 20rem;
 }

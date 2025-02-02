@@ -30,11 +30,12 @@ module.exports = [
                         {
                             sourceTag: 'type:master-feature',
                             onlyDependOnLibsWithTags: [
+                                'type:master-feature',
                                 'type:feature',
                                 'type:util-feature',
                                 'type:util',
-                                'type:common-model',
-                                'type:state'
+                                'type:model',
+                                'type:state',
                             ],
                         },
                         {
@@ -43,7 +44,7 @@ module.exports = [
                                 'type:feature',
                                 'type:util-feature',
                                 'type:util',
-                                'type:common-model',
+                                'type:model',
                                 'type:ui',
                                 'type:state'
                             ],
@@ -53,27 +54,27 @@ module.exports = [
                             onlyDependOnLibsWithTags: [
                                 'type:util',
                                 'type:util-feature',
-                                'type:common-model',
+                                'type:model',
                                 'type:state'
                             ],
                         },
                         {
                             sourceTag: 'type:util',
-                            onlyDependOnLibsWithTags: ['type:util', 'type:common-model'],
+                            onlyDependOnLibsWithTags: ['type:util', 'type:model'],
                         },
                         {
                             sourceTag: 'type:state',
-                            onlyDependOnLibsWithTags: ['type:state', 'type:common-model', 'type:util'],
+                            onlyDependOnLibsWithTags: ['type:state', 'type:model', 'type:util'],
                         },
                         {
-                            sourceTag: 'type:common-model',
-                            onlyDependOnLibsWithTags: ['type:common-model'],
+                            sourceTag: 'type:model',
+                            onlyDependOnLibsWithTags: ['type:model'],
                         },
                         {
                             sourceTag: 'type:ui',
                             onlyDependOnLibsWithTags: [
                                 'type:ui',
-                                'type:common-model',
+                                'type:model',
                                 'type:util',
                                 'type:state'
                             ],
@@ -88,11 +89,11 @@ module.exports = [
                         },
                         {
                             sourceTag: 'domain:streets',
-                            onlyDependOnLibsWithTags: ['domain:common', 'domain:streets'],
+                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents', 'domain:rides', 'domain:streets'],
                         },
                         {
-                            sourceTag: 'domain:incident',
-                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incident', 'domain:rides'],
+                            sourceTag: 'domain:incidents',
+                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents'],
                         }
                     ],
                 },

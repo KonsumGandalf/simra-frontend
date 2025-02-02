@@ -11,6 +11,8 @@
 		"../libs/common/ui/**/*.component.ts",
 		"../libs/streets/map/**/*.stories.ts",
 		"../libs/streets/map/**/*.component.ts",
+		"../libs/incidents/ui/**/*.stories.ts",
+		"../libs/incidents/ui/**/*.component.ts",
 		"*.js",
 		"*.ts"
 	]
