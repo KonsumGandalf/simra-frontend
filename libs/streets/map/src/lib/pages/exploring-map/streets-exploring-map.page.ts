@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngxs/store';
-import { MapComponent } from '@simra/common-components';
+import { DangerousScoreBarComponent, MapComponent } from '@simra/common-components';
 import { MapPositionInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
@@ -27,7 +27,13 @@ import { SafetyMetricsPanelComponent } from '../../components/safety-metrics-pan
 
 @Component({
 	selector: 'simra-streets-exploring-map',
-	imports: [CommonModule, LeafletModule, MapComponent, SafetyMetricsPanelComponent],
+	imports: [
+		CommonModule,
+		LeafletModule,
+		MapComponent,
+		SafetyMetricsPanelComponent,
+		DangerousScoreBarComponent,
+	],
 	templateUrl: './streets-exploring-map.page.html',
 	styleUrl: './streets-exploring-map.page.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -78,10 +84,7 @@ export class StreetsExploringMapPage {
 			});
 		}
 
-		return [
-			...incidentsMarker,
-			...this.streets$()
-		];
+		return [...incidentsMarker, ...this.streets$()];
 	});
 
 	constructor() {

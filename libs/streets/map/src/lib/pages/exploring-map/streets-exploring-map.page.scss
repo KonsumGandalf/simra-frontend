@@ -13,5 +13,16 @@
         z-index: 500;
         width: 15rem;
     }
+
+    m-dangerous-score-bar {
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 500;
+        width: 30%;
+        min-width: 20rem;
+    }
+
 }
 
