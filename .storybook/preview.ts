@@ -36,10 +36,11 @@ const preview: Preview = {
 		docs: {
 			story: {
 				inline: true
-			},
+			}
 		},
 		controls: {
-			expanded: true
+			expanded: true,
+			exclude: /^_/,
 		}
 	}
 };

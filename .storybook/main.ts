@@ -25,6 +25,7 @@ const config: StorybookConfig = {
 		}
 	],
 	staticDirs: [
+		// i18n
 		{
 			from: '../libs/common/ui/components/assets/i18n',
 			to: '/assets/i18n/common/ui/components'
@@ -36,6 +37,11 @@ const config: StorybookConfig = {
 		{
 			from: '../libs/incidents/ui/assets/i18n',
 			to: '/assets/i18n/incidents/ui'
+		},
+		// icons
+		{
+			from: '../libs/incidents/ui/assets/icons',
+			to: 'assets/icons/incidents/ui'
 		}
 	],
 	addons: [
