@@ -52,7 +52,7 @@ export class MarkerClusterMapPage {
 	protected readonly _mapOptions: MapOptions = {
 		zoom: this.leafletPosition().zoom,
 		center: latLng(this.leafletPosition().lat, this.leafletPosition().lng),
-		layers: [BASE_MAP_LAYER[EBaseLayerTypes.OSM_LIBERTY]],
+		layers: [BASE_MAP_LAYER[EBaseLayerTypes.OSM_HOT]],
 		preferCanvas: true,
 	};
 	protected readonly _layerControl = DEFAULT_LAYER_CONFIG;

@@ -1,13 +1,14 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	computed,
-	input,
-	model,
+	computed, effect, EventEmitter, inject,
+	input, Output,
 	Signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
 import {
 	Control,
@@ -18,11 +19,13 @@ import {
 	Map,
 	MapOptions,
 	Marker,
-	tileLayer,
 } from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { MapPositionInterface } from '@simra/common-models';
 import { PopoverModule } from 'primeng/popover';
+import { BERLIN_POSITION, DEFAULT_LAYER_CONFIG } from '../../models/const';
+import { EBaseLayerTypes } from '../../models/enums/base-layer-types';
+import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
 
 /**
  * This component allows to interact with the leaflet map smoothly
@@ -40,71 +43,55 @@ import { PopoverModule } from 'primeng/popover';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent {
-	public readonly leafletPosition = model<MapPositionInterface>({
-		lat: 52.522,
-		lng: 13.413,
-		zoom: 14
-	});
+	private readonly route = inject(ActivatedRoute);
+	private readonly router = inject(Router);
+
 	/**
 	 * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays
 	 */
 	public readonly overlayLayers = input.required<Layer[]>();
+	@Output()
+	public positionChange = new EventEmitter<MapPositionInterface>();
+	private map?: Map;
 
-	protected readonly initialOptions: MapOptions = {
+	constructor() {
+		effect(() => {
+			const position = this.leafletPosition();
+
+			if (this.map) {
+				this.map.setView(latLng(position.lat, position.lng), position.zoom);
+			}
+
+			this.positionChange.emit(position);
+		});
+
+	}
+
+	private queryParams = toSignal(this.route.queryParams);
+	public readonly leafletPosition: Signal<MapPositionInterface> = computed(() => {
+		const {
+			lat = BERLIN_POSITION.lat,
+			lng = BERLIN_POSITION.lng,
+			zoom = BERLIN_POSITION.zoom
+		} = this.queryParams() as MapPositionInterface ?? {};
+
+		return { ...BERLIN_POSITION, lat, lng, zoom };
+	});
+
+	/**
+	 * Map options which are applied at the start
+	 */
+	public readonly initialOptions: MapOptions = {
 		zoom: this.leafletPosition().zoom,
 		center: latLng(this.leafletPosition().lat, this.leafletPosition().lng),
+		layers: [BASE_MAP_LAYER[EBaseLayerTypes.OSM_HOT]],
 		preferCanvas: true,
 	};
 
 	/**
-	 * The base layer on which other objects are projected to
-	 */
-	private readonly _baseLayer: Layer = tileLayer(
-		'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-		{
-			maxZoom: 18
-		},
-	);
-
-	/**
-	 * The overall layer containing the base layer with overlays
-	 */
-	protected readonly combinedLayers$: Signal<Layer[]> = computed(() => {
-		return [this._baseLayer, ...(this.overlayLayers() || [])];
-	});
-
-	/**
 	 * The appearance options the user can choose from when using the map
 	 */
-	protected readonly layerControl: LeafletControlLayersConfig = {
-		baseLayers: {
-			'Open Cycle Map': tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-				maxZoom: 18,
-				attribution: '...',
-			}),
-			'Osm Liberty': tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-				maxZoom: 30,
-				minZoom: 12,
-			}),
-			google: tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-				maxZoom: 20,
-				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-			}),
-		},
-		overlays: {},
-	};
-
-	constructor() {
-		Marker.prototype.options.icon = icon({
-			iconUrl: 'assets/leaflet/marker-icon.png',
-			iconRetinaUrl: 'assets/leaflet/marker-icon-2x.png',
-			shadowUrl: 'assets/leaflet/marker-shadow.png',
-			iconSize: [25, 41],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			shadowSize: [41, 41],
-		});
-	}
+	protected readonly layerControl: LeafletControlLayersConfig = DEFAULT_LAYER_CONFIG;
 
 	onMapReady(map: Map): void {
 		const provider = new OpenStreetMapProvider();
@@ -118,6 +105,7 @@ export class MapComponent {
 		});
 
 		map.addControl(searchControl);
+		this.map = map;
 	}
 
 	/**
@@ -126,9 +114,11 @@ export class MapComponent {
 	 * @param event - the leaflet event emitted
 	 */
 	onMapChange(event: LeafletEvent): void {
-		this.leafletPosition.set({
-			zoom: event.sourceTarget.getZoom(),
-			...event.sourceTarget.getCenter(),
-		});
+		const center = event.sourceTarget.getCenter();
+		const zoom = event.sourceTarget.getZoom();
+		this.router.navigate([], {
+			queryParams: { lat: center.lat, lng: center.lng, zoom },
+			queryParamsHandling: 'merge',
+		})
 	}
 }
