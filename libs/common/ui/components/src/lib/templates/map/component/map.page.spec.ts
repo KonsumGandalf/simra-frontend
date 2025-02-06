@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { MapComponent } from './map.component';
+import { MapPage } from './map.page';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 	template: `
 		<t-map-componenent></t-map-componenent>`,
 	standalone: true,
-	imports: [MapComponent],
+	imports: [MapPage],
 })
 class TestHostComponent {
 }

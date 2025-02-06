@@ -34,15 +34,15 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
 	selector: 't-map-component',
 	standalone: true,
 	imports: [CommonModule, LeafletModule, PopoverModule],
-	templateUrl: './map.component.html',
-	styleUrl: './map.component.scss',
+	templateUrl: './map.page.html',
+	styleUrl: './map.page.scss',
 	host: {
 		class: 't-map-component',
 	},
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapComponent {
+export class MapPage {
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
 
