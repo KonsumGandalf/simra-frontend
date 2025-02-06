@@ -12,13 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
 import {
 	Control,
-	icon,
 	latLng,
 	Layer,
 	LeafletEvent,
 	Map,
 	MapOptions,
-	Marker,
 } from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { MapPositionInterface } from '@simra/common-models';

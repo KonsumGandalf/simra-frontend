@@ -28,7 +28,7 @@ module.exports = [
 			'@angular-eslint/component-class-suffix': [
 				'error',
 				{
-					suffixes: ['Page'],
+					suffixes: ['Page', 'Component'],
 				}
 			]
 		},

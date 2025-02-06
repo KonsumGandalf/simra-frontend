@@ -10,18 +10,18 @@ import { MarkerClusterMapPage } from './marker-cluster-map.page';
 	standalone: true,
 	imports: [MarkerClusterMapPage],
 })
-class TestHostComponent {}
+class TestHostPage {}
 
 describe('Integration Test MarkerClusterMapComponent', () => {
-	let fixture: ComponentFixture<TestHostComponent>;
+	let fixture: ComponentFixture<TestHostPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [TestHostComponent],
+			imports: [TestHostPage],
 			providers: [provideRouter([])]
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(TestHostComponent);
+		fixture = TestBed.createComponent(TestHostPage);
 		fixture.detectChanges();
 	});
 
