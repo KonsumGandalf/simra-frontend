@@ -1,9 +1,9 @@
 <div
-	class="o-simra-map"
+	class="w-full h-screen"
 	leaflet
 	[leafletOptions]="initialOptions"
 	[leafletLayersControl]="layerControl"
-	[leafletLayers]="combinedLayers$()"
+	[leafletLayers]="overlayLayers()"
 	(leafletMapReady)="onMapReady($event)"
 	(leafletMapZoom)="onMapChange($event)"
 	(leafletMapMoveEnd)="onMapChange($event)"

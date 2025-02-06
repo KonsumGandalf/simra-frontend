@@ -33,4 +33,7 @@ export class IncidentDto implements IncidentInterface {
 
 	@IsDate()
 	timeStamp: Date;
+
+	@IsString()
+	way: string;
 }

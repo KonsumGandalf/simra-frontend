@@ -6,18 +6,16 @@ import {
 	computed,
 	effect,
 	inject,
-	Injector,
-	model,
-	ModelSignal,
+	Injector, signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngxs/store';
-import { DangerousScoreBarComponent, MapComponent } from '@simra/common-components';
+import { DangerousScoreBarComponent, MapPage } from '@simra/common-components';
 import { MapPositionInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
-import { IncidentMarker } from '@simra/incidents-ui';
+import { createIncidentMarker } from '@simra/incidents-ui';
 
 import { GetStreetInformationInterface } from '@simra/streets-common';
 import { StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
@@ -30,7 +28,7 @@ import { SafetyMetricsPanelComponent } from '../../components/safety-metrics-pan
 	imports: [
 		CommonModule,
 		LeafletModule,
-		MapComponent,
+		MapPage,
 		SafetyMetricsPanelComponent,
 		DangerousScoreBarComponent,
 	],
@@ -49,11 +47,7 @@ export class StreetsExploringMapPage {
 	private readonly _injector = inject(Injector);
 	private readonly _appRef = inject(ApplicationRef);
 
-	protected readonly _mapPosition: ModelSignal<MapPositionInterface> = model({
-		lat: 52.522,
-		lng: 13.413,
-		zoom: 14,
-	});
+	private _mapPosition = signal<MapPositionInterface>(undefined);
 	protected readonly _filterState = this._store.selectSignal(MapFilterState.getMapFilterState);
 	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCache);
 	protected readonly hoveredStreetId$ = this._store.selectSignal(
@@ -80,7 +74,7 @@ export class StreetsExploringMapPage {
 		const incidents = this.incidents$();
 		if (incidents) {
 			incidentsMarker = this.incidents$().map((incident) => {
-				return IncidentMarker(incident, this._injector, this._appRef);
+				return createIncidentMarker(incident, this._injector, this._appRef);
 			});
 		}
 
@@ -96,6 +90,10 @@ export class StreetsExploringMapPage {
 				...lp,
 			} as GetStreetInformationInterface);
 		});
+	}
+
+	onMapPositionChanged(position: MapPositionInterface) {
+		this._mapPosition.set(position);
 	}
 }
 

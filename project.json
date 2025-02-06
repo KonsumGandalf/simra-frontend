@@ -45,19 +45,29 @@
 						"input": "libs/incidents/ui/assets/i18n",
 						"glob": "**/*",
 						"output": "assets/i18n/incidents/ui"
+					},
+					{
+						"glob": "**/*",
+						"input": "node_modules/leaflet/dist/images",
+						"output": "./media/"
 					}
 				],
 				"styles": [
 					"./src/styles.scss",
 					"./node_modules/leaflet/dist/leaflet.css",
-					"./node_modules/leaflet-geosearch/dist/geosearch.css"
+					"./node_modules/leaflet-geosearch/dist/geosearch.css",
+					"./node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+					"./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
 				],
 				"stylePreprocessorOptions": {
 					"includePaths": [
 						"libs/common/ui/styles/src/scss"
 					]
 				},
-				"scripts": [],
+				"scripts": [
+					"./node_modules/leaflet/dist/leaflet.js",
+					"./node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"
+				],
 				"browser": "./src/main.ts"
 			},
 			"configurations": {

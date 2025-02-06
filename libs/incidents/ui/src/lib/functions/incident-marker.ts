@@ -1,27 +1,50 @@
-import { ComponentFactoryResolver, Injector, ApplicationRef } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, Injector } from '@angular/core';
 import { IncidentInterface } from '@simra/incidents-models';
+import { LatLng, Marker } from 'leaflet';
+import { firstValueFrom, Observable } from 'rxjs';
 import { MarkerContentComponent } from '../marker-content/public-api';
-import { Marker } from 'leaflet';
-import { LatLng } from 'leaflet';
 import { createCustomMapPin } from './create-custom-map-pin';
 
-export function IncidentMarker(incident: IncidentInterface, injector: Injector, appRef: ApplicationRef): Marker {
+/**
+ * Creates a Leaflet marker with a popup that displays incident details
+ *
+ * @param incidentData Incident data (either partial or full)
+ * @param injector Angular dependency injector
+ * @param appRef Application reference
+ * @param fetchIncident Optional function to fetch additional incident details in case the provided data is partial
+ * @returns Leaflet Marker
+ */
+export function createIncidentMarker(
+	incidentData: Partial<IncidentInterface>,
+	injector: Injector,
+	appRef: ApplicationRef,
+	fetchIncident?: (id: number) => Observable<IncidentInterface>,
+): Marker {
+	const marker = new Marker(new LatLng(incidentData.lat, incidentData.lng), {
+		icon: createCustomMapPin(incidentData.scary),
+	});
 
-	// Create a new Leaflet marker
-	const marker = new Marker(new LatLng(incident.lat, incident.lng), { icon: createCustomMapPin(incident.scary) });
+	marker.on('click', async () => {
+		marker.unbindPopup();
+		const popupContainer = document.createElement('div');
+		popupContainer.innerHTML = 'Loading...';
 
-	// Dynamically create and insert the component into the Leaflet popup
-	const factory = injector.get(ComponentFactoryResolver).resolveComponentFactory(MarkerContentComponent);
-	const componentRef = factory.create(injector);
+		const factory = injector.get(ComponentFactoryResolver).resolveComponentFactory(MarkerContentComponent);
+		const componentRef = factory.create(injector);
+		marker.bindPopup(popupContainer).openPopup();
 
-	// Pass any required data (e.g., `incident`) to the component
-	componentRef.instance.incident = incident; // Assuming `incident` is a property of MarkerContentComponent
+		const incident = fetchIncident
+			? await firstValueFrom(fetchIncident(incidentData.id))
+			: (incidentData as IncidentInterface);
 
-	// Attach the component to the Angular application view
-	appRef.attachView(componentRef.hostView);
+		componentRef.instance.incident = incident;
+		appRef.attachView(componentRef.hostView);
 
-	// Directly set the component's DOM element as the popup content for the marker
-	marker.bindPopup(componentRef.location.nativeElement);
+		popupContainer.innerHTML = '';
+		popupContainer.appendChild(componentRef.location.nativeElement);
+
+		marker.setPopupContent(popupContainer);
+	});
 
 	return marker;
 }

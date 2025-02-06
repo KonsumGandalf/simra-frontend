@@ -1,5 +1,7 @@
+import { IncidentMarkerInterface } from '@simra/incidents-models';
+
 export interface RidesGeometriesInterface {
-	incidentLocations: string[];
+	incidentLocations: IncidentMarkerInterface[];
 	assignedWays: string[];
 	incidentWays: string[];
 	visitedWay: string;
