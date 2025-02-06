@@ -84,16 +84,16 @@ module.exports = [
                             onlyDependOnLibsWithTags: ['domain:common'],
                         },
                         {
+                            sourceTag: 'domain:incidents',
+                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents'],
+                        },
+                        {
                             sourceTag: 'domain:rides',
-                            onlyDependOnLibsWithTags: ['domain:common', 'domain:rides'],
+                            onlyDependOnLibsWithTags: ['domain:common', 'domain:rides', 'domain:incidents'],
                         },
                         {
                             sourceTag: 'domain:streets',
                             onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents', 'domain:rides', 'domain:streets'],
-                        },
-                        {
-                            sourceTag: 'domain:incidents',
-                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents'],
                         }
                     ],
                 },
