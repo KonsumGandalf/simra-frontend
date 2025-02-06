@@ -1,0 +1,8 @@
+<div class="h-screen w-full"
+	leaflet
+	 [leafletLayersControl]="_layerControl"
+	 [leafletOptions]="_mapOptions"
+	 [leafletMarkerCluster]="_markersWithLayer$()"
+	(leafletMapMoveEnd)="onMapChange($event)"
+	(leafletMapZoom)="onMapChange($event)">
+</div>
