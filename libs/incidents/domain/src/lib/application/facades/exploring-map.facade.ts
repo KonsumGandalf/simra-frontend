@@ -1,13 +1,17 @@
 import { inject, Injectable } from '@angular/core';
-import { IncidentInterface } from '@simra/incidents-models';
+import { IncidentInterface, IncidentMarkerInterface } from '@simra/incidents-models';
 import { Observable } from 'rxjs';
-import { IncidentRepository } from '../../infrastructure/incident.repository';
+import { IncidentRequestService } from '../../infrastructure/incident-request.service';
 
 @Injectable({ providedIn: 'root' })
 export class ExploringMapFacade {
-	private readonly _incidentRepository = inject(IncidentRepository);
+	private readonly _incidentRepository = inject(IncidentRequestService);
 
-	public getIncidents(): Observable<IncidentInterface[]> {
+	public getIncidents(): Observable<IncidentMarkerInterface[]> {
 		return this._incidentRepository.getIncidents();
+	}
+
+	public getIncidentDetails(id: number): Observable<IncidentInterface> {
+		return this._incidentRepository.getIncidentDetails(id);
 	}
 }
