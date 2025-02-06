@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
@@ -20,6 +21,7 @@ describe('StreetsExploringMapPage', () => {
 				TranslateModule.forRoot()
 			],
 			providers: [
+				provideRouter([]),
 				{
 					provide: StreetsExploringMapFacade,
 					useValue: {
