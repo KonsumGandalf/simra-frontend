@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RidesExploringFacade } from '@simra/rides-domain';
 import { polyline } from 'leaflet';
@@ -18,6 +19,7 @@ describe('StreetsExploringMapPage', () => {
 				TranslateModule.forRoot()
 			],
 			providers: [
+				provideRouter([]),
 				{
 					provide: RidesExploringFacade,
 					useValue: {
