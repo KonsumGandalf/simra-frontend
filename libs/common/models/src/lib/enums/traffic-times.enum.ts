@@ -16,7 +16,7 @@ export enum ETrafficTimes {
 	/**
 	 * 7:30 - 9:59
 	 */
-	EARLY_RUSH_HOUR = 'EARLY_RUSH_HOUR',
+	MORNING_RUSH_HOUR = 'MORNING_RUSH_HOUR',
 
 	/**
 	 * 10:00 - 15:29
@@ -26,7 +26,7 @@ export enum ETrafficTimes {
 	/**
 	 * 15:30 - 18:59
 	 */
-	LATE_RUSH_HOUR = 'LATE_RUSH_HOUR',
+	EVENING_RUSH_HOUR = 'EVENING_RUSH_HOUR',
 
 	/**
 	 * 19:00 - 7:29
