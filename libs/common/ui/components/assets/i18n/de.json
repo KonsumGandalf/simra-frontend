@@ -1,12 +1,71 @@
 {
-    "ATOMS": {
-
-    },
-    "MOLECULES": {
-        "DANGEROUS_SCORE_BAR": {
-            "BAR_LABEL": {
-                "LOW_RISK": "Niedriges Risiko",
-                "HIGH_RISK": "Hohes Risiko"
+    "GENERAL": {
+        "GENERAL": {
+            "MIN": "Min",
+            "MAX": "Max"
+        },
+        "TABLE": {
+            "ITEMS": {
+                "SELECTED": "Elemente ausgewählt"
+            },
+            "HEADER": {
+                "PLACEHOLDER": "Nichts ausgewählt",
+                "COLUMNS": {
+                    "ID": "ID",
+                    "NAME": "Name",
+                    "HIGHWAY_TYPE": "Straßentyp",
+                    "SCORE": "Bewertung",
+                    "INCIDENTS": "Vorfälle",
+                    "RIDES": "Fahrten",
+                    "WEEKDAY": "Wochentag",
+                    "TRAFFIC_TIME": "Verkehrszeit"
+                }
+            }
+        },
+        "ENTITY_ATTRIBUTES": {
+            "HIGHWAY_TYPES": {
+                "LABEL": {
+                    "ABANDONED": "Aufgegebene Straße",
+                    "BRIDLEWAY": "Reitweg",
+                    "BUS_BAY": "Busbucht",
+                    "BUS_STOP": "Bushaltestelle",
+                    "BUSWAY": "Busspur",
+                    "CONSTRUCTION": "Baustelle",
+                    "CORRIDOR": "Korridor",
+                    "CYCLEWAY": "Radweg",
+                    "DISUSED": "Nicht mehr in Benutzung",
+                    "ELEVATOR": "Aufzug",
+                    "FOOTWAY": "Fußweg",
+                    "LIVING_STREET": "Verkehrsberuhigte Straße",
+                    "MOTORWAY": "Autobahn",
+                    "MOTORWAY_LINK": "Autobahn-Zubringer",
+                    "PATH": "Pfad",
+                    "PEDESTRIAN": "Fußgängerzone",
+                    "PLANNED": "Geplante Straße",
+                    "PLATFORM": "Bahnsteig",
+                    "PRIMARY": "Bundesstraßen",
+                    "PRIMARY_LINK": "Bundesstraßen-Zubringer",
+                    "PROPOSED": "Vorgeschlagene Straße",
+                    "RACEWAY": "Rennstrecke",
+                    "RAZED": "Abgerissene Straße",
+                    "RESIDENTIAL": "Wohnstraße",
+                    "REST_AREA": "Rastplatz",
+                    "ROAD": "Straße",
+                    "SECONDARY": "Landesstraßen",
+                    "SECONDARY_LINK": "Landesstraßen-Zubringer",
+                    "SERVICE": "Dienstweg",
+                    "SERVICES": "Raststätte",
+                    "SIDEWALK": "Gehweg",
+                    "STEPS": "Treppen",
+                    "STREET_LAMP": "Straßenlaterne",
+                    "TERTIARY": "Kreisstraßen",
+                    "TERTIARY_LINK": "Kreisstraßen-Zubringer",
+                    "TRACK": "Feldweg",
+                    "TRUNK": "Schnellstraße",
+                    "TRUNK_LINK": "Schnellstraßen-Zubringer",
+                    "UNCLASSIFIED": "Nicht klassifiziert",
+                    "YES": "Yes"
+                }
             },
             "WEEK_DAYS": {
                 "TOOLTIP": {
@@ -25,18 +84,29 @@
                 "ICON_TOOLTIP": "Zeigt an, dass es in diesem Zeitraum besonders viel Verkehr gibt.",
                 "LABEL": {
                     "ALL_DAY": "Der ganze Tag",
-                    "EARLY_RUSH_HOUR": "Früher Berufsverkehr",
+                    "MORNING_RUSH_HOUR": "Früher Berufsverkehr",
                     "MID_DAY": "Mittag und Nachmittag",
-                    "LATE_RUSH_HOUR": "Später Berufsverkehr",
+                    "EVENING_RUSH_HOUR": "Später Berufsverkehr",
                     "EVENING_NIGHT_MORNING": "Abend und Nacht"
                 },
                 "TOOLTIP": {
                     "ALL_DAY": "Beinhaltet alle Tagesstunden",
-                    "EARLY_RUSH_HOUR": "Beinhaltet Stunden zwischen 7:30 und 9:59 Uhr",
+                    "MORNING_RUSH_HOUR": "Beinhaltet Stunden zwischen 7:30 und 9:59 Uhr",
                     "MID_DAY": "Beinhaltet Stunden zwischen 10:00 und 15:29 Uhr",
-                    "LATE_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
+                    "EVENING_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
                     "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 5:59 Uhr"
                 }
+            }
+        }
+    },
+    "ATOMS": {
+
+    },
+    "MOLECULES": {
+        "DANGEROUS_SCORE_BAR": {
+            "BAR_LABEL": {
+                "LOW_RISK": "Niedriges Risiko",
+                "HIGH_RISK": "Hohes Risiko"
             }
         }
     },
