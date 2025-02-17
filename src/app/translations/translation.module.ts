@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, inject, NgModule } from '@angular/core';
+import { inject, NgModule, provideAppInitializer } from '@angular/core';
 import { IModuleTranslationOptions, ModuleTranslateLoader } from '@larscom/ngx-translate-module-loader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -44,17 +44,16 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 		})
 	],
 	providers: [
-		{
-			provide: APP_INITIALIZER,
-			useFactory: () => {
+		provideAppInitializer(() => {
+        const initializerFn = (() => {
 				const translateService = inject(TranslateService);
 				return () => {
 					translateService.setDefaultLang('de');
 					translateService.use(navigator.language.substring(0, 2));
 				};
-			},
-			multi: true
-		}
+			})();
+        return initializerFn();
+      })
 	],
 	exports: [ TranslateModule ]
 })

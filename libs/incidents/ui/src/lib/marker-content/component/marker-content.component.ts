@@ -13,16 +13,15 @@ import { phoneLocationToIcon } from '../../models/maps/phone-location-to-icon';
  * This component displays the content of a marker within a popup
  */
 @Component({
-	selector: 'm-marker-content',
-	standalone: true,
-	imports: [CommonModule, TranslatePipe, IncidentIconComponent, Divider],
-	templateUrl: './marker-content.component.html',
-	styleUrl: './marker-content.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	host: {
-		class: 'm-marker-content',
-	},
+    selector: 'm-marker-content',
+    imports: [CommonModule, TranslatePipe, IncidentIconComponent, Divider],
+    templateUrl: './marker-content.component.html',
+    styleUrl: './marker-content.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'm-marker-content',
+    }
 })
 export class MarkerContentComponent {
 	private readonly _translationService = inject(TranslateService);
