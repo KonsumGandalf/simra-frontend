@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 	selector: 't-map-host',
 	template: `
 		<t-map-componenent></t-map-componenent>`,
-	standalone: true,
 	imports: [MapPage],
 })
 class TestHostComponent {

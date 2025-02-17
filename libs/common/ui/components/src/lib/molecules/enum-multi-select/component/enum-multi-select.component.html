@@ -1,0 +1,15 @@
+<p-multiSelect
+	[options]="optionEnum()"
+	[filter]="true"
+	[ngModel]="defaultSelected()"
+	(onChange)="onSelectionChange($event.value)"
+	[placeholder]="'COMPONENTS.GENERAL.TABLE.HEADER.PLACEHOLDER' | translate">
+
+	<ng-template let-option pTemplate="item">
+		{{ translationMap()[option].label | translate }}
+	</ng-template>
+
+	<ng-template let-selected pTemplate="selectedItems">
+		{{ getSelectedTranslations(selected) }}
+	</ng-template>
+</p-multiSelect>

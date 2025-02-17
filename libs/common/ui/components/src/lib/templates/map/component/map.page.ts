@@ -29,16 +29,15 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
  * This component allows to interact with the leaflet map smoothly
  */
 @Component({
-	selector: 't-map-component',
-	standalone: true,
-	imports: [CommonModule, LeafletModule, PopoverModule],
-	templateUrl: './map.page.html',
-	styleUrl: './map.page.scss',
-	host: {
-		class: 't-map-component',
-	},
-	encapsulation: ViewEncapsulation.None,
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 't-map-component',
+    imports: [CommonModule, LeafletModule, PopoverModule],
+    templateUrl: './map.page.html',
+    styleUrl: './map.page.scss',
+    host: {
+        class: 't-map-component',
+    },
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapPage {
 	private readonly route = inject(ActivatedRoute);
