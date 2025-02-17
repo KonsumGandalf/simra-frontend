@@ -1,0 +1,19 @@
+.t-street-list-view {
+	.p-card {
+		.street-list__table-container {
+			@apply w-full;
+		}
+
+		table {
+			@apply text-sm;
+
+			thead {
+				z-index: 2;
+
+				input {
+					@apply w-full;
+				}
+			}
+		}
+	}
+}

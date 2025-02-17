@@ -1,0 +1,26 @@
+.o-simra-exploring-map {
+	.o-simra-map {
+		@apply w-screen;
+		@apply h-screen;
+	}
+
+	m-safety-metrics-panel {
+		position: absolute;
+		bottom: 2%;
+		right: 1%;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 500;
+		width: 17rem;
+	}
+
+	m-dangerous-score-bar {
+		position: absolute;
+		bottom: 2%;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 500;
+		width: 30%;
+		min-width: 20rem;
+	}
+}

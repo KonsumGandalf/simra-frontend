@@ -1,0 +1,34 @@
+<p-card>
+	<p-carousel [value]="_templatePages$()" [circular]="true">
+		<ng-template let-element #item>
+			@if (element === 0) {
+				<m-safe-metrics-digit-panel
+					[safetyMetrics]="safetyMetrics$()"
+				></m-safe-metrics-digit-panel>
+			}
+
+			@if (_metricsIncidentTypes$()) {
+				@if (element === 1) {
+					<p-chart
+						type="bar"
+						[data]="_barMetricsRideIncidentDistributionData$()"
+						[responsive]="true"
+						[options]="_barMetricsRideIncidentDistributionOptions"
+						size="large"
+					>
+					</p-chart>
+				}
+				@if (element === 2) {
+					<p-chart
+						type="pie"
+						[data]="_pieMetricsIncidentTypesData$()"
+						[responsive]="true"
+						[options]="_pieMetricsIncidentTypesOptions"
+						size="large"
+					>
+					</p-chart>
+				}
+			}
+		</ng-template>
+	</p-carousel>
+</p-card>
