@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, Signal, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { SafetyMetricsDto } from '@simra/streets-common';
 import { ChartData } from 'chart.js';
 import { ChartOptions, Tick } from 'chart.js/dist/types';
@@ -12,23 +12,21 @@ import { safetyMetricsDisplayArray } from '../../../models/const';
 import { SafetyMetricsDigitPanelComponent } from '../../safety-metrics-digit-panel/component/safety-metrics-digit-panel.component';
 
 @Component({
-	selector: 'm-safety-metrics-panel',
-	standalone: true,
-	imports: [
-		CommonModule,
-		Carousel,
-		SafetyMetricsDigitPanelComponent,
-		UIChart,
-		TranslatePipe,
-		Card,
-	],
-	templateUrl: './safety-metrics-panel.component.html',
-	styleUrl: './safety-metrics-panel.component.scss',
-	host: {
-		class: 'm-safety-metrics-panel',
-	},
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
+    selector: 'm-safety-metrics-panel',
+    imports: [
+        CommonModule,
+        Carousel,
+        SafetyMetricsDigitPanelComponent,
+        UIChart,
+        Card,
+    ],
+    templateUrl: './safety-metrics-panel.component.html',
+    styleUrl: './safety-metrics-panel.component.scss',
+    host: {
+        class: 'm-safety-metrics-panel',
+    },
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class SafetyMetricsPanelComponent {
 	protected readonly _translationService = inject(TranslateService);
