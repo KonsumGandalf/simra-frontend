@@ -24,22 +24,21 @@ import { firstValueFrom } from 'rxjs';
 import { SafetyMetricsPanelComponent } from '../../components/safety-metrics-panel/component/safety-metrics-panel.component';
 
 @Component({
-	selector: 'simra-streets-exploring-map',
-	imports: [
-		CommonModule,
-		LeafletModule,
-		MapPage,
-		SafetyMetricsPanelComponent,
-		DangerousScoreBarComponent,
-	],
-	templateUrl: './streets-exploring-map.page.html',
-	styleUrl: './streets-exploring-map.page.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	host: {
-		class: 'o-simra-exploring-map',
-	},
+    selector: 'simra-streets-exploring-map',
+    imports: [
+        CommonModule,
+        LeafletModule,
+        MapPage,
+        SafetyMetricsPanelComponent,
+        DangerousScoreBarComponent,
+    ],
+    templateUrl: './streets-exploring-map.page.html',
+    styleUrl: './streets-exploring-map.page.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'o-simra-exploring-map',
+    }
 })
 export class StreetsExploringMapPage {
 	private readonly _exploringMapFacade = inject(StreetsExploringMapFacade);

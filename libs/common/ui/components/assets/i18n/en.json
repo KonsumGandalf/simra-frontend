@@ -1,12 +1,71 @@
 {
-    "ATOMS": {
-
-    },
-    "MOLECULES": {
-        "DANGEROUS_SCORE_BAR": {
-            "BAR_LABEL": {
-                "LOW_RISK": "High Risk",
-                "HIGH_RISK": "Low Risk"
+    "GENERAL": {
+        "GENERAL": {
+            "MIN": "Min",
+            "MAX": "Max"
+        },
+        "TABLE": {
+            "ITEMS": {
+                "SELECTED": "Items selected"
+            },
+            "HEADER": {
+                "PLACEHOLDER": "Nothing selected",
+                "COLUMNS": {
+                    "ID": "ID",
+                    "NAME": "Name",
+                    "HIGHWAY_TYPE": "Street Type",
+                    "SCORE": "Score",
+                    "INCIDENTS": "Incidents",
+                    "RIDES": "Rides",
+                    "WEEKDAY": "Weekday",
+                    "TRAFFIC_TIME": "Traffic Time"
+                }
+            }
+        },
+        "ENTITY_ATTRIBUTES": {
+            "HIGHWAY_TYPES": {
+                "LABEL": {
+                    "ABANDONED": "Abandoned Road",
+                    "BRIDLEWAY": "Bridleway",
+                    "BUS_BAY": "Bus Bay",
+                    "BUS_STOP": "Bus Stop",
+                    "BUSWAY": "Busway",
+                    "CONSTRUCTION": "Under Construction",
+                    "CORRIDOR": "Corridor",
+                    "CYCLEWAY": "Cycleway",
+                    "DISUSED": "No Longer in Use",
+                    "ELEVATOR": "Elevator",
+                    "FOOTWAY": "Footway",
+                    "LIVING_STREET": "Traffic-Calmed Street",
+                    "MOTORWAY": "Motorway",
+                    "MOTORWAY_LINK": "Motorway Link",
+                    "PATH": "Path",
+                    "PEDESTRIAN": "Pedestrian Zone",
+                    "PLANNED": "Planned Road",
+                    "PLATFORM": "Platform",
+                    "PRIMARY": "Primary Road",
+                    "PRIMARY_LINK": "Primary Road Link",
+                    "PROPOSED": "Proposed Road",
+                    "RACEWAY": "Raceway",
+                    "RAZED": "Demolished Road",
+                    "RESIDENTIAL": "Residential Street",
+                    "REST_AREA": "Rest Area",
+                    "ROAD": "Road",
+                    "SECONDARY": "Secondary Road",
+                    "SECONDARY_LINK": "Secondary Road Link",
+                    "SERVICE": "Service Road",
+                    "SERVICES": "Service Area",
+                    "SIDEWALK": "Sidewalk",
+                    "STEPS": "Steps",
+                    "STREET_LAMP": "Street Lamp",
+                    "TERTIARY": "Tertiary Road",
+                    "TERTIARY_LINK": "Tertiary Road Link",
+                    "TRACK": "Track",
+                    "TRUNK": "Expressway",
+                    "TRUNK_LINK": "Expressway Link",
+                    "UNCLASSIFIED": "Unclassified",
+                    "YES": "Yes"
+                }
             },
             "WEEK_DAYS": {
                 "TOOLTIP": {
@@ -25,18 +84,29 @@
                 "ICON_TOOLTIP": "Indicates this timeset includes a rush hour",
                 "LABEL": {
                     "ALL_DAY": "All Day",
-                    "EARLY_RUSH_HOUR": "Early Rush Hour",
+                    "MORNING_RUSH_HOUR": "Morning Rush Hour",
                     "MID_DAY": "Midday and Afternoon",
-                    "LATE_RUSH_HOUR": "Late Rush Hour",
+                    "EVENING_RUSH_HOUR": "Evening Rush Hour",
                     "EVENING_NIGHT_MORNING": "Evening and Night"
                 },
                 "TOOLTIP": {
                     "ALL_DAY": "Includes all hours of the day",
-                    "EARLY_RUSH_HOUR": "Includes hours between 7:30 and 9:59",
+                    "MORNING_RUSH_HOUR": "Includes hours between 7:30 and 9:59",
                     "MID_DAY": "Includes hours between 10:00 and 15:29",
-                    "LATE_RUSH_HOUR": "Includes hours between 15:30 and 18:59",
+                    "EVENING_RUSH_HOUR": "Includes hours between 15:30 and 18:59",
                     "EVENING_NIGHT_MORNING": "Includes hours between 19:00 and 5:59"
                 }
+            }
+        }
+    },
+    "ATOMS": {
+
+    },
+    "MOLECULES": {
+        "DANGEROUS_SCORE_BAR": {
+            "BAR_LABEL": {
+                "LOW_RISK": "High Risk",
+                "HIGH_RISK": "Low Risk"
             }
         }
     },

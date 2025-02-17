@@ -1,0 +1,88 @@
+<div class="street-list__table-container">
+	<p-card>
+		<p-table
+			#dt
+			[value]="_streets$.value()?.content"
+			[paginator]="true"
+			[lazy]="true"
+			[loading]="loading()"
+			[showLoader]="false"
+			[(first)]="index"
+			[rows]="filtering().size"
+			[totalRecords]="_streets$.value()?.totalElements"
+			[rowsPerPageOptions]="[10, 20, 50]"
+			(onSort)="onSort($event)"
+			(onFilter)="onFilterChange($event)"
+			(onLazyLoad)="onLazy($event)"
+			[resetPageOnSort]="true"
+			[sortField]="'dangerousScore'"
+			[sortOrder]="-1"
+			[tableStyle]="{'min-height': '23rem'}">
+			<ng-template pTemplate="header">
+				<tr>
+					@for(header of _cols; track header.field) {
+						<th>
+							@if (header.sortable) {
+								<div [pSortableColumn]="header.field">
+									{{ header.header | translate }}
+									<p-sortIcon [field]="header.field"></p-sortIcon>
+								</div>
+							} @else {
+								{{ header.header | translate }}
+							}
+						</th>
+					}
+				</tr>
+				<tr>
+					@for(header of _cols; track header.field) {
+						<th>
+							@if (isEnumColumn(header); as enumHeader) {
+								<m-enum-multi-select-component
+									[field]="enumHeader.field"
+									[optionEnum]="enumHeader.enum"
+									[defaultSelected]="filtering()[enumHeader.field]"
+									[translationMap]="enumHeader.translationMap"
+									(selectionChange)="onFilterChange($event)">
+								</m-enum-multi-select-component>
+							}
+							@if (isNumberColumn(header); as numberHeader) {
+								<m-number-filter
+									[field]="numberHeader.field"
+									[step]="numberHeader.step"
+									[min]="numberHeader.min"
+									(filterChange)="onFilterChange($event)">
+								</m-number-filter>
+							}
+							@if(isBasicColumn(header); as basicHeader) {
+								<p-columnFilter [field]="basicHeader.field" [showMenu]="false"></p-columnFilter>
+							}
+						</th>
+					}
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-street>
+				<tr>
+					<td>{{ street.id }}</td>
+					<td>{{ street.name }}</td>
+					<td> {{ HIGHWAY_TYPES_TO_TRANSLATION[street.highway]?.label | translate }} </td>
+					<td style="color: {{ street.dangerousColor}}">{{ street.dangerousScore | number: '1.2-2'}}</td>
+					<td>{{ street.numberOfRides}}</td>
+					<td>{{ street.numberOfIncidents}}</td>
+					<td [pTooltip]="WEEK_DAYS_TO_TRANSLATION[street.weekDay]?.tooltip | translate">{{ WEEK_DAYS_TO_TRANSLATION[street.weekDay]?.label | translate }}</td>
+					<td [pTooltip]="TRAFFIC_TIMES_TO_TRANSLATION[street.trafficTime]?.tooltip | translate">{{ TRAFFIC_TIMES_TO_TRANSLATION[street.trafficTime]?.label | translate }}</td>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="loadingbody" let-street>
+				@for(_ of times(filtering().size); track _) {
+					<tr>
+					@for(width of ['6rem', '6rem', '3rem', '1rem', '1rem', '1rem', '5rem', '8rem']; track width) {
+						<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
+					}
+					</tr>
+				}
+			</ng-template>
+		</p-table>
+	</p-card>
+</div>
+
+

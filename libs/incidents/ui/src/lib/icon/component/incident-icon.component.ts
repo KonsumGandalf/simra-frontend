@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Tooltip } from 'primeng/tooltip';
 
 @Component({
-	selector: 'a-icon',
-	standalone: true,
-	imports: [CommonModule, Tooltip],
-	templateUrl: './incident-icon.component.html',
-	styleUrl: './incident-icon.component.scss',
-	encapsulation: ViewEncapsulation.None,
-	host: {
-		class: 'a-icon',
-	},
+    selector: 'a-icon',
+    imports: [CommonModule, Tooltip],
+    templateUrl: './incident-icon.component.html',
+    styleUrl: './incident-icon.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'a-icon',
+    }
 })
 export class IncidentIconComponent {
 	@Input({required: true})

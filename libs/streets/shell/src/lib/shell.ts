@@ -3,16 +3,21 @@ import { Route } from '@angular/router';
 export const STREET_SHELL_ROUTES: Route[] = [
 	{
 		path: '',
-		children: [
-			{
-				path: 'exploring-map',
-				loadComponent: () =>
-					import('@simra/streets-map').then((m) => m.StreetsExploringMapPage),
-			},
-			{
-				path: '**',
-				redirectTo: 'exploring-map',
-			}
-		]
-	}
+		redirectTo: 'list',
+		pathMatch: 'full',
+	},
+	{
+		path: 'map',
+		loadComponent: () =>
+			import('@simra/streets-map').then((m) => m.StreetsExploringMapPage),
+	},
+	{
+		path: 'list',
+		loadComponent: () =>
+			import('@simra/streets-map').then((m) => m.StreetListViewPage),
+	},
+	{
+		path: '**',
+		redirectTo: 'list',
+	},
 ];

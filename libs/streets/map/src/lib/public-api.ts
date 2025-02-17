@@ -1,1 +1,1 @@
-export * from './pages/exploring-map/public-api';
+export * from './pages/public-api';

@@ -8,7 +8,6 @@ import { safetyMetricsDisplayArray } from '../../../models/const';
 
 @Component({
 	selector: 'm-safe-metrics-digit-panel',
-	standalone: true,
 	imports: [CommonModule, TranslatePipe, Divider, Skeleton],
 	templateUrl: './safety-metrics-digit-panel.component.html',
 	styleUrl: './safety-metrics-digit-panel.component.scss',

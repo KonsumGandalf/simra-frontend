@@ -22,16 +22,15 @@ import { Card } from 'primeng/card';
 import { InputNumber } from 'primeng/inputnumber';
 
 @Component({
-	selector: 'p-streets-exploring-map',
-	imports: [CommonModule, LeafletModule, MapPage, FormsModule, InputNumber, Card],
-	templateUrl: './rides-exploring-map.page.html',
-	styleUrl: './rides-exploring-map.page.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	host: {
-		class: 'p-streets-exploring-map',
-	},
+    selector: 'p-streets-exploring-map',
+    imports: [CommonModule, LeafletModule, MapPage, FormsModule, InputNumber, Card],
+    templateUrl: './rides-exploring-map.page.html',
+    styleUrl: './rides-exploring-map.page.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'p-streets-exploring-map',
+    }
 })
 export class RidesExploringMapPage {
 	private readonly _router = inject(Router);

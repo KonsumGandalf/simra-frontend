@@ -16,16 +16,15 @@ import { createIncidentMarker } from '@simra/incidents-ui';
 import { Layer } from 'leaflet';
 
 @Component({
-	selector: 'simra-rides-incident-exploring-map',
-	imports: [CommonModule, LeafletModule, MarkerClusterMapPage],
-	templateUrl: './incident-exploring-map.page.html',
-	styleUrl: './incident-exploring-map.page.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	standalone: true,
-	host: {
-		class: 'o-simra-exploring-map',
-	},
+    selector: 'simra-rides-incident-exploring-map',
+    imports: [CommonModule, LeafletModule, MarkerClusterMapPage],
+    templateUrl: './incident-exploring-map.page.html',
+    styleUrl: './incident-exploring-map.page.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'o-simra-exploring-map',
+    }
 })
 export class IncidentExploringMapPage {
 	private readonly _exploringMapFacade = inject(ExploringMapFacade);

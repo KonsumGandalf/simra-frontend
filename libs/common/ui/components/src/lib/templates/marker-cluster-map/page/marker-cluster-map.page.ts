@@ -22,16 +22,15 @@ import { EBaseLayerTypes } from '../../models/enums/base-layer-types';
 import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
 
 @Component({
-	selector: 't-marker-cluster-map-page',
-	standalone: true,
-	imports: [CommonModule, LeafletMarkerClusterModule, LeafletModule],
-	templateUrl: './marker-cluster-map.page.html',
-	styleUrl: './marker-cluster-map.page.scss',
-	host: {
-		class: 't-marker-cluster-map-page',
-	},
-	encapsulation: ViewEncapsulation.None,
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 't-marker-cluster-map-page',
+    imports: [CommonModule, LeafletMarkerClusterModule, LeafletModule],
+    templateUrl: './marker-cluster-map.page.html',
+    styleUrl: './marker-cluster-map.page.scss',
+    host: {
+        class: 't-marker-cluster-map-page',
+    },
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkerClusterMapPage {
 	private readonly route = inject(ActivatedRoute);
