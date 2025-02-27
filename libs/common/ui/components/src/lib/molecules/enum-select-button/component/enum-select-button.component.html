@@ -1,0 +1,5 @@
+<p-selectButton [options]="filteredOption()" [(ngModel)]="selected" size="small" [multiple]="multiple()" [allowEmpty]="multiple()">
+	<ng-template #item let-option>
+		<span class="text-nowrap" [pTooltip]="translationMap()[option]?.tooltip | translate" >{{ translationMap()[option]?.label | translate }}</span>
+	</ng-template>
+</p-selectButton>

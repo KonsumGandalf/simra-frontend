@@ -3,11 +3,11 @@ import { TRAFFIC_TIMES_TO_TRANSLATION } from '../../../translations/maps/traffic
 import { ETrafficTimes } from '@simra/common-models';
 import { StorybookTranslateModule } from '@simra/helpers';
 import { componentWrapperDecorator, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { EnumMultiSelectComponent } from './enum-multi-select.component';
+import { EnumSelectComponent } from './enum-select.component';
 
-const meta: Meta<EnumMultiSelectComponent> = {
-	component: EnumMultiSelectComponent,
-	title: 'EnumMultiSelectComponent',
+const meta: Meta<EnumSelectComponent> = {
+	component: EnumSelectComponent,
+	title: 'EnumSelectComponent',
 	decorators: [
 		moduleMetadata({
 			imports: [StorybookTranslateModule, FormsModule]
@@ -17,13 +17,12 @@ const meta: Meta<EnumMultiSelectComponent> = {
 	]
 };
 export default meta;
-type Story = StoryObj<EnumMultiSelectComponent>;
+type Story = StoryObj<EnumSelectComponent>;
 
 export const Primary: Story = {
 	args: {
 		field: 'trafficTimes',
-		filter: true,
-		maxSelectedDisplay: 2,
+		filter: false,
 		translationMap: TRAFFIC_TIMES_TO_TRANSLATION,
 		optionEnum: ETrafficTimes,
 		selected: [ETrafficTimes.ALL_DAY]

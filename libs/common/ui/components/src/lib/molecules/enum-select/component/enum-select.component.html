@@ -1,0 +1,25 @@
+<p-select
+	class="mx-auto"
+	[options]="optionEnum()"
+	[size]="size()"
+	[(ngModel)]="selected"
+	(onChange)="onSelectionChange($event.value)"
+	[placeholder]="'COMPONENTS.GENERAL.TABLE.HEADER.PLACEHOLDER' | translate">
+
+	<ng-template pTemplate="selectedItem" let-selectedOption>
+		<div class="flex items-center gap-2">
+			<span [pTooltip]="translationMap()[selectedOption].tooltip | translate" >{{ translationMap()[selectedOption].label | translate }}</span>
+			<!--@if (translationMap()[selectedOption]?.includesRushHour){
+				<i class="pi pi-car"></i>
+			}-->
+		</div>
+	</ng-template>
+	<ng-template let-option pTemplate="item">
+		<div class="flex items-center gap-2 justify-between flex-nowrap flex-grow">
+			<div [pTooltip]="translationMap()[option].tooltip | translate" >{{ translationMap()[option].label | translate }}</div>
+			<!--@if (translationMap()[option]!!.includesRushHour){
+				<div class="pi pi-car" [pTooltip]="'COMPONENTS.MOLECULES.DANGEROUS_SCORE_BAR.TRAFFIC_TIMES.ICON_TOOLTIP' | translate" ></div>
+			}-->
+		</div>
+	</ng-template>
+</p-select>

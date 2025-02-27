@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TTranslationMap } from '../../../translations/interfaces/translation-map.type';
-import { EnumMultiSelectComponent } from './enum-multi-select.component';
+import { EnumSelectButtonComponent } from './enum-select-button.component';
 
 @Component({
 	selector: 'm-test-host-component',
-	template: '<m-enum-multi-select-component [field]="field" [translationMap]="translationMap" [optionEnum]="optionEnum"></m-enum-multi-select-component>',
-	imports: [EnumMultiSelectComponent],
+	template:
+		'<m-enum-select-button [translationMap]="translationMap" [optionEnum]="optionEnum"></m-enum-select-button>',
+	imports: [EnumSelectButtonComponent],
 })
 class TestHostComponent {
-	field = 'field';
 	translationMap: TTranslationMap<string> = {
-		'key1': { label: 'label1' },
-		'key2': { label: 'label2' },
+		key1: { label: 'label1' },
+		key2: { label: 'label2' },
 	};
 	optionEnum = { key1: 'value1', key2: 'value2' };
 }

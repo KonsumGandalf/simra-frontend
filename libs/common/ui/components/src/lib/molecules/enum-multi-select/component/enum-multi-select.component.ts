@@ -34,7 +34,7 @@ export class EnumMultiSelectComponent {
 			return $enum(enumType).getValues() as [];
 		},
 	});
-	defaultSelected = model<string[] | number[]>([]);
+	selected = model<string[] | number[]>([]);
 	filter = input<boolean>(false);
 	maxSelectedDisplay = input<number>(1);
 	@Output() selectionChange = new EventEmitter<Record<string, string[]>>(); // Event when selection changes

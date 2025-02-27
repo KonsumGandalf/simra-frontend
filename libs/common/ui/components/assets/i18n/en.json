@@ -1,5 +1,8 @@
 {
     "GENERAL": {
+        "CHART": {
+            "NO_DATA": "No data available"
+        },
         "GENERAL": {
             "MIN": "Min",
             "MAX": "Max"

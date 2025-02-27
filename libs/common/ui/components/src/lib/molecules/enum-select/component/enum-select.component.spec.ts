@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TTranslationMap } from '../../../translations/interfaces/translation-map.type';
-import { EnumMultiSelectComponent } from './enum-multi-select.component';
+import { EnumSelectComponent } from './enum-select.component';
 
 @Component({
 	selector: 'm-test-host-component',
 	template: '<m-enum-multi-select-component [field]="field" [translationMap]="translationMap" [optionEnum]="optionEnum"></m-enum-multi-select-component>',
-	imports: [EnumMultiSelectComponent],
+	imports: [EnumSelectComponent],
 })
 class TestHostComponent {
 	field = 'field';
@@ -25,8 +25,7 @@ describe('Integration Test EnumSelectComponent', () => {
 			imports: [
 				TestHostComponent,
 
-				TranslateModule.forRoot()
-			],
+				TranslateModule.forRoot()],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TestHostComponent);
