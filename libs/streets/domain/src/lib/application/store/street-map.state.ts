@@ -5,14 +5,14 @@ import { GeoJSON } from 'leaflet';
 import { SetHoveredStreetId, AddToStreetCache } from './street-map.actions';
 
 export interface StreetMapStateModel {
-	streets: GeoJSON<any, Geometry>[];
+	streetGrid: GeoJSON<any, Geometry>[];
 	hoveredStreetId?: number;
 }
 
 @State<StreetMapStateModel>({
 	name: 'street_map',
 	defaults: {
-		streets: []
+		streetGrid: []
 	}
 })
 @Injectable()
@@ -21,7 +21,7 @@ export class StreetMapState {
 
 	@Selector()
 	static getStreetCache(state: StreetMapStateModel) {
-		return state.streets;
+		return state.streetGrid;
 	}
 
 	@Selector()
@@ -40,7 +40,7 @@ export class StreetMapState {
 		// }
 
 		ctx.patchState({
-			streets: newCache
+			streetGrid: newCache
 		})
 	}
 

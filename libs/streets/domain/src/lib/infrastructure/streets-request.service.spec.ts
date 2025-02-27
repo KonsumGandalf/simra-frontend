@@ -24,7 +24,7 @@ describe('StreetsRequestService', () => {
 
 	describe('getStreetInformation', () => {
 		it('should call the correct api endpoint', () => {
-			service.getStreetInformation({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined });
+			service.getStreetGrid({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined });
 			expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
 			expect(httpClientSpy.get).toHaveBeenCalledWith('/api/streets/grid', { params: { zoom: 14, lat: 10, lng: 12 } });
 		});
@@ -44,7 +44,7 @@ describe('StreetsRequestService', () => {
 			httpClientSpy.get.mockReturnValue(of([response]));
 
 
-			const streetInformation = await service.getStreetInformation({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined }).toPromise();
+			const streetInformation = await service.getStreetGrid({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined }).toPromise();
 			expect(streetInformation).toMatchObject([{
 				osm_id: 1,
 				way: {

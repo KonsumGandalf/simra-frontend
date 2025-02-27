@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IncidentInterface } from '@simra/incidents-models';
-import { GetStreetInformationInterface, SafetyMetricsDto } from '@simra/streets-common';
+import { IGetStreetGrid, SafetyMetricsDto } from '@simra/streets-common';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
 import { Observable, take, tap } from 'rxjs';
@@ -10,7 +10,7 @@ import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics
 import { StreetsRequestService } from '../../infrastructure/streets-request.service';
 import { StreetInformationDto } from '../../models/dtos/street-information.dto';
 import * as L from 'leaflet';
-import { SetHoveredStreetId, AddToStreetCache } from '../street-map.actions';
+import { AddToStreetCache, SetHoveredStreetId } from '../store/street-map.actions';
 
 @Injectable({ providedIn: 'root' })
 export class StreetsExploringMapFacade {
@@ -34,8 +34,8 @@ export class StreetsExploringMapFacade {
 		});
 	}
 
-	public fetchStreetInformation(requestParams: GetStreetInformationInterface) {
-		this._streetsRequestService.getStreetInformation(requestParams).pipe(
+	public fetchStreetInformation(requestParams: IGetStreetGrid) {
+		this._streetsRequestService.getStreetGrid(requestParams).pipe(
 			take(1),
 			tap((response: StreetInformationDto[]) => {
 				const batch: GeoJSON<any, Geometry>[] = [];
