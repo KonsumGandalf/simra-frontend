@@ -1,11 +1,12 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withPreloading } from '@angular/router';
 import { provideStore } from '@ngxs/store';
 import { APP_CONFIG, AppEnvironmentInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
-import { StreetMapState } from '@simra/streets-domain';
+import { StreetDetailState, StreetMapState } from '@simra/streets-domain';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { providePrimeNG } from 'primeng/config';
 import { APP_ROUTES } from './app.routes';
 import Aura from '@primeng/themes/aura';
@@ -15,7 +16,7 @@ import { AppTranslationModule } from './translations/translation.module';
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideRouter(APP_ROUTES, withComponentInputBinding()),
+		provideRouter(APP_ROUTES, withComponentInputBinding(), withPreloading(QuicklinkStrategy)),
 		{
 			provide: APP_CONFIG,
 			useValue: {
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
 			} as AppEnvironmentInterface,
 		},
 		provideHttpClient(withInterceptors([backendUrlInterceptor])),
-		provideStore([StreetMapState, MapFilterState], {
+		provideStore([StreetMapState, StreetDetailState, MapFilterState], {
 			developmentMode: false,
 		}),
 

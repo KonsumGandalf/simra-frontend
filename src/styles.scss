@@ -1,8 +1,9 @@
+@use 'simra';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import 'simra';
 
 * {
     box-sizing: border-box;
