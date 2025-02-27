@@ -7,6 +7,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import {
 	EnumColumn,
@@ -21,7 +22,7 @@ import {
 } from '@simra/common-components';
 import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays } from '@simra/common-models';
 import { SafetyMetricsRequest } from '@simra/streets-common';
-import { StreetListViewFacade } from '@simra/streets-domain';
+import { StreetDetailViewFacade, StreetListViewFacade } from '@simra/streets-domain';
 import { times } from 'lodash';
 import { PrimeTemplate } from 'primeng/api';
 import { Card } from 'primeng/card';
@@ -47,6 +48,7 @@ import { firstValueFrom } from 'rxjs';
 		FormsModule,
 		NumberFilterComponent,
 		EnumMultiSelectComponent,
+		RouterLink,
 	],
 	templateUrl: './street-list-view.page.html',
 	styleUrl: './street-list-view.page.scss',
@@ -57,6 +59,7 @@ import { firstValueFrom } from 'rxjs';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StreetListViewPage {
+	private readonly _streetDetailViewFacade = inject(StreetDetailViewFacade);
 	private readonly _streetListViewFace = inject(StreetListViewFacade);
 	/**
 	 * The index of the current page
@@ -130,6 +133,7 @@ export class StreetListViewPage {
 		request: () => ({ ...this.filtering() }),
 		loader: async ({ request }) => {
 			this.loading.set(true);
+			request.id = 1;
 			const response = await firstValueFrom(
 				this._streetListViewFace.fetchStreetList(request),
 			);
@@ -154,6 +158,7 @@ export class StreetListViewPage {
 	 * Called when filtering the table
 	 * @param event
 	 */
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onFilterChange(event: any) {
 		let newFilter = {};
 		if (event.filters) {
@@ -175,6 +180,7 @@ export class StreetListViewPage {
 	 * Called when sorting the table
 	 * @param event
 	 */
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onSort(event: any) {
 		const sort = event.field === 'id' ? 'planetOsmLineId' : event.field;
 		const order = event.order === 1 ? ESortOrder.ASC : ESortOrder.DESC;
@@ -200,4 +206,8 @@ export class StreetListViewPage {
 	protected readonly isEnumColumn = isEnumColumn;
 	protected readonly isNumberColumn = isNumberColumn;
 	protected readonly times = times;
+
+	async preloadStreet(id: number) {
+		await firstValueFrom(this._streetDetailViewFacade.getAndSetStreet(id));
+	}
 }

@@ -39,7 +39,7 @@
 						<m-enum-multi-select-component
 							[field]="enumHeader.field"
 							[optionEnum]="enumHeader.enum"
-							[defaultSelected]="filtering()[enumHeader.field]"
+							[selected]="filtering()[enumHeader.field]"
 							[translationMap]="enumHeader.translationMap"
 							(selectionChange)="onFilterChange($event)"
 						>
@@ -64,7 +64,7 @@
 			</ng-template>
 			<ng-template pTemplate="body" let-street>
 				<tr>
-					<td>{{ street.id }}</td>
+					<td><a [routerLink]="['/streets', street.id]" (mouseover)="preloadStreet(+street.id)" (focus)="preloadStreet(+street.id)" class="link-button">{{ street.id }}</a></td>
 					<td>{{ street.name }}</td>
 					<td>{{ HIGHWAY_TYPES_TO_TRANSLATION[street.highway]?.label | translate }}</td>
 					<td style="color: {{ street.dangerousColor}}">
@@ -95,3 +95,4 @@
 		</p-table>
 	</p-card>
 </div>
+

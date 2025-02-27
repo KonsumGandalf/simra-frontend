@@ -3,12 +3,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { StreetDetailState } from '@simra/streets-domain';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
-import { SafetyMetricsCardComponent } from '../../safety-metrics-card/component/safety-metrics-card.component';
-import { SafetyMetricsPanelComponent } from './safety-metrics-panel.component';
+import { StreetAnalyticsService } from '../../../services/street-analytics.service';
+import { SafetyMetricsCardComponent } from './safety-metrics-card.component';
 
-describe('SafetyMetricsPanelComponent', () => {
-	let component: SafetyMetricsPanelComponent;
-	let fixture: ComponentFixture<SafetyMetricsPanelComponent>;
+describe('SafetyMetricsCardComponent', () => {
+	let component: SafetyMetricsCardComponent;
+	let fixture: ComponentFixture<SafetyMetricsCardComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -23,11 +23,17 @@ describe('SafetyMetricsPanelComponent', () => {
 						getBarMetricsRideIncidentDistributionOptions: jest.fn(),
 						barMetricsRideIncidentDistributionData$: jest.fn(),
 					}
+				},
+				{
+					provide: StreetAnalyticsService,
+					useValue: {
+						calculateSafetyMetrics: jest.fn(),
+					}
 				}
 			]
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(SafetyMetricsPanelComponent);
+		fixture = TestBed.createComponent(SafetyMetricsCardComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

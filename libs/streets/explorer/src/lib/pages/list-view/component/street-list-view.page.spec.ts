@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { StreetListViewFacade } from '@simra/streets-domain';
+import { StreetDetailViewFacade, StreetListViewFacade } from '@simra/streets-domain';
 import { of } from 'rxjs';
 import { StreetListViewPage } from './street-list-view.page';
 
@@ -16,6 +16,12 @@ describe('ListViewComponent', () => {
 					provide: StreetListViewFacade,
 					useValue: {
 						fetchStreetList: jest.fn().mockReturnValue(of({})),
+					},
+				},
+				{
+					provide: StreetDetailViewFacade,
+					useValue: {
+						getAndSetStreet: jest.fn().mockReturnValue(of({})),
 					},
 				},
 			],

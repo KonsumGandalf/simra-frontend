@@ -4,7 +4,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		"allowSyntheticDefaultImports": true,
 	},
 	"files": [],
 	"include": [],

@@ -1,31 +1,25 @@
-import 'reflect-metadata';
-
-import { NgxsModule } from '@ngxs/store';
 import { StorybookTranslateModule } from '@simra/helpers';
-import { StreetDetailState } from '@simra/streets-domain';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
+import { StreetAnalyticsService } from '../../../services/street-analytics.service';
 import { fakeSafetyMetricsService } from '../../../utils/storybook-utils';
-import { SafetyMetricsPanelComponent } from './safety-metrics-panel.component';
+import { SafetyMetricsCardComponent } from './safety-metrics-card.component';
 
-
-const meta: Meta<SafetyMetricsPanelComponent> = {
-	component: SafetyMetricsPanelComponent,
-	title: 'SafetyMetricsPanel',
+const meta: Meta<SafetyMetricsCardComponent> = {
+	component: SafetyMetricsCardComponent,
+	title: 'SafetyMetricsCardComponent',
 	decorators: [
 		moduleMetadata({
-			imports: [
-				StorybookTranslateModule,
-				NgxsModule.forRoot([StreetDetailState]),
-			],
+			imports: [StorybookTranslateModule],
 			providers: [
-				{ provide: SafetyMetricsService, useValue: fakeSafetyMetricsService }
+				{ provide: SafetyMetricsService, useValue: fakeSafetyMetricsService },
+				{ provide: StreetAnalyticsService, useValue: {} },
 			],
 		}),
 	],
 };
 export default meta;
-type Story = StoryObj<SafetyMetricsPanelComponent>;
+type Story = StoryObj<SafetyMetricsCardComponent>;
 
 export const Primary: Story = {
 	args: {},
@@ -38,7 +32,6 @@ export const Loading: Story = {
 				{
 					provide: SafetyMetricsService,
 					useValue: {
-						safetyMetrics$: () => undefined,
 						pieMetricsIncidentTypesData$: () => undefined,
 						getPieMetricsIncidentTypesOptions: () => ({}),
 						barMetricsRideIncidentDistributionData$: () => undefined,

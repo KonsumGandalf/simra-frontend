@@ -1,5 +1,17 @@
 {
 	"COMPONENTS": {
+		"SAFETY_METRICS_CARD": {
+			"MODE": {
+				"PRECOMPUTED": {
+					"TITLE": "Precomputed",
+					"TOOLTIP": "Precomputed safety metrics are calculated in the backend and are immediately available for all streets."
+				},
+				"REALTIME": {
+					"TITLE": "Realtime",
+					"TOOLTIP": "Realtime safety metrics are calculated on the fly and for given time ranges."
+				}
+			}
+		},
 		"SAFETY_METRICS_PANEL": {
 			"CHARTS": {
 				"INCIDENT_TYPES": {
@@ -10,7 +22,6 @@
 				}
 			}
 		},
-
 		"SAFE_METRICS_DIGIT_PANEL": {
 			"LABEL": {
 				"STREET_ID": "Street ID",

@@ -1,7 +1,8 @@
-import { SafetyMetricsDto } from '@simra/streets-common';
+import { ISafetyMetrics } from '@simra/streets-common';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function safetyMetricsDisplayArray(
-	safetyMetrics: SafetyMetricsDto,
+	safetyMetrics: ISafetyMetrics,
 ): { label: string; data: any }[] {
 	return [
 		{

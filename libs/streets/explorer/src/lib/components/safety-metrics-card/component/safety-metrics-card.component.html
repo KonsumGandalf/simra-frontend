@@ -1,0 +1,46 @@
+<div class="my-4 flex flex-row justify-between items-center min-h-11">
+	<m-enum-select-button [optionEnum]="ESCardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
+	<div class="flex flex-row gap-x-4">
+		@if(_mode$() === ESCardMode.PRECOMPUTED) {
+			<m-enum-select-component
+				[optionEnum]="ETrafficTimes"
+				[(selected)]="_selectedTrafficTime"
+				[translationMap]="TRAFFIC_TIMES_TO_TRANSLATION"
+			></m-enum-select-component>
+			<m-enum-select-button [optionEnum]="EWeekDays" [translationMap]="WEEK_DAYS_TO_TRANSLATION" [(selected)]="_selectedWeekDays" [multiple]="true"></m-enum-select-button>
+		} @else {
+			<p-float-label variant="on">
+				<p-datepicker size="small" inputId="startTime" [(ngModel)]="startTime" [timeOnly]="true"/>
+				<label for="startTime">Start Time</label>
+			</p-float-label>
+			<p-float-label variant="on">
+				<p-datepicker size="small" inputId="endTime" [(ngModel)]="endTime" [timeOnly]="true"/>
+				<label for="endTime">End Time</label>
+			</p-float-label>
+			<p-floatlabel variant="on">
+				<p-datepicker size="small" [showIcon]="true" inputId="calendar" selectionMode="range" [(ngModel)]="_datetime$"/>
+				<label for="calendar">On Label</label>
+			</p-floatlabel>
+		}
+	</div>
+</div>
+<p-card header="Safety Metrics" class="safety-metrics--container flex flex-row w-full gap-x-6">
+
+	<m-safe-metrics-digit-panel [safetyMetrics]="_selectedSafetyMetrics$()"></m-safe-metrics-digit-panel>
+
+	<p-chart
+		type="bar"
+		height="18rem"
+		[data]="_barMetricsRideIncidentDistributionData$()"
+		[responsive]="true"
+		[options]="_barMetricsRideIncidentDistributionOptions">
+	</p-chart>
+
+	<p-chart
+		type="pie"
+		height="18rem"
+		[data]="_pieMetricsIncidentTypesData$()"
+		[responsive]="true"
+		[options]="_pieMetricsIncidentTypesOptions">
+	</p-chart>
+</p-card>

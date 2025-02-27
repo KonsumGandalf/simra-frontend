@@ -1,3 +1,4 @@
+import { ETrafficTimes, EWeekDays } from '@simra/common-models';
 import { StorybookTranslateModule } from '@simra/helpers';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SafetyMetricsDigitPanelComponent } from './safety-metrics-digit-panel.component';
@@ -30,6 +31,9 @@ export const Primary: Story = {
 			numberOfTailgating: 2,
 			numberOfNearDoorings: 0,
 			numberOfObstacleDodges: 1,
+			dangerousColor: '#FF0000',
+			weekDay: EWeekDays.WEEK,
+			trafficTime: ETrafficTimes.ALL_DAY,
 		},
 	},
 };

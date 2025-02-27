@@ -18,11 +18,11 @@ import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
 
-import { GetStreetInformationInterface } from '@simra/streets-common';
+import { IGetStreetGrid } from '@simra/streets-common';
 import { StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
 import { Marker } from 'leaflet';
 import { firstValueFrom } from 'rxjs';
-import { SafetyMetricsPanelComponent } from '../../components/safety-metrics-panel/component/safety-metrics-panel.component';
+import { SafetyMetricsPanelComponent } from '../../../components/safety-metrics-panel/component/safety-metrics-panel.component';
 
 @Component({
 	selector: 'simra-streets-exploring-map',
@@ -53,14 +53,7 @@ export class StreetsExploringMapPage {
 	protected readonly hoveredStreetId$ = this._store.selectSignal(
 		StreetMapState.getHoveredStreetId,
 	);
-	protected readonly safetyMetrics$ = asyncComputed(() => {
-		const hoveredStreet = this.hoveredStreetId$();
-		if (hoveredStreet === undefined) {
-			return undefined;
-		}
 
-		return firstValueFrom(this._exploringMapFacade.fetchSafetyMetricsForStreet(hoveredStreet));
-	});
 	protected readonly incidents$ = asyncComputed(() => {
 		const hoveredStreet = this.hoveredStreetId$();
 		if (hoveredStreet === undefined) {
@@ -88,7 +81,7 @@ export class StreetsExploringMapPage {
 			this._exploringMapFacade.fetchStreetInformation({
 				...filter,
 				...lp,
-			} as GetStreetInformationInterface);
+			} as IGetStreetGrid);
 		});
 	}
 

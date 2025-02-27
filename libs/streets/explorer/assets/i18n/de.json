@@ -1,5 +1,17 @@
 {
 	"COMPONENTS": {
+		"SAFETY_METRICS_CARD": {
+			"MODE": {
+				"PRECOMPUTED": {
+					"TITLE": "Vorberechnet",
+					"TOOLTIP": "Vorberechnete Sicherheitsmetriken werden im Backend berechnet und sind sofort für alle Straßen verfügbar."
+				},
+				"REALTIME": {
+					"TITLE": "Echtzeit",
+					"TOOLTIP": "Echtzeit-Sicherheitsmetriken werden auf Anfrage und für bestimmte Zeiträume berechnet."
+				}
+			}
+		},
 		"SAFETY_METRICS_PANEL": {
 			"CHARTS": {
 				"INCIDENT_TYPES": {

@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
-import { StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
+import { StreetDetailState, StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject } from 'rxjs';
 import { StreetsExploringMapPage } from './streets-exploring-map.page';
@@ -31,7 +31,7 @@ describe('StreetsExploringMapPage', () => {
 						),
 					},
 				},
-				provideStore([StreetMapState, MapFilterState]),
+				provideStore([StreetMapState, MapFilterState, StreetDetailState]),
 			],
 		}).compileComponents();
 
