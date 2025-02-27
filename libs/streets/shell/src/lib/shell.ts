@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { numberMatcher } from '@simra/common-models';
 
 export const STREET_SHELL_ROUTES: Route[] = [
 	{
@@ -13,7 +14,12 @@ export const STREET_SHELL_ROUTES: Route[] = [
 			import('@simra/streets-explorer').then((m) => m.StreetsExploringMapPage),
 	},
 	{
+		matcher: numberMatcher,
+		loadComponent: () =>
+			import('@simra/streets-explorer').then((m) => m.StreetDetailViewPage),
+	},
+	{
 		path: '**',
-		redirectTo: 'list',
+		redirectTo: '',
 	},
 ];
