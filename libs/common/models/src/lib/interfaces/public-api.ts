@@ -5,4 +5,5 @@ export * from './map-position.interface';
 export * from './page.interface';
 export * from './column.interface';
 export * from './request-page.interface';
+export * from './ride.interface';
 
