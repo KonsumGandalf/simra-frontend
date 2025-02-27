@@ -3,7 +3,7 @@ import { CoordinateInterface, MapFilterOptionsInterface } from '@simra/common-mo
 /**
  * Interface for getting street information
  */
-export interface GetStreetInformationInterface extends CoordinateInterface, MapFilterOptionsInterface {
+export interface IGetStreetGrid extends CoordinateInterface, MapFilterOptionsInterface {
 	zoom: number;
 }
 
