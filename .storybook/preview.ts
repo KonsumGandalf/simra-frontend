@@ -1,5 +1,8 @@
+import 'reflect-metadata';
 import { APP_INITIALIZER } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideStore } from '@ngxs/store';
+import { StreetDetailState } from '@simra/streets-domain';
 import { applicationConfig, Preview } from '@storybook/angular';
 import Aura from '@primeng/themes/aura';
 import { PrimeNG } from 'primeng/config';
@@ -8,6 +11,7 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 // @ts-ignore
 import docJson from './documentation.json';
 setCompodocJson(docJson);
+
 
 function provideTheme(config: PrimeNG) {
 	return () => {
@@ -28,6 +32,7 @@ const preview: Preview = {
 					deps: [ PrimeNG ],
 					multi: true,
 				},
+				provideStore([StreetDetailState])
 			],
 		}),
 	],
