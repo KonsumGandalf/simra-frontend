@@ -14,7 +14,7 @@
 					"DATE_RANGE": "Date Range"
 				}
 			},
-			"SAFETY_METRICS": "Safety Metrics"
+			"TITLE": "Safety Metrics"
 		},
 		"SAFETY_METRICS_PANEL": {
 			"CHARTS": {
