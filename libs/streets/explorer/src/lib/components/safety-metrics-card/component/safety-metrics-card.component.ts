@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, model, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import {
 	ChartDirective,
@@ -36,7 +37,8 @@ import { ECardMode } from '../models/card-mode.enum';
 		FloatLabel,
 		EnumSelectButtonComponent,
 		EnumSelectComponent,
-		ChartDirective
+		ChartDirective,
+		TranslatePipe,
 	],
 	templateUrl: './safety-metrics-card.component.html',
 	styleUrl: './safety-metrics-card.component.scss',
@@ -66,7 +68,9 @@ export class SafetyMetricsCardComponent {
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 
 	protected readonly _street$ = this._store.selectSignal(StreetDetailState.getStreet);
-	protected readonly _selectedSafetyMetrics$ = this._store.selectSignal(StreetDetailState.getSelectedSafetyMetrics);
+	protected readonly _selectedSafetyMetrics$ = this._store.selectSignal(
+		StreetDetailState.getSelectedSafetyMetrics,
+	);
 	protected readonly _pieMetricsIncidentTypesOptions =
 		this._safetyMetricsService.getPieMetricsIncidentTypesOptions();
 	protected readonly _pieMetricsIncidentTypesData$ =
@@ -91,18 +95,22 @@ export class SafetyMetricsCardComponent {
 
 			if (street && mode === ECardMode.PRECOMPUTED) {
 				const selectedWeekDays = this._selectedWeekDays();
-				const selectedWeekDay = (selectedWeekDays.length === 1) ? first(selectedWeekDays) : EWeekDays.ALL_WEEK;
+				const selectedWeekDay =
+					selectedWeekDays.length === 1 ? first(selectedWeekDays) : EWeekDays.ALL_WEEK;
 
 				const selectedTrafficTimes = this._selectedTrafficTime();
 
 				const selectedMetrics = find(street.safetyMetrics, (metrics) => {
-					return metrics.weekDay === selectedWeekDay && metrics.trafficTime === selectedTrafficTimes;
+					return (
+						metrics.weekDay === selectedWeekDay &&
+						metrics.trafficTime === selectedTrafficTimes
+					);
 				});
 
 				this._store.dispatch(new SetSelectedSafetyMetrics(selectedMetrics));
 			}
 
-			if(mode === ECardMode.REALTIME) {
+			if (mode === ECardMode.REALTIME) {
 				const datetime = this._parsedDatetime$();
 				const startTime = this.startTime();
 				const endTime = this.endTime();
@@ -110,11 +118,15 @@ export class SafetyMetricsCardComponent {
 				if (!datetime || !startTime || !endTime) {
 					return;
 				}
-				await firstValueFrom(this._analyticsService.calculateSafetyMetrics(first(datetime), last(datetime), startTime, endTime));
-
+				await firstValueFrom(
+					this._analyticsService.calculateSafetyMetrics(
+						first(datetime),
+						last(datetime),
+						startTime,
+						endTime,
+					),
+				);
 			}
 		});
-
 	}
-
 }

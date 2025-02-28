@@ -8,9 +8,13 @@
 				},
 				"REALTIME": {
 					"TITLE": "Echtzeit",
-					"TOOLTIP": "Echtzeit-Sicherheitsmetriken werden auf Anfrage und für bestimmte Zeiträume berechnet."
+					"TOOLTIP": "Echtzeit-Sicherheitsmetriken werden auf Anfrage und für bestimmte Zeiträume berechnet.",
+					"START_TIME": "Startzeit",
+					"END_TIME": "Endzeit",
+					"DATE_RANGE": "Datumsbereich"
 				}
-			}
+			},
+			"TITLE": "Sicherheitsmetriken"
 		},
 		"SAFETY_METRICS_PANEL": {
 			"CHARTS": {

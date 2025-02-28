@@ -8,9 +8,13 @@
 				},
 				"REALTIME": {
 					"TITLE": "Realtime",
-					"TOOLTIP": "Realtime safety metrics are calculated on the fly and for given time ranges."
+					"TOOLTIP": "Realtime safety metrics are calculated on the fly and for given time ranges.",
+					"START_TIME": "Start Time",
+					"END_TIME": "End Time",
+					"DATE_RANGE": "Date Range"
 				}
-			}
+			},
+			"SAFETY_METRICS": "Safety Metrics"
 		},
 		"SAFETY_METRICS_PANEL": {
 			"CHARTS": {
