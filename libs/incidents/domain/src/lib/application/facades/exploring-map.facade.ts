@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { IncidentInterface, IncidentMarkerInterface } from '@simra/incidents-models';
+import { IIncident, IncidentMarkerInterface } from '@simra/incidents-models';
 import { Observable } from 'rxjs';
 import { IncidentRequestService } from '../../infrastructure/incident-request.service';
 
@@ -11,7 +11,7 @@ export class ExploringMapFacade {
 		return this._incidentRepository.getIncidents();
 	}
 
-	public getIncidentDetails(id: number): Observable<IncidentInterface> {
+	public getIncidentDetails(id: number): Observable<IIncident> {
 		return this._incidentRepository.getIncidentDetails(id);
 	}
 }
