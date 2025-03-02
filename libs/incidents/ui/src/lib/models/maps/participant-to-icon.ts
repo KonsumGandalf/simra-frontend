@@ -1,7 +1,7 @@
 import { EParticipants } from '@simra/incidents-models';
 import { IconTooltipInterface } from '../../icon/models/icon-tooltip.interface';
 
-export const participantToIcon: Record<EParticipants, IconTooltipInterface> = {
+export const PARTICIPANT_TO_ICON: Record<EParticipants, IconTooltipInterface> = {
 	[EParticipants.BUS_COACH]: { name: 'bus', tooltip: 'INCIDENTS.UI.PARTICIPANTS.BUS_COACH' },
 	[EParticipants.CYCLIST]: { name: 'bicycle', tooltip: 'INCIDENTS.UI.PARTICIPANTS.CYCLIST' },
 	[EParticipants.PEDESTRIAN]: { name: 'person-simple-walk', tooltip: 'INCIDENTS.UI.PARTICIPANTS.PEDESTRIAN' },

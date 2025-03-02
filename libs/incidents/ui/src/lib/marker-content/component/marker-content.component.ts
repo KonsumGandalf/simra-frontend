@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, HostBinding, inject, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { EIncidentType, IncidentInterface } from '@simra/incidents-models';
+import { EIncidentType, IIncident } from '@simra/incidents-models';
 import { Divider } from 'primeng/divider';
 import { IncidentIconComponent } from '../../icon/component/incident-icon.component';
-import { bikeTypeToTranslation } from '../../models/maps/bike-type-to-translation';
-import { incidentTypeToIcon } from '../../models/maps/incident-type-to-icon';
-import { participantToIcon } from '../../models/maps/participant-to-icon';
-import { phoneLocationToIcon } from '../../models/maps/phone-location-to-icon';
+import { BIKE_TYPE_TO_TRANSLATION } from '../../models/maps/bike-type-to-translation';
+import { INCIDENT_TYPE_TO_ICON } from '../../models/maps/incident-type-to-icon';
+import { PARTICIPANT_TO_ICON } from '../../models/maps/participant-to-icon';
+import { PHONE_LOCATION_TO_ICON } from '../../models/maps/phone-location-to-icon';
 
 /**
  * This component displays the content of a marker within a popup
@@ -30,11 +30,11 @@ export class MarkerContentComponent {
 	 * The incident to display
 	 */
 	@Input({ required: true })
-	public incident!: IncidentInterface;
-	protected readonly phoneLocationToIcon = phoneLocationToIcon;
-	protected readonly bikeTypeToTranslation = bikeTypeToTranslation;
-	protected readonly incidentTypeToIcon = incidentTypeToIcon;
-	protected readonly participantToIcon = participantToIcon;
+	public incident!: IIncident;
+	protected readonly phoneLocationToIcon = PHONE_LOCATION_TO_ICON;
+	protected readonly bikeTypeToTranslation = BIKE_TYPE_TO_TRANSLATION;
+	protected readonly incidentTypeToIcon = INCIDENT_TYPE_TO_ICON;
+	protected readonly participantToIcon = PARTICIPANT_TO_ICON;
 	protected readonly EIncidentType = EIncidentType;
 
 	@HostBinding('class.incident-icon--is-scary')

@@ -42,7 +42,7 @@
 				{{'INCIDENTS.UI.MARKER_CONTENT.LABELS.BIKE_TYPE' | translate}}
 			</td>
 			<td class="data-display">
-				{{bikeTypeToTranslation[incident.bike] | translate}}
+				{{bikeTypeToTranslation[incident.bike].label | translate}}
 			</td>
 		</tr>
 		@if(incident.description) {
