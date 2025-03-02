@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { numberMatcher } from '@simra/common-models';
+import { numberMatcher } from '@simra/common-utils';
 
 export const STREET_SHELL_ROUTES: Route[] = [
 	{
