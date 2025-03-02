@@ -5,7 +5,11 @@
         },
         "GENERAL": {
             "MIN": "Min",
-            "MAX": "Max"
+            "MAX": "Max",
+            "LEFT": "Links",
+            "RIGHT": "Rechts",
+            "WIDTH": "Breite",
+            "TYPE": "Typ"
         },
         "TABLE": {
             "ITEMS": {
@@ -19,9 +23,19 @@
                     "HIGHWAY_TYPE": "Straßentyp",
                     "SCORE": "Bewertung",
                     "INCIDENTS": "Vorfälle",
+                    "SCARY_INCIDENT": "Beängstigende Vorfälle",
                     "RIDES": "Fahrten",
                     "WEEKDAY": "Wochentag",
-                    "TRAFFIC_TIME": "Verkehrszeit"
+                    "TRAFFIC_TIME": "Verkehrszeit",
+                    "LOCATION": "Ort",
+                    "TIMESTAMP": "Zeitpunkt",
+                    "SCARY": "Beängstigend",
+                    "BIKE": "Fahrrad",
+                    "PARTICIPANTS": "Unfallbeteiligte",
+                    "INCIDENT_TYPE": "Unfalltyp",
+                    "DESCRIPTION": "Unfallbeschreibung",
+                    "IS_CHILD": "Kind beteiligt",
+                    "IS_TRAILER": "Anhänger befestigt"
                 }
             }
         },
@@ -46,7 +60,7 @@
                     "PEDESTRIAN": "Fußgängerzone",
                     "PLANNED": "Geplante Straße",
                     "PLATFORM": "Bahnsteig",
-                    "PRIMARY": "Bundesstraßen",
+                    "PRIMARY": "Bundesstraße",
                     "PRIMARY_LINK": "Bundesstraßen-Zubringer",
                     "PROPOSED": "Vorgeschlagene Straße",
                     "RACEWAY": "Rennstrecke",
@@ -54,7 +68,7 @@
                     "RESIDENTIAL": "Wohnstraße",
                     "REST_AREA": "Rastplatz",
                     "ROAD": "Straße",
-                    "SECONDARY": "Landesstraßen",
+                    "SECONDARY": "Landesstraße",
                     "SECONDARY_LINK": "Landesstraßen-Zubringer",
                     "SERVICE": "Dienstweg",
                     "SERVICES": "Raststätte",
@@ -98,6 +112,23 @@
                     "MID_DAY": "Beinhaltet Stunden zwischen 10:00 und 15:29 Uhr",
                     "EVENING_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
                     "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 5:59 Uhr"
+                }
+            },
+            "CYCLEWAY_TYPES": {
+                "LABEL": {
+                    "ADVISORY": "Empfohlene Spur",
+                    "EXCLUSIVE": "Exklusive Spur",
+                    "PICTOGRAM": "Piktogramm Spur"
+                }
+            },
+            "STREET_PARKING": {
+                "LABEL": {
+                    "LANE": "Auf der Straße",
+                    "STREET_SIDE": "Straßenrand",
+                    "ON_KERB": "Auf Gehweg",
+                    "HALF_ON_KERB": "Halb auf Gehweg",
+                    "SHOULDER": "Auf Seitenstreifen",
+                    "SEPARATE": "Separater Bereich"
                 }
             }
         }
