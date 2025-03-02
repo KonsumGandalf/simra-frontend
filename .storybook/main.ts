@@ -16,8 +16,8 @@ const config: StorybookConfig = {
 			titlePrefix: 'Templates/'
 		},
 		{
-			directory: '../libs/streets/map',
-			titlePrefix: 'Streets Map/'
+			directory: '../libs/streets/explorer',
+			titlePrefix: 'Streets Explorer/'
 		},
 		{
 			directory: '../libs/incidents/ui',
@@ -31,8 +31,8 @@ const config: StorybookConfig = {
 			to: '/assets/i18n/common/ui/components'
 		},
 		{
-			from: '../libs/streets/map/assets/i18n',
-			to: '/assets/i18n/streets/map'
+			from: '../libs/streets/explorer/assets/i18n',
+			to: '/assets/i18n/streets/explorer'
 		},
 		{
 			from: '../libs/incidents/ui/assets/i18n',

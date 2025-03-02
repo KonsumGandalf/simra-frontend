@@ -1,40 +1,53 @@
-import { IsNumber } from 'class-validator';
+import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { IsEnum, IsHexColor, IsNumber } from 'class-validator';
+import { ISafetyMetrics } from '../interfaces/safety-metrics.interface';
 
-export class SafetyMetricsDto {
+export class SafetyMetricsDto implements ISafetyMetrics {
 	@IsNumber()
-	planetOsmLineId?: number;
-	
-	@IsNumber()
-	numberOfRides?: number;
-
-	@IsNumber()
-	numberOfIncidents?: number;
+	planetOsmLineId: number;
 
 	@IsNumber()
-	numberOfScaryIncidents?: number;
+	numberOfRides: number;
 
 	@IsNumber()
-	dangerousScore?: number
+	numberOfIncidents: number;
 
 	@IsNumber()
-	numberOfClosePasses?: number;
+	numberOfScaryIncidents: number;
 
 	@IsNumber()
-	numberOfPullInOuts?: number;
+	dangerousScore: number
 
 	@IsNumber()
-	numberOfNearLeftRightHooks?: number;
+	numberOfClosePasses: number;
 
 	@IsNumber()
-	numberOfHeadOnApproaches?: number;
+	numberOfPullInOuts: number;
 
 	@IsNumber()
-	numberOfTailgating?: number;
+	numberOfNearLeftRightHooks: number;
 
 	@IsNumber()
-	numberOfNearDoorings?: number;
+	numberOfHeadOnApproaches: number;
 
 	@IsNumber()
-	numberOfObstacleDodges?: number;
-	
+	numberOfTailgating: number;
+
+	@IsNumber()
+	numberOfNearDoorings: number;
+
+	@IsNumber()
+	numberOfObstacleDodges: number;
+
+	@IsHexColor()
+	dangerousColor: string;
+
+	@IsNumber()
+	planetOsmLine: number;
+
+	@IsEnum(ETrafficTimes)
+	trafficTime: ETrafficTimes;
+
+	@IsEnum(EWeekDays)
+	weekDay: EWeekDays;
 }

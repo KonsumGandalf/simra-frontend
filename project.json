@@ -44,9 +44,9 @@
             "output": "assets/i18n/common/ui/components"
           },
           {
-            "input": "libs/streets/map/assets/i18n",
+            "input": "libs/streets/explorer/assets/i18n",
             "glob": "**/*",
-            "output": "assets/i18n/streets/map"
+            "output": "assets/i18n/streets/explorer"
           },
           {
             "input": "libs/incidents/ui/assets/i18n",

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { IncidentInterface } from '@simra/incidents-models';
+import { IIncident } from '@simra/incidents-models';
 import { RidesGeometriesInterface } from '@simra/rides-common-models';
 import { Observable } from 'rxjs';
 import { IncidentRequestService } from '@simra/incidents-domain';
@@ -16,7 +16,7 @@ export class RidesExploringFacade {
         return this._ridesRequestService.getRideGeometries(id);
     }
 
-    public getIncidentDetails(id: number): Observable<IncidentInterface> {
+    public getIncidentDetails(id: number): Observable<IIncident> {
         return this._incidentRepository.getIncidentDetails(id);
     }
 }

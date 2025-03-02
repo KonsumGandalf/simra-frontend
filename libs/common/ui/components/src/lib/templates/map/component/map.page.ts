@@ -51,6 +51,8 @@ export class MapPage {
 	public positionChange = new EventEmitter<MapPositionInterface>();
 	private map?: Map;
 
+	public isSearchable = input<boolean>(false);
+
 	constructor() {
 		effect(() => {
 			const position = this.leafletPosition();
@@ -91,17 +93,19 @@ export class MapPage {
 	protected readonly layerControl: LeafletControlLayersConfig = DEFAULT_LAYER_CONFIG;
 
 	onMapReady(map: Map): void {
-		const provider = new OpenStreetMapProvider();
-		const searchControl: Control = GeoSearchControl({
-			provider,
-			style: 'bar',
-			showMarker: true,
-			retainZoomLevel: false,
-			autoClose: true,
-			autoCompleteDelay: 50,
-		});
+		const isSearchable = this.isSearchable();
+		if (isSearchable) {
+			const provider = new OpenStreetMapProvider();
+			const searchControl: Control = GeoSearchControl({
+				provider,
+				style: 'bar',
+				showMarker: true,
+				retainZoomLevel: false,
+				autoClose: true,
+			});
 
-		map.addControl(searchControl);
+			map.addControl(searchControl);
+		}
 		this.map = map;
 	}
 

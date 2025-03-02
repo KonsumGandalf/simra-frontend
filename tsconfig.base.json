@@ -31,7 +31,7 @@
 			"@simra/rides-shell": ["libs/rides/shell/src/index.ts"],
 			"@simra/streets-common": ["libs/streets/common/src/index.ts"],
 			"@simra/streets-domain": ["libs/streets/domain/src/index.ts"],
-			"@simra/streets-map": ["libs/streets/map/src/index.ts"],
+			"@simra/streets-explorer": ["libs/streets/explorer/src/index.ts"],
 			"@simra/streets-shell": ["libs/streets/shell/src/index.ts"],
 			"@simra/styles": ["libs/common/ui/styles/src/index.ts"]
 		}

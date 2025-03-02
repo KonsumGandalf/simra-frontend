@@ -43,14 +43,18 @@
         "MOUNTAIN_BIKE": "Mountainbike",
         "OTHER": "Andere"
     },
-    "MARKER_CONTENT": {
+    "GENERAL": {
         "LABELS": {
-            "BIKE_TYPE": "Fahrradtyp",
+            "BIKE": "Fahrradtyp",
             "PHONE_LOCATION": "Telefonposition",
             "INCIDENT_TYPE": "Unfalltyp",
             "DESCRIPTION": "Beschreibung",
-            "TIMESTAMP": "Datum",
-            "INCIDENT_PARTICIPANTS": "Unfallteilnehmer"
+            "TIMESTAMP": "Zeitpunkt",
+            "PARTICIPANTS": "Unfallteilnehmer",
+            "IS_CHILD": "Kind beteiligt",
+            "IS_TRAILER": "Anhänger befestigt",
+            "IS_SCARY": "Beängstigend",
+            "LOCATION": "Ort"
         }
     }
 }

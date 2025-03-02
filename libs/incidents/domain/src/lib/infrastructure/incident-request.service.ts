@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IncidentInterface, IncidentMarkerInterface } from '@simra/incidents-models';
+import { IIncident, IncidentMarkerInterface } from '@simra/incidents-models';
 import { plainToInstance } from 'class-transformer';
 import { map, Observable } from 'rxjs';
 import { IncidentMarkerDTO } from '../models/dtos/incident-marker.dto';
@@ -21,7 +21,7 @@ export class IncidentRequestService {
 		);
 	}
 
-	public getIncidentDetails(id: number): Observable<IncidentInterface> {
-		return this._http.get<IncidentInterface>(`/api/incidents/${id}`);
+	public getIncidentDetails(id: number): Observable<IIncident> {
+		return this._http.get<IIncident>(`/api/incidents/${id}`);
 	}
 }

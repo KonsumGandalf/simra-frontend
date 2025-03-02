@@ -1,0 +1,6 @@
+<m-dangerous-score-bar></m-dangerous-score-bar>
+<m-safety-metrics-panel></m-safety-metrics-panel>
+<t-map-component
+	[overlayLayers]="combinedOverlay$()"
+	(positionChange)="onMapPositionChanged($event)"
+></t-map-component>

@@ -1,7 +1,7 @@
 <p-multiSelect
 	[options]="optionEnum()"
-	[filter]="true"
-	[ngModel]="defaultSelected()"
+	[filter]="filter()"
+	[(ngModel)]="selected"
 	(onChange)="onSelectionChange($event.value)"
 	[placeholder]="'COMPONENTS.GENERAL.TABLE.HEADER.PLACEHOLDER' | translate">
 

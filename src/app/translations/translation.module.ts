@@ -16,8 +16,8 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 			},
 			{
 				baseTranslateUrl,
-				moduleName: 'streets.map',
-				pathTemplate: '{baseTranslateUrl}/streets/map/{language}',
+				moduleName: 'streets.explorer',
+				pathTemplate: '{baseTranslateUrl}/streets/explorer/{language}',
 			},
 			{
 				baseTranslateUrl,

@@ -17,7 +17,7 @@ class TestHostComponent {
 	};
 	optionEnum = { key1: 'value1', key2: 'value2' };
 }
-describe('Integration Test EnumMultiSelectComponent', () => {
+describe('Integration Test EnumSelectComponent', () => {
 	let fixture: ComponentFixture<TestHostComponent>;
 
 	beforeEach(async () => {
@@ -25,7 +25,8 @@ describe('Integration Test EnumMultiSelectComponent', () => {
 			imports: [
 				TestHostComponent,
 
-				TranslateModule.forRoot()],
+				TranslateModule.forRoot()
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TestHostComponent);

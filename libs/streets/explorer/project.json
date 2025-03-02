@@ -1,0 +1,20 @@
+{
+	"name": "streets-map",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/streets/explorer/src",
+	"prefix": "lib",
+	"projectType": "library",
+	"tags": ["domain:streets", "type:feature"],
+	"targets": {
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/streets/explorer/jest.config.ts"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

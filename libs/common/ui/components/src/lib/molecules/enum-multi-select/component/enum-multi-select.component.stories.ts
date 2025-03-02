@@ -26,6 +26,6 @@ export const Primary: Story = {
 		maxSelectedDisplay: 2,
 		translationMap: TRAFFIC_TIMES_TO_TRANSLATION,
 		optionEnum: ETrafficTimes,
-		defaultSelected: [ETrafficTimes.ALL_DAY]
+		selected: [ETrafficTimes.ALL_DAY]
 	}
 };

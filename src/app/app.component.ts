@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Chart } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
 
 @Component({
     imports: [RouterModule],
@@ -12,6 +15,8 @@ import { RouterModule } from '@angular/router';
         class: 'app-not-found',
     }
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
+    ngOnInit() {
+        Chart.register(annotationPlugin);
+    }
 }

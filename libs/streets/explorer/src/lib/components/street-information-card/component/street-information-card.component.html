@@ -1,0 +1,144 @@
+@if(_street$(); as street) {
+@if(street.way) {
+
+<p-card [header]="'#'+street.id" [subheader]="street.name">
+
+	<section>
+		<p-card>
+			<table class="simple-table">
+				@if(street.highway) {
+					<tr>
+						<td>{{"STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.HIGHWAY_TYPE" | translate}}</td>
+						<td><a class="link-button" [href]="'https://wiki.openstreetmap.org/wiki/Tag:highway%3D'+[street.highway]" target="_blank">{{HIGHWAY_TYPES_TO_TRANSLATION[street.highway]?.label | translate}}</a></td>
+					</tr>
+					@if(street.tags; as tags) {
+						@if(tags.maxSpeed) {
+							<tr>
+								<td>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.SPEED_LIMIT" | translate}}</td>
+								<td>{{tags.maxSpeed}}</td>
+							</tr>
+						}
+						<tr>
+							<td>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.LIT" | translate}}</td>
+							<td><i class="text-xs ph-light ph-{{(tags.lit) ? 'check': 'x'}}-circle"></i></td>
+						</tr>
+						@if(tags.lanes) {
+							<tr>
+								<td>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.LANES" | translate}}</td>
+								<td>{{ tags.lanes }}</td>
+							</tr>
+						}
+					}
+				}
+			</table>
+		</p-card>
+	@if(street && street.tags) {
+		@if(street.tags.cyclewayRight || street.tags.cyclewayLeft) {
+		<h5>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.CYCLEWAY.TITLE" | translate}}</h5>
+		<div class="flex flex-grow gap-x-4">
+			@if(_street$().tags.cyclewayLeft; as cl) {
+			<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.LEFT' | translate">
+						<table class="simple-table">
+							@if(cl.width){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.WIDTH" | translate}}</td>
+									<td>{{cl.width}}</td>
+								</tr>
+							}
+							@if(cl.type){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
+									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Tag:highway%3D'+[cl.type]">{{ CYCLEWAY_LANES_TO_TRANSLATION[cl.type].label| translate}}</a></td>
+								</tr>
+							}
+						</table>
+			</p-card>
+			}
+			@if(_street$().tags.cyclewayRight; as cr) {
+			<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.RIGHT' | translate">
+						<table class="simple-table">
+							@if(cr.width){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.WIDTH" | translate}}</td>
+									<td>{{cr.width}}m</td>
+								</tr>
+							}
+							@if(cr.type){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
+									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Key:cycleway:lane'">{{ CYCLEWAY_LANES_TO_TRANSLATION[cr.type].label| translate}}</a></td>
+								</tr>
+							}
+						</table>
+			</p-card>
+			}
+		</div>
+	}
+	@if(street.tags.parkingLeft || street.tags.parkingRight) {
+		<h5>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.PARKING.TITLE" | translate}}</h5>
+		<div class="flex flex-grow gap-x-4">
+			@if(street.tags.parkingLeft; as pl) {
+				<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.LEFT' | translate">
+						<table class="simple-table">
+							@if(pl.type){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
+									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Street_parking'">{{ STREET_PARKING_TO_TRANSLATION[pl.type].label| translate}}</a></td>
+								</tr>
+							}
+						</table>
+				</p-card>
+			}
+			@if(street.tags.parkingRight; as pr) {
+				<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.RIGHT' | translate">
+						<table class="simple-table">
+							@if(pr.type){
+								<tr>
+									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
+									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Street_parking'">{{ STREET_PARKING_TO_TRANSLATION[pr.type].label| translate}}</a></td>
+								</tr>
+							}
+						</table>
+				</p-card>
+			}
+		</div>
+	}
+		}
+
+	</section>
+	<t-map-component [overlayLayers]="_geometries$()"></t-map-component>
+
+</p-card>
+}@else {
+	<p-card [header]="'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID' | translate" [subheader]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.NAME' | translate">
+		<table class="simple-table flex flex-col justify-between w-full sm:w-1/3">
+			@for(i of times(2); track i) {
+				<div>
+					<tr>
+						<p-skeleton class="w-4/12"></p-skeleton>
+						<p-skeleton class="w-3/12"></p-skeleton>
+					</tr>
+					<tr>
+						<p-skeleton class="w-4/12"></p-skeleton>
+						<p-skeleton class="w-3/12"></p-skeleton>
+					</tr>
+					<tr>
+						<p-skeleton class="w-2/12"></p-skeleton>
+						<p-skeleton class="w-6/12"></p-skeleton>
+					</tr>
+					<tr>
+						<p-skeleton class="w-3/12"></p-skeleton>
+						<p-skeleton class="w-2/12"></p-skeleton>
+					</tr>
+					<tr>
+						<p-skeleton class="w-3/12"></p-skeleton>
+						<p-skeleton class="w-4/12"></p-skeleton>
+					</tr>
+				</div>
+			}
+			</table>
+		<p-skeleton class="w-full sm:w-2/3 rounded-xl" height="20rem" />
+	</p-card>
+}
+
+}

@@ -14,7 +14,7 @@ export const incidentTypeToIcon: Record<EIncidentType, IconTooltipInterface> = {
 	[EIncidentType.DODGING_OBSTACLE]: { name: 'flow-arrow', tooltip: 'INCIDENTS.UI.INCIDENT_TYPES.DODGING_OBSTACLE' },
 	[EIncidentType.OTHER]: { name: 'dots-three-circle', tooltip: 'INCIDENTS.UI.INCIDENT_TYPES.OTHER' },
 };*/
-export const incidentTypeToIcon: Record<EIncidentType, IconTooltipInterface> = {
+export const INCIDENT_TYPE_TO_ICON: Record<EIncidentType, IconTooltipInterface> = {
 	[EIncidentType.DUMMY_INCIDENT]: { svgPath: 'assets/icons/incidents/ui/other.svg', tooltip: 'INCIDENTS.UI.INCIDENT_TYPES.DUMMY_INCIDENT' },
 	[EIncidentType.NOTHING]: { svgPath: 'assets/icons/incidents/ui/other.svg', tooltip: 'INCIDENTS.UI.INCIDENT_TYPES.NOTHING' },
 	[EIncidentType.CLOSE_PASS]: { svgPath: 'assets/icons/incidents/ui/close-pass.svg', tooltip: 'INCIDENTS.UI.INCIDENT_TYPES.CLOSE_PASS' },

@@ -4,14 +4,14 @@ import {
 	EBikeType,
 	EIncidentType,
 	EPhoneLocations,
-	IncidentInterface,
+	IIncident,
 } from '@simra/incidents-models';
 import { MarkerContentComponent } from './marker-content.component';
 
 describe('MarkerContentComponent', () => {
 	let component: MarkerContentComponent;
 	let fixture: ComponentFixture<MarkerContentComponent>;
-	let incident: IncidentInterface;
+	let incident: IIncident;
 
 	beforeEach(async () => {
 		incident = {
@@ -25,7 +25,7 @@ describe('MarkerContentComponent', () => {
 			phoneLocation: EPhoneLocations.BACKPACK_BAG,
 			participantsInvolved: [],
 			scary: false,
-		} as IncidentInterface;
+		} as IIncident;
 
 		await TestBed.configureTestingModule({
 			imports: [MarkerContentComponent, TranslateModule.forRoot()],

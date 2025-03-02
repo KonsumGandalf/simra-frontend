@@ -1,0 +1,121 @@
+{
+	"GENERAL": {
+		"ENTITY_ATTRIBUTES": {
+			"HIGHWAY_TYPES": {
+				"LABEL": {
+					"ABANDONED": "Abandoned Road",
+					"BRIDLEWAY": "Bridleway",
+					"BUS_BAY": "Bus Bay",
+					"BUS_STOP": "Bus Stop",
+					"BUSWAY": "Busway",
+					"CONSTRUCTION": "Under Construction",
+					"CORRIDOR": "Corridor",
+					"CYCLEWAY": "Cycleway",
+					"DISUSED": "No Longer in Use",
+					"ELEVATOR": "Elevator",
+					"FOOTWAY": "Footway",
+					"LIVING_STREET": "Traffic-Calmed Street",
+					"MOTORWAY": "Motorway",
+					"MOTORWAY_LINK": "Motorway Link",
+					"PATH": "Path",
+					"PEDESTRIAN": "Pedestrian Zone",
+					"PLANNED": "Planned Road",
+					"PLATFORM": "Platform",
+					"PRIMARY": "Primary Road",
+					"PRIMARY_LINK": "Primary Road Link",
+					"PROPOSED": "Proposed Road",
+					"RACEWAY": "Raceway",
+					"RAZED": "Demolished Road",
+					"RESIDENTIAL": "Residential Street",
+					"REST_AREA": "Rest Area",
+					"ROAD": "Road",
+					"SECONDARY": "Secondary Road",
+					"SECONDARY_LINK": "Secondary Road Link",
+					"SERVICE": "Service Road",
+					"SERVICES": "Services",
+					"SIDEWALK": "Sidewalk",
+					"STEPS": "Steps",
+					"STREET_LAMP": "Street Lamp",
+					"TERTIARY": "Tertiary Road",
+					"TERTIARY_LINK": "Tertiary Road Link",
+					"TRACK": "Track",
+					"TRUNK": "Trunk Road",
+					"TRUNK_LINK": "Trunk Road Link",
+					"UNCLASSIFIED": "Unclassified",
+					"YES": "Yes"
+				}
+			},
+			"CYCLEWAY_TYPES": {
+				"LABEL": {
+					"ADVISORY": "Advisory Lane",
+					"EXCLUSIVE": "Exclusive Lane",
+					"PICTOGRAM": "Pictogram Lane"
+				}
+			},
+			"PARKING": {
+				"LABEL": {
+					"LANE": "On-road",
+					"STREET_SIDE": "Roadside",
+					"ON_KERB": "On sidewalk",
+					"HALF_ON_KERB": "Half on sidewalk",
+					"SHOULDER": "On shoulder",
+					"SEPARATE": "Separate area"
+				}
+			}
+		},
+		"TABLE": {
+			"HEADER": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"HIGHWAY_TYPE": "Street Type",
+					"SCORE": "Score",
+					"INCIDENTS": "Incidents",
+					"SCARY_INCIDENTS": "Scary Incidents",
+					"RIDES": "Rides",
+					"WEEKDAY": "Weekday",
+					"TRAFFIC_TIME": "Traffic Time",
+					"LOCATION": "Location"
+				}
+			}
+		}
+	},
+	"COMPONENTS": {
+		"SAFETY_METRICS_CARD": {
+			"MODE": {
+				"PRECOMPUTED": {
+					"TITLE": "Precomputed",
+					"TOOLTIP": "Precomputed safety metrics are calculated in the backend and are immediately available for all streets."
+				},
+				"REALTIME": {
+					"TITLE": "Realtime",
+					"TOOLTIP": "Realtime safety metrics are calculated on the fly and for given time ranges.",
+					"START_TIME": "Start Time",
+					"END_TIME": "End Time",
+					"DATE_RANGE": "Date Range"
+				}
+			},
+			"TITLE": "Safety Metrics"
+		},
+		"SAFETY_METRICS_PANEL": {
+			"CHARTS": {
+				"INCIDENT_TYPES": {
+					"TITLE": "Incident Types"
+				},
+				"RIDE_INCIDENT_DISTRIBUTION": {
+					"TITLE": "Ride and Incident Distribution"
+				}
+			}
+		},
+		"STREET_INFORMATION_CARD": {
+			"SPEED_LIMIT": "Speed Limit",
+			"LIT": "Lighting",
+			"LANES": "Lanes",
+			"CYCLEWAY": {
+				"TITLE": "Cycleway"
+			},
+			"PARKING": {
+				"TITLE": "Parking"
+			}
+		}
+	}
+}

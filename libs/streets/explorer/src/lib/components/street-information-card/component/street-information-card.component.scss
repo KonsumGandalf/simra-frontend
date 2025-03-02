@@ -1,0 +1,45 @@
+.m-street-information-card {
+    .p-card-content {
+        @apply flex flex-col sm:flex-row flex-wrap sm:flex-nowrap gap-20;
+
+        section {
+            @apply w-full sm:w-1/3;
+
+            td {
+                @apply mb-1;
+            }
+
+            h5 {
+                @apply my-4 text-sm;
+            }
+
+            .p-card-body {
+                @apply px-4 py-2;
+            }
+
+            .sub-card {
+                @apply w-full;
+            }
+        }
+
+        .simple-table{
+            @extend .simple-table;
+
+            p-skeleton {
+                @apply mb-4;
+            }
+        }
+
+        t-map-component {
+            @apply w-full sm:w-2/3;
+
+            .leaflet-map {
+                @apply w-full h-80;
+
+                border-radius: var(--p-border-radius-xl);
+            }
+        }
+    }
+
+
+}

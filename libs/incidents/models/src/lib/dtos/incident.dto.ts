@@ -1,9 +1,9 @@
 import { EBikeType, EIncidentType, EParticipants, EPhoneLocations } from '../enums/public-api';
 import { IsBoolean, IsDate, IsEnum, IsNumber, IsString } from 'class-validator';
 
-import { IncidentInterface } from '../interfaces/incident.interface';
+import { IIncident } from '../interfaces/incident.interface';
 
-export class IncidentDto implements IncidentInterface {
+export class IncidentDto implements IIncident {
 	@IsString()
 	id: number;
 

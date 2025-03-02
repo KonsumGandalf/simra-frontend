@@ -5,13 +5,13 @@ export const RIDE_INCIDENT_SHELL_ROUTES: Route[] = [
 		path: '',
 		children: [
 			{
-				path: 'exploring-map',
+				path: 'map',
 				loadComponent: () =>
 					import('@simra/incidents-map').then((m) => m.IncidentExploringMapPage),
 			},
 			{
 				path: '**',
-				redirectTo: 'exploring-map',
+				redirectTo: 'map',
 			},
 		],
 	},
