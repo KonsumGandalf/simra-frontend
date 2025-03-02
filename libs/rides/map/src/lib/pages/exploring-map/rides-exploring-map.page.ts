@@ -80,7 +80,7 @@ export class RidesExploringMapPage {
 				},
 			}),
 		);
-		console.log(incidents.incidentLocations);
+
 		const incidentMarkers = incidents.incidentLocations.map((incident) =>{
 			return createIncidentMarker(incident, this._injector, this._appRef, this._ridesExploringFacade.getIncidentDetails.bind(this._ridesExploringFacade))
 			}
@@ -95,8 +95,5 @@ export class RidesExploringMapPage {
 		})
 		return [visitedWay, ...assignedWays, ...incidentWays, ...incidentMarkers];
 	});
-	
-	
+
 }
-
-
