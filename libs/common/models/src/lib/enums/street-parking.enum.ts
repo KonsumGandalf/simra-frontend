@@ -2,7 +2,7 @@
  * Types of street parking
  * @see https://wiki.openstreetmap.org/wiki/Street_parking
  */
-export enum EStreetParking {
+export enum EParking {
 	LANE = 'lane',
 	STREET_SIDE = 'street_side',
 	ON_KERB = 'on_kerb',
