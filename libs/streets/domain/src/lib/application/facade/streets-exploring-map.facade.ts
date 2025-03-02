@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { IncidentInterface } from '@simra/incidents-models';
+import { IIncident } from '@simra/incidents-models';
 import { IGetStreetGrid, SafetyMetricsDto } from '@simra/streets-common';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
@@ -53,7 +53,7 @@ export class StreetsExploringMapFacade {
 		return this._safetyMetricsRequestService.getSafetyMetricsForStreet(streetId);
 	}
 
-	public fetchIncidentsForStreet(streetId: number): Observable<IncidentInterface[]> {
+	public fetchIncidentsForStreet(streetId: number): Observable<IIncident[]> {
 		return this._incidentRequestService.getIncidentForStreet(streetId)
 	}
 }

@@ -20,8 +20,9 @@ export class StreetDetailViewFacade {
 		if (street && +streetId === +(street?.id)) {
 			return;
 		}
+
 		this._store.dispatch(new SetStreet({ id: streetId } as IResponseStreet));
-		console.log(streetId, street?.id);
+
 		return this._streetsRequestService.getStreet(streetId).pipe(
 			take(1),
 			tap((streets) => {
