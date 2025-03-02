@@ -1,8 +1,8 @@
-import { EStreetParking } from '@simra/common-models';
+import { EParking } from '@simra/common-models';
 
 /**
  * Indicates how the parking situation is
  */
 export interface IParking {
-	type: EStreetParking;
+	type: EParking;
 }
