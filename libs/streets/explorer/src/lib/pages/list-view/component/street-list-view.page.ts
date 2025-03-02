@@ -12,7 +12,6 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import {
 	EnumColumn,
 	EnumMultiSelectComponent,
-	HIGHWAY_TYPES_TO_TRANSLATION,
 	isEnumColumn,
 	isNumberColumn,
 	NumberColumn,
@@ -32,6 +31,7 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { Tooltip } from 'primeng/tooltip';
 import { firstValueFrom } from 'rxjs';
+import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway-types-to-translation';
 
 @Component({
 	selector: 't-street-list-view',
@@ -71,13 +71,13 @@ export class StreetListViewPage {
 	 * @protected
 	 */
 	protected readonly loading = signal<boolean>(false);
-	private readonly _headerPrefix = 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS';
+	private readonly _headerPrefix = 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS';
 	/**
 	 * Defines the columns which are displayed in the table
 	 * @protected
 	 */
 	protected readonly _cols: Column[] = [
-		{ header: `${this._headerPrefix}.ID`, field: 'id', sortable: true },
+		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID`, field: 'id', sortable: true },
 		{ header: `${this._headerPrefix}.NAME`, field: 'name' },
 		{
 			header: `${this._headerPrefix}.HIGHWAY_TYPE`,
@@ -181,20 +181,13 @@ export class StreetListViewPage {
 	 * @param event
 	 */
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	onSort(event: any) {
+	protected onSort(event: any) {
 		const sort = event.field === 'id' ? 'planetOsmLineId' : event.field;
 		const order = event.order === 1 ? ESortOrder.ASC : ESortOrder.DESC;
 		this.filtering.update((oldValues) => ({
 			...oldValues,
 			sort: `${sort},${order}`,
 		}));
-	}
-
-	protected isBasicColumn(column: Column): Column | undefined {
-		if (!this.isEnumColumn(column) && !this.isNumberColumn(column)) {
-			return column as Column;
-		}
-		return undefined;
 	}
 
 	/**
@@ -207,7 +200,14 @@ export class StreetListViewPage {
 	protected readonly isNumberColumn = isNumberColumn;
 	protected readonly times = times;
 
-	async preloadStreet(id: number) {
+	protected async preloadStreet(id: number) {
 		await firstValueFrom(this._streetDetailViewFacade.getAndSetStreet(id));
+	}
+
+	protected isBasicColumn(column: Column): Column | undefined {
+		if (!this.isEnumColumn(column) && !this.isNumberColumn(column)) {
+			return column as Column;
+		}
+		return undefined;
 	}
 }

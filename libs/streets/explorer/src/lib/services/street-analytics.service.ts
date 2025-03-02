@@ -1,12 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { EDangerousColors } from '@simra/common-models';
 import { EIncidentType } from '@simra/incidents-models';
 import { ISafetyMetrics } from '@simra/streets-common';
-import { SetSelectedSafetyMetrics, StreetAnalyticsFacadeFacade, StreetDetailState } from '@simra/streets-domain';
-import { partition } from 'lodash';
+import { SetSelectedIncidents, SetSelectedSafetyMetrics, StreetAnalyticsFacadeFacade, StreetDetailState } from '@simra/streets-domain';
+import { orderBy, partition } from 'lodash';
 import { Moment } from 'moment';
 import { map, Observable, tap } from 'rxjs';
 import moment from 'moment';
+import { DANGEROUS_SCORE_TO_COLOR_MAP } from '../models/maps/dangerous-color-to-color.map';
 
 @Injectable({
 	providedIn: 'root',
@@ -69,10 +71,12 @@ export class StreetAnalyticsService {
 				if (rides.length) {
 					safetyMetrics.dangerousScore = ((this._SCARINESS_FACTOR * scaryIncidents.length + nonScaryIncidents.length)
 						/ rides.length);
+					safetyMetrics.dangerousColor = this.getColorForScore(safetyMetrics.dangerousScore);
 				}
 				return safetyMetrics;
 			}),
 			tap((safetyMetrics) => {
+				this._store.dispatch(new SetSelectedIncidents(incidents));
 				this._store.dispatch(new SetSelectedSafetyMetrics(safetyMetrics));
 			})
 		);
@@ -92,6 +96,15 @@ export class StreetAnalyticsService {
 
 	private momentTime(time: Moment): Moment {
 		return moment({ hour: time.hour(), minute: time.minute(), second: time.second() });
+	}
+
+	private getColorForScore(score: number): EDangerousColors {
+		const orderedRecordArray = orderBy(Object.entries(DANGEROUS_SCORE_TO_COLOR_MAP), ['0'], ['desc'])
+		for (const [threshold, color] of orderedRecordArray) {
+			if (score >= +threshold) {
+				return color;
+			}
+		}
 	}
 
 }

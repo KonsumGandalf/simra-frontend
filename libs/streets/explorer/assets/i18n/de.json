@@ -1,4 +1,84 @@
 {
+	"GENERAL": {
+		"ENTITY_ATTRIBUTES": {
+			"HIGHWAY_TYPES": {
+				"LABEL": {
+					"ABANDONED": "Aufgegebene Straße",
+					"BRIDLEWAY": "Reitweg",
+					"BUS_BAY": "Busbucht",
+					"BUS_STOP": "Bushaltestelle",
+					"BUSWAY": "Busspur",
+					"CONSTRUCTION": "Baustelle",
+					"CORRIDOR": "Korridor",
+					"CYCLEWAY": "Radweg",
+					"DISUSED": "Nicht mehr in Benutzung",
+					"ELEVATOR": "Aufzug",
+					"FOOTWAY": "Fußweg",
+					"LIVING_STREET": "Verkehrsberuhigte Straße",
+					"MOTORWAY": "Autobahn",
+					"MOTORWAY_LINK": "Autobahn-Zubringer",
+					"PATH": "Pfad",
+					"PEDESTRIAN": "Fußgängerzone",
+					"PLANNED": "Geplante Straße",
+					"PLATFORM": "Bahnsteig",
+					"PRIMARY": "Bundesstraße",
+					"PRIMARY_LINK": "Bundesstraßen-Zubringer",
+					"PROPOSED": "Vorgeschlagene Straße",
+					"RACEWAY": "Rennstrecke",
+					"RAZED": "Abgerissene Straße",
+					"RESIDENTIAL": "Wohnstraße",
+					"REST_AREA": "Rastplatz",
+					"ROAD": "Straße",
+					"SECONDARY": "Landesstraße",
+					"SECONDARY_LINK": "Landesstraßen-Zubringer",
+					"SERVICE": "Dienstweg",
+					"SERVICES": "Raststätte",
+					"SIDEWALK": "Gehweg",
+					"STEPS": "Treppen",
+					"STREET_LAMP": "Straßenlaterne",
+					"TERTIARY": "Kreisstraßen",
+					"TERTIARY_LINK": "Kreisstraßen-Zubringer",
+					"TRACK": "Feldweg",
+					"TRUNK": "Schnellstraße",
+					"TRUNK_LINK": "Schnellstraßen-Zubringer",
+					"UNCLASSIFIED": "Nicht klassifiziert",
+					"YES": "Yes"
+				}
+			},
+			"CYCLEWAY_TYPES": {
+				"LABEL": {
+					"ADVISORY": "Empfohlene Spur",
+					"EXCLUSIVE": "Exklusive Spur",
+					"PICTOGRAM": "Piktogramm Spur"
+				}
+			},
+			"PARKING": {
+				"LABEL": {
+					"LANE": "Auf der Straße",
+					"STREET_SIDE": "Straßenrand",
+					"ON_KERB": "Auf Gehweg",
+					"HALF_ON_KERB": "Halb auf Gehweg",
+					"SHOULDER": "Auf Seitenstreifen",
+					"SEPARATE": "Separater Bereich"
+				}
+			}
+		},
+		"TABLE": {
+			"HEADER": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"HIGHWAY_TYPE": "Straßentyp",
+					"SCORE": "Bewertung",
+					"INCIDENTS": "Vorfälle",
+					"SCARY_INCIDENTS": "Beängstigende Vorfälle",
+					"RIDES": "Fahrten",
+					"WEEKDAY": "Wochentag",
+					"TRAFFIC_TIME": "Verkehrszeit",
+					"LOCATION": "Ort"
+				}
+			}
+		}
+	},
 	"COMPONENTS": {
 		"SAFETY_METRICS_CARD": {
 			"MODE": {
@@ -26,20 +106,15 @@
 				}
 			}
 		},
-		"SAFE_METRICS_DIGIT_PANEL": {
-			"LABEL": {
-				"STREET_ID": "Straßen-ID",
-				"DANGEROUS_SCORE": "Gefährlichkeitswert",
-				"TOTAL_RIDES": "Fahrten",
-				"TOTAL_INCIDENTS": "Gefahrensituationen",
-				"TOTAL_SCARY_INCIDENT": "Gefährliche Situationen",
-				"CLOSE_OVERTAKING": "Zu dichtes Überholen",
-				"PULL_IN_OUT": "Ein- und Ausparken",
-				"NEAR_TURN_COLLISION": "Beinahe-Kollision beim Abbiegen",
-				"HEAD_ON_APPROACHES": "Gegenverkehr",
-				"TAILGATING": "Auffahren",
-				"NEAR_DOORING": "Beinahe-Dooring",
-				"OBSTACLE_EVASION": "Hindernisumfahrung"
+		"STREET_INFORMATION_CARD": {
+			"SPEED_LIMIT": "Geschwindigkeitsbegrenzung",
+			"LIT": "Beleuchtet",
+			"LANES": "Fahrspuren",
+			"CYCLEWAY": {
+				"TITLE": "Radweg"
+			},
+			"PARKING": {
+				"TITLE": "Parken"
 			}
 		}
 	}

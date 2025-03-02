@@ -11,7 +11,7 @@ import {
 	WEEK_DAYS_TO_TRANSLATION,
 } from '@simra/common-components';
 import { ETrafficTimes, EWeekDays } from '@simra/common-models';
-import { SetSelectedSafetyMetrics, StreetDetailState } from '@simra/streets-domain';
+import { SetSelectedIncidents, SetSelectedSafetyMetrics, StreetDetailState } from '@simra/streets-domain';
 import { find, first, last } from 'lodash';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
@@ -107,6 +107,14 @@ export class SafetyMetricsCardComponent {
 					);
 				});
 
+				const incidents = street.rideIncident?.filter((incident) => {
+					return (
+						(incident.trafficTime === selectedTrafficTimes || selectedTrafficTimes === ETrafficTimes.ALL_DAY)
+						&& (incident.weekDay === selectedWeekDay || selectedWeekDay === EWeekDays.ALL_WEEK)
+					);
+				});
+
+				this._store.dispatch(new SetSelectedIncidents(incidents));
 				this._store.dispatch(new SetSelectedSafetyMetrics(selectedMetrics));
 			}
 

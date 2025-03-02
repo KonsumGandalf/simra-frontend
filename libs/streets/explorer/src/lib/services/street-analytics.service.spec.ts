@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideStore, Store } from '@ngxs/store';
-import { EIncidentType, IncidentInterface } from '@simra/incidents-models';
+import { EIncidentType, IIncident } from '@simra/incidents-models';
 import { IResponseStreet } from '@simra/streets-common';
 import { SetStreet, StreetAnalyticsFacadeFacade, StreetDetailState } from '@simra/streets-domain';
 import { firstValueFrom, of } from 'rxjs';
@@ -37,7 +37,7 @@ describe('StreetAnalyticsService', () => {
 
 	describe('calculateSafetyMetrics', () => {
 		let mockId: number;
-		let mockIncidents: IncidentInterface[];
+		let mockIncidents: IIncident[];
 		let functionSpy: SpyInstance;
 		let startDate: Date;
 		let endDate: Date;
@@ -53,7 +53,7 @@ describe('StreetAnalyticsService', () => {
 				{ timeStamp: new Date('2024-02-26T14:30:00Z') },
 				{ timeStamp: new Date('2024-02-26T14:59:00Z') },
 				{ timeStamp: new Date('2024-02-26T20:30:00Z') },
-			] as IncidentInterface[];
+			] as IIncident[];
 
 			mockId = 1;
 
@@ -100,7 +100,7 @@ describe('StreetAnalyticsService', () => {
 					timeStamp: mockDate2,
 					incidentType: EIncidentType.HEAD_ON_APPROACH
 				}
-			] as IncidentInterface[];
+			] as IIncident[];
 			const mockRides = [
 				{ rideStart: mockDate1, rideEnd: mockDate2 },
 				{ rideStart: moment(mockDate1).subtract(1, 'minute').toDate(), rideEnd: moment(mockDate2).subtract(2, 'second').toDate() },

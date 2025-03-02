@@ -1,0 +1,74 @@
+<p-card>
+	<p-table
+		#dt
+		[value]="_incidents$()"
+		[loading]="_loading$()"
+		[showLoader]="false"
+		[sortOrder]="1"
+		[multiSortMeta]="[{field: 'scary', order: -1},{field: 'timeStamp', order: -1}]"
+		sortMode="multiple"
+	>
+		<ng-template pTemplate="header">
+			<tr>
+				@for(header of _cols; track header.field) {
+					<th>
+						<div [pSortableColumn]="header.field" class="whitespace-nowrap">
+							{{ header.header | translate }}
+							<p-sortIcon [field]="header.field"></p-sortIcon>
+						</div>
+					</th>
+				}
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-incident>
+			<tr>
+				<td class="whitespace-nowrap">{{ incident.timeStamp | date: 'dd/MM/yyyy HH:mm'	}}</td>
+				<td>{{ incident.id }}</td>
+				<td class="whitespace-nowrap">{{ INCIDENT_TYPE_TO_ICON[incident.incidentType]?.tooltip | translate }}</td>
+				<td><i class="ph" [status]="incident.scary"></i></td>
+				<td class="whitespace-nowrap">{{ BIKE_TYPE_TO_TRANSLATION[incident.bike]?.label | translate }}</td>
+				<td>{{ PHONE_LOCATION_TO_ICON[incident.phoneLocation]?.tooltip | translate }}</td>
+				<td>
+					<a
+						class="link-button whitespace-nowrap"
+						(click)="zoomOnIncident(incident)"
+						(focus)="zoomOnIncident(incident)"
+						(keydown.enter)="zoomOnIncident(incident)"
+						(keydown.space)="zoomOnIncident(incident)"
+						tabindex="0"
+					>
+						{{ incident.location }}
+					</a>
+				</td>
+				<td>
+					{{ getTranslatedParticipants(incident.participantsInvolved) }}
+				</td>
+				<td>{{ incident.description }}</td>
+				<td><i class="ph" [status]="incident.childCheckBox"></i></td>
+				<td><i class="ph" [status]="incident.trailerCheckBox"></i></td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="loadingbody" let-street>
+			@for(_ of times(10); track _) {
+				<tr>
+					@for(width of ['6rem', '4rem', '6rem', '1rem', '6rem', '4rem', '1rem', '1rem', '8rem', '8rem'];
+						track width) {
+						<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
+					}
+				</tr>
+			}
+		</ng-template>
+		<ng-template pTemplate="emptymessage">
+			<tr>
+				<td colspan="10">
+					<div class="inline-flex gap-4 items-center justify-center w-full">
+						<i class="ph-bold ph-magnifying-glass text-xl"></i>
+						<div class="font-semibold">{{ 'COMPONENTS.GENERAL.CHART.NO_DATA' | translate }}</div>
+					</div>
+				</td>
+			</tr>
+
+
+		</ng-template>
+	</p-table>
+</p-card>
