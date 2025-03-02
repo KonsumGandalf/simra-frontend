@@ -1,3 +1,4 @@
+import { IIncident } from '@simra/incidents-models';
 import { IResponseStreet, ISafetyMetrics } from '@simra/streets-common';
 
 export class SetStreet {
@@ -6,6 +7,11 @@ export class SetStreet {
 }
 
 export class SetSelectedSafetyMetrics {
-	static readonly type = '[StreetDetail] Set safety metrics';
+	static readonly type = '[StreetDetail] Set selected safety metrics';
 	constructor(public safetyMetrics: ISafetyMetrics) {}
+}
+
+export class SetSelectedIncidents {
+	static readonly type = '[StreetDetail] Set selected incidents';
+	constructor(public incidents: IIncident[]) {}
 }
