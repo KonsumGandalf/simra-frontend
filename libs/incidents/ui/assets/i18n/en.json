@@ -43,14 +43,18 @@
         "MOUNTAIN_BIKE": "Mountain bike",
         "OTHER": "Other"
     },
-    "MARKER_CONTENT": {
+    "GENERAL": {
         "LABELS": {
-            "BIKE_TYPE": "Bike type",
-            "PHONE_LOCATION": "Phone location",
-            "INCIDENT_TYPE": "Incident Type",
+            "BIKE": "Bike type",
+            "PHONE_LOCATION": "Telephone location",
+            "INCIDENT_TYPE": "Incident type",
             "DESCRIPTION": "Description",
-            "TIMESTAMP": "Date",
-            "INCIDENT_PARTICIPANTS": "Incident Participants"
+            "TIMESTAMP": "Timestamp",
+            "PARTICIPANTS": "Incident participants",
+            "IS_CHILD": "Child involved",
+            "IS_TRAILER": "Trailer attached",
+            "IS_SCARY": "Scary",
+            "LOCATION": "Location"
         }
     }
 }

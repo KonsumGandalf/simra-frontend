@@ -18,72 +18,11 @@
             "HEADER": {
                 "PLACEHOLDER": "Nichts ausgewählt",
                 "COLUMNS": {
-                    "ID": "ID",
-                    "NAME": "Name",
-                    "HIGHWAY_TYPE": "Straßentyp",
-                    "SCORE": "Bewertung",
-                    "INCIDENTS": "Vorfälle",
-                    "SCARY_INCIDENT": "Beängstigende Vorfälle",
-                    "RIDES": "Fahrten",
-                    "WEEKDAY": "Wochentag",
-                    "TRAFFIC_TIME": "Verkehrszeit",
-                    "LOCATION": "Ort",
-                    "TIMESTAMP": "Zeitpunkt",
-                    "SCARY": "Beängstigend",
-                    "BIKE": "Fahrrad",
-                    "PARTICIPANTS": "Unfallbeteiligte",
-                    "INCIDENT_TYPE": "Unfalltyp",
-                    "DESCRIPTION": "Unfallbeschreibung",
-                    "IS_CHILD": "Kind beteiligt",
-                    "IS_TRAILER": "Anhänger befestigt"
+                    "ID": "ID"
                 }
             }
         },
         "ENTITY_ATTRIBUTES": {
-            "HIGHWAY_TYPES": {
-                "LABEL": {
-                    "ABANDONED": "Aufgegebene Straße",
-                    "BRIDLEWAY": "Reitweg",
-                    "BUS_BAY": "Busbucht",
-                    "BUS_STOP": "Bushaltestelle",
-                    "BUSWAY": "Busspur",
-                    "CONSTRUCTION": "Baustelle",
-                    "CORRIDOR": "Korridor",
-                    "CYCLEWAY": "Radweg",
-                    "DISUSED": "Nicht mehr in Benutzung",
-                    "ELEVATOR": "Aufzug",
-                    "FOOTWAY": "Fußweg",
-                    "LIVING_STREET": "Verkehrsberuhigte Straße",
-                    "MOTORWAY": "Autobahn",
-                    "MOTORWAY_LINK": "Autobahn-Zubringer",
-                    "PATH": "Pfad",
-                    "PEDESTRIAN": "Fußgängerzone",
-                    "PLANNED": "Geplante Straße",
-                    "PLATFORM": "Bahnsteig",
-                    "PRIMARY": "Bundesstraße",
-                    "PRIMARY_LINK": "Bundesstraßen-Zubringer",
-                    "PROPOSED": "Vorgeschlagene Straße",
-                    "RACEWAY": "Rennstrecke",
-                    "RAZED": "Abgerissene Straße",
-                    "RESIDENTIAL": "Wohnstraße",
-                    "REST_AREA": "Rastplatz",
-                    "ROAD": "Straße",
-                    "SECONDARY": "Landesstraße",
-                    "SECONDARY_LINK": "Landesstraßen-Zubringer",
-                    "SERVICE": "Dienstweg",
-                    "SERVICES": "Raststätte",
-                    "SIDEWALK": "Gehweg",
-                    "STEPS": "Treppen",
-                    "STREET_LAMP": "Straßenlaterne",
-                    "TERTIARY": "Kreisstraßen",
-                    "TERTIARY_LINK": "Kreisstraßen-Zubringer",
-                    "TRACK": "Feldweg",
-                    "TRUNK": "Schnellstraße",
-                    "TRUNK_LINK": "Schnellstraßen-Zubringer",
-                    "UNCLASSIFIED": "Nicht klassifiziert",
-                    "YES": "Yes"
-                }
-            },
             "WEEK_DAYS": {
                 "TOOLTIP": {
                     "WEEK": "Die Tage von Montag bis Freitag",
@@ -112,23 +51,6 @@
                     "MID_DAY": "Beinhaltet Stunden zwischen 10:00 und 15:29 Uhr",
                     "EVENING_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
                     "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 5:59 Uhr"
-                }
-            },
-            "CYCLEWAY_TYPES": {
-                "LABEL": {
-                    "ADVISORY": "Empfohlene Spur",
-                    "EXCLUSIVE": "Exklusive Spur",
-                    "PICTOGRAM": "Piktogramm Spur"
-                }
-            },
-            "STREET_PARKING": {
-                "LABEL": {
-                    "LANE": "Auf der Straße",
-                    "STREET_SIDE": "Straßenrand",
-                    "ON_KERB": "Auf Gehweg",
-                    "HALF_ON_KERB": "Halb auf Gehweg",
-                    "SHOULDER": "Auf Seitenstreifen",
-                    "SEPARATE": "Separater Bereich"
                 }
             }
         }

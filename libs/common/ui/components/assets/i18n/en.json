@@ -18,15 +18,7 @@
             "HEADER": {
                 "PLACEHOLDER": "Nothing selected",
                 "COLUMNS": {
-                    "ID": "ID",
-                    "NAME": "Name",
-                    "HIGHWAY_TYPE": "Street Type",
-                    "SCORE": "Score",
-                    "INCIDENTS": "Incidents",
-                    "SCARY_INCIDENTS": "Scary Incidents",
-                    "RIDES": "Rides",
-                    "WEEKDAY": "Weekday",
-                    "TRAFFIC_TIME": "Traffic Time"
+                    "ID": "ID"
                 }
             }
         },
