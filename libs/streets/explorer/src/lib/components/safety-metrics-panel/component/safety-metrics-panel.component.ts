@@ -12,7 +12,6 @@ import { drop, times } from 'lodash';
 import { Card } from 'primeng/card';
 import { Carousel } from 'primeng/carousel';
 import { UIChart } from 'primeng/chart';
-import { Panel } from 'primeng/panel';
 import { firstValueFrom } from 'rxjs';
 import { safetyMetricsDisplayArray } from '../../../models/const';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';

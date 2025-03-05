@@ -12,7 +12,7 @@ import { Store } from '@ngxs/store';
 import { FallbackValueDirective } from '@simra/common-components';
 import { StreetDetailState } from '@simra/streets-domain';
 import { get, times } from 'lodash';
-import { Button, ButtonDirective } from 'primeng/button';
+import { ButtonDirective } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Skeleton } from 'primeng/skeleton';
 import { CYCLEWAY_LANES_TO_TRANSLATION } from '../../../translations/maps/cycleway-lanes-to-translation.map';
