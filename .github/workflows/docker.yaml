@@ -31,9 +31,11 @@ jobs:
                   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: ${{ vars.DOCKER_USERNAME }}/simra-frontend:latest
+                  target: github_production
                   build-args: |
-                      SIMRA_API_URL=${{ secrets.SIMRA_API_URL }}
                       MAPILLARY_URL=${{ vars.MAPILLARY_URL }}
-                      MAPILLARY_ACCESS_TOKEN=${{ secrets.MAPILLARY_ACCESS_TOKEN }}
+                  secrets: |
+                    "simra_api_url=${{ secrets.SIMRA_API_URL }}"
+                    "mapillary_access_token=${{ secrets.MAPILLARY_ACCESS_TOKEN }}"    
 
 
