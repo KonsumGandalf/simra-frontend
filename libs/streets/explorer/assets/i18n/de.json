@@ -119,8 +119,9 @@
 				"TITLE": "Parken"
 			},
 			"BUTTONS": {
-				"GOOGLE_MAPS": "Auf Google Maps ansehen",
-				"OSM": "Auf OpenStreetMap ansehen"
+				"GOOGLE_MAPS": "Google Maps",
+				"OSM": "OpenStreetMap",
+				"SIMRA_MAP": "SimRa Karte"
 			}
 		}
 	}

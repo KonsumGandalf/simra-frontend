@@ -2,9 +2,8 @@
 @if(street.way) {
 
 <p-card >
-
 	<section class="street-information-card__tags">
-		<h4 class="p-card-title">{{'#'+street.id}}</h4>
+		<h4 class="p-card-title">{{ 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID' | translate }} #{{street.id}}</h4>
 		<h5 class="p-card-subtitle">{{street.name}}</h5>
 		<p-card>
 			<table class="simple-table">
@@ -63,10 +62,34 @@
 	</section>
 	<section class="street-information-card__maps">
 		<m-map-carousel></m-map-carousel>
-		<div class="flex items-center justify-center gap-x-4">
-			<a pButton [href]="'https://www.openstreetmap.org/way/'+street.id" target="_blank" icon="ph-bold ph-magnifying-glass" size="small">{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.OSM' | translate}}</a>
-			<a pButton [href]="_googleLink$()" target="_blank" icon="ph-bold ph-google-logo" size="small">{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.GOOGLE_MAPS' | translate}}</a>
+		<div class="flex flex-wrap items-center justify-between gap-4 mx-4">
+			<a pButton
+			   [href]="'https://www.openstreetmap.org/way/'+street.id"
+			   target="_blank"
+			   icon="ph-bold ph-magnifying-glass"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.OSM' | translate }}
+			</a>
+
+			<a pButton
+			   [href]="_googleLink$()"
+			   target="_blank"
+			   icon="ph-bold ph-google-logo"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.GOOGLE_MAPS' | translate }}
+			</a>
+
+			<a pButton
+			   routerLink="/streets/map"
+			   queryParamsHandling="merge"
+			   target="_blank"
+			   [queryParams]="{ zoom: 18 }"
+			   icon="ph-bold ph-map-trifold"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.SIMRA_MAP' | translate }}
+			</a>
 		</div>
+
 	</section>
 </p-card>
 }@else {

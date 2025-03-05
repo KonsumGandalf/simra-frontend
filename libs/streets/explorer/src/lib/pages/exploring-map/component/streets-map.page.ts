@@ -78,8 +78,13 @@ export class StreetsMapPage {
 		this._store.dispatch(new SetStreet(undefined));
 
 		effect(async () => {
-			const lp = this._mapPosition() ?? { lat: 52.522, lng: 13.413, zoom: 14 };
+			const lp = this._mapPosition();
 			const filter = this._filterState();
+
+			if (!lp || !filter) {
+				return;
+			}
+
 			await this._streetsMapFacade.fetchStreetInformation({
 				...filter,
 				...lp,

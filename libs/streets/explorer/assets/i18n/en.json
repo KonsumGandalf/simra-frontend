@@ -118,8 +118,9 @@
 				"TITLE": "Parking"
 			},
 			"BUTTONS": {
-				"GOOGLE_MAPS": "View on Google Maps",
-				"OSM": "View on OpenStreetMap"
+				"GOOGLE_MAPS": "Google Maps",
+				"OSM": "OpenStreetMap",
+				"SIMRA_MAP": "SimRa Map"
 			}
 		}
 	}

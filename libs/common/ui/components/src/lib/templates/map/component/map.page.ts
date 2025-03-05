@@ -1,8 +1,9 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed, effect, EventEmitter, inject,
 	input, Output,
-	Signal,
+	Signal, ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -34,6 +35,8 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
     host: {
         class: 't-map-component',
     },
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapPage {
 	private readonly _activatedRoute = inject(ActivatedRoute);

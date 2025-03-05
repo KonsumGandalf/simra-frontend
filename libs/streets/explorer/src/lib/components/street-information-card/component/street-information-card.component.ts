@@ -6,7 +6,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { FallbackValueDirective } from '@simra/common-components';
@@ -31,6 +31,7 @@ import { ITagCard } from '../models/tag-card.interface';
 		MapCarouselComponent,
 		ButtonDirective,
 		FallbackValueDirective,
+		RouterLink,
 	],
 	templateUrl: './street-information-card.component.html',
 	styleUrl: './street-information-card.component.scss',
@@ -68,8 +69,8 @@ export class StreetInformationCardComponent {
 						},
 						{
 							title: 'WIDTH',
-							value: 'cyclewayLeft.width'
-						}
+							value: 'cyclewayLeft.width',
+						},
 					],
 				},
 				{
@@ -82,8 +83,8 @@ export class StreetInformationCardComponent {
 						},
 						{
 							title: 'WIDTH',
-							value: 'cyclewayRight.width'
-						}
+							value: 'cyclewayRight.width',
+						},
 					],
 				},
 			],
@@ -98,8 +99,8 @@ export class StreetInformationCardComponent {
 						{
 							title: 'TYPE',
 							value: 'parkingLeft.type',
-							link: 'https://wiki.openstreetmap.org/wiki/Street_parking'
-						}
+							link: 'https://wiki.openstreetmap.org/wiki/Street_parking',
+						},
 					],
 				},
 				{
@@ -108,15 +109,13 @@ export class StreetInformationCardComponent {
 						{
 							title: 'TYPE',
 							value: 'parkingRight.type',
-							link: 'https://wiki.openstreetmap.org/wiki/Street_parking'
-						}
+							link: 'https://wiki.openstreetmap.org/wiki/Street_parking',
+						},
 					],
 				},
 			],
-		}
-	]
-
-
+		},
+	];
 
 	protected readonly get = get;
 	protected readonly times = times;

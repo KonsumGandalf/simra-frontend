@@ -28,6 +28,10 @@
 
         .street-information-card__maps {
             @apply w-full sm:w-2/3 flex flex-col sm:mt-9;
+
+            a {
+                @apply flex-grow text-center;
+            }
         }
     }
 
