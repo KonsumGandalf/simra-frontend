@@ -25,8 +25,8 @@ FROM node:23-alpine AS github_builder
 WORKDIR /usr/src/app
 
 ENV NX_DAEMON=false
-ENV MAPILLARY_URL=$MAPILLARY_URL
 ARG MAPILLARY_URL
+ENV MAPILLARY_URL=$MAPILLARY_URL
 
 RUN --mount=type=secret,id=simra_api_url \
     --mount=type=secret,id=mapillary_access_token \
