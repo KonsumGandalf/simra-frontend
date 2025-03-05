@@ -33,5 +33,7 @@ jobs:
                   tags: ${{ vars.DOCKER_USERNAME }}/simra-frontend:latest
                   build-args: |
                       SIMRA_API_URL=${{ secrets.SIMRA_API_URL }}
+                      MAPILLARY_URL=${{ vars.MAPILLARY_URL }}
+                      MAPILLARY_ACCESS_TOKEN=${{ secrets.MAPILLARY_ACCESS_TOKEN }}
 
 
