@@ -14,7 +14,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { MapPage } from '@simra/common-components';
 import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
-import { RidesExploringFacade } from '@simra/rides-domain';
+import { RidesFacade } from '@simra/rides-domain';
 import { along, length, lineString } from '@turf/turf';
 
 import { geoJSON, Layer} from 'leaflet';
@@ -24,17 +24,17 @@ import { InputNumber } from 'primeng/inputnumber';
 @Component({
     selector: 'p-streets-exploring-map',
     imports: [CommonModule, LeafletModule, MapPage, FormsModule, InputNumber, Card],
-    templateUrl: './rides-exploring-map.page.html',
-    styleUrl: './rides-exploring-map.page.scss',
+    templateUrl: './rides-map.page.html',
+    styleUrl: './rides-map.page.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     host: {
-        class: 'p-streets-exploring-map',
+        class: 'p-rides-map',
     }
 })
-export class RidesExploringMapPage {
+export class RidesMapPage {
 	private readonly _router = inject(Router);
-	private readonly _ridesExploringFacade = inject(RidesExploringFacade);
+	private readonly _ridesExploringFacade = inject(RidesFacade);
 	private readonly _injector = inject(Injector);
 	private readonly _appRef = inject(ApplicationRef);
 
