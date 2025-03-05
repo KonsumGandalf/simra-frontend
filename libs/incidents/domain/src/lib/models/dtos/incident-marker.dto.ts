@@ -1,7 +1,7 @@
-import { IncidentMarkerInterface } from '@simra/incidents-models';
+import { IIncidentMarker } from '@simra/incidents-models';
 import { IsBoolean, IsNumber } from 'class-validator';
 
-export class IncidentMarkerDTO implements IncidentMarkerInterface{
+export class IncidentMarkerDTO implements IIncidentMarker{
 	@IsNumber()
 	id: number;
 
