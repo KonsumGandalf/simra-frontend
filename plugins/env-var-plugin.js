@@ -1,4 +1,4 @@
-const myOrgEnvRegex = /^SIMRA_/i;
+const myOrgEnvRegex = /^(SIMRA_|MAPILLARY_)/i;
 
 const envVarPlugin = {
 	name: 'env-var-plugin',
