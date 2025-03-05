@@ -1,0 +1,10 @@
+.leaflet-map {
+    @apply w-full rounded-lg;
+
+    height: 80vh;
+
+    @screen 2xl {
+        height: 87vh;
+    }
+
+}
