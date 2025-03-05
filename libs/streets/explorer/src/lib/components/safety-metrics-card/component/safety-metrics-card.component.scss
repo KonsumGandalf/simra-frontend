@@ -1,8 +1,8 @@
 .m-safety-metrics-panel {
-    background: var(--primary-color);
+
     p-card {
         .p-card {
-            @apply w-full rounded-lg border; // bg-violet-50
+            @apply w-full rounded-lg border;
 
             .p-card-body {
                 .p-card-content {

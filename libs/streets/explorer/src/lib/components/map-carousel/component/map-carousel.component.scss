@@ -1,0 +1,21 @@
+.m-map-carousel {
+    button {
+        @apply max-h-6;
+    }
+
+    .leaflet-map, .mapillary-container {
+        @apply w-full rounded-xl h-96;
+
+        @screen sm {
+            height:17rem;
+        }
+
+        @screen md {
+            height:18rem;
+        }
+
+        @screen lg {
+            height:19rem;
+        }
+    }
+}

@@ -49,7 +49,8 @@
 				"LABEL": {
 					"ADVISORY": "Advisory Lane",
 					"EXCLUSIVE": "Exclusive Lane",
-					"PICTOGRAM": "Pictogram Lane"
+					"PICTOGRAM": "Pictogram Lane",
+					"NO": "No Cycleway"
 				}
 			},
 			"PARKING": {
@@ -115,6 +116,10 @@
 			},
 			"PARKING": {
 				"TITLE": "Parking"
+			},
+			"BUTTONS": {
+				"GOOGLE_MAPS": "View on Google Maps",
+				"OSM": "View on OpenStreetMap"
 			}
 		}
 	}

@@ -6,7 +6,7 @@ export function safetyMetricsDisplayArray(
 ): { label: string; data: any }[] {
 	return [
 		{
-			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID',
+			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
 			data: safetyMetrics.planetOsmLineId,
 		},
 		{

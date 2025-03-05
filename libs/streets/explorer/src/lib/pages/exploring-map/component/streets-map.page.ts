@@ -19,13 +19,13 @@ import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
 
 import { IGetStreetGrid } from '@simra/streets-common';
-import { StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
+import { SetStreet, StreetDetailState, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { Marker } from 'leaflet';
 import { firstValueFrom } from 'rxjs';
 import { SafetyMetricsPanelComponent } from '../../../components/safety-metrics-panel/component/safety-metrics-panel.component';
 
 @Component({
-	selector: 'simra-streets-exploring-map',
+	selector: 'streets-map',
 	imports: [
 		CommonModule,
 		LeafletModule,
@@ -33,16 +33,16 @@ import { SafetyMetricsPanelComponent } from '../../../components/safety-metrics-
 		SafetyMetricsPanelComponent,
 		DangerousScoreBarComponent,
 	],
-	templateUrl: './streets-exploring-map.page.html',
-	styleUrl: './streets-exploring-map.page.scss',
+	templateUrl: './streets-map.page.html',
+	styleUrl: './streets-map.page.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	host: {
-		class: 'o-simra-exploring-map',
+		class: 'o-streets-map',
 	},
 })
-export class StreetsExploringMapPage {
-	private readonly _exploringMapFacade = inject(StreetsExploringMapFacade);
+export class StreetsMapPage {
+	private readonly _streetsMapFacade = inject(StreetsMapFacade);
 	private readonly _store = inject(Store);
 	private readonly _injector = inject(Injector);
 	private readonly _appRef = inject(ApplicationRef);
@@ -51,7 +51,7 @@ export class StreetsExploringMapPage {
 	protected readonly _filterState = this._store.selectSignal(MapFilterState.getMapFilterState);
 	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCache);
 	protected readonly hoveredStreetId$ = this._store.selectSignal(
-		StreetMapState.getHoveredStreetId,
+		StreetDetailState.getStreet,
 	);
 
 	protected readonly incidents$ = asyncComputed(() => {
@@ -60,7 +60,7 @@ export class StreetsExploringMapPage {
 			return undefined;
 		}
 
-		return firstValueFrom(this._exploringMapFacade.fetchIncidentsForStreet(hoveredStreet));
+		return firstValueFrom(this._streetsMapFacade.fetchIncidentsForStreet(hoveredStreet.id));
 	});
 	public readonly combinedOverlay$ = computed(() => {
 		let incidentsMarker: Marker[] = [];
@@ -75,10 +75,12 @@ export class StreetsExploringMapPage {
 	});
 
 	constructor() {
-		effect(() => {
+		this._store.dispatch(new SetStreet(undefined));
+
+		effect(async () => {
 			const lp = this._mapPosition() ?? { lat: 52.522, lng: 13.413, zoom: 14 };
 			const filter = this._filterState();
-			this._exploringMapFacade.fetchStreetInformation({
+			await this._streetsMapFacade.fetchStreetInformation({
 				...filter,
 				...lp,
 			} as IGetStreetGrid);

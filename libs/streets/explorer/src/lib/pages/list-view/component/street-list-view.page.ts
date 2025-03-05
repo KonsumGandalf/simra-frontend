@@ -77,7 +77,7 @@ export class StreetListViewPage {
 	 * @protected
 	 */
 	protected readonly _cols: Column[] = [
-		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID`, field: 'id', sortable: true },
+		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID`, field: 'id', sortable: true },
 		{ header: `${this._headerPrefix}.NAME`, field: 'name' },
 		{
 			header: `${this._headerPrefix}.HIGHWAY_TYPE`,

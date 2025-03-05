@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input, ViewEncapsulation } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	effect,
+	inject,
+	input,
+	ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StreetDetailViewFacade } from '@simra/streets-domain';
 import { firstValueFrom } from 'rxjs';
@@ -22,7 +29,7 @@ import { StreetInformationCardComponent } from '../../../components/street-infor
 		class: 'p-street-detail-view',
 	},
 })
-export class StreetDetailViewPage {
+export class StreetDetailViewPage   {
 	private readonly _facade = inject(StreetDetailViewFacade);
 
 	/**

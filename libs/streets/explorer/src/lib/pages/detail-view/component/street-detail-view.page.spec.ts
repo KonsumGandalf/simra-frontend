@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { StreetDetailState, StreetDetailViewFacade } from '@simra/streets-domain';
@@ -25,6 +26,12 @@ describe('StreetDetailViewPage', () => {
 					useValue: {
 						calculateSafetyMetrics: jest.fn().mockReturnValue(of(undefined)),
 					}
+				},
+				{
+					provide: ActivatedRoute,
+					useValue: {
+						queryParams: of({})
+					},
 				},
 				provideStore([StreetDetailState])
 			],
