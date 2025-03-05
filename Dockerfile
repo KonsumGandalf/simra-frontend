@@ -47,13 +47,13 @@ RUN nx build --skip-nx-cache --prod
 FROM nginx:stable-alpine AS local_production
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=localBuilder /usr/src/app/dist/simra/browser /usr/share/nginx/html
+COPY --from=local_builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
 
 FROM nginx:stable-alpine AS github_production
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=githubBuilder /usr/src/app/dist/simra/browser /usr/share/nginx/html
+COPY --from=github_builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
