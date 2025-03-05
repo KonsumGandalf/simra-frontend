@@ -1,10 +1,22 @@
-<div
-	class="leaflet-map"
-	leaflet
-	[leafletOptions]="initialOptions"
-	[leafletLayersControl]="layerControl"
-	[leafletLayers]="overlayLayers()"
-	(leafletMapReady)="onMapReady($event)"
-	(leafletMapZoom)="onMapChange($event)"
-	(leafletMapMoveEnd)="onMapChange($event)"
-></div>
+@if (layerControl(); as control) {
+	<div
+		class="leaflet-map"
+		leaflet
+		[leafletOptions]="initialOptions"
+		[leafletLayersControl]="control"
+		[leafletLayers]="overlayLayers()"
+		(leafletMapReady)="onMapReady($event)"
+		(leafletMapZoom)="onMapChange($event)"
+		(leafletMapMoveEnd)="onMapChange($event)"
+	></div>
+} @else {
+	<div
+		class="leaflet-map"
+		leaflet
+		[leafletOptions]="initialOptions"
+		[leafletLayers]="overlayLayers()"
+		(leafletMapReady)="onMapReady($event)"
+		(leafletMapZoom)="onMapChange($event)"
+		(leafletMapMoveEnd)="onMapChange($event)"
+	></div>
+}

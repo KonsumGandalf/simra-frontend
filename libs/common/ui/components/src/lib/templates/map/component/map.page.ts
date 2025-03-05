@@ -1,10 +1,8 @@
 import {
-	ChangeDetectionStrategy,
 	Component,
 	computed, effect, EventEmitter, inject,
 	input, Output,
 	Signal,
-	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -36,19 +34,19 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
     host: {
         class: 't-map-component',
     },
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapPage {
-	private readonly route = inject(ActivatedRoute);
-	private readonly router = inject(Router);
+	private readonly _activatedRoute = inject(ActivatedRoute);
+	private readonly _router = inject(Router);
 
 	/**
 	 * Represents the layers which should be mapped onto the open street map often those are GeoJSONs as Overlays
 	 */
 	public readonly overlayLayers = input.required<Layer[]>();
+
 	@Output()
 	public positionChange = new EventEmitter<MapPositionInterface>();
+
 	private map?: Map;
 
 	public isSearchable = input<boolean>(false);
@@ -63,10 +61,9 @@ export class MapPage {
 
 			this.positionChange.emit(position);
 		});
-
 	}
 
-	private queryParams = toSignal(this.route.queryParams);
+	private queryParams = toSignal(this._activatedRoute.queryParams);
 	public readonly leafletPosition: Signal<MapPositionInterface> = computed(() => {
 		const {
 			lat = BERLIN_POSITION.lat,
@@ -90,10 +87,11 @@ export class MapPage {
 	/**
 	 * The appearance options the user can choose from when using the map
 	 */
-	protected readonly layerControl: LeafletControlLayersConfig = DEFAULT_LAYER_CONFIG;
+	public layerControl = input<LeafletControlLayersConfig>(DEFAULT_LAYER_CONFIG);
 
 	onMapReady(map: Map): void {
 		const isSearchable = this.isSearchable();
+
 		if (isSearchable) {
 			const provider = new OpenStreetMapProvider();
 			const searchControl: Control = GeoSearchControl({
@@ -106,6 +104,7 @@ export class MapPage {
 
 			map.addControl(searchControl);
 		}
+
 		this.map = map;
 	}
 
@@ -117,8 +116,8 @@ export class MapPage {
 	onMapChange(event: LeafletEvent): void {
 		const center = event.sourceTarget.getCenter();
 		const zoom = event.sourceTarget.getZoom();
-		this.router.navigate([], {
-			queryParams: { lat: center.lat, lng: center.lng, zoom },
+		this._router.navigate([], {
+			queryParams: { lat: center.lat.toFixed(5), lng: center.lng.toFixed(5), zoom },
 			queryParamsHandling: 'merge',
 		})
 	}
