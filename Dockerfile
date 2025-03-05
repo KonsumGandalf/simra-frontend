@@ -1,4 +1,4 @@
-FROM node:23-alpine AS builder
+FROM node:23-alpine AS localBuilder
 
 WORKDIR /usr/src/app
 
@@ -20,10 +20,40 @@ COPY . .
 
 RUN nx build --skip-nx-cache --prod
 
-FROM nginx:stable-alpine AS production
+FROM node:23-alpine AS githubBuilder
+
+WORKDIR /usr/src/app
+
+ARG MAPILLARY_URL
+
+RUN --mount=type=secret,id=simra_api_url \
+    --mount=type=secret,id=mapillary_access_token \
+    export SIMRA_API_URL=$(cat /run/secrets/simra_api_url 2>/dev/null || echo "") && \
+    export MAPILLARY_ACCESS_TOKEN=$(cat /run/secrets/mapillary_access_token 2>/dev/null || echo "") && \
+    export MAPILLARY_URL=$MAPILLARY_URL && \
+    export NX_DAEMON=false && \
+    npm install -g nx && \
+    npm ci --ignore-scripts
+
+COPY package*.json ./
+
+RUN npm ci --ignore-scripts
+RUN npm install -g nx
+
+COPY . .
+
+RUN nx build --skip-nx-cache --prod
+
+FROM nginx:stable-alpine AS localProduction
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
+COPY --from=localBuilder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
 
+FROM nginx:stable-alpine AS githubProduction
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=githubBuilder /usr/src/app/dist/simra/browser /usr/share/nginx/html
+
+EXPOSE 80
