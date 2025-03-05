@@ -28,12 +28,6 @@ ENV NX_DAEMON=false
 ARG MAPILLARY_URL
 ENV MAPILLARY_URL=$MAPILLARY_URL
 
-RUN --mount=type=secret,id=simra_api_url \
-    --mount=type=secret,id=mapillary_access_token \
-    export SIMRA_API_URL=$(cat /run/secrets/simra_api_url) && \
-    export MAPILLARY_ACCESS_TOKEN=$(cat /run/secrets/mapillary_access_token) && \
-    npm install && npm run build
-
 COPY package*.json ./
 
 RUN npm ci --ignore-scripts
@@ -41,7 +35,11 @@ RUN npm install -g nx
 
 COPY . .
 
-RUN nx build --skip-nx-cache --prod
+RUN --mount=type=secret,id=simra_api_url \
+    --mount=type=secret,id=mapillary_access_token \
+    export SIMRA_API_URL=$(cat /run/secrets/simra_api_url) && \
+    export MAPILLARY_ACCESS_TOKEN=$(cat /run/secrets/mapillary_access_token) && \
+    nx build --skip-nx-cache --prod
 
 FROM nginx:stable-alpine AS local_production
 
