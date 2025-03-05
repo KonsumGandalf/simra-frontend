@@ -1,1 +1,1 @@
-export * from './incident-exploring-map.page';
+export * from './incidents-map.page';

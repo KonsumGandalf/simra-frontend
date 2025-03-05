@@ -1,1 +1,1 @@
-export * from './rides-exploring.facade';
+export * from './rides.facade';

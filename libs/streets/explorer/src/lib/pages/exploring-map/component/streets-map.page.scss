@@ -1,0 +1,43 @@
+.o-streets-map {
+	position: relative; // ensure the container is relatively positioned
+
+	m-safety-metrics-panel {
+		@screen md {
+			position: absolute;
+			top: 50%;
+			left: 10rem;
+			transform: translate(-50%, -50%);
+			z-index: 500;
+			width: 17rem;
+		}
+	}
+
+	m-dangerous-score-bar {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%) translateY(-140%);
+		z-index: 5000;
+		width: 30%;
+		min-width: 25rem;
+	}
+
+	t-map-component {
+		.leaflet-map {
+			@apply rounded-b-none;
+
+			@screen md {
+				@apply rounded-b-lg;
+			}
+		}
+	}
+
+	p-card {
+		.p-card {
+			@apply rounded-t-none;
+
+			@screen md {
+				@apply rounded-t-lg;
+			}
+		}
+	}
+}

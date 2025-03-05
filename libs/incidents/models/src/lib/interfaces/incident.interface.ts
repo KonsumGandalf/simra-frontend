@@ -1,8 +1,8 @@
 import { ETrafficTimes, EWeekDays } from '@simra/common-models';
 import { EBikeType, EIncidentType, EParticipants, EPhoneLocations } from '../enums/public-api';
-import { IncidentMarkerInterface } from './incident-marker.interface';
+import { IIncidentMarker } from './incident-marker.interface';
 
-export interface IIncident extends IncidentMarkerInterface{
+export interface IIncident extends IIncidentMarker{
 	bike: EBikeType;
 	phoneLocation: EPhoneLocations;
 	incidentType: EIncidentType;

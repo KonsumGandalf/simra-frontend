@@ -34,6 +34,11 @@
           "src/favicon.ico",
           "src/assets",
           {
+            "input": "src/assets/i18n",
+            "glob": "**/*",
+            "output": "assets/i18n/app"
+          },
+          {
             "input": "libs/incidents/ui/assets/icons",
             "glob": "**/*",
             "output": "assets/icons/incidents/ui"
@@ -64,7 +69,8 @@
           "./node_modules/leaflet/dist/leaflet.css",
           "./node_modules/leaflet-geosearch/dist/geosearch.css",
           "./node_modules/leaflet.markercluster/dist/MarkerCluster.css",
-          "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
+          "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+          "./libs/common/ui/styles/src/css/mapillary.css"
         ],
         "stylePreprocessorOptions": {
           "includePaths": [

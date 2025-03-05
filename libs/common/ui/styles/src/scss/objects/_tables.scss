@@ -1,11 +1,12 @@
 .simple-table {
         @apply w-full flex-grow;
+        table-layout: fixed;
 
         tr {
             @apply flex justify-between;
 
             td {
-                @apply text-xs truncate max-w-full flex-1;
+                @apply text-sm truncate max-w-full flex-1;
 
                 &:last-child {
                     @apply font-extralight;

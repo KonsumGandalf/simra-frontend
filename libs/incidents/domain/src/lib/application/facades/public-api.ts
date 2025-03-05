@@ -1,1 +1,1 @@
-export * from './exploring-map.facade';
+export * from './incidents-map-facade.service';

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IIncident, IncidentMarkerInterface } from '@simra/incidents-models';
+import { IIncident, IIncidentMarker } from '@simra/incidents-models';
 import { plainToInstance } from 'class-transformer';
 import { map, Observable } from 'rxjs';
 import { IncidentMarkerDTO } from '../models/dtos/incident-marker.dto';
@@ -10,7 +10,7 @@ import { IncidentsResponseDto } from '../models/dtos/incidents-response.dto';
 export class IncidentRequestService {
 	private readonly _http = inject(HttpClient);
 
-	public getIncidents(): Observable<IncidentMarkerInterface[]> {
+	public getIncidents(): Observable<IIncidentMarker[]> {
 		return this._http.get<IncidentsResponseDto>('/api/incidents/marker').pipe(
 			map((response) => {
 				const parsedResponse = JSON.parse(response.incidents);

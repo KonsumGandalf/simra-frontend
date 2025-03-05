@@ -4,30 +4,31 @@ import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
-import { ExploringMapFacade } from '@simra/incidents-domain';
+import { IncidentsMapFacade, IncidentsState } from '@simra/incidents-domain';
 import { of } from 'rxjs';
-import { IncidentExploringMapPage } from './incident-exploring-map.page';
+import { IncidentsMapPage } from './incidents-map.page';
 
 describe('IncidentExploringMapPage', () => {
-	let component: IncidentExploringMapPage;
-	let fixture: ComponentFixture<IncidentExploringMapPage>;
+	let component: IncidentsMapPage;
+	let fixture: ComponentFixture<IncidentsMapPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [IncidentExploringMapPage, TranslateModule.forRoot()],
+			imports: [IncidentsMapPage, TranslateModule.forRoot()],
 			providers: [
 				provideRouter([]),
-				provideStore([MapFilterState]),
+				provideStore([MapFilterState, IncidentsState]),
 				{
-					provide: ExploringMapFacade,
+					provide: IncidentsMapFacade,
 					useValue: {
 						getIncidents: jest.fn().mockReturnValue(of([])),
+						getIncidentMarker: jest.fn().mockReturnValue(of([])),
 					},
 				},
 			],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(IncidentExploringMapPage);
+		fixture = TestBed.createComponent(IncidentsMapPage);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

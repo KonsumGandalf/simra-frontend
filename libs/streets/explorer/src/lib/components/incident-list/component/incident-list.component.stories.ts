@@ -9,7 +9,7 @@ import { jest } from '@storybook/jest';
 import { IncidentListComponent } from './incident-list.component';
 
 const mockStore = {
-	selectSignal: jest.fn(), // ✅ Mock NGXS selectSignal
+	selectSignal: jest.fn(),
 };
 
 const meta: Meta<IncidentListComponent> = {

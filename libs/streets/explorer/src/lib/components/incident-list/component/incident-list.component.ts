@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
@@ -9,6 +9,7 @@ import {
 	WEEK_DAYS_TO_TRANSLATION,
 } from '@simra/common-components';
 import { Column } from '@simra/common-models';
+import { scrollToElementId } from '@simra/helpers';
 import { EParticipants, IIncident } from '@simra/incidents-models';
 import { BIKE_TYPE_TO_TRANSLATION, INCIDENT_TYPE_TO_ICON, PARTICIPANT_TO_ICON, PHONE_LOCATION_TO_ICON } from '@simra/incidents-ui';
 import { StreetDetailState } from '@simra/streets-domain';
@@ -36,11 +37,13 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway
 		class: 'm-incident-list',
 	},
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IncidentListComponent {
 	private readonly _store = inject(Store);
 	private readonly _router = inject(Router);
 	private readonly _translateService = inject(TranslateService);
+	protected readonly _viewportScroller = inject(ViewportScroller);
 
 	private readonly _street$ = this._store.selectSignal(StreetDetailState.getStreet);
 	protected readonly _loading$ = computed(() => {
@@ -56,7 +59,7 @@ export class IncidentListComponent {
 	private readonly _incidentHeaderPrefix = 'INCIDENTS.UI.GENERAL.LABELS';
 	protected readonly _cols: Column[] = [
 		{ header: `${this._incidentHeaderPrefix}.TIMESTAMP`, field: 'timeStamp' },
-		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID`, field: 'id' },
+		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID`, field: 'id' },
 		{ header: `${this._incidentHeaderPrefix}.INCIDENT_TYPE`, field: 'incidentType' },
 		{ header: `${this._incidentHeaderPrefix}.IS_SCARY`, field: 'scary' },
 		{ header: `${this._incidentHeaderPrefix}.BIKE`, field: 'bike' },
@@ -69,9 +72,11 @@ export class IncidentListComponent {
 	];
 	zoomOnIncident(incident: IIncident) {
 		this._router.navigate([], {
-			queryParams: { lat: incident.lat, lng: incident.lng, zoom: 18 },
+			queryParams: { lat: incident.lat.toFixed(5), lng: incident.lng.toFixed(5), zoom: 18 },
 			queryParamsHandling: 'merge',
 		});
+
+		scrollToElementId('street-information');
 	}
 
 	protected readonly times = times;

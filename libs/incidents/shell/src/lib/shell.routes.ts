@@ -7,7 +7,7 @@ export const RIDE_INCIDENT_SHELL_ROUTES: Route[] = [
 			{
 				path: 'map',
 				loadComponent: () =>
-					import('@simra/incidents-map').then((m) => m.IncidentExploringMapPage),
+					import('@simra/incidents-map').then((m) => m.IncidentsMapPage),
 			},
 			{
 				path: '**',

@@ -8,5 +8,6 @@ export enum EParking {
 	ON_KERB = 'on_kerb',
 	HALF_ON_KERB = 'half_on_kerb',
 	SHOULDER = 'shoulder',
-	SEPARATE = 'separate'
+	SEPARATE = 'separate',
+	NO = 'no',
 }

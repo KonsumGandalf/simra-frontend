@@ -4,22 +4,22 @@ import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
-import { StreetDetailState, StreetMapState, StreetsExploringMapFacade } from '@simra/streets-domain';
+import { StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject } from 'rxjs';
-import { StreetsExploringMapPage } from './streets-exploring-map.page';
+import { StreetsMapPage } from './streets-map.page';
 
 describe('StreetsExploringMapPage', () => {
-	let component: StreetsExploringMapPage;
-	let fixture: ComponentFixture<StreetsExploringMapPage>;
+	let component: StreetsMapPage;
+	let fixture: ComponentFixture<StreetsMapPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [StreetsExploringMapPage, TranslateModule.forRoot()],
+			imports: [StreetsMapPage, TranslateModule.forRoot()],
 			providers: [
 				provideRouter([]),
 				{
-					provide: StreetsExploringMapFacade,
+					provide: StreetsMapFacade,
 					useValue: {
 						fetchStreetInformation: jest.fn().mockReturnValue(
 							new BehaviorSubject([
@@ -31,11 +31,17 @@ describe('StreetsExploringMapPage', () => {
 						),
 					},
 				},
+				{
+					provide: StreetDetailViewFacade,
+					useValue: {
+						getIdOfNearestImage: jest.fn(),
+					}
+				},
 				provideStore([StreetMapState, MapFilterState, StreetDetailState]),
 			],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(StreetsExploringMapPage);
+		fixture = TestBed.createComponent(StreetsMapPage);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

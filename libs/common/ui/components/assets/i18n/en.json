@@ -13,12 +13,14 @@
         },
         "TABLE": {
             "ITEMS": {
-                "SELECTED": "Items selected"
+                "SELECTED": "Items selected",
+                "NO_DATA": "No data"
             },
             "HEADER": {
                 "PLACEHOLDER": "Nothing selected",
                 "COLUMNS": {
-                    "ID": "ID"
+                    "ID": "ID",
+                    "OSM_ID": "OSM ID"
                 }
             }
         },
@@ -97,13 +99,6 @@
                     "EVENING_NIGHT_MORNING": "Includes hours between 19:00 and 5:59"
                 }
             },
-            "CYCLEWAY_TYPES": {
-                "LABEL": {
-                    "ADVISORY": "Advisory Lane",
-                    "EXCLUSIVE": "Exclusive Lane",
-                    "PICTOGRAM": "Pictogram Lane"
-                }
-            },
             "STREET_PARKING": {
                 "LABEL": {
                     "LANE": "On-road",
@@ -111,7 +106,8 @@
                     "ON_KERB": "On sidewalk",
                     "HALF_ON_KERB": "Half on sidewalk",
                     "SHOULDER": "On shoulder",
-                    "SEPARATE": "Separate area"
+                    "SEPARATE": "Separate area",
+                    "NO": "No Parking"
                 }
             }
         }

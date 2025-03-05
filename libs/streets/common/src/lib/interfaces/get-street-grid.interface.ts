@@ -1,10 +1,9 @@
-import { CoordinateInterface, MapFilterOptionsInterface } from '@simra/common-models';
+import { MapFilterOptionsInterface, MapPositionInterface } from '@simra/common-models';
 
 /**
  * Interface for getting street information
  */
-export interface IGetStreetGrid extends CoordinateInterface, MapFilterOptionsInterface {
-	zoom: number;
+export interface IGetStreetGrid extends MapPositionInterface, MapFilterOptionsInterface {
 }
 
 

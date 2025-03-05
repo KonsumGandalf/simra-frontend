@@ -2,26 +2,26 @@ import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { RidesExploringFacade } from '@simra/rides-domain';
+import { RidesFacade } from '@simra/rides-domain';
 import { polyline } from 'leaflet';
 import { of } from 'rxjs';
-import { RidesExploringMapPage } from './rides-exploring-map.page';
+import { RidesMapPage } from './rides-map.page';
 
 describe('StreetsExploringMapPage', () => {
-	let component: RidesExploringMapPage;
-	let fixture: ComponentFixture<RidesExploringMapPage>;
+	let component: RidesMapPage;
+	let fixture: ComponentFixture<RidesMapPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [
-				RidesExploringMapPage,
+				RidesMapPage,
 
 				TranslateModule.forRoot()
 			],
 			providers: [
 				provideRouter([]),
 				{
-					provide: RidesExploringFacade,
+					provide: RidesFacade,
 					useValue: {
 						getRideGeometries: jest.fn().mockReturnValue(of([
 							polyline([[0, 0], [1, 1]]),
@@ -31,7 +31,7 @@ describe('StreetsExploringMapPage', () => {
 			]
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(RidesExploringMapPage);
+		fixture = TestBed.createComponent(RidesMapPage);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

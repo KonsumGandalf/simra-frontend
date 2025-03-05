@@ -1,0 +1,14 @@
+<p-tabs value="0" [scrollable]="true">
+	<p-tablist>
+		<p-tab value="0">SimRa Map</p-tab>
+		<p-tab value="1" [disabled]="!hasMapillaryImage()">Mapillary Street View</p-tab>
+	</p-tablist>
+	<p-tabpanels>
+		<p-tabpanel value="0">
+			<t-map-component [overlayLayers]="_geometries$()" [layerControl]="undefined"></t-map-component>
+		</p-tabpanel>
+		<p-tabpanel value="1">
+			<a-mapillary (hasMapillaryImage)="this.hasMapillaryImage.set(true)"></a-mapillary>
+		</p-tabpanel>
+	</p-tabpanels>
+</p-tabs>

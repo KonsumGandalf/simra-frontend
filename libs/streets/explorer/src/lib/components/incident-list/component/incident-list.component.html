@@ -1,8 +1,9 @@
-<p-card>
+<p-card [header]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.INCIDENTS' | translate">
 	<p-table
 		#dt
 		[value]="_incidents$()"
 		[loading]="_loading$()"
+		[rowHover]="true"
 		[showLoader]="false"
 		[sortOrder]="1"
 		[multiSortMeta]="[{field: 'scary', order: -1},{field: 'timeStamp', order: -1}]"
@@ -37,7 +38,7 @@
 						(keydown.space)="zoomOnIncident(incident)"
 						tabindex="0"
 					>
-						{{ incident.location }}
+						{{ incident.lat | number: '1.5' }},{{ incident.lng | number: '1.5' }}
 					</a>
 				</td>
 				<td>
@@ -67,8 +68,6 @@
 					</div>
 				</td>
 			</tr>
-
-
 		</ng-template>
 	</p-table>
 </p-card>

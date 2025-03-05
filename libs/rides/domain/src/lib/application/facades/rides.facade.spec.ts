@@ -1,22 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RidesExploringFacade } from './rides-exploring.facade';
+import { RidesFacade } from './rides.facade';
 
-describe('RidesExploringFaceService', () => {
-  let service: RidesExploringFacade;
+describe('RidesFacade', () => {
+  let service: RidesFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
-            provide: RidesExploringFacade,
+            provide: RidesFacade,
             useValue: {
                 getRideGeometries: jest.fn()
             }
         }
       ]
     });
-    service = TestBed.inject(RidesExploringFacade);
+    service = TestBed.inject(RidesFacade);
   });
 
   it('should be created', () => {

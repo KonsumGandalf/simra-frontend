@@ -8,7 +8,7 @@ import { RidesRequestService } from '../../infrastructure/rides-request.service'
 @Injectable({
   providedIn: 'root'
 })
-export class RidesExploringFacade {
+export class RidesFacade {
   private readonly _ridesRequestService = inject(RidesRequestService);
     private readonly _incidentRepository = inject(IncidentRequestService);
 

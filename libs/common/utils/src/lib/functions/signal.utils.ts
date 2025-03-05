@@ -22,7 +22,6 @@ export function asyncComputed<T>(
 
 			resultSignal.set(unwrappedResult as unknown as T);
 		},
-		{ allowSignalWrites: true },
 	);
 
 	return resultSignal.asReadonly();

@@ -11,7 +11,7 @@ export const STREET_SHELL_ROUTES: Route[] = [
 	{
 		path: 'map',
 		loadComponent: () =>
-			import('@simra/streets-explorer').then((m) => m.StreetsExploringMapPage),
+			import('@simra/streets-explorer').then((m) => m.StreetsMapPage),
 	},
 	{
 		matcher: numberMatcher,

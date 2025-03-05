@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
-import { StreetDetailState } from '@simra/streets-domain';
+import { StreetDetailState, StreetDetailViewFacade } from '@simra/streets-domain';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 import { SafetyMetricsCardComponent } from '../../safety-metrics-card/component/safety-metrics-card.component';
 import { SafetyMetricsPanelComponent } from './safety-metrics-panel.component';
@@ -22,6 +22,12 @@ describe('SafetyMetricsPanelComponent', () => {
 						pieMetricsIncidentTypesData$: jest.fn(),
 						getBarMetricsRideIncidentDistributionOptions: jest.fn(),
 						barMetricsRideIncidentDistributionData$: jest.fn(),
+					}
+				},
+				{
+					provide: StreetDetailViewFacade,
+					useValue: {
+						fetchSafetyMetricsForStreet: jest.fn()
 					}
 				}
 			]

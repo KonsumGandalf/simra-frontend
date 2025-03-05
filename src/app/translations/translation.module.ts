@@ -11,6 +11,11 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 		modules: [
 			{
 				baseTranslateUrl,
+				moduleName: 'app',
+				pathTemplate: '{baseTranslateUrl}/app/{language}',
+			},
+			{
+				baseTranslateUrl,
 				moduleName: 'components',
 				pathTemplate: '{baseTranslateUrl}/common/ui/components/{language}',
 			},
