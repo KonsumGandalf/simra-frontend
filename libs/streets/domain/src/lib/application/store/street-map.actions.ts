@@ -6,9 +6,4 @@ export class AddToStreetCache {
 	constructor(public batch: GeoJSON<any, Geometry>[]) {}
 }
 
-export class SetHoveredStreetId {
-	static readonly type = '[StreetMap] Set hovered street id';
-	constructor(public hoveredStreetId: number | undefined) {}
-}
-
 

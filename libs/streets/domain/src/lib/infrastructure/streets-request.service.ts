@@ -54,7 +54,6 @@ export class StreetsRequestService {
 
 	private _processTags(tags: any): ITags {
 		const constructedTags: ITags = {};
-
 		constructedTags.maxSpeed = (tags['maxspeed']) ? parseInt(tags['maxspeed']) : undefined;
 		constructedTags.lanes = (tags['lanes']) ? parseInt(tags['lanes']) : undefined;
 		constructedTags.lit = (tags['lit'] && tags['lit']!="no") ? true : undefined;
@@ -70,12 +69,12 @@ export class StreetsRequestService {
 		if (!isEmpty(parkingRight)) constructedTags.parkingRight = parkingRight;
 		const parkingLeft = defaults(this._processParking(tags, 'left'), parking);
 		if (!isEmpty(parkingLeft)) constructedTags.parkingLeft = parkingLeft;
-
+		console.log(constructedTags);
 		return constructedTags;
 	}
 
 	private _processParking(tags: any, identifier: string): IParking {
-		if (!tags[`parking:${identifier}`] || tags[`parking:${identifier}`] === "no") {
+		if (!tags[`parking:${identifier}`]) {
 			return;
 		}
 
@@ -85,12 +84,12 @@ export class StreetsRequestService {
 	}
 
 	private _processCycleway(tags: any, identifier: string): ICycleway {
-		if (!tags[`cycleway:${identifier}`] || tags[`cycleway:${identifier}`] === "no") {
+		if (!tags[`cycleway:${identifier}`]) {
 			return;
 		}
 
 		return omitBy({
-			type: tags[`cycleway:${identifier}:lane`],
+			type: tags[`cycleway:${identifier}:lane`] || tags[`cycleway:${identifier}`],
 			width: tags[`cycleway:${identifier}:width`]
 		}, isUndefined) as ICycleway;
 	}
