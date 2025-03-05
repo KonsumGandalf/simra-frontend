@@ -1,4 +1,4 @@
-export interface IncidentMarkerInterface {
+export interface IIncidentMarker {
 	id: number;
 	scary: boolean;
 	lat: number;

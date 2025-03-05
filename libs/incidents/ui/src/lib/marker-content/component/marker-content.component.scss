@@ -1,7 +1,8 @@
 .m-marker-content {
-    @apply grow-0 w-auto max-w-fit;
+    @apply flex w-auto;
+
     table {
-        @apply w-48;
+        @apply w-full;
         tbody {
 
             tr {
@@ -10,6 +11,10 @@
 
                 td {
                     @apply text-sm;
+                }
+
+                a-icon {
+                    width: 30%;
                 }
 
                 &:not(:last-child) {
