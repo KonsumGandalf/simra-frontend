@@ -24,16 +24,15 @@ FROM node:23-alpine AS github_builder
 
 WORKDIR /usr/src/app
 
+ENV NX_DAEMON=false
+ENV MAPILLARY_URL=$MAPILLARY_URL
 ARG MAPILLARY_URL
 
 RUN --mount=type=secret,id=simra_api_url \
     --mount=type=secret,id=mapillary_access_token \
-    export SIMRA_API_URL=$(cat /run/secrets/simra_api_url 2>/dev/null || echo "") && \
-    export MAPILLARY_ACCESS_TOKEN=$(cat /run/secrets/mapillary_access_token 2>/dev/null || echo "") && \
-    export MAPILLARY_URL=$MAPILLARY_URL && \
-    export NX_DAEMON=false && \
-    npm install -g nx && \
-    npm ci --ignore-scripts
+    export SIMRA_API_URL=$(cat /run/secrets/simra_api_url) && \
+    export MAPILLARY_ACCESS_TOKEN=$(cat /run/secrets/mapillary_access_token) && \
+    npm install && npm run build
 
 COPY package*.json ./
 
