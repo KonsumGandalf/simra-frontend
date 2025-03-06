@@ -22,6 +22,22 @@
                     "DE": "German"
                 }
             }
+        },
+        "FOOTER": {
+            "PROJECT": {
+                "TITLE": "The Project",
+                "ABOUT_US": "About Us",
+                "PARTNER": "Strategic Partnerships"
+            },
+            "DOWNLOADS": {
+                "TITLE": "Downloads",
+                "PLAYSTORE": "Google Playstore",
+                "APPSTORE": "Apple Appstore",
+                "APK": "APK File"
+            },
+            "COPYRIGHT": {
+                "TITLE": "SimRa | A project of TU Berlin & ECDF"
+            }
         }
     }
 }
