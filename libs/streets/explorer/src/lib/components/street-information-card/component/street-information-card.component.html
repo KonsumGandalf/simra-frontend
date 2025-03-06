@@ -1,9 +1,10 @@
 @if(_street$(); as street) {
 @if(street.way) {
 
-<p-card [header]="'#'+street.id" [subheader]="street.name">
-
-	<section>
+<p-card >
+	<section class="street-information-card__tags">
+		<h4 class="p-card-title">{{ 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID' | translate }} #{{street.id}}</h4>
+		<h5 class="p-card-subtitle">{{street.name}}</h5>
 		<p-card>
 			<table class="simple-table">
 				@if(street.highway) {
@@ -32,85 +33,67 @@
 				}
 			</table>
 		</p-card>
-	@if(street && street.tags) {
-		@if(street.tags.cyclewayRight || street.tags.cyclewayLeft) {
-		<h5>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.CYCLEWAY.TITLE" | translate}}</h5>
-		<div class="flex flex-grow gap-x-4">
-			@if(_street$().tags.cyclewayLeft; as cl) {
-			<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.LEFT' | translate">
+	@if(street && street.tags; as tags) {
+		@for(item of items; track item) {
+			<h5 class="m-0">{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.' + item.title + '.TITLE' | translate }}</h5>
+			<div class="flex flex-grow gap-x-4">
+				@for(child of item.children; track child) {
+					<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.' + child.title | translate">
 						<table class="simple-table">
-							@if(cl.width){
+							@for (childOfChild of child.children; track childOfChild) {
 								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.WIDTH" | translate}}</td>
-									<td>{{cl.width}}</td>
-								</tr>
-							}
-							@if(cl.type){
-								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
-									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Tag:highway%3D'+[cl.type]">{{ CYCLEWAY_LANES_TO_TRANSLATION[cl.type].label| translate}}</a></td>
-								</tr>
+									<td>{{ 'COMPONENTS.GENERAL.GENERAL.' + childOfChild.title | translate }}</td>
+									<td>
+										@if(get(tags, childOfChild.value) && childOfChild.link; as link) {
+											<a class="link-button" target="_blank" [href]="link">
+												<span>{{ item.translationMap[get(tags, childOfChild.value)]?.label | translate }}</span>
+											</a>
+										} @else {
+											<span aFallbackValue>{{ item.translationMap[get(tags, childOfChild.value)]?.label | translate }}</span>
+										}
+									</td>
 							}
 						</table>
-			</p-card>
-			}
-			@if(_street$().tags.cyclewayRight; as cr) {
-			<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.RIGHT' | translate">
-						<table class="simple-table">
-							@if(cr.width){
-								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.WIDTH" | translate}}</td>
-									<td>{{cr.width}}m</td>
-								</tr>
-							}
-							@if(cr.type){
-								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
-									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Key:cycleway:lane'">{{ CYCLEWAY_LANES_TO_TRANSLATION[cr.type].label| translate}}</a></td>
-								</tr>
-							}
-						</table>
-			</p-card>
-			}
-		</div>
-	}
-	@if(street.tags.parkingLeft || street.tags.parkingRight) {
-		<h5>{{"STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.PARKING.TITLE" | translate}}</h5>
-		<div class="flex flex-grow gap-x-4">
-			@if(street.tags.parkingLeft; as pl) {
-				<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.LEFT' | translate">
-						<table class="simple-table">
-							@if(pl.type){
-								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
-									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Street_parking'">{{ STREET_PARKING_TO_TRANSLATION[pl.type].label| translate}}</a></td>
-								</tr>
-							}
-						</table>
-				</p-card>
-			}
-			@if(street.tags.parkingRight; as pr) {
-				<p-card class="sub-card" [subheader]="'COMPONENTS.GENERAL.GENERAL.RIGHT' | translate">
-						<table class="simple-table">
-							@if(pr.type){
-								<tr>
-									<td> {{"COMPONENTS.GENERAL.GENERAL.TYPE" | translate}}</td>
-									<td><a class="link-button u-break-words" target="_blank" [href]="'https://wiki.openstreetmap.org/wiki/Street_parking'">{{ STREET_PARKING_TO_TRANSLATION[pr.type].label| translate}}</a></td>
-								</tr>
-							}
-						</table>
-				</p-card>
-			}
-		</div>
-	}
+					</p-card>
+				}
+			</div>
 		}
+	}
+	</section>
+	<section class="street-information-card__maps">
+		<m-map-carousel></m-map-carousel>
+		<div class="flex flex-wrap items-center justify-between gap-4 mx-4">
+			<a pButton
+			   [href]="'https://www.openstreetmap.org/way/'+street.id"
+			   target="_blank"
+			   icon="ph-bold ph-magnifying-glass"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.OSM' | translate }}
+			</a>
+
+			<a pButton
+			   [href]="_googleLink$()"
+			   target="_blank"
+			   icon="ph-bold ph-google-logo"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.GOOGLE_MAPS' | translate }}
+			</a>
+
+			<a pButton
+			   routerLink="/streets/map"
+			   queryParamsHandling="merge"
+			   target="_blank"
+			   [queryParams]="{ zoom: 18 }"
+			   icon="ph-bold ph-map-trifold"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.SIMRA_MAP' | translate }}
+			</a>
+		</div>
 
 	</section>
-	<t-map-component [overlayLayers]="_geometries$()"></t-map-component>
-
 </p-card>
 }@else {
-	<p-card [header]="'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID' | translate" [subheader]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.NAME' | translate">
+	<p-card [header]="'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID' | translate" [subheader]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.NAME' | translate">
 		<table class="simple-table flex flex-col justify-between w-full sm:w-1/3">
 			@for(i of times(2); track i) {
 				<div>

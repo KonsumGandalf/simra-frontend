@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
-import { SetHoveredStreetId, AddToStreetCache } from './street-map.actions';
+import { AddToStreetCache } from './street-map.actions';
 
 export interface StreetMapStateModel {
 	streetGrid: GeoJSON<any, Geometry>[];
-	hoveredStreetId?: number;
 }
 
 @State<StreetMapStateModel>({
@@ -24,11 +23,6 @@ export class StreetMapState {
 		return state.streetGrid;
 	}
 
-	@Selector()
-	static getHoveredStreetId(state: StreetMapStateModel): number | undefined {
-		return state.hoveredStreetId;
-	}
-
 	@Action(AddToStreetCache)
 	addToStreetCache(ctx: StateContext<StreetMapStateModel>, action: AddToStreetCache) {
 		// const state = ctx.getState();
@@ -44,10 +38,4 @@ export class StreetMapState {
 		})
 	}
 
-	@Action(SetHoveredStreetId)
-	setHoveredStreetId(ctx: StateContext<StreetMapStateModel>, action: SetHoveredStreetId) {
-		ctx.patchState({
-			hoveredStreetId: action.hoveredStreetId
-		});
-	}
 }

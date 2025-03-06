@@ -1,1 +1,1 @@
-export * from './exploring-map/rides-exploring-map.page';
+export * from './exploring-map/rides-map.page';

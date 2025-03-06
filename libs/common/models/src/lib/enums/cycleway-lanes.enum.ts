@@ -6,4 +6,5 @@ export enum ECyclewayType {
 	ADVISORY = 'advisory',
 	EXCLUSIVE = 'exclusive',
 	PICTOGRAM = 'pictogram',
+	NO = 'no'
 }

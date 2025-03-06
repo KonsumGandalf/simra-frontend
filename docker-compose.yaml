@@ -7,9 +7,12 @@ services:
         pull_policy: always
         build:
             context: .
+            target: local_production
             dockerfile: Dockerfile
             args:
                 SIMRA_API_URL: ${SIMRA_API_URL}
+                MAPILLARY_URL: ${MAPILLARY_URL}
+                MAPILLARY_ACCESS_TOKEN: ${MAPILLARY_ACCESS_TOKEN}
         ports:
         - "4200:80"
         env_file:

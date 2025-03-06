@@ -1,0 +1,13 @@
+.app-root-layout {
+    background-color: var(--p-surface-100, white);
+
+    .app-root-layout__main{
+
+        @apply border-t border-gray-200 dark:border-gray-700;
+        background-color: var(--p-surface-100, white);
+
+        .app-rout-layout__container{
+            @apply mx-auto  px-4 md:px-8 py-8 ;
+        }
+    }
+}

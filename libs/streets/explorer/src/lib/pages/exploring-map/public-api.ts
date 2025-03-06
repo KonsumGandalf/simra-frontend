@@ -1,1 +1,1 @@
-export * from './component/streets-exploring-map.page';
+export * from './component/streets-map.page';

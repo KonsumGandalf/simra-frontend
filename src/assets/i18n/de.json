@@ -1,0 +1,27 @@
+{
+    "COMPONENTS": {
+        "MENU_BAR": {
+            "ITEMS": {
+                "HOME": "Home",
+                "STREETS": "Straßen",
+                "RIDES": "Fahrten",
+                "INCIDENTS": "Unfälle",
+                "MAP": "Karte",
+                "LIST": "Liste"
+            },
+            "SETTINGS": {
+                "TITLE": "Einstellungen",
+                "THEME": {
+                    "TITLE": "Theme",
+                    "DARK": "Dunkel",
+                    "LIGHT": "Hell"
+                },
+                "LANGUAGE": {
+                    "TITLE": "Sprache",
+                    "EN": "Englisch",
+                    "DE": "Deutsch"
+                }
+            }
+        }
+    }
+}
