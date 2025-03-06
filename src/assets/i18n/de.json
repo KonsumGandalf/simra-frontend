@@ -22,6 +22,26 @@
                     "DE": "Deutsch"
                 }
             }
+        },
+        "FOOTER": {
+            "PROJECT": {
+                "TITLE": "Das Projekt",
+                "ABOUT_US": "Über uns",
+                "PARTNER": "Strategische Partnerschaften"
+            },
+            "CONTACT": {
+                "TITLE": "Kontakt",
+                "GERMANY": "Deutschland"
+            },
+            "DOWNLOADS": {
+                "TITLE": "Downloads",
+                "PLAYSTORE": "Google Playstore",
+                "APPSTORE": "Apple Appstore",
+                "APK": "APK-Datei"
+            },
+            "COPYRIGHT": {
+                "TITLE": "SimRa | Ein Projekt der TU Berlin & ECDF"
+            }
         }
     }
 }

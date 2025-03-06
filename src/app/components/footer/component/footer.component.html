@@ -1,0 +1,67 @@
+<footer>
+	<section class="footer__tabs">
+		<!-- About SimRa -->
+		<div class="tabs__item">
+			<h2>{{ 'APP.COMPONENTS.FOOTER.PROJECT.TITLE' | translate }}</h2>
+			<ul>
+				<li>
+					<a href="#" class="hover:underline">{{ 'APP.COMPONENTS.FOOTER.PROJECT.ABOUT_US' | translate }}</a>
+				</li>
+				<li>
+					<a href="#" class="hover:underline">{{ 'APP.COMPONENTS.FOOTER.PROJECT.PARTNER' | translate }}</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- App Download -->
+		<div class="tabs__item">
+			<h2>{{ 'APP.COMPONENTS.FOOTER.DOWNLOADS.TITLE' | translate }}</h2>
+			<ul >
+				<li>
+					<a href="https://itunes.apple.com/de/app/simra/id1459516968?mt=8"  target="_blank">{{ 'APP.COMPONENTS.FOOTER.DOWNLOADS.PLAYSTORE' | translate }}</a>
+				</li>
+				<li>
+					<a href="https://tubcloud.tu-berlin.de/s/eK46JHtY7F2exq7/download" target="_blank">{{ 'APP.COMPONENTS.FOOTER.DOWNLOADS.APK' | translate }}</a>
+				</li>
+				<li>
+					<a href="https://play.google.com/store/apps/details?id=de.tuberlin.mcc.simra.app" target="_blank">{{ 'APP.COMPONENTS.FOOTER.DOWNLOADS.APPSTORE' | translate }}</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Contact -->
+		<div class="tabs__item">
+			<h2>{{ 'APP.COMPONENTS.FOOTER.CONTACT.TITLE' | translate }}</h2>
+			<ul>
+				<li>
+					<a href="https://www.tu.berlin/3s/ueber-uns/team/prof-dr-ing-david-bermbach" target="_blank">Prof. Dr. David Bermbach</a>
+				</li>
+				<li>Mobile Cloud Computing</li>
+				<li>Einsteinufer 17</li>
+				<li>10587 Berlin</li>
+				<li>{{ 'APP.COMPONENTS.FOOTER.CONTACT.GERMANY' | translate }}</li>
+			</ul>
+		</div>
+	</section>
+	<section class="footer__copyright">
+		<div class="copyright__content">
+			<span class="text-sm text-surface-100 dark:text-surface-800 sm:text-center">
+				© {{ _currentDate | date:'yyyy' }} {{ 'APP.COMPONENTS.FOOTER.COPYRIGHT.TITLE' | translate }}
+			</span>
+			<div class="platform__links">
+				<a pButton href="https://www.digital-future.berlin/forschung/projekte/simra/" target="_blank" class="p-button-secondary">
+					<i class="pi pi-globe"></i>
+				</a>
+				<a pButton href="https://x.com/SimRa_App" target="_blank" class="p-button-secondary">
+					<i class="ph ph-x-logo"></i>
+				</a>
+				<a pButton href="https://www.instagram.com/sicherheitimradverkehr" target="_blank" class="p-button-secondary">
+					<i class="pi pi-instagram"></i>
+				</a>
+				<a pButton href="https://github.com/simra-project" target="_blank" class="p-button-secondary">
+					<i class="pi pi-github"></i>
+				</a>
+			</div>
+		</div>
+	</section>
+</footer>
