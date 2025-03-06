@@ -1,10 +1,7 @@
 .app-not-found {
-	a {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+	.not-found {
+		display:block;
+		@apply w-full h-screen;
 
 		background-image: url('/assets/not-found.gif');
 		background-repeat: repeat;
