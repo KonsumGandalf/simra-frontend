@@ -1,7 +1,6 @@
 import { ETrafficTimes, EWeekDays, EYear } from '../enums/public-api';
 
 export interface ISafetyMetrics {
-	osmId: number;
 	trafficTime: ETrafficTimes;
 	weekDay: EWeekDays;
 	year: EYear;

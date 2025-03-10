@@ -8,7 +8,7 @@ import {
 	WEEK_DAYS_TO_TRANSLATION,
 	YEAR_TO_TRANSLATION,
 } from '../../../public-api';
-import { ETrafficTimes, EWeekDays, EYear, ISafetyMetrics } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear, ISafetyMetricsStreet } from '@simra/common-models';
 import { ChartData } from 'chart.js';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
@@ -43,7 +43,7 @@ export class SafetyMetricsCardComponent {
 	public readonly _selectedYear$ = model<EYear>(EYear.ALL);
 	public readonly _selectedTrafficTime$ = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 	public readonly _selectedWeekDays$ = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
-	public readonly _selectedSafetyMetrics$ = input<ISafetyMetrics>();
+	public readonly _selectedSafetyMetrics$ = input<ISafetyMetricsStreet>();
 
 	// dynamic filter options
 	public readonly _startTime$ = model<Date>(new Date());
@@ -51,7 +51,7 @@ export class SafetyMetricsCardComponent {
 	public readonly _datetime$ = model<Date[]>([new Date(), new Date()]);
 
 	// data for charts
-	public readonly _safetyMetrics$ = model<ISafetyMetrics | null>(null);
+	public readonly _safetyMetrics$ = model<ISafetyMetricsStreet | null>(null);
 	private readonly _safetyMetricsService = inject(SafetyMetricsService);
 	protected readonly _pieChartOptions =
 		this._safetyMetricsService.getPieMetricsIncidentTypesOptions();

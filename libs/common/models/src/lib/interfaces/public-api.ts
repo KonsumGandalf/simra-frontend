@@ -7,4 +7,5 @@ export * from './column.interface';
 export * from './request-page.interface';
 export * from './ride.interface';
 export * from './safety-metrics.interface';
+export * from './safety-metrics-street.interface';
 
