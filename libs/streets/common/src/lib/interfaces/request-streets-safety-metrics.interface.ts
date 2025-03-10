@@ -1,4 +1,4 @@
-import { EHighwayTypes, ETrafficTimes, EWeekDays, IRequestPage } from '@simra/common-models';
+import { EHighwayTypes, ETrafficTimes, EWeekDays, EYear, IRequestPage } from '@simra/common-models';
 
 export interface SafetyMetricsRequest extends IRequestPage {
 	/**
@@ -32,9 +32,9 @@ export interface SafetyMetricsRequest extends IRequestPage {
 	minNumberOfRides?: number;
 
 	/**
-	 * The maximum number of rides
+	 * The minimum number of incidents
 	 */
-	maxNumberOfRides?: number;
+	minNumberOfIncidents?: number;
 
 	/**
 	 * The time of the traffic
@@ -45,4 +45,9 @@ export interface SafetyMetricsRequest extends IRequestPage {
 	 * The weekday of the traffic
 	 */
 	weekDay?: EWeekDays[];
+
+	/**
+	 * The year of the traffic
+	 */
+	year?: EYear[];
 }

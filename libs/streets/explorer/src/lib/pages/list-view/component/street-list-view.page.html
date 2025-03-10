@@ -42,6 +42,7 @@
 							[optionEnum]="enumHeader.enum"
 							[selected]="filtering()[enumHeader.field]"
 							[translationMap]="enumHeader.translationMap"
+							[filter]="enumHeader?.filter"
 							(selectionChange)="onFilterChange($event)"
 						>
 						</m-enum-multi-select-component>
@@ -49,6 +50,7 @@
 						<m-number-filter
 							[field]="numberHeader.field"
 							[step]="numberHeader.step"
+							[defaultValue]="filtering()['min' + numberHeader.field.charAt(0).toUpperCase() + numberHeader.field.slice(1)]"
 							[min]="numberHeader.min"
 							(filterChange)="onFilterChange($event)"
 						>
@@ -81,6 +83,7 @@
 					>
 						{{ TRAFFIC_TIMES_TO_TRANSLATION[street.trafficTime]?.label | translate }}
 					</td>
+					<td>{{ YEAR_TO_TRANSLATION[street.year]?.label | translate }}</td>
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="loadingbody" let-street>

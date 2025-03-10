@@ -40,7 +40,7 @@ export class StreetAnalyticsService {
 				});
 
 				const safetyMetrics = {
-					planetOsmLineId: street.id,
+					osmId: street.id,
 					numberOfRides: rides.length,
 					numberOfIncidents: incidents.length,
 					numberOfScaryIncidents: scaryIncidents.length,

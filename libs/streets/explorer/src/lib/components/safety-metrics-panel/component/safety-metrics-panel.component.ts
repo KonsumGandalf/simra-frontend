@@ -49,7 +49,7 @@ export class SafetyMetricsPanelComponent {
 		loader: async ({ request }) => {
 			if (
 				!request.safetyMetrics ||
-				request.safetyMetrics.planetOsmLineId != request.street?.id
+				request.safetyMetrics.osmId != request.street?.id
 			) {
 				if (!request.street.id) {
 					return;

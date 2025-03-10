@@ -8,9 +8,9 @@ import {
 	EnumSelectButtonComponent,
 	EnumSelectComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
-	WEEK_DAYS_TO_TRANSLATION,
+	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION,
 } from '@simra/common-components';
-import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { SetSelectedIncidents, SetSelectedSafetyMetrics, StreetDetailState } from '@simra/streets-domain';
 import { find, first, last } from 'lodash';
 import { Card } from 'primeng/card';
@@ -65,6 +65,7 @@ export class SafetyMetricsCardComponent {
 
 	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
 
+	protected readonly _selectedYear = model<EYear>(EYear.ALL);
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 
 	protected readonly _street$ = this._store.selectSignal(StreetDetailState.getStreet);
@@ -95,6 +96,7 @@ export class SafetyMetricsCardComponent {
 
 			if (street && mode === ECardMode.PRECOMPUTED) {
 				const selectedWeekDays = this._selectedWeekDays();
+				const selectedYear = this._selectedYear();
 				const selectedWeekDay =
 					selectedWeekDays.length === 1 ? first(selectedWeekDays) : EWeekDays.ALL_WEEK;
 
@@ -103,7 +105,8 @@ export class SafetyMetricsCardComponent {
 				const selectedMetrics = find(street.safetyMetrics, (metrics) => {
 					return (
 						metrics.weekDay === selectedWeekDay &&
-						metrics.trafficTime === selectedTrafficTimes
+						metrics.trafficTime === selectedTrafficTimes &&
+						metrics.year == selectedYear
 					);
 				});
 
@@ -137,4 +140,7 @@ export class SafetyMetricsCardComponent {
 			}
 		});
 	}
+
+	protected readonly EYear = EYear;
+	protected readonly YEAR_TO_TRANSLATION = YEAR_TO_TRANSLATION;
 }

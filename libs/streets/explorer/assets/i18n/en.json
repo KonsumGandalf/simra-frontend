@@ -75,7 +75,8 @@
 					"RIDES": "Rides",
 					"WEEKDAY": "Weekday",
 					"TRAFFIC_TIME": "Traffic Time",
-					"LOCATION": "Location"
+					"LOCATION": "Location",
+					"YEAR": "Year"
 				}
 			}
 		}

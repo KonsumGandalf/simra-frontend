@@ -42,9 +42,7 @@ export class StreetsMapFacade {
 					for (const streetInformation of response) {
 						batch.push(this.toGeoJSON(streetInformation));
 					}
-					if (batch.length > 0) {
-						this._store.dispatch(new AddToStreetCache(batch));
-					}
+					this._store.dispatch(new AddToStreetCache(batch));
 				})
 			)
 		);

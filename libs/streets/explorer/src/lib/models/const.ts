@@ -7,7 +7,7 @@ export function safetyMetricsDisplayArray(
 	return [
 		{
 			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
-			data: safetyMetrics.planetOsmLineId,
+			data: safetyMetrics.osmId,
 		},
 		{
 			label: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',

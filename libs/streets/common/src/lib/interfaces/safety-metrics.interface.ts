@@ -1,9 +1,10 @@
-import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 
 export interface ISafetyMetrics {
-	planetOsmLineId: number;
+	osmId: number;
 	trafficTime: ETrafficTimes;
 	weekDay: EWeekDays;
+	year: EYear;
 	dangerousColor: string;
 	numberOfRides: number;
 	numberOfIncidents: number;

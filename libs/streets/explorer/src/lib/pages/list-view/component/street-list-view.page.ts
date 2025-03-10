@@ -17,12 +17,12 @@ import {
 	NumberColumn,
 	NumberFilterComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
-	WEEK_DAYS_TO_TRANSLATION,
+	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION,
 } from '@simra/common-components';
-import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { SafetyMetricsRequest } from '@simra/streets-common';
 import { StreetDetailViewFacade, StreetListViewFacade } from '@simra/streets-domain';
-import { times } from 'lodash';
+import { capitalize, times } from 'lodash';
 import { PrimeTemplate } from 'primeng/api';
 import { Card } from 'primeng/card';
 import { Skeleton } from 'primeng/skeleton';
@@ -83,6 +83,7 @@ export class StreetListViewPage {
 			header: `${this._headerPrefix}.HIGHWAY_TYPE`,
 			field: 'highway',
 			enum: EHighwayTypes,
+			filter: true,
 			translationMap: HIGHWAY_TYPES_TO_TRANSLATION,
 		} as EnumColumn<EHighwayTypes>,
 		{
@@ -120,13 +121,21 @@ export class StreetListViewPage {
 			translationMap: TRAFFIC_TIMES_TO_TRANSLATION,
 			sortable: true,
 		} as EnumColumn<ETrafficTimes>,
+		{
+			header: `${this._headerPrefix}.YEAR`,
+			enum: EYear,
+			translationMap: YEAR_TO_TRANSLATION,
+			field: 'year',
+			sortable: false,
+		} as EnumColumn<EYear>,
 	];
 
 	protected readonly filtering = signal<SafetyMetricsRequest>({
 		size: 20,
 		weekDay: [EWeekDays.ALL_WEEK],
 		trafficTime: [ETrafficTimes.ALL_DAY],
-		minNumberOfRides: 30,
+		year: [EYear.ALL],
+		minNumberOfRides: 2,
 		sort: 'dangerousScore,DESC',
 	});
 	protected readonly _streets$ = resource({
@@ -137,6 +146,7 @@ export class StreetListViewPage {
 			const response = await firstValueFrom(
 				this._streetListViewFace.fetchStreetList(request),
 			);
+			console.log(response, request)
 			this.loading.set(false);
 			return response;
 		},
@@ -210,4 +220,7 @@ export class StreetListViewPage {
 		}
 		return undefined;
 	}
+
+	protected readonly YEAR_TO_TRANSLATION = YEAR_TO_TRANSLATION;
+	protected readonly capitalize = capitalize;
 }

@@ -19,7 +19,7 @@ type Story = StoryObj<SafetyMetricsDigitPanelComponent>;
 export const Primary: Story = {
 	args: {
 		safetyMetrics: {
-			planetOsmLineId: 21314,
+			osmId: 21314,
 			numberOfRides: 206,
 			numberOfIncidents: 7,
 			numberOfScaryIncidents: 3,

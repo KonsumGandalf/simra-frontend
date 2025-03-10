@@ -76,7 +76,8 @@
 					"RIDES": "Fahrten",
 					"WEEKDAY": "Wochentag",
 					"TRAFFIC_TIME": "Verkehrszeit",
-					"LOCATION": "Ort"
+					"LOCATION": "Ort",
+					"YEAR": "Jahr"
 				}
 			}
 		}
