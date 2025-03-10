@@ -7,6 +7,7 @@ import { UpdateFilterOptions } from '../actions/map-filter.actions';
 	name: 'map_filter',
 	defaults: {
 		weekDay: undefined,
+		year: undefined,
 		trafficTime: undefined,
 	}
 })
