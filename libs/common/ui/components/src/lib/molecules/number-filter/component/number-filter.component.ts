@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, model, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -19,7 +19,7 @@ export class NumberFilterComponent {
 	field = input.required<string>();
 	step = input<number>(1);
 	min = input<number>(0);
-	defaultValue = input<number>(0);
+	defaultValue = model<number>(0);
 
 	onFilterChange(eventTarget: EventTarget) {
 		const minFieldName = 'min' + this.field().charAt(0).toUpperCase() + this.field().slice(1);

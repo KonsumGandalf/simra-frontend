@@ -5,7 +5,7 @@
 			   [step]="step()"
 			   [min]="min()"
 			   [placeholder]="'COMPONENTS.GENERAL.GENERAL.MIN' | translate"
-			   [ngModel]="defaultValue()"
+			   [(ngModel)]="defaultValue"
 			   (input)="onFilterChange($event.target)"/>
 	</ng-template>
 </p-columnFilter>

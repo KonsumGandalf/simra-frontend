@@ -109,6 +109,12 @@
                     "SEPARATE": "Separate area",
                     "NO": "No Parking"
                 }
+            },
+            "YEAR": {
+                "LABEL": {
+                    "PLACEHOLDER": "Select a year",
+                    "ALL": "All years"
+                }
             }
         }
     },

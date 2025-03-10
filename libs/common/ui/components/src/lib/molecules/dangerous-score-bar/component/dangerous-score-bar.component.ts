@@ -1,18 +1,18 @@
-import { ChangeDetectionStrategy, Component, effect, inject, model, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, inject, model, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
-import { EDangerousColors, ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { EDangerousColors, ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { UpdateFilterOptions } from '@simra/common-state';
 import { first } from 'lodash';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Popover } from 'primeng/popover';
 import { ColorBlockComponent } from '../../../atoms/color-block/component/color-block.component';
-import { TranslationInterface } from '../../../translations/interfaces/translation.interface';
 import { TRAFFIC_TIMES_TO_TRANSLATION } from '../../../translations/maps/traffic-times-to-translation';
 import { WEEK_DAYS_TO_TRANSLATION } from '../../../translations/maps/week-days-to-translation';
+import { YEAR_TO_TRANSLATION } from '../../../translations/maps/year-to-translation';
 import { EnumSelectButtonComponent } from '../../enum-select-button/component/enum-select-button.component';
 import { EnumSelectComponent } from '../../enum-select/component/enum-select.component';
 
@@ -49,33 +49,26 @@ export class DangerousScoreBarComponent {
 	 *
 	 * @protected
 	 */
-	protected _selectedTrafficTime = model<ETrafficTimes>();
+	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
+	protected readonly _selectedYear = model<EYear>(EYear.ALL);
 	/**
 	 * Contains all selected weekdays
 	 *
 	 * @protected
 	 */
-	protected _selectedWeekDays = model<TranslationInterface & { key: EWeekDays }[]>();
+	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
 
 	constructor() {
 		effect(() => {
 			const selectedWeekDays = this._selectedWeekDays();
-
-			let weekDay: EWeekDays | undefined;
-			if (
-				!selectedWeekDays ||
-				selectedWeekDays?.length === 0 ||
-				selectedWeekDays?.length === 2
-			) {
-				weekDay = EWeekDays.ALL_WEEK;
-			} else {
-				weekDay = first(selectedWeekDays)?.key;
-			}
+			const weekDay =
+				selectedWeekDays.length === 1 ? first(selectedWeekDays) : EWeekDays.ALL_WEEK;
 
 			this._store.dispatch(
 				new UpdateFilterOptions({
 					trafficTime: this._selectedTrafficTime(),
-					weekDay: weekDay,
+					year: this._selectedYear(),
+					weekDay,
 				}),
 			);
 		});
@@ -85,4 +78,6 @@ export class DangerousScoreBarComponent {
 	protected readonly EWeekDays = EWeekDays;
 	protected readonly ETrafficTimes = ETrafficTimes;
 	protected readonly TRAFFIC_TIMES_TO_TRANSLATION = TRAFFIC_TIMES_TO_TRANSLATION;
+	protected readonly EYear = EYear;
+	protected readonly YEAR_TO_TRANSLATION = YEAR_TO_TRANSLATION;
 }
