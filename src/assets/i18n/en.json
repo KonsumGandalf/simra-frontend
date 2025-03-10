@@ -7,7 +7,9 @@
                 "RIDES": "Rides",
                 "INCIDENTS": "Incidents",
                 "MAP": "Map",
-                "LIST": "List"
+                "LIST": "List",
+                "REGIONS": "Regions",
+                "REGULAR_REGIONS": "Regular Regions"
             },
             "SETTINGS": {
                 "TITLE": "Settings",

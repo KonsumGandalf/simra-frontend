@@ -47,6 +47,17 @@ export class MenuBarComponent {
 			routerLink: '/',
 		},
 		{
+			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.REGIONS',
+			icon: 'ph-bold ph-map-pin-simple-area',
+			items: [
+				{
+					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.REGULAR_REGIONS',
+					icon: 'ph-bold ph-city',
+					routerLink: '/regions',
+				},
+			],
+		},
+		{
 			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.STREETS',
 			icon: 'ph-bold ph-road-horizon',
 			items: [
@@ -119,7 +130,7 @@ export class MenuBarComponent {
 	protected readonly _home: MenuItem = {
 		routerLink: '/',
 		icon: 'ph-bold ph-house-simple',
-	}
+	};
 
 	constructor() {
 		effect(() => {
