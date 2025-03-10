@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { ISafetyMetrics } from '@simra/common-models';
+import { ISafetyMetricsStreet } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
 import { IResponseStreet } from '@simra/streets-common';
 import { SetSelectedIncidents, SetSelectedSafetyMetrics, SetStreet } from './street-detail.actions';
 
 export interface StreetDetailStateModel {
 	street?: IResponseStreet;
-	selectedSafetyMetric?: ISafetyMetrics;
+	selectedSafetyMetric?: ISafetyMetricsStreet;
 	selectedIncidents?: IIncident[];
 }
 
@@ -33,7 +33,7 @@ export class StreetDetailState {
 	}
 
 	@Selector()
-	static getSelectedSafetyMetrics(state: StreetDetailStateModel): ISafetyMetrics | undefined {
+	static getSelectedSafetyMetrics(state: StreetDetailStateModel): ISafetyMetricsStreet | undefined {
 		return state.selectedSafetyMetric;
 	}
 
