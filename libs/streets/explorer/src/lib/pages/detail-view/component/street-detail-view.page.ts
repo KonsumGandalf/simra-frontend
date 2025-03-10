@@ -10,16 +10,18 @@ import { CommonModule } from '@angular/common';
 import { StreetDetailViewFacade } from '@simra/streets-domain';
 import { firstValueFrom } from 'rxjs';
 import { IncidentListComponent } from '../../../components/incident-list/component/incident-list.component';
-import { SafetyMetricsCardComponent } from '../../../components/safety-metrics-card/component/safety-metrics-card.component';
+import {
+	SafetyMetricsCardLogicComponent,
+} from '../../../components/safety-metrics-card/component/safety-metrics-card-logic.component';
 import { StreetInformationCardComponent } from '../../../components/street-information-card/component/street-information-card.component';
 
 @Component({
 	selector: 'p-street-detail-view',
 	imports: [
 		CommonModule,
-		SafetyMetricsCardComponent,
 		StreetInformationCardComponent,
 		IncidentListComponent,
+		SafetyMetricsCardLogicComponent,
 	],
 	templateUrl: './street-detail-view.page.html',
 	styleUrl: './street-detail-view.page.scss',
@@ -29,7 +31,7 @@ import { StreetInformationCardComponent } from '../../../components/street-infor
 		class: 'p-street-detail-view',
 	},
 })
-export class StreetDetailViewPage   {
+export class StreetDetailViewPage {
 	private readonly _facade = inject(StreetDetailViewFacade);
 
 	/**

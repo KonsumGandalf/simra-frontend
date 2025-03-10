@@ -1,6 +1,8 @@
-import { ISafetyMetrics } from '@simra/streets-common';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ISafetyMetrics } from '@simra/common-models';
+
 export function safetyMetricsDisplayArray(
 	safetyMetrics: ISafetyMetrics,
 ): { label: string; data: any }[] {

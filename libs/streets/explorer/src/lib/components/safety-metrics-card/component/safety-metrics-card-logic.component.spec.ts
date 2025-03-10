@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
+import { SafetyMetricsCardLogicComponent } from './safety-metrics-card-logic.component';
 import { StreetDetailState } from '@simra/streets-domain';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 import { StreetAnalyticsService } from '../../../services/street-analytics.service';
-import { SafetyMetricsCardComponent } from './safety-metrics-card.component';
 
-describe('SafetyMetricsCardComponent', () => {
-	let component: SafetyMetricsCardComponent;
-	let fixture: ComponentFixture<SafetyMetricsCardComponent>;
+describe('SafetyMetricsCardLogicComponent', () => {
+	let component: SafetyMetricsCardLogicComponent;
+	let fixture: ComponentFixture<SafetyMetricsCardLogicComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [SafetyMetricsCardComponent, TranslateModule.forRoot()],
+			imports: [SafetyMetricsCardLogicComponent, TranslateModule.forRoot()],
 			providers: [
 				provideStore([StreetDetailState]),
 				{
@@ -33,7 +33,7 @@ describe('SafetyMetricsCardComponent', () => {
 			]
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(SafetyMetricsCardComponent);
+		fixture = TestBed.createComponent(SafetyMetricsCardLogicComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

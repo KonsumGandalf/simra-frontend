@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ISafetyMetrics } from '@simra/streets-common';
+import { ISafetyMetrics } from '@simra/common-models';
 import { Divider } from 'primeng/divider';
 import { Skeleton } from 'primeng/skeleton';
 import { safetyMetricsDisplayArray } from '../../../models/const';
@@ -28,7 +28,7 @@ export class SafetyMetricsDigitPanelComponent {
 	safetyMetricsDisplay = computed(() => {
 		const metrics = this.safetyMetrics();
 		if (!metrics) {
-			return;
+			return undefined;
 		}
 
 		return safetyMetricsDisplayArray(metrics);

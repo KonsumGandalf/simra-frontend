@@ -1,28 +1,28 @@
 <div class="mb-4 flex flex-row items-center justify-center sm:justify-between min-h-11 flex-wrap gap-y-4 gap-x-4">
 	<div class="p-card p-component p-2">
-		<m-enum-select-button [optionEnum]="ESCardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
+		<m-enum-select-button [optionEnum]="ECardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
 	</div>
 	<div class="p-card p-component p-2">
 		<div class="flex flex-row gap-x-4 ">
-			@if(_mode$() === ESCardMode.PRECOMPUTED) {
+			@if(_mode$() === ECardMode.PRECOMPUTED) {
 				<m-enum-select-component
 					[optionEnum]="EYear"
-					[(selected)]="_selectedYear"
+					[(selected)]="_selectedYear$"
 					[translationMap]="YEAR_TO_TRANSLATION"
 				></m-enum-select-component>
 				<m-enum-select-component
 					[optionEnum]="ETrafficTimes"
-					[(selected)]="_selectedTrafficTime"
+					[(selected)]="_selectedTrafficTime$"
 					[translationMap]="TRAFFIC_TIMES_TO_TRANSLATION"
 				></m-enum-select-component>
-				<m-enum-select-button [optionEnum]="EWeekDays" [translationMap]="WEEK_DAYS_TO_TRANSLATION" [(selected)]="_selectedWeekDays" [multiple]="true"></m-enum-select-button>
+				<m-enum-select-button [optionEnum]="EWeekDays" [translationMap]="WEEK_DAYS_TO_TRANSLATION" [(selected)]="_selectedWeekDays$" [multiple]="true"></m-enum-select-button>
 			} @else {
 				<p-float-label variant="on">
-					<p-datepicker size="small" inputId="startTime" [(ngModel)]="startTime" [timeOnly]="true"/>
+					<p-datepicker size="small" inputId="startTime" [(ngModel)]="_startTime$" [timeOnly]="true"/>
 					<label for="startTime">{{ 'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.MODE.REALTIME.START_TIME' | translate }}</label>
 				</p-float-label>
 				<p-float-label variant="on">
-					<p-datepicker size="small" inputId="endTime" [(ngModel)]="endTime" [timeOnly]="true"/>
+					<p-datepicker size="small" inputId="endTime" [(ngModel)]="_endTime$" [timeOnly]="true"/>
 					<label for="endTime">{{ 'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.MODE.REALTIME.END_TIME' | translate}}</label>
 				</p-float-label>
 				<p-floatlabel variant="on">
@@ -30,7 +30,7 @@
 					<label for="calendar">{{ 'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.MODE.REALTIME.DATE_RANGE' | translate}}</label>
 				</p-floatlabel>
 			}
-	</div>
+		</div>
 	</div>
 </div>
 <p-card [header]="'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.TITLE' | translate">
@@ -40,16 +40,16 @@
 	<p-chart
 		type="bar"
 		height="21rem"
-		[data]="_barMetricsRideIncidentDistributionData$()"
+		[data]="_barChartData$()"
 		[responsive]="true"
-		[options]="_barMetricsRideIncidentDistributionOptions">
+		[options]="_barChartOptions">
 	</p-chart>
 
 	<p-chart
 		type="pie"
 		height="21rem"
-		[data]="_pieMetricsIncidentTypesData$()"
+		[data]="_pieChartData$()"
 		[responsive]="true"
-		[options]="_pieMetricsIncidentTypesOptions">
+		[options]="_pieChartOptions">
 	</p-chart>
 </p-card>

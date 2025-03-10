@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { EDangerousColors } from '@simra/common-models';
+import { EDangerousColors, ISafetyMetrics } from '@simra/common-models';
 import { EIncidentType } from '@simra/incidents-models';
-import { ISafetyMetrics } from '@simra/streets-common';
 import { SetSelectedIncidents, SetSelectedSafetyMetrics, StreetAnalyticsFacadeFacade, StreetDetailState } from '@simra/streets-domain';
 import { orderBy, partition } from 'lodash';
 import { Moment } from 'moment';

@@ -1,5 +1,6 @@
+import { ISafetyMetrics } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
-import { IResponseStreet, ISafetyMetrics } from '@simra/streets-common';
+import { IResponseStreet } from '@simra/streets-common';
 
 export class SetStreet {
 	static readonly type = '[StreetDetail] Set street';

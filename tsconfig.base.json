@@ -15,6 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@simra/browse": ["libs/regions/browse/src/index.ts"],
 			"@simra/common-components": ["libs/common/ui/components/src/index.ts"],
 			"@simra/common-models": ["libs/common/models/src/index.ts"],
 			"@simra/common-state": ["libs/common/state/src/index.ts"],

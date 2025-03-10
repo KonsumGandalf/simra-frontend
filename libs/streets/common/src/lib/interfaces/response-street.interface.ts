@@ -1,5 +1,5 @@
+import { ISafetyMetrics } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
-import { ISafetyMetrics } from '../interfaces/safety-metrics.interface';
 import { ITags } from './tags.interface';
 
 export interface IResponseStreet {

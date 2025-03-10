@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ISafetyMetrics } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
-import { IResponseStreet, ISafetyMetrics } from '@simra/streets-common';
+import { IResponseStreet } from '@simra/streets-common';
 import { SetSelectedIncidents, SetSelectedSafetyMetrics, SetStreet } from './street-detail.actions';
 
 export interface StreetDetailStateModel {

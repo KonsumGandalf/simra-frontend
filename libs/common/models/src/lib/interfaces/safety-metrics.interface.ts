@@ -1,4 +1,4 @@
-import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear } from '../enums/public-api';
 
 export interface ISafetyMetrics {
 	osmId: number;
