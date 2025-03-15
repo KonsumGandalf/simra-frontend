@@ -67,7 +67,6 @@
 		"stylelint": "^16.14.1",
 		"tailwindcss-children": "^2.1.0",
 		"tailwindcss-primeui": "^0.4.0",
-		"ts-case-convert": "^2.1.0",
 		"ts-enum-util": "^4.1.0",
 		"typedi": "^0.10.0",
 		"zone.js": "~0.15.0"

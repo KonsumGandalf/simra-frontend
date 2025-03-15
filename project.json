@@ -54,6 +54,11 @@
             "output": "assets/i18n/streets/explorer"
           },
           {
+            "input": "libs/regions/browse/assets/i18n",
+            "glob": "**/*",
+            "output": "assets/i18n/regions/browse"
+          },
+          {
             "input": "libs/incidents/ui/assets/i18n",
             "glob": "**/*",
             "output": "assets/i18n/incidents/ui"
