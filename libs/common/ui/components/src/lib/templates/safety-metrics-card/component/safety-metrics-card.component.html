@@ -1,6 +1,6 @@
 <div class="mb-4 flex flex-row items-center justify-center sm:justify-between min-h-11 flex-wrap gap-y-4 gap-x-4">
-	<div class="p-card p-component p-2">
-		<m-enum-select-button [optionEnum]="ECardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
+	<div class="projection-card p-card p-component">
+		<ng-content></ng-content>
 	</div>
 	<div class="p-card p-component p-2">
 		<div class="flex flex-row gap-x-4 ">

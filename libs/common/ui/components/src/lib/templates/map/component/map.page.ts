@@ -53,6 +53,7 @@ export class MapPage {
 	private map?: Map;
 
 	public isSearchable = input<boolean>(false);
+	public isNavigable = input<boolean>(false);
 
 	constructor() {
 		effect(() => {
@@ -80,12 +81,14 @@ export class MapPage {
 	/**
 	 * Map options which are applied at the start
 	 */
-	public readonly initialOptions: MapOptions = {
+	private readonly basicOptions: MapOptions = {
 		zoom: this.leafletPosition().zoom,
 		center: latLng(this.leafletPosition().lat, this.leafletPosition().lng),
 		layers: [BASE_MAP_LAYER[EBaseLayerTypes.OSM_HOT]],
 		preferCanvas: true,
 	};
+	public readonly customMapOptions = input<MapOptions | undefined>(undefined);
+	protected readonly mapOptions = computed(() => ({ ...this.basicOptions, ...this.customMapOptions() }));
 
 	/**
 	 * The appearance options the user can choose from when using the map
@@ -119,6 +122,11 @@ export class MapPage {
 	onMapChange(event: LeafletEvent): void {
 		const center = event.sourceTarget.getCenter();
 		const zoom = event.sourceTarget.getZoom();
+
+		if (!this.isNavigable()) {
+			return;
+		}
+
 		this._router.navigate([], {
 			queryParams: { lat: center.lat.toFixed(5), lng: center.lng.toFixed(5), zoom },
 			queryParamsHandling: 'merge',

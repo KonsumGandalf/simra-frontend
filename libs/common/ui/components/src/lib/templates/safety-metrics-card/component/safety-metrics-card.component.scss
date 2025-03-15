@@ -1,5 +1,4 @@
-.m-safety-metrics-panel {
-
+.t-safety-metrics-card {
     p-card {
         .p-card {
             @apply w-full rounded-lg border;
@@ -13,6 +12,15 @@
                     }
                 }
             }
+        }
+    }
+
+    .projection-card {
+        @apply p-2;
+
+        &:empty,
+        &:not(:has(.p-card-body)) {
+            @apply hidden;
         }
     }
 }

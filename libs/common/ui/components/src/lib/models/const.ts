@@ -1,16 +1,27 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ISafetyMetricsStreet } from '@simra/common-models';
+import { ISafetyMetrics } from '@simra/common-models';
 
-export function safetyMetricsDisplayArray(
-	safetyMetrics: ISafetyMetricsStreet,
+export function safetyMetricsDisplayArray<T extends ISafetyMetrics>(
+	safetyMetrics: T,
 ): { label: string; data: any }[] {
-	return [
-		{
+	const specificAttributes = [];
+
+	if ('osmId' in safetyMetrics) {
+		specificAttributes.push({
 			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
 			data: safetyMetrics.osmId,
-		},
+		});
+	}
+	if ('name' in safetyMetrics) {
+		specificAttributes.push({
+			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.NAME',
+			data: safetyMetrics.name,
+		});
+	}
+
+	const generalAttributes = [
 		{
 			label: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
 			data: safetyMetrics.dangerousScore,
@@ -56,4 +67,6 @@ export function safetyMetricsDisplayArray(
 			data: safetyMetrics.numberOfObstacleDodges,
 		},
 	];
+
+	return [...specificAttributes, ...generalAttributes];
 }

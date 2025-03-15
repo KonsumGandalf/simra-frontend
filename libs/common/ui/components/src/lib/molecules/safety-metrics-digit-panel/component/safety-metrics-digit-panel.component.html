@@ -4,13 +4,18 @@
 			<tr>
 				<td>{{ metric.label | translate }}</td>
 				<td>
-					{{
-						metric?.data % 1 !== 0
-							? (metric.data | number: '1.2-2')
-							: (metric.data | number: '1.0-0')
-					}}
+					@if(isNumber(metric.data)) {
+						{{
+							metric?.data % 1 !== 0
+								? (metric.data | number: '1.2-2')
+								: (metric.data | number: '1.0-0')
+						}}
+					} @else {
+						{{ metric.data }}
+					}
 				</td>
 			</tr>
+			<ng-content></ng-content>
 			@if (!$last) {
 				<p-divider />
 			}

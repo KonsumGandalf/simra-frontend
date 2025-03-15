@@ -19,15 +19,16 @@
                 "PLACEHOLDER": "Nichts ausgewählt",
                 "COLUMNS": {
                     "ID": "ID",
-                    "OSM_ID": "OSM ID"
+                    "OSM_ID": "OSM ID",
+                    "NAME": "Name"
                 }
             }
         },
         "ENTITY_ATTRIBUTES": {
             "WEEK_DAYS": {
                 "TOOLTIP": {
-                    "WEEK": "Die Tage von Montag bis Freitag",
-                    "WEEKEND": "Die Tage Samstag und Sonntag",
+                    "WEEK": "Montag bis Freitag",
+                    "WEEKEND": "Samstag und Sonntag",
                     "ALL_WEEK": "Alle Tage der Woche"
                 },
                 "LABEL": {
