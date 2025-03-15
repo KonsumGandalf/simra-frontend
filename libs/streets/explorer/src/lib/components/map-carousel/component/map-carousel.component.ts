@@ -61,7 +61,7 @@ export class MapCarouselComponent {
 		}
 
 		const convertedCoordinates = street.way.coordinates
-			.map((coordinate) => proj4('EPSG:3857', 'EPSG:4326', coordinate))
+			.map((coordinate) => proj4('EPSG:3857', 'EPSG:4326', [coordinate[0], coordinate[1]]))
 			.map(([lng, lat]) => [lat, lng]);
 
 		const latLngs = convertedCoordinates.map(([lat, lng]) => latLng(lat, lng));

@@ -69,7 +69,7 @@ export class StreetsRequestService {
 		if (!isEmpty(parkingRight)) constructedTags.parkingRight = parkingRight;
 		const parkingLeft = defaults(this._processParking(tags, 'left'), parking);
 		if (!isEmpty(parkingLeft)) constructedTags.parkingLeft = parkingLeft;
-		console.log(constructedTags);
+
 		return constructedTags;
 	}
 

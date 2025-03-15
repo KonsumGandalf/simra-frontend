@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { IPage } from '@simra/common-models';
 import {
 	SafetyMetricsDto,
-	SafetyMetricsRequest,
-	StreetsSafetyMetricsInterface,
+	IStreetsSafetyMetricsRequest,
+	IStreetsSafetyMetrics,
 } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, isEmpty, isNumber, omitBy, pickBy } from 'lodash';
@@ -28,8 +28,8 @@ export class SafetyMetricsRequestService {
 	 *
 	 * @param requestParams - The request parameters
 	 */
-	public getStreetList(requestParams: SafetyMetricsRequest): Observable<IPage<StreetsSafetyMetricsInterface>> {
+	public getStreetList(requestParams: IStreetsSafetyMetricsRequest): Observable<IPage<IStreetsSafetyMetrics>> {
 		const params = defaults(pickBy(requestParams, isNumber), omitBy(requestParams, isEmpty));
-		return this._http.get<IPage<StreetsSafetyMetricsInterface>>('/api/safety-metrics/streets', { params });
+		return this._http.get<IPage<IStreetsSafetyMetrics>>('/api/safety-metrics/streets', { params });
 	}
 }

@@ -1,41 +1,8 @@
-import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { ISafetyMetrics } from './safety-metrics.interface';
 
-export interface StreetsSafetyMetricsInterface {
-	/**
-	 * The planet osm id of the street
-	 */
-	id: number;
-	/**
-	 * The name of the street
-	 */
-	name?: string;
+export interface IStreetsSafetyMetrics extends ISafetyMetrics {
 	/**
 	 * The type of the street
 	 */
 	highway: string;
-	/**
-	 * Indicates how dangerous the street is
-	 */
-	dangerousScore: number;
-	/**
-	 * The color of the dangerous score
-	 */
-	dangerousColor: string;
-	/**
-	 * The number of rides on the street
-	 */
-	numberOfRides: number;
-	/**
-	 * The number of accidents on the street
-	 */
-	numberOfIncidents: number;
-
-	/**
-	 * The weekday of the traffic
-	 */
-	weekDay: EWeekDays;
-	/**
-	 * The time of the traffic
-	 */
-	trafficTime: ETrafficTimes;
 }

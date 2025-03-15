@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { IPage } from '@simra/common-models';
-import { SafetyMetricsDto, StreetsSafetyMetricsInterface } from '@simra/streets-common';
+import { SafetyMetricsDto, IStreetsSafetyMetrics } from '@simra/streets-common';
 import { firstValueFrom, of } from 'rxjs';
 import { SafetyMetricsRequestService } from './safety-metrics-request.service';
 
@@ -50,7 +50,6 @@ describe('SafetyMetricsRequestService', () => {
 			service.getStreetList({
 				id: 1,
 				name: '',
-				maxDangerousScore: undefined
 			});
 			expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
 			expect(httpClientSpy.get).toHaveBeenCalledWith('/api/safety-metrics/streets', { params: { id: 1} });
@@ -64,7 +63,7 @@ describe('SafetyMetricsRequestService', () => {
 						dangerousScore: 1,
 					},
 				],
-			} as IPage<StreetsSafetyMetricsInterface>
+			} as IPage<IStreetsSafetyMetrics>
 			httpClientSpy.get.mockReturnValue(of(response));
 			service.getStreetList({
 				id: 1,

@@ -76,7 +76,8 @@
 					"WEEKDAY": "Weekday",
 					"TRAFFIC_TIME": "Traffic Time",
 					"LOCATION": "Location",
-					"YEAR": "Year"
+					"YEAR": "Year",
+					"DISTANCE_PER_RIDE": "Distance per ride (km)"
 				}
 			}
 		}

@@ -3,7 +3,7 @@ import { TTranslationMap } from '@simra/common-components';
 export interface ITagCard {
 	title: string;
 	children: CardRow[];
-	translationMap: TTranslationMap<any>;
+	translationMap: TTranslationMap<string>;
 }
 
 interface CardRow {

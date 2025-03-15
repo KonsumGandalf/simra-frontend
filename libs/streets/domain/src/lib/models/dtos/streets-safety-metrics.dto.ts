@@ -1,8 +1,8 @@
 import { EHighwayTypes, ETrafficTimes, EWeekDays } from '@simra/common-models';
-import { StreetsSafetyMetricsInterface } from '@simra/streets-common';
+import { IStreetsSafetyMetrics } from '@simra/streets-common';
 import { IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
-export class StreetsSafetyMetricsDto implements StreetsSafetyMetricsInterface {
+export class StreetsSafetyMetricsDto implements IStreetsSafetyMetrics {
 	@IsNumber()
 	id: number;
 

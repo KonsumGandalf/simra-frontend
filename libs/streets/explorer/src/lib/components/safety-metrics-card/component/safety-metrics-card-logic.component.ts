@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	effect,
@@ -10,7 +11,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { SafetyMetricsCardComponent } from '@simra/common-components';
+import { EnumSelectButtonComponent, SafetyMetricsCardComponent, CARD_MODE_TO_TRANSLATION_MAP } from '@simra/common-components';
 import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import {
 	SetSelectedIncidents,
@@ -25,13 +26,14 @@ import { ECardMode } from '../models/card-mode.enum';
 
 @Component({
 	selector: 't-safety-metrics-card-logic',
-	imports: [CommonModule, SafetyMetricsCardComponent, FormsModule],
+	imports: [CommonModule, SafetyMetricsCardComponent, FormsModule, EnumSelectButtonComponent],
 	templateUrl: './safety-metrics-card-logic.component.html',
 	styleUrl: './safety-metrics-card-logic.component.scss',
 	host: {
 		class: 'm-safety-metrics-panel',
 	},
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SafetyMetricsCardLogicComponent {
 	private readonly _safetyMetricsService = inject(SafetyMetricsService);
@@ -49,9 +51,8 @@ export class SafetyMetricsCardLogicComponent {
 		return datetime.map((date) => new Date(date));
 	});
 
-	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
-
 	protected readonly _selectedYear = model<EYear>(EYear.ALL);
+	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 
 	protected readonly _street$ = this._store.selectSignal(StreetDetailState.getStreet);
@@ -119,4 +120,7 @@ export class SafetyMetricsCardLogicComponent {
 			}
 		});
 	}
+
+	protected readonly CARD_MODE_TO_TRANSLATION_MAP = CARD_MODE_TO_TRANSLATION_MAP;
+	protected readonly ECardMode = ECardMode;
 }
