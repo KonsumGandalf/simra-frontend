@@ -1,7 +1,7 @@
 {
 	"name": "region-models",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
-	"sourceRoot": "libs/regions/models/src",
+	"sourceRoot": "libs/regions/common/src",
 	"prefix": "lib",
 	"projectType": "library",
 	"tags": ["domain:regions", "type:model"],
@@ -10,7 +10,7 @@
 			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "libs/regions/models/jest.config.ts"
+				"jestConfig": "libs/regions/common/jest.config.ts"
 			}
 		},
 		"lint": {

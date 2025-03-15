@@ -2,7 +2,7 @@ export default {
 	displayName: 'region-models',
 	preset: '../../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-	coverageDirectory: '../../../coverage/libs/regions/models',
+	coverageDirectory: '../../../coverage/libs/regions/common',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': [
 			'jest-preset-angular',

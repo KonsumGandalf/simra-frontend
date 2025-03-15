@@ -25,7 +25,7 @@
 			"@simra/incidents-models": ["libs/incidents/models/src/index.ts"],
 			"@simra/incidents-shell": ["libs/incidents/shell/src/index.ts"],
 			"@simra/incidents-ui": ["libs/incidents/ui/src/index.ts"],
-			"@simra/models": ["libs/regions/models/src/index.ts"],
+			"@simra/models": ["libs/regions/common/src/index.ts"],
 			"@simra/regions-browse": ["libs/regions/browse/src/index.ts"],
 			"@simra/regions-domain": ["libs/regions/domain/src/index.ts"],
 			"@simra/regions-models": ["libs/regions/models/src/index.ts"],
