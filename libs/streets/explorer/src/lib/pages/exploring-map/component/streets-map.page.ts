@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngxs/store';
-import { DangerousScoreBarComponent, MapPage } from '@simra/common-components';
+import { DangerousScoreBarComponent, MapPage, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
 import { MapPositionInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
@@ -22,7 +22,6 @@ import { IGetStreetGrid } from '@simra/streets-common';
 import { SetStreet, StreetDetailState, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { Marker } from 'leaflet';
 import { firstValueFrom } from 'rxjs';
-import { SafetyMetricsPanelComponent } from '../../../components/safety-metrics-panel/component/safety-metrics-panel.component';
 
 @Component({
 	selector: 'streets-map',
@@ -30,8 +29,8 @@ import { SafetyMetricsPanelComponent } from '../../../components/safety-metrics-
 		CommonModule,
 		LeafletModule,
 		MapPage,
-		SafetyMetricsPanelComponent,
 		DangerousScoreBarComponent,
+		SafetyMetricsDigitPanelComponent,
 	],
 	templateUrl: './streets-map.page.html',
 	styleUrl: './streets-map.page.scss',

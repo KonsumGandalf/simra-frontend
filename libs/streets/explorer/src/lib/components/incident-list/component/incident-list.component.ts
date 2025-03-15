@@ -59,7 +59,7 @@ export class IncidentListComponent {
 	private readonly _incidentHeaderPrefix = 'INCIDENTS.UI.GENERAL.LABELS';
 	protected readonly _cols: Column[] = [
 		{ header: `${this._incidentHeaderPrefix}.TIMESTAMP`, field: 'timeStamp' },
-		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID`, field: 'id' },
+		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.ID`, field: 'id' },
 		{ header: `${this._incidentHeaderPrefix}.INCIDENT_TYPE`, field: 'incidentType' },
 		{ header: `${this._incidentHeaderPrefix}.IS_SCARY`, field: 'scary' },
 		{ header: `${this._incidentHeaderPrefix}.BIKE`, field: 'bike' },

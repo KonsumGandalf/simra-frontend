@@ -46,7 +46,7 @@ export class EnumMultiSelectComponent {
 		selectedKeys: (keyof TTranslationMap)[] | string[],
 	): string {
 		if (!selectedKeys || selectedKeys.length === 0) {
-			return '';
+			return `${this._translationService.instant('COMPONENTS.GENERAL.TABLE.HEADER.PLACEHOLDER')}`;
 		}
 
 		if (selectedKeys.length >= this.maxSelectedDisplay() + 1) {

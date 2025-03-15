@@ -7,7 +7,10 @@
                 "RIDES": "Rides",
                 "INCIDENTS": "Incidents",
                 "MAP": "Map",
-                "LIST": "List"
+                "LIST": "List",
+                "REGIONS": "Regions",
+                "ADMINISTRATIVE_REGIONS": "Administrative District",
+                "SIMRA_REGIONS": "SimRa Regions"
             },
             "SETTINGS": {
                 "TITLE": "Settings",

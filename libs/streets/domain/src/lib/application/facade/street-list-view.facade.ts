@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IPage } from '@simra/common-models';
-import { StreetsSafetyMetricsInterface, SafetyMetricsRequest } from '@simra/streets-common';
+import { IStreetsSafetyMetrics, IStreetsSafetyMetricsRequest } from '@simra/streets-common';
 import { Observable } from 'rxjs';
 import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics-request.service';
 
@@ -8,7 +8,7 @@ import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics
 export class StreetListViewFacade {
 	private readonly _safetyMetricsRequestService = inject(SafetyMetricsRequestService);
 
-	public fetchStreetList(safetyMetricsInterface: SafetyMetricsRequest): Observable<IPage<StreetsSafetyMetricsInterface>> {
+	public fetchStreetList(safetyMetricsInterface: IStreetsSafetyMetricsRequest): Observable<IPage<IStreetsSafetyMetrics>> {
 		return this._safetyMetricsRequestService.getStreetList(safetyMetricsInterface);
 	}
 }

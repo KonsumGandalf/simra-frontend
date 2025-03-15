@@ -94,6 +94,10 @@ module.exports = [
                         {
                             sourceTag: 'domain:streets',
                             onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents', 'domain:rides', 'domain:streets'],
+                        },
+                        {
+                            sourceTag: 'domain:regions',
+                            onlyDependOnLibsWithTags: ['domain:common', 'domain:incidents', 'domain:rides', 'domain:streets', 'domain:regions'],
                         }
                     ],
                 },

@@ -1,0 +1,9 @@
+.p-region-detail-view {
+    .box__button-container {
+        @apply flex flex-row gap-4;
+
+        a {
+            @apply flex-1;
+        }
+    }
+}

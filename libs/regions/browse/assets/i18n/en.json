@@ -1,0 +1,32 @@
+{
+    "COMPONENTS": {
+        "REGION_DETAIL_VIEW": {
+            "AUTOCOMPLETE": {
+                "PLACEHOLDER": "Filter for a region"
+            },
+            "INFORMATION_BOX": {
+                "YEAR": "This analysis compares cycling <b>trends across different years</b>. By observing changes we can identify if the safety of cyclists has improved or deteriorated over time.",
+                "TRAFFIC_TIME": "This analysis categorizes cycling data based on different <b>traffic times</b>, reflecting variations in <b>road conditions</b> and <b>risk levels</b> throughout the day.",
+                "WEEKDAY": "This analysis categorizes cycling data based on different days, reflecting variations in <b>traffic density</b> and <b>incident likelihood</b>."
+            },
+            "TEMPORAL_METRICS": {
+                "TITLE": "Temporal Safety Metrics",
+                "DESCRIPTION": "Here you can find detailed information about the selected region. You can see the average length of street segments and the travelled distance."
+            }
+        },
+        "GENERAL": {
+            "ENTITY_ATTRIBUTES": {
+                "REGION": {
+                    "AVERAGE_LENGTH": "Average length of street segments",
+                    "TRAVELLED_DISTANCE": "Travelled distance",
+                    "SUB_REGIONS": "Sub regions",
+                    "ALL": "All regions"
+                }
+            },
+            "REGIONS": {
+                "TITLE": "Regions",
+                "TOOLTIP": "Here you can find all regions that are currently available in the SimRa app. You can select a region to see more details about it."
+            }
+        }
+    }
+}

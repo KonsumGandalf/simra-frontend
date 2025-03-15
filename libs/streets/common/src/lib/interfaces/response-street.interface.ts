@@ -1,12 +1,13 @@
+import { ISafetyMetricsStreet } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
-import { ISafetyMetrics } from '../interfaces/safety-metrics.interface';
 import { ITags } from './tags.interface';
+import { IWay } from './way-line.interface';
 
 export interface IResponseStreet {
 	id: number;
-	safetyMetrics: ISafetyMetrics[];
+	safetyMetrics: ISafetyMetricsStreet[];
 	rideIncident: IIncident[];
-	way: any;
+	way: IWay;
 	highway: string;
 	name: string;
 	tags: ITags;

@@ -1,0 +1,20 @@
+<t-base-region-detail-view [detailedRegion]="_detailedRegion.value()" [safetyMetrics]="_safetyMetrics()"  [(queryOptions)]="queryOptions" (changeDetails)="changeDetails($event)">
+	<div class="box__button-container">
+		<a pButton
+		   [href]="'https://en.wikipedia.org/wiki/'+regionName()"
+		   target="_blank"
+		   icon="ph-bold ph-globe"
+		   size="small">
+			{{ 'Wikipedia' | translate }}
+		</a>
+		<a pButton
+		   routerLink="/streets/map"
+		   queryParamsHandling="merge"
+		   target="_blank"
+		   [queryParams]="queryOptions()"
+		   icon="ph-bold ph-map-trifold"
+		   size="small">
+			{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.SIMRA_MAP' | translate }}
+		</a>
+	</div>
+</t-base-region-detail-view>

@@ -5,3 +5,4 @@ export * from './sort-order.enum';
 export * from './street-parking.enum';
 export * from './traffic-times.enum';
 export * from './week-days.enum';
+export * from './year.enum';

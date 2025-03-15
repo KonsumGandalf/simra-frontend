@@ -1,0 +1,4 @@
+export enum ECardMode {
+	PRECOMPUTED = 'PRECOMPUTED',
+	REALTIME = 'REALTIME',
+}

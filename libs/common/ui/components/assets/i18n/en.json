@@ -20,7 +20,8 @@
                 "PLACEHOLDER": "Nothing selected",
                 "COLUMNS": {
                     "ID": "ID",
-                    "OSM_ID": "OSM ID"
+                    "OSM_ID": "OSM ID",
+                    "NAME": "Name"
                 }
             }
         },
@@ -71,8 +72,8 @@
             },
             "WEEK_DAYS": {
                 "TOOLTIP": {
-                    "WEEK": "The days from Monday to Friday",
-                    "WEEKEND": "The days Saturday and Sunday",
+                    "WEEK": "Monday to Friday",
+                    "WEEKEND": "Saturday and Sunday",
                     "ALL_WEEK": "All days of the week"
                 },
                 "LABEL": {
@@ -108,6 +109,12 @@
                     "SHOULDER": "On shoulder",
                     "SEPARATE": "Separate area",
                     "NO": "No Parking"
+                }
+            },
+            "YEAR": {
+                "LABEL": {
+                    "PLACEHOLDER": "Select a year",
+                    "ALL": "All years"
                 }
             }
         }

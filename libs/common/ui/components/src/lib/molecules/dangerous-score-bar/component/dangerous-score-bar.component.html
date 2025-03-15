@@ -2,6 +2,7 @@
 	<p-popover #op >
 		<div class="popover-container">
 			<m-enum-select-component [optionEnum]="ETrafficTimes" [translationMap]="TRAFFIC_TIMES_TO_TRANSLATION" [(selected)]="_selectedTrafficTime"></m-enum-select-component>
+			<m-enum-select-component [optionEnum]="EYear" [translationMap]="YEAR_TO_TRANSLATION" [(selected)]="_selectedYear"></m-enum-select-component>
 			<m-enum-select-button [optionEnum]="EWeekDays" [translationMap]="WEEK_DAYS_TO_TRANSLATION" [(selected)]="_selectedWeekDays" [multiple]="true"></m-enum-select-button>
 		</div>
 	</p-popover>

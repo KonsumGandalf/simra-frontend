@@ -1,0 +1,27 @@
+<t-base-region-detail-view [detailedRegion]="_detailedRegion.value()" [safetyMetrics]="_safetyMetrics()" [(queryOptions)]="_queryOptions" (changeDetails)="changeDetails($event)">
+	<div class="box__button-container">
+		@if (_detailedRegion.value(); as simraRegion) {
+
+			<div class="button-container__sub-regions">
+				{{ 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SUB_REGIONS' | translate }}:
+				@for(subRegion of simraRegion.regions; track subRegion) {
+					@if ($index > 0) {, }
+					<a [routerLink]="['/regions/', subRegion.name]" class="link-button">{{ subRegion.name }}</a>
+				}
+			</div>
+			<a pButton
+			   routerLink="/streets/map"
+			   queryParamsHandling="merge"
+			   target="_blank"
+			   [queryParams]="_queryOptions()"
+			   icon="ph-bold ph-map-trifold"
+			   class="flex-1"
+			   size="small">
+				{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.SIMRA_MAP' | translate }}
+			</a>
+		} @else {
+			<p-skeleton class="w-7/12"></p-skeleton>
+			<p-skeleton class="w-full"></p-skeleton>
+		}
+	</div>
+</t-base-region-detail-view>

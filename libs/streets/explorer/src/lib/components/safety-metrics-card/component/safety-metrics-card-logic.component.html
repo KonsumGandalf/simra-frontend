@@ -1,0 +1,11 @@
+<t-safety-metrics-card
+	[(_selectedYear$)]="_selectedYear"
+	[(_selectedTrafficTime$)]="_selectedTrafficTime"
+	[(_selectedWeekDays$)]="_selectedWeekDays"
+	[_selectedSafetyMetrics$]="_selectedSafetyMetrics$()"
+	[(_datetime$)]="_datetime$"
+	[_barChartData$]="_barMetricsRideIncidentDistributionData$()"
+	[_pieChartData$]="_pieMetricsIncidentTypesData$()"
+>
+	<m-enum-select-button [optionEnum]="ECardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
+</t-safety-metrics-card>

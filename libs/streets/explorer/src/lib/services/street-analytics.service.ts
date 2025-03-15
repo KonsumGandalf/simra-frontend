@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { EDangerousColors } from '@simra/common-models';
+import { EDangerousColors, ISafetyMetricsStreet } from '@simra/common-models';
 import { EIncidentType } from '@simra/incidents-models';
-import { ISafetyMetrics } from '@simra/streets-common';
 import { SetSelectedIncidents, SetSelectedSafetyMetrics, StreetAnalyticsFacadeFacade, StreetDetailState } from '@simra/streets-domain';
 import { orderBy, partition } from 'lodash';
 import { Moment } from 'moment';
@@ -20,7 +19,7 @@ export class StreetAnalyticsService {
 	private readonly _SCARINESS_FACTOR = 4.4;
 	private readonly _street = this._store.selectSignal(StreetDetailState.getStreet);
 
-	public calculateSafetyMetrics(startDay: Date, endDay: Date, startTime: Date, endTime: Date): Observable<ISafetyMetrics> {
+	public calculateSafetyMetrics(startDay: Date, endDay: Date, startTime: Date, endTime: Date): Observable<ISafetyMetricsStreet> {
 		const street = this._street();
 		if (!street) {
 			return;
@@ -40,7 +39,7 @@ export class StreetAnalyticsService {
 				});
 
 				const safetyMetrics = {
-					planetOsmLineId: street.id,
+					osmId: street.id,
 					numberOfRides: rides.length,
 					numberOfIncidents: incidents.length,
 					numberOfScaryIncidents: scaryIncidents.length,
@@ -53,7 +52,7 @@ export class StreetAnalyticsService {
 					numberOfTailgating: 0,
 					numberOfNearDoorings: 0,
 					numberOfObstacleDodges: 0,
-				} as ISafetyMetrics;
+				} as ISafetyMetricsStreet;
 
 				for (const incident of incidents) {
 					switch (incident.incidentType) {

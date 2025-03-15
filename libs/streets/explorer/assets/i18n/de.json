@@ -76,7 +76,9 @@
 					"RIDES": "Fahrten",
 					"WEEKDAY": "Wochentag",
 					"TRAFFIC_TIME": "Verkehrszeit",
-					"LOCATION": "Ort"
+					"LOCATION": "Ort",
+					"YEAR": "Jahr",
+					"DISTANCE_PER_RIDE": "Strecke pro Fahrt (km)"
 				}
 			}
 		}

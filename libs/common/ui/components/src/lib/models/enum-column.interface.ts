@@ -5,4 +5,5 @@ export interface EnumColumn<T extends string | number | symbol = ''> extends Col
 	enum: Record<string, unknown>;
 	translationMap: TTranslationMap<T>;
 	maxSelectedDisplay?: number;
+	filter?: boolean;
 }
