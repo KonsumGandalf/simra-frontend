@@ -1,0 +1,13 @@
+.t-simra-region-detail-view {
+    .box__button-container {
+        @apply flex flex-col gap-4;
+
+        .button-container__sub-regions {
+            @apply flex;
+
+            a {
+                @apply ml-1;
+            }
+        }
+    }
+}

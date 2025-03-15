@@ -1,0 +1,137 @@
+<div class="region__detail-view">
+	<p-card class="region__detail-card" [header]="(detailedRegion()?.name === 'All' ? 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.ALL' : detailedRegion()?.name) | translate">
+		<div class="detail-card__absolute-box">
+			<div class="box__table-container">
+				<table class="simple-table">
+					@if (_generalSafetyMetrics() && detailedRegion(); as region) {
+						<tr>
+							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.AVERAGE_LENGTH" | translate }}</td>
+							<td>{{ region.avgSegmentDistance | number: '1.0-2' }} m</td>
+						</tr>
+						<p-divider/>
+						<tr>
+							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE" | translate }}</td>
+							<td>{{ (_generalSafetyMetrics()?.totalDistance / 1000) | number: '1.0-2' }} km</td>
+						</tr>
+						<p-divider/>
+						<tr>
+							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.RIDES' | translate }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfRides }}</td>
+						</tr>
+						<p-divider/>
+						<tr>
+							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.INCIDENTS' | translate }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfIncidents }}</td>
+						</tr>
+						<p-divider/>
+						<tr>
+							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCARY_INCIDENTS' | translate }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents }}</td>
+						</tr>
+					} @else {
+						<tr>
+							<p-skeleton class="w-2/12"></p-skeleton>
+							<p-skeleton class="w-3/12"></p-skeleton>
+						</tr>
+						<p-divider/>
+						<tr>
+							<p-skeleton class="w-3/12"></p-skeleton>
+							<p-skeleton class="w-2/12"></p-skeleton>
+						</tr>
+						<p-divider/>
+						<tr>
+							<p-skeleton class="w-4/12"></p-skeleton>
+							<p-skeleton class="w-2/12"></p-skeleton>
+						</tr>
+						<p-divider/>
+						<tr>
+							<p-skeleton class="w-6/12"></p-skeleton>
+							<p-skeleton class="w-1/12"></p-skeleton>
+						</tr>
+						<p-divider/>
+						<tr>
+							<p-skeleton class="w-4/12"></p-skeleton>
+							<p-skeleton class="w-1/12"></p-skeleton>
+						</tr>
+						<p-divider/>
+						<tr>
+							<p-skeleton class="w-6/12"></p-skeleton>
+							<p-skeleton class="w-1/12"></p-skeleton>
+						</tr>
+					}
+				</table>
+			</div>
+			<ng-content></ng-content>
+		</div>
+		<div class="w-full md:w-3/5">
+			@if (_generalSafetyMetrics() && detailedRegion(); as region) {
+				<t-map-component [overlayLayers]="_regionGeometry()" [customMapOptions]="_mapOptions$()"></t-map-component>
+			} @else {
+				<p-skeleton class="w-full rounded-xl" height="18rem"/>
+			}
+		</div>
+	</p-card>
+
+	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.YEAR' | translate">
+		<div class="unfiltered-chart__information-box">
+			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.YEAR' | translate"></p>
+		</div>
+		<p-chart type="bar" [data]="_stackedChartYearMetrics()" [options]="stackedBarChartOptions" height="21rem"/>
+		<p-chart type="line" [data]="_lineChartYearMetrics()" [options]="lineChartOptions" height="21rem"/>
+	</p-card>
+
+	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.TRAFFIC_TIME' | translate">
+		<div class="unfiltered-chart__information-box ">
+			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.TRAFFIC_TIME' | translate"></p>
+			<div >
+				<span>
+					{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.TRAFFIC_TIMES.LABEL.MORNING_RUSH_HOUR" | translate }}:
+					7:30 - 10:00
+				</span>
+						<span>
+					{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.TRAFFIC_TIMES.LABEL.MID_DAY" | translate }}:
+					10:00 - 15:30
+				</span>
+						<span>
+					{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.TRAFFIC_TIMES.LABEL.EVENING_RUSH_HOUR" | translate }}:
+					15:30 - 19:00
+				</span>
+						<span>
+					{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.TRAFFIC_TIMES.LABEL.EVENING_NIGHT_MORNING" | translate }}:
+					19:00 - 7:30
+				</span>
+			</div>
+			<a pButton
+			   href="https://www.berlin.de/sen/uvk/_assets/verkehr/verkehrsmanagement/verkehrserhebungen/ergebnisbericht-2019-teil-a.pdf"
+			   target="_blank"
+			   icon="ph-bold ph-file-pdf"
+			   size="small">
+				{{ 'Berliner Verkehrerhebung' | translate }}
+			</a>
+		</div>
+		<p-chart type="bar" [data]="_stackedBarChartTrafficTimesMetrics$()" [options]="stackedBarChartOptions" height="21rem"/>
+		<p-chart type="line" [data]="_lineChartTrafficTimesMetrics$()" [options]="lineChartOptions" height="21rem"/>
+	</p-card>
+	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.WEEKDAY' | translate">
+		<div class="unfiltered-chart__information-box">
+			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.WEEKDAY' | translate"></p>
+			<div>
+				<span>{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.WEEK_DAYS.LABEL.WEEK" | translate}}: {{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.WEEK_DAYS.TOOLTIP.WEEK" | translate}}</span>
+				<span>{{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.WEEK_DAYS.LABEL.WEEKEND" | translate}}: {{ "COMPONENTS.GENERAL.ENTITY_ATTRIBUTES.WEEK_DAYS.TOOLTIP.WEEKEND" | translate}}</span>
+			</div>
+		</div>
+		<p-chart type="bar" [data]="_stackedBarChartWeekDaysMetrics$()" [options]="stackedBarChartOptions" height="21rem"/>
+		<p-chart type="line" [data]="_lineChartWeekDaysMetrics$()" [options]="lineChartOptions" height="21rem"/>
+	</p-card>
+	<p-divider></p-divider>
+
+	<h1 class="text-3xl">{{ "REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.TEMPORAL_METRICS.TITLE" | translate }}</h1>
+	<t-safety-metrics-card
+		[(_selectedYear$)]="_selectedYear"
+		[(_selectedTrafficTime$)]="_selectedTrafficTime"
+		[(_selectedWeekDays$)]="_selectedWeekDays"
+		[_selectedSafetyMetrics$]="safetyMetrics()"
+		[_pieChartData$]="_pieMetricsIncidentTypesData()"
+		[_barChartData$]="_barMetricsRideIncidentDistributionData()">
+	</t-safety-metrics-card>
+</div>

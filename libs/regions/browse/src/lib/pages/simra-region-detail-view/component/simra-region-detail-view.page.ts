@@ -12,11 +12,12 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MapPositionInterface } from '@simra/common-models';
 import { ISafetyMetricsRegion } from '@simra/models';
-import { RegionDetailViewFacade } from '@simra/regions-domain';
 import { find } from 'lodash';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonDirective } from 'primeng/button';
+import { Skeleton } from 'primeng/skeleton';
 import { firstValueFrom } from 'rxjs';
+import { SimraRegionDetailViewFacade } from '@simra/regions-domain';
 import { BaseRegionDetailViewComponent } from '../../../components/base-region-detail-view/component/base-region-detail-view.component';
 import { IDetailViewChange } from '../../../components/base-region-detail-view/models/interfaces/detail-view-change.interface';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
@@ -27,21 +28,22 @@ import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 		CommonModule,
 		AutoCompleteModule,
 		FormsModule,
-		TranslatePipe,
-		ButtonDirective,
-		RouterLink,
 		BaseRegionDetailViewComponent,
+		RouterLink,
+		ButtonDirective,
+		TranslatePipe,
+		Skeleton,
 	],
-	templateUrl: './region-detail-view.page.html',
-	styleUrl: './region-detail-view.page.scss',
+	templateUrl: './simra-region-detail-view.page.html',
+	styleUrl: './simra-region-detail-view.page.scss',
 	host: {
-		class: 'p-region-detail-view',
+		class: 't-simra-region-detail-view',
 	},
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegionDetailViewPage {
-	private readonly _facade = inject(RegionDetailViewFacade);
+export class SimraRegionDetailViewPage {
+	private readonly _facade = inject(SimraRegionDetailViewFacade);
 	private readonly _metricsService = inject(SafetyMetricsService);
 	protected readonly regionName = input<string>();
 
@@ -53,25 +55,19 @@ export class RegionDetailViewPage {
 				return;
 			}
 
-			return await firstValueFrom(this._facade.getDetailedRegion(request));
+			return await firstValueFrom(this._facade.getSimraDetailedRegion(request));
 		},
 	});
-	protected readonly queryOptions = model<MapPositionInterface>();
+	protected readonly _queryOptions = model<MapPositionInterface>();
 
 	async changeDetails(event: IDetailViewChange) {
 		const regionName = this.regionName();
-		if (
-			!event ||
-			!event.year ||
-			!event.weekDay ||
-			!event.trafficTime ||
-			!regionName
-		) {
+		if (!event || !event.year || !event.weekDay || !event.trafficTime || !regionName) {
 			return;
 		}
 
 		const safetyMetrics = await firstValueFrom(
-			this._facade.getRegionSafetyMetrics(regionName),
+			this._facade.getSimraRegionSafetyMetrics(regionName),
 		);
 
 		this._metricsService.safetyMetrics$.set(safetyMetrics);

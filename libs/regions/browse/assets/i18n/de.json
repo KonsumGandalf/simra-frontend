@@ -1,0 +1,32 @@
+{
+    "COMPONENTS": {
+        "BASE_REGION_DETAIL_VIEW": {
+            "AUTOCOMPLETE": {
+                "PLACEHOLDER": "Filter für eine Region"
+            },
+            "INFORMATION_BOX": {
+                "YEAR": "Diese Analyse vergleicht die <b>Trends des Radverkehrs über verschiedene Jahre hinweg</b>. Durch die Beobachtung von Veränderungen können wir feststellen, ob sich die Sicherheit von Radfahrern im Laufe der Zeit verbessert oder verschlechtert hat.",
+                "TRAFFIC_TIME": "Diese Analyse kategorisiert Radverkehrsdaten nach verschiedenen <b>Verkehrszeiten</b> und zeigt Unterschiede in den <b>Straßenbedingungen</b> und <b>Risikostufen</b> im Tagesverlauf auf.",
+                "WEEKDAY": "Diese Analyse kategorisiert Radverkehrsdaten nach verschiedenen Tagen und zeigt Unterschiede in der <b>Verkehrsdichte</b> und der <b>Wahrscheinlichkeit von Vorfällen</b> auf."
+            },
+            "TEMPORAL_METRICS": {
+                "TITLE": "Zeitlichbedingte Sicherheitsmetriken",
+                "DESCRIPTION": "Hier findest du detaillierte Informationen zur ausgewählten Region. Du kannst die durchschnittliche Länge der Straßensegmente und die zurückgelegte Distanz sehen."
+            }
+        }
+    },
+    "GENERAL": {
+        "ENTITY_ATTRIBUTES": {
+            "REGION": {
+                "AVERAGE_LENGTH": "Durchschnittslänge der Straßensegmente",
+                "TRAVELLED_DISTANCE": "Zurückgelegte Distanz",
+                "SUB_REGIONS": "Unterregionen",
+                "ALL": "Alle Regionen"
+            }
+        },
+        "REGIONS": {
+            "TITLE": "Regionen",
+            "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen."
+        }
+    }
+}
