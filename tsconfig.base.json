@@ -28,7 +28,7 @@
 			"@simra/models": ["libs/regions/common/src/index.ts"],
 			"@simra/regions-browse": ["libs/regions/browse/src/index.ts"],
 			"@simra/regions-domain": ["libs/regions/domain/src/index.ts"],
-			"@simra/regions-models": ["libs/regions/models/src/index.ts"],
+			"@simra/regions-common": ["libs/regions/common/src/index.ts"],
 			"@simra/regions-shell": ["libs/regions/shell/src/index.ts"],
 			"@simra/rides-common-models": ["libs/rides/common/models/src/index.ts"],
 			"@simra/rides-domain": ["libs/rides/domain/src/index.ts"],

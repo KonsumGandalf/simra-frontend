@@ -1,5 +1,5 @@
 {
-	"name": "region-models",
+	"name": "regions-common",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/regions/common/src",
 	"prefix": "lib",
