@@ -9,7 +9,8 @@
                 "MAP": "Karte",
                 "LIST": "Liste",
                 "REGIONS": "Regionen",
-                "REGULAR_REGIONS": "Reguläre Regionen"
+                "ADMINISTRATIVE_REGIONS": "Verwaltungsbezirke",
+                "SIMRA_REGIONS": "SimRa-Regionen"
             },
             "SETTINGS": {
                 "TITLE": "Einstellungen",

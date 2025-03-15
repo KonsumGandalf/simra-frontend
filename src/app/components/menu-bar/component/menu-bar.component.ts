@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { capitalize } from 'lodash';
 import { MenuItem, PrimeTemplate } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { Breadcrumb } from 'primeng/breadcrumb';
@@ -51,9 +50,14 @@ export class MenuBarComponent {
 			icon: 'ph-bold ph-map-pin-simple-area',
 			items: [
 				{
-					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.REGULAR_REGIONS',
+					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.ADMINISTRATIVE_REGIONS',
 					icon: 'ph-bold ph-city',
 					routerLink: '/regions',
+				},
+				{
+					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.SIMRA_REGIONS',
+					icon: 'ph-bold ph-globe-stand',
+					routerLink: '/simra-regions',
 				},
 			],
 		},
@@ -147,10 +151,18 @@ export class MenuBarComponent {
 
 			for (const segment of pathSegments) {
 				accumulatedUrl += `/${segment}`;
-				breadcrumbs.push({ label: capitalize(segment), routerLink: accumulatedUrl });
+				const capitalizedSegment = decodeURIComponent(this.capitalizeAfterHyphen(segment[0].toUpperCase() + segment.slice(1)));
+				breadcrumbs.push({ label: capitalizedSegment, routerLink: accumulatedUrl });
 			}
 
 			this._breadcrumbItems$.set(breadcrumbs);
 		});
 	}
+
+	private capitalizeAfterHyphen (input: string): string {
+		return input
+			.split('-')
+			.map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
+			.join('-');
+	};
 }

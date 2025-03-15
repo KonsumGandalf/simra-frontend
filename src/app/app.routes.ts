@@ -18,6 +18,10 @@ export const APP_ROUTES: Route[] = [
 		loadChildren: () => import('@simra/regions-shell').then((m) => m.REGION_SHELL_ROUTES),
 	},
 	{
+		path: 'simra-regions',
+		loadChildren: () => import('@simra/regions-shell').then((m) => m.SIMRA_REGION_SHELL_ROUTES),
+	},
+	{
 		path: 'not-found',
 		loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),
 	},

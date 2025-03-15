@@ -9,7 +9,8 @@
                 "MAP": "Map",
                 "LIST": "List",
                 "REGIONS": "Regions",
-                "REGULAR_REGIONS": "Regular Regions"
+                "ADMINISTRATIVE_REGIONS": "Administrative District",
+                "SIMRA_REGIONS": "SimRa Regions"
             },
             "SETTINGS": {
                 "TITLE": "Settings",

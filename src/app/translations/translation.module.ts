@@ -21,13 +21,18 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
 			},
 			{
 				baseTranslateUrl,
-				moduleName: 'streets.explorer',
-				pathTemplate: '{baseTranslateUrl}/streets/explorer/{language}',
+				moduleName: 'incidents.ui',
+				pathTemplate: '{baseTranslateUrl}/incidents/ui/{language}',
 			},
 			{
 				baseTranslateUrl,
-				moduleName: 'incidents.ui',
-				pathTemplate: '{baseTranslateUrl}/incidents/ui/{language}',
+				moduleName: 'regions.browse',
+				pathTemplate: '{baseTranslateUrl}/regions/browse/{language}',
+			},
+			{
+				baseTranslateUrl,
+				moduleName: 'streets.explorer',
+				pathTemplate: '{baseTranslateUrl}/streets/explorer/{language}',
 			},
 		],
 	};
