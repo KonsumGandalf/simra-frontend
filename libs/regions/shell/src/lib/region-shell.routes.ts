@@ -8,6 +8,11 @@ export const REGION_SHELL_ROUTES: Route[] = [
 				path: '',
 				pathMatch: 'full',
 				loadComponent: () =>
+					import("@simra/regions-browse").then((m) => m.RegionListViewPage)
+			},
+			{
+				path: ':regionName',
+				loadComponent: () =>
 					import("@simra/regions-browse").then((m) => m.RegionDetailViewPage)
 			},
 			{
