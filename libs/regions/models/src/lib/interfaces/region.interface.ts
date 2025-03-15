@@ -1,4 +1,8 @@
+import { IWayPolygon } from '@simra/streets-common';
+
 export interface IRegion {
 	name: string;
-	osmId: number;
+	id: number;
+	avgSegmentDistance: number;
+	way: IWayPolygon;
 }
