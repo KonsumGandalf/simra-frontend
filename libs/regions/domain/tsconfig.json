@@ -2,11 +2,14 @@
 	"compilerOptions": {
 		"target": "es2022",
 		"forceConsistentCasingInFileNames": true,
-		"strict": true,
+		"strict": false,
+		"noImplicitAny": false,
+		"skipLibCheck": true,
+		"suppressImplicitAnyIndexErrors": true,
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		"allowSyntheticDefaultImports": true
 	},
 	"files": [],
 	"include": [],

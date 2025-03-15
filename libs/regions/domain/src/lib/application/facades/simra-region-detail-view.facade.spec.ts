@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { RegionRequestService } from '../../infrastructure/region-request.service';
+import { SimraRegionDetailViewFacade } from './simra-region-detail-view.facade';
 import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics-request.service';
+import { SimraRegionRequestService } from '../../infrastructure/simra-region-request.service';
 
-import { RegionDetailViewFacade } from './region-detail-view.facade';
 
-describe('RegionDetailsFacade', () => {
-  let service: RegionDetailViewFacade;
+describe('SimraRegionDetailViewFacade', () => {
+  let service: SimraRegionDetailViewFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,14 +17,14 @@ describe('RegionDetailsFacade', () => {
             }
           },
           {
-            provide: RegionRequestService,
+            provide: SimraRegionRequestService,
             useValue: {
-              getDetailedRegion: jest.fn().mockReturnValue([])
+              getDetailedRegion: jest.fn().mockReturnValue({})
             }
-          }
+          },
         ]
     });
-    service = TestBed.inject(RegionDetailViewFacade);
+    service = TestBed.inject(SimraRegionDetailViewFacade);
   });
 
   it('should be created', () => {
