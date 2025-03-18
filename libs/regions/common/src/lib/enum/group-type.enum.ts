@@ -1,0 +1,6 @@
+export enum EGroupType {
+	AGE = 'AGE',
+	GENDER = 'GENDER',
+	EXPERIENCE = 'EXPERIENCE',
+	BEHAVIOR = 'BEHAVIOR',
+}
