@@ -24,7 +24,6 @@ import {
 	WEEK_DAYS_TO_TRANSLATION,
 	YEAR_TO_TRANSLATION,
 } from '../../../public-api';
-import { CARD_MODE_TO_TRANSLATION_MAP } from '../models/card-mode-to-translation.map';
 import { ECardMode } from '../models/card-mode.enum';
 import { SafetyMetricsService } from '../services/safety-metrics.service';
 
@@ -76,7 +75,6 @@ export class SafetyMetricsCardComponent {
 	// references for template
 	protected readonly ECardMode = ECardMode;
 	protected readonly EYear = EYear;
-	protected readonly CARD_MODE_TO_TRANSLATION_MAP = CARD_MODE_TO_TRANSLATION_MAP;
 	protected readonly YEAR_TO_TRANSLATION = YEAR_TO_TRANSLATION;
 	protected readonly ETrafficTimes = ETrafficTimes;
 	protected readonly TRAFFIC_TIMES_TO_TRANSLATION = TRAFFIC_TIMES_TO_TRANSLATION;
