@@ -40,18 +40,22 @@ export class ProfileCardComponent {
 		{
 			dataSignal: this._profileSafetyMetricsService.barChartBehaviourMetrics$,
 			group: this.translationPrefix + '.BEHAVIOR',
+			anker: 'behavior',
 		},
 		{
 			dataSignal: this._profileSafetyMetricsService.barChartExperienceMetrics$,
 			group: this.translationPrefix + '.EXPERIENCE',
+			anker: 'experience',
 		},
 		{
 			dataSignal: this._profileSafetyMetricsService.barChartGenderMetrics$,
 			group: this.translationPrefix + '.GENDER',
+			anker: 'gender'
 		},
 		{
 			dataSignal: this._profileSafetyMetricsService.barChartAgeMetrics$,
 			group: this.translationPrefix + '.AGE',
+			anker: 'age'
 		},
 	];
 }
