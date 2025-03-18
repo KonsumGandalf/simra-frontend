@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { GroupAssociationRequestService } from '../../infrastructure/group-association-request.service';
 import { SimraRegionDetailViewFacade } from './simra-region-detail-view.facade';
 import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics-request.service';
 import { SimraRegionRequestService } from '../../infrastructure/simra-region-request.service';
@@ -20,8 +21,14 @@ describe('SimraRegionDetailViewFacade', () => {
             provide: SimraRegionRequestService,
             useValue: {
               getDetailedRegion: jest.fn().mockReturnValue({})
-            }
+            },
           },
+          {
+            provide: GroupAssociationRequestService,
+            useValue: {
+              getGroupAssociation: jest.fn().mockReturnValue([])
+            }
+          }
         ]
     });
     service = TestBed.inject(SimraRegionDetailViewFacade);
