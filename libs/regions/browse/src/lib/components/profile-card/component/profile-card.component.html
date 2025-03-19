@@ -1,0 +1,11 @@
+<p-divider></p-divider>
+<p-card id="rider" [header]="'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.TITLE' | translate">
+	<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.DESCRIPTION' | translate"></p>
+</p-card>
+@for(metric of metricsArray; track metric) {
+	<p-card [id]="metric.anker" [header]="metric.group + '.TITLE' | translate">
+		<p class="chart-explainer" [innerHTML]="metric.group + '.DESCRIPTION' | translate"></p>
+		<p-chart type="bar" [data]="metric.dataSignal()" [options]="lineChartAgeOptions" height="21rem"/>
+	</p-card>
+
+}

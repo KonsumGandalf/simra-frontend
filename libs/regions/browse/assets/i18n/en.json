@@ -1,9 +1,54 @@
 {
     "COMPONENTS": {
-        "REGION_DETAIL_VIEW": {
-            "AUTOCOMPLETE": {
-                "PLACEHOLDER": "Filter for a region"
-            },
+        "PROFILE_CARD": {
+            "TITLE": "Rider Characteristics",
+            "DESCRIPTION": "The profile data displayed here is based on user-provided information, which may not always be fully verifiable. Since this data is self-reported, it is presented separately from other objective safety metrics. <br><br>Unlike regional statistics, profile data reflects the characteristics of individuals riding in the area, such as age, experience, behavior, and gender, and their relation to the dangerous score.",
+            "GROUPS": {
+                "AGE": {
+                    "TITLE": "Birth Year Group",
+                    "DESCRIPTION": "The cyclist's birth year category, used to analyze trends in cycling habits, safety concerns, and risk factors across different age groups. Younger and older cyclists may face unique challenges, such as differences in riding confidence, route choices, or vulnerability in traffic.",
+                    "BETWEEN_1955_AND_1959": "1955 - 1959",
+                    "BETWEEN_1960_AND_1964": "1960 - 1964",
+                    "BETWEEN_1965_AND_1969": "1965 - 1969",
+                    "BETWEEN_1970_AND_1974": "1970 - 1974",
+                    "BETWEEN_1975_AND_1979": "1975 - 1979",
+                    "BETWEEN_1980_AND_1984": "1980 - 1984",
+                    "BETWEEN_1985_AND_1989": "1985 - 1989",
+                    "BETWEEN_1990_AND_1994": "1990 - 1994",
+                    "BETWEEN_1995_AND_1999": "1995 - 1999",
+                    "BETWEEN_2000_AND_2004": "2000 - 2004",
+                    "AFTER_2004": "After 2004",
+                    "NOT_CHOSEN": "Not chosen"
+                },
+                "GENDER": {
+                    "TITLE": "Gender",
+                    "DESCRIPTION": "The gender of the cyclist, helping to uncover disparities in safety, infrastructure preferences, and cycling participation rates among different groups. Understanding gender-based patterns can inform improvements in urban planning and traffic safety measures tailored to diverse needs.",
+                    "MALE": "Male",
+                    "FEMALE": "Female",
+                    "OTHER": "Other"
+                },
+                "EXPERIENCE": {
+                    "TITLE": "Experience Level",
+                    "DESCRIPTION": "The number of years the cyclist has been actively riding, indicating their familiarity with road conditions, traffic rules, and potential hazards. More experienced cyclists may adopt safer riding habits and strategic route choices, while newer riders might be more prone to incidents due to inexperience or unfamiliarity with traffic dynamics.",
+                    "BEGINNER": "Beginner (0-2 years)",
+                    "INTERMEDIATE": "Intermediate (2-4 years)",
+                    "ADVANCED": "Advanced (4-10 years)",
+                    "EXPERT": "Expert (10+ years)",
+                    "NOT_CHOSEN": "Not chosen"
+                },
+                "BEHAVIOR": {
+                    "TITLE": "Behavior",
+                    "DESCRIPTION": "A self-assessed rating from 0 (never) to 5 (always) that measures how closely the cyclist follows traffic rules. This metric is crucial for evaluating the relationship between rule adherence and safety, identifying risky behavior patterns, and improving awareness campaigns to promote responsible cycling.",
+                    "0": "Not chosen",
+                    "1": "Never (1)",
+                    "2": "Rarely (2)",
+                    "3": "Sometimes (3)",
+                    "4": "Often (4)",
+                    "5": "Always (5)"
+                }
+            }
+        },
+        "BASE_REGION_DETAIL_VIEW": {
             "INFORMATION_BOX": {
                 "YEAR": "This analysis compares cycling <b>trends across different years</b>. By observing changes we can identify if the safety of cyclists has improved or deteriorated over time.",
                 "TRAFFIC_TIME": "This analysis categorizes cycling data based on different <b>traffic times</b>, reflecting variations in <b>road conditions</b> and <b>risk levels</b> throughout the day.",
@@ -11,7 +56,7 @@
             },
             "TEMPORAL_METRICS": {
                 "TITLE": "Temporal Safety Metrics",
-                "DESCRIPTION": "Here you can find detailed information about the selected region. You can see the average length of street segments and the travelled distance."
+                "DESCRIPTION": "This section provides a comprehensive overview of cycling trends across different time periods. By filtering data by year, time of day, and days of the week, you can identify patterns in traffic flow, safety risks, and cyclist behavior. This allows for a deeper understanding of when and where cycling conditions may be safer or more challenging."
             }
         },
         "GENERAL": {

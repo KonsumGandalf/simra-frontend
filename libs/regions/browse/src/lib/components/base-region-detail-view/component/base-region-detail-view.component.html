@@ -72,7 +72,7 @@
 		</div>
 	</p-card>
 
-	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.YEAR' | translate">
+	<p-card id="year" class="unfiltered-chart" [header]="_headerPrefix+'.YEAR' | translate">
 		<div class="unfiltered-chart__information-box">
 			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.YEAR' | translate"></p>
 		</div>
@@ -80,7 +80,7 @@
 		<p-chart type="line" [data]="_lineChartYearMetrics()" [options]="lineChartOptions" height="21rem"/>
 	</p-card>
 
-	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.TRAFFIC_TIME' | translate">
+	<p-card id="traffic-time" class="unfiltered-chart" [header]="_headerPrefix+'.TRAFFIC_TIME' | translate">
 		<div class="unfiltered-chart__information-box ">
 			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.TRAFFIC_TIME' | translate"></p>
 			<div >
@@ -112,7 +112,7 @@
 		<p-chart type="bar" [data]="_stackedBarChartTrafficTimesMetrics$()" [options]="stackedBarChartOptions" height="21rem"/>
 		<p-chart type="line" [data]="_lineChartTrafficTimesMetrics$()" [options]="lineChartOptions" height="21rem"/>
 	</p-card>
-	<p-card class="unfiltered-chart" [header]="_headerPrefix+'.WEEKDAY' | translate">
+	<p-card id="weekday" class="unfiltered-chart" [header]="_headerPrefix+'.WEEKDAY' | translate">
 		<div class="unfiltered-chart__information-box">
 			<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.INFORMATION_BOX.WEEKDAY' | translate"></p>
 			<div>
@@ -125,7 +125,9 @@
 	</p-card>
 	<p-divider></p-divider>
 
-	<h1 class="text-3xl">{{ "REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.TEMPORAL_METRICS.TITLE" | translate }}</h1>
+	<p-card id="temporal" [header]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.TEMPORAL_METRICS.TITLE' | translate">
+		<p class="text-sm text-center opacity-60" [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.TEMPORAL_METRICS.DESCRIPTION' | translate"></p>
+	</p-card>
 	<t-safety-metrics-card
 		[(_selectedYear$)]="_selectedYear"
 		[(_selectedTrafficTime$)]="_selectedTrafficTime"

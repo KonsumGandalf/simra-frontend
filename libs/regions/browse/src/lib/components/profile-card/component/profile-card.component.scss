@@ -1,0 +1,26 @@
+.t-profile-card {
+    @apply flex flex-col gap-6;
+
+    p-card {
+
+        .p-card-content {
+            @apply md:flex md:gap-12;
+
+            .chart-explainer {
+                @apply md:w-1/3 flex flex-col justify-evenly rounded-lg border flex-grow;
+            }
+
+            p {
+                @apply  text-sm p-4 opacity-60;
+            }
+
+            p-chart {
+                @apply md:w-2/3;
+            }
+        }
+    }
+
+    p-divider {
+        @apply mt-12;
+    }
+}

@@ -1,9 +1,43 @@
 {
     "COMPONENTS": {
+        "PROFILE_CARD": {
+            "GROUPS": {
+                "AGE": {
+                    "TITLE": "Alter",
+                    "DESCRIPTION": "Die Altersgruppe der Radfahrer.",
+                    "BETWEEN_1955_AND_1959": "1955 - 1959",
+                    "BETWEEN_1960_AND_1964": "1960 - 1964",
+                    "BETWEEN_1965_AND_1969": "1965 - 1969",
+                    "BETWEEN_1975_AND_1979": "1975 - 1979",
+                    "BETWEEN_1980_AND_1984": "1980 - 1984",
+                    "BETWEEN_1985_AND_1989": "1985 - 1989",
+                    "BETWEEN_1990_AND_1994": "1990 - 1994",
+                    "BETWEEN_1995_AND_1999": "1995 - 1999"
+                },
+                "GENDER": {
+                    "TITLE": "Geschlecht",
+                    "DESCRIPTION": "Das Geschlecht der Radfahrer.",
+                    "MALE": "Männlich",
+                    "FEMALE": "Weiblich"
+                },
+                "EXPERIENCE": {
+                    "TITLE": "Erfahrungsniveau",
+                    "DESCRIPTION": "Das Erfahrungsniveau beim Radfahren.",
+                    "BEGINNER": "Anfänger",
+                    "INTERMEDIATE": "Mittelstufe",
+                    "ADVANCED": "Fortgeschritten",
+                    "EXPERT": "Experte"
+                },
+                "BEHAVIOR": {
+                    "TITLE": "Verhalten",
+                    "DESCRIPTION": "Das Verhalten der Radfahrer.",
+                    "CAUTIOUS": "Vorsichtig",
+                    "MODERATE": "Moderat",
+                    "AGGRESSIVE": "Aggressiv"
+                }
+            }
+        },
         "BASE_REGION_DETAIL_VIEW": {
-            "AUTOCOMPLETE": {
-                "PLACEHOLDER": "Filter für eine Region"
-            },
             "INFORMATION_BOX": {
                 "YEAR": "Diese Analyse vergleicht die <b>Trends des Radverkehrs über verschiedene Jahre hinweg</b>. Durch die Beobachtung von Veränderungen können wir feststellen, ob sich die Sicherheit von Radfahrern im Laufe der Zeit verbessert oder verschlechtert hat.",
                 "TRAFFIC_TIME": "Diese Analyse kategorisiert Radverkehrsdaten nach verschiedenen <b>Verkehrszeiten</b> und zeigt Unterschiede in den <b>Straßenbedingungen</b> und <b>Risikostufen</b> im Tagesverlauf auf.",

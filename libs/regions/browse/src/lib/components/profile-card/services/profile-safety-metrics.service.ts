@@ -1,0 +1,123 @@
+import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { EGroupType, IProfileGroupAssociation } from '@simra/models';
+import { ChartData, ChartDataset, ChartOptions } from 'chart.js';
+import { orderBy } from 'lodash';
+
+@Injectable({
+	providedIn: 'root',
+})
+export class ProfileSafetyMetricsService {
+	private readonly _translationService = inject(TranslateService);
+	public readonly safetyMetrics$ = signal<IProfileGroupAssociation[]>([]);
+
+	private readonly _translationLocalKeyPrefix = 'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.GROUPS';
+	private readonly _translationEntityKeyPrefix = 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS';
+
+	/**
+	 * Generates line chart data for AGE-based safety metrics
+	 */
+	public readonly barChartAgeMetrics$: Signal<ChartData | undefined> = computed(() => {
+		return this.createBarChartData(EGroupType.AGE)();
+	});
+
+	public readonly barChartGenderMetrics$: Signal<ChartData | undefined> = computed(() => {
+		return this.createBarChartData(EGroupType.GENDER)();
+	});
+
+	public readonly barChartBehaviourMetrics$: Signal<ChartData | undefined> = computed(() => {
+		return this.createBarChartData(EGroupType.BEHAVIOR)();
+	});
+
+	public readonly barChartExperienceMetrics$: Signal<ChartData | undefined> = computed(() => {
+		return this.createBarChartData(EGroupType.EXPERIENCE)();
+	});
+
+	/**
+	 * Creates a computed signal for bar chart data based on the given group type.
+	 * @param groupType The group type (AGE, GENDER, etc.).
+	 */
+	private createBarChartData(groupType: EGroupType): Signal<ChartData | undefined> {
+		return computed(() => {
+			const metrics = this.safetyMetrics$();
+			if (!metrics) return undefined;
+
+			const groupData = metrics.find((group) => group.groupType === groupType);
+			if (!groupData || !groupData.groupValue || groupData.groupValue.length === 0) return undefined;
+
+			const sortedData = orderBy(groupData.groupValue, ['groupName'], ['asc']);
+
+			let labels = sortedData.map((entry) => entry.groupName).filter((label) => label !== '' && label !== '-1');
+			labels = labels.map((label) => this._translationService.instant(`${this._translationLocalKeyPrefix}.${groupType}.${label}`));
+
+			let datasets: ChartDataset[] = [
+				{
+					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.INCIDENTS`),
+					data: sortedData.map((entry) => entry.totalIncidents),
+				},
+				{
+					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.SCARY_INCIDENTS`),
+					data: sortedData.map((entry) => entry.totalScaryIncidents),
+				},
+				{
+					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.RIDES`),
+					data: sortedData.map((entry) => entry.totalRides),
+				},
+				{
+					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.SCORE`),
+					data: sortedData.map((entry) => entry.dangerousScore),
+					yAxisID: 'y1',
+					type: 'line',
+				},
+			];
+
+			datasets = datasets.map((data) => ({
+				...data,
+				fill: false,
+				tension: 0.3,
+			}));
+
+			return { labels, datasets };
+		});
+	}
+
+	public barChartAgeOptions(): ChartOptions {
+		return {
+			responsive: true,
+			maintainAspectRatio: false,
+			scales: {
+				y: {
+					display: true,
+				},
+				y1: {
+					position: 'right',
+					display: false,
+					grid: { drawOnChartArea: false },
+				}
+			},
+		};
+	}
+
+	/**
+	 * Chart options for age-based safety metrics
+	 */
+	public lineChartOptions(): ChartOptions {
+		return {
+			responsive: true,
+			maintainAspectRatio: false,
+			scales: {
+				x: { stacked: false, offset: true },
+				y: { stacked: false },
+				y1: {
+					position: 'right',
+					display: true,
+					grid: { drawOnChartArea: false },
+					title: {
+						display: true,
+						text: this._translationService.instant('Dangerous Score'),
+					},
+				},
+			},
+		};
+	}
+}
