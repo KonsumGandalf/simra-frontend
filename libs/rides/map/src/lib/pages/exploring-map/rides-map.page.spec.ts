@@ -7,7 +7,7 @@ import { polyline } from 'leaflet';
 import { of } from 'rxjs';
 import { RidesMapPage } from './rides-map.page';
 
-describe('StreetsExploringMapPage', () => {
+describe('RidesMapPage', () => {
 	let component: RidesMapPage;
 	let fixture: ComponentFixture<RidesMapPage>;
 

@@ -5,13 +5,14 @@ export const RIDES_SHELL_ROUTES: Route[] = [
 		path: '',
 		children: [
 			{
-				path: 'map',
+				path: '',
+				pathMatch: 'full',
 				loadComponent: () =>
 					import('@simra/rides-map').then((m) => m.RidesMapPage),
 			},
 			{
 				path: '**',
-				redirectTo: 'map',
+				redirectTo: '',
 			}
 		]
 	}
