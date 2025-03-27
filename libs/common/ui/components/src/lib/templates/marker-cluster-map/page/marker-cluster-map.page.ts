@@ -1,3 +1,4 @@
+import { TranslatePipe } from '@ngx-translate/core';
 import { latLng, Layer, LeafletEvent, MapOptions } from 'leaflet';
 import 'leaflet.markercluster';
 
@@ -15,22 +16,22 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@bluehalo/ngx-leaflet-markercluster';
-import { MapPositionInterface } from '@simra/common-models';
+import { IMapPosition } from '@simra/common-models';
 
 import { BERLIN_POSITION, DEFAULT_LAYER_CONFIG } from '../../models/const';
 import { EBaseLayerTypes } from '../../models/enums/base-layer-types';
 import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
 
 @Component({
-    selector: 't-marker-cluster-map-page',
-    imports: [CommonModule, LeafletMarkerClusterModule, LeafletModule],
-    templateUrl: './marker-cluster-map.page.html',
-    styleUrl: './marker-cluster-map.page.scss',
-    host: {
-        class: 't-marker-cluster-map-page',
-    },
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 't-marker-cluster-map-page',
+	imports: [CommonModule, LeafletMarkerClusterModule, LeafletModule, TranslatePipe],
+	templateUrl: './marker-cluster-map.page.html',
+	styleUrl: './marker-cluster-map.page.scss',
+	host: {
+		class: 't-marker-cluster-map-page',
+	},
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkerClusterMapPage {
 	private readonly route = inject(ActivatedRoute);
@@ -38,16 +39,18 @@ export class MarkerClusterMapPage {
 
 	private queryParams = toSignal(this.route.queryParams);
 
-	public readonly leafletPosition: Signal<MapPositionInterface> = computed(() => {
+	public readonly leafletPosition: Signal<IMapPosition> = computed(() => {
 		const {
 			lat = BERLIN_POSITION.lat,
 			lng = BERLIN_POSITION.lng,
 			zoom = BERLIN_POSITION.zoom,
-		} = (this.queryParams() as MapPositionInterface) ?? {};
+		} = (this.queryParams() as IMapPosition) ?? {};
 
 		return { ...BERLIN_POSITION, lat, lng, zoom };
 	});
 	public readonly markers = input.required<Layer[]>();
+	public readonly lastRun = input<Date>();
+
 	protected readonly _mapOptions: MapOptions = {
 		zoom: this.leafletPosition().zoom,
 		center: latLng(this.leafletPosition().lat, this.leafletPosition().lng),

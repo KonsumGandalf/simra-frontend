@@ -1,3 +1,6 @@
+@if(lastRun(); as run) {
+	<h4 class="last-run">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ run | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
+}
 <div class="leaflet-map"
 	leaflet
 	 [leafletLayersControl]="_layerControl"

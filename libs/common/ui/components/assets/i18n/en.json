@@ -9,7 +9,8 @@
             "LEFT": "Left",
             "RIGHT": "Right",
             "WIDTH": "Width",
-            "TYPE": "Typ"
+            "TYPE": "Typ",
+            "LAST_MODIFIED": "Last Update"
         },
         "TABLE": {
             "ITEMS": {
@@ -18,6 +19,7 @@
             },
             "HEADER": {
                 "PLACEHOLDER": "Nothing selected",
+                "REGION": "Select Administrative District",
                 "COLUMNS": {
                     "ID": "ID",
                     "OSM_ID": "OSM ID",
@@ -126,6 +128,9 @@
                 "LOW_RISK": "High Risk",
                 "HIGH_RISK": "Low Risk"
             }
+        },
+        "SAFETY_METRICS_DIGIT_PANEL": {
+            "NO_STREET_SELECTED": "No street selected click on segment"
         }
     },
     "ORGANISMS": {}
