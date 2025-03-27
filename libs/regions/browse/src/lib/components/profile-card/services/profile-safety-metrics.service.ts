@@ -1,8 +1,9 @@
 import { computed, inject, Injectable, Signal, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EGroupType, IProfileGroupAssociation } from '@simra/models';
+import { EGroupType, IProfileGroupAssociation, ISafetyMetricsProfile } from '@simra/models';
 import { ChartData, ChartDataset, ChartOptions } from 'chart.js';
 import { orderBy } from 'lodash';
+import { getAgeSortOrder, getExperienceSortOrder } from '../models/order-functions';
 
 @Injectable({
 	providedIn: 'root',
@@ -45,9 +46,34 @@ export class ProfileSafetyMetricsService {
 			const groupData = metrics.find((group) => group.groupType === groupType);
 			if (!groupData || !groupData.groupValue || groupData.groupValue.length === 0) return undefined;
 
-			const sortedData = orderBy(groupData.groupValue, ['groupName'], ['asc']);
+			let sortedData: ISafetyMetricsProfile[] = orderBy(
+				groupData.groupValue,
+				(entry) => entry.groupName === 'NOT_CHOSEN' || entry.groupName === '-1' ? 'x' : entry.groupName,
+				['asc']
+			);
 
-			let labels = sortedData.map((entry) => entry.groupName).filter((label) => label !== '' && label !== '-1');
+			switch (groupType) {
+				case 'AGE':
+					sortedData = orderBy(
+						groupData.groupValue,
+						(entry) => getAgeSortOrder(entry.groupName),
+						['asc']
+					);
+					break;
+
+				case 'EXPERIENCE':
+					sortedData = orderBy(
+						groupData.groupValue,
+						(entry) => getExperienceSortOrder(entry.groupName),
+						['asc']
+					);
+					break;
+
+
+			}
+
+
+			let labels = sortedData.map((entry) => entry.groupName);
 			labels = labels.map((label) => this._translationService.instant(`${this._translationLocalKeyPrefix}.${groupType}.${label}`));
 
 			let datasets: ChartDataset[] = [

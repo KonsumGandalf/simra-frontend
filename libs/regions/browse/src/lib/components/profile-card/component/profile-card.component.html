@@ -1,5 +1,8 @@
 <p-divider></p-divider>
-<p-card id="rider" [header]="'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.TITLE' | translate">
+<p-card
+	id="rider"
+	[header]="'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.TITLE' | translate"
+	subheader="{{ 'COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED' | translate }}: {{ lastRun() | date: 'dd.MM.yyyy HH:mm':'Europe/Berlin' }}">
 	<p [innerHTML]="'REGIONS.BROWSE.COMPONENTS.PROFILE_CARD.DESCRIPTION' | translate"></p>
 </p-card>
 @for(metric of metricsArray; track metric) {

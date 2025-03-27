@@ -7,10 +7,11 @@ import {
 	resource, signal,
 	ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MapPositionInterface } from '@simra/common-models';
+import { IMapPosition } from '@simra/common-models';
 import { ISafetyMetricsRegion } from '@simra/models';
 import { RegionDetailViewFacade } from '@simra/regions-domain';
 import { find } from 'lodash';
@@ -44,6 +45,7 @@ export class RegionDetailViewPage {
 	private readonly _facade = inject(RegionDetailViewFacade);
 	private readonly _metricsService = inject(SafetyMetricsService);
 	protected readonly regionName = input<string>();
+	protected readonly queryOptions = model<IMapPosition>();
 
 	protected readonly _safetyMetrics = signal<ISafetyMetricsRegion>(undefined);
 	protected readonly _detailedRegion = resource({
@@ -56,7 +58,7 @@ export class RegionDetailViewPage {
 			return await firstValueFrom(this._facade.getDetailedRegion(request));
 		},
 	});
-	protected readonly queryOptions = model<MapPositionInterface>();
+	protected readonly _lastRunRegionMetrics = toSignal(this._facade.getLastMethodRun('calculateSafetyMetricsRegion'));
 
 	async changeDetails(event: IDetailViewChange) {
 		const regionName = this.regionName();

@@ -7,10 +7,11 @@ import {
 	resource, signal,
 	ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MapPositionInterface } from '@simra/common-models';
+import { IMapPosition } from '@simra/common-models';
 import { ISafetyMetricsRegion } from '@simra/models';
 import { find } from 'lodash';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -60,13 +61,16 @@ export class SimraRegionDetailViewPage {
 			return await firstValueFrom(this._facade.getSimraDetailedRegion(request));
 		},
 	});
-	protected readonly _queryOptions = model<MapPositionInterface>();
+	protected readonly _queryOptions = model<IMapPosition>();
 	protected readonly _profileSafetyMetrics$ = resource({
 		request: () => this.regionName(),
 		loader: async ({ request }) => {
 			return await firstValueFrom(this._facade.getSimraProfileSafetyMetrics(request));
 		},
 	});
+
+	protected readonly _lastRunSimraRegionMetrics$ = toSignal(this._facade.getLastMethodRun('updateSafetyMetricsSimraRegion'));
+	protected readonly _lastRunProfileMetrics$ = toSignal(this._facade.getLastMethodRun('updateProfileSimraRegion'));
 
 	async changeDetails(event: IDetailViewChange) {
 		const regionName = this.regionName();

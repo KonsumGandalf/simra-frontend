@@ -6,11 +6,12 @@ import { ProfileCardComponent } from './profile-card.component';
 @Component({
 	selector: 't-profile-card-host',
 	template: `
-		<t-profile-card [groupedProfileSafetyMetrics]="groupedProfileSafetyMetrics"></t-profile-card>`,
+		<t-profile-card [groupedProfileSafetyMetrics]="groupedProfileSafetyMetrics" [lastRun]="lastRun"></t-profile-card>`,
 	imports: [ProfileCardComponent],
 })
 class TestHostComponent {
 	groupedProfileSafetyMetrics = [];
+	lastRun = new Date();
 }
 describe('ProfileCardComponent', () => {
 	let component: TestHostComponent;

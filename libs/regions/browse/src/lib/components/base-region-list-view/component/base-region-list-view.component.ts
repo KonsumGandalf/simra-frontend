@@ -11,10 +11,12 @@ import {
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
-	EnumColumn, EnumMultiSelectComponent,
+	EnumColumn,
+	EnumMultiSelectComponent,
 	isEnumColumn,
 	isNumberColumn,
-	NumberColumn, NumberFilterComponent,
+	NumberColumn,
+	NumberFilterComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
 	WEEK_DAYS_TO_TRANSLATION,
 	YEAR_TO_TRANSLATION,
@@ -51,7 +53,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '@simra/streets-explorer';
 	encapsulation: ViewEncapsulation.None,
 })
 export class BaseRegionListViewComponent {
-	regions = model.required<IPage<ISafetyMetrics>>();
+	safetyMetrics = model.required<IPage<ISafetyMetrics>>();
 
 	/**
 	 * The index of the current page
