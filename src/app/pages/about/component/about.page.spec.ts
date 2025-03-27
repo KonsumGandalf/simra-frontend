@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { FooterComponent } from './footer.component';
+import { AboutPage } from './about.page';
 
-describe('FooterComponent', () => {
-	let component: FooterComponent;
-	let fixture: ComponentFixture<FooterComponent>;
+describe('AboutTheInitiativeComponent', () => {
+	let component: AboutPage;
+	let fixture: ComponentFixture<AboutPage>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [FooterComponent, TranslateModule.forRoot(), RouterModule.forRoot([])],
+			imports: [AboutPage, TranslateModule.forRoot()],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(FooterComponent);
+		fixture = TestBed.createComponent(AboutPage);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

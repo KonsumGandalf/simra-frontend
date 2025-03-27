@@ -3,6 +3,14 @@ import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+	BERLIN_POSITION,
+	HANNOVER_POSITION,
+	HEIDELBERG_POSITION, MUNICH_POSITION,
+	NUREMBERG_POSITION,
+	RUHRGEBIET_POSITION,
+	WALLDORF_POSITION, WUPPERTAL_POSITION,
+} from '@simra/common-components';
 import { MenuItem, PrimeTemplate } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { Breadcrumb } from 'primeng/breadcrumb';
@@ -52,7 +60,7 @@ export class MenuBarComponent {
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.ADMINISTRATIVE_REGIONS',
 					icon: 'ph-bold ph-city',
-					routerLink: '/regions',
+					routerLink: '/administrative-districts',
 				},
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.SIMRA_REGIONS',
@@ -68,15 +76,51 @@ export class MenuBarComponent {
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.LIST',
 					icon: 'ph-bold ph-table',
-					shortcut: '⌘+S',
 					routerLink: '/streets',
 				},
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.MAP',
 					icon: 'ph-bold ph-map-trifold',
-					routerLink: '/streets/map',
-					shortcut: '⌘+B',
-					prefetch: async () => await this._prefetchService.prefetchStreetGrid(),
+					items: [
+						{
+							label: 'Berlin',
+							queryParams: BERLIN_POSITION,
+						},
+						{
+							label: 'Nürnberg',
+							queryParams: NUREMBERG_POSITION,
+						},
+						{
+							label: 'Hannover',
+							queryParams: HANNOVER_POSITION,
+						},
+						{
+							label: 'Walldorf',
+							queryParams: WALLDORF_POSITION,
+						},
+						{
+							label: 'Heidelberg',
+							queryParams: HEIDELBERG_POSITION,
+						},
+						{
+							label: 'Ruhrgebiet',
+							queryParams: RUHRGEBIET_POSITION,
+						},
+						{
+							label: 'Wuppertal',
+							queryParams: WUPPERTAL_POSITION,
+						},
+						{
+							label: 'Munich',
+							queryParams: MUNICH_POSITION,
+						},
+					].map((item) => {
+						return {
+							...item,
+							routerLink: '/streets/map',
+							prefetch: async () => await this._prefetchService.prefetchStreetGrid(item.queryParams),
+						}
+					})
 				},
 			],
 		},
@@ -99,15 +143,18 @@ export class MenuBarComponent {
 			icon: 'ph-bold ph-translate',
 			items: [
 				{
+					icon: 'fi fi-gb',
 					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.EN',
 					command: () => this._translateService.use('en'),
 				},
 				{
+					icon: 'fi fi-de',
 					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.DE',
 					command: () => this._translateService.use('de'),
 				},
 			],
 		},
+		/*
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.THEME.TITLE',
 			icon: 'ph-bold ph-moon-stars',
@@ -126,6 +173,7 @@ export class MenuBarComponent {
 				},
 			],
 		},
+		*/
 	];
 
 	private readonly _routerEvents = toSignal(this._router.events);

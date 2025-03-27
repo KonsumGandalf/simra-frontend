@@ -23,8 +23,7 @@ export const appConfig: ApplicationConfig = {
 			withComponentInputBinding(),
 			withPreloading(QuicklinkStrategy),
 			withInMemoryScrolling({
-				anchorScrolling: 'enabled',
-				scrollPositionRestoration: 'disabled',
+				anchorScrolling: 'enabled'
 			})
 		),
 		{

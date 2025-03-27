@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SharedModule } from 'primeng/api';
 import { ButtonDirective } from 'primeng/button';
 
 @Component({
 	selector: 'app-footer',
-	imports: [CommonModule, SharedModule, TranslatePipe, ButtonDirective],
+	imports: [CommonModule, SharedModule, TranslatePipe, ButtonDirective, RouterLink],
 	templateUrl: './footer.component.html',
 	styleUrl: './footer.component.scss',
 	encapsulation: ViewEncapsulation.None,

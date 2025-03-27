@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
+import { IMapPosition } from '@simra/common-models';
 import { IncidentsMapFacade } from '@simra/incidents-domain';
 import { StreetsMapFacade } from '@simra/streets-domain';
 import { firstValueFrom } from 'rxjs';
-import { BERLIN_POSITION } from '@simra/common-components';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class PrefetchService {
         await firstValueFrom(this._incidentsMapFacade.getIncidentMarker());
     }
 
-    public async prefetchStreetGrid(): Promise<void> {
-        await this._streetMapFacade.fetchStreetInformation(BERLIN_POSITION);
+    public async prefetchStreetGrid(position: IMapPosition): Promise<void> {
+        await this._streetMapFacade.fetchStreetInformation(position);
     }
 }

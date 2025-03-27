@@ -1,0 +1,37 @@
+<p-card>
+	<div class="about__info-box">
+		<h1 class="text-3xl inline-block font-bold underline underline-offset-2 decoration-4 decoration-primary-400 mb-4">{{ "APP.COMPONENTS.ABOUT.HEADER" | translate}}</h1>
+		<div>
+			<img class="w-96 float-left mr-4 mb-4 rounded-lg" ngSrc="/assets/images/about/bike-large-image.jpg" alt="" width="600" height="400">
+			<p [innerHTML]="'APP.COMPONENTS.ABOUT.MAIN_BODY' | translate"></p>
+			<a pButton
+			   severity="contrast"
+			   class="mt-4 px-8"
+			   href="https://simra-project.github.io/mitmachen.html"
+			   target="_blank"><i class="ph ph-person-simple-bike"></i>{{ "APP.COMPONENTS.ABOUT.PARTICIPATE_NOW" | translate}}</a>
+		</div>
+	</div>
+</p-card>
+<div class="about__award-box">
+	<div class="award-box">
+		<p-card [header]="'APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.TITLE' | translate">
+			<ng-template #header>
+				<img [alt]="'APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.TITLE' | translate" class="h-40" src="/assets/images/about/award-2022.png"/>
+			</ng-template>
+			<p>{{ "APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.BODY" | translate }}</p>
+			<ng-template #footer>
+				<a pButton
+				   severity="contrast"
+				   class="w-full mt-2"
+				   href="https://www.digital-future.berlin/en/news/news-in-detail/news/simra-gewinnt-deutschen-fahrradpreis/?tx_news_pi1%5Bcontroller%5D=News&tx_news_pi1%5Baction%5D=detail&cHash=3704002628ada1667676b23cf3a374fd"
+				   target="_blank"><i class="ph ph-newspaper"></i>{{ "APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.LINK" | translate}}</a>
+			</ng-template>
+		</p-card>
+
+	</div>
+	<div class="video-box">
+		<p-card>
+			<youtube-player videoId="SXpnTjMLdP4" placeholderImageQuality="standard"/>
+		</p-card>
+	</div>
+</div>

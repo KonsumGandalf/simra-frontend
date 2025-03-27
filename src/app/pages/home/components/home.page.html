@@ -1,0 +1,106 @@
+<div class="rounded-md border overflow-hidden p-4 bg-white">
+	<p [innerHTML]="'APP.COMPONENTS.HOME.INFORMATION_BOX.TEXT' | translate"></p>
+	<p class="mt-2" [innerHTML]="'APP.COMPONENTS.HOME.INFORMATION_BOX.LINK_TEXT' | translate"></p>
+</div>
+
+<h2>{{ 'APP.COMPONENTS.MENU_BAR.ITEMS.REGIONS' | translate }}</h2>
+
+<p-tabs class="content-card" value="0">
+	<p-tablist>
+		<p-tab value="0">{{ "APP.COMPONENTS.MENU_BAR.ITEMS.ADMINISTRATIVE_REGIONS" | translate}}</p-tab>
+		<p-tab value="1">{{ "APP.COMPONENTS.MENU_BAR.ITEMS.SIMRA_REGIONS" | translate}}</p-tab>
+	</p-tablist>
+	<p-tabpanels>
+		<p-tabpanel value="0">
+			<div class="flex">
+				<img ngSrc="/assets/images/home/berlin.jpg" alt="" width="600" height="400">
+				<div class="tabs__information-content">
+					<p [innerHTML]="'APP.COMPONENTS.HOME.REGIONS.SIMRA_REGIONS' | translate"></p>
+					<section>
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.TRAFFIC_ANALYTICS' | translate" />
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.CHARTS' | translate" />
+					</section>
+				</div>
+			</div>
+			<a routerLink="/administrative-districts" class="link-button">{{ "APP.COMPONENTS.HOME.GO_TO" | translate }}</a>
+		</p-tabpanel>
+		<p-tabpanel value="1">
+			<div class="flex">
+				<img ngSrc="/assets/images/home/map.jpg" alt="" width="600" height="400">
+				<div class="tabs__information-content">
+					<p [innerHTML]="'APP.COMPONENTS.HOME.REGIONS.ADMINISTRATIVE_REGIONS' | translate">
+					<section>
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.TRAFFIC_ANALYTICS' | translate" />
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.CHARTS' | translate" />
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.PROFILE_ANALYTICS' | translate" />
+					</section>
+				</div>
+			</div>
+			<a routerLink="/simra-regions" class="link-button">{{ "APP.COMPONENTS.HOME.GO_TO" | translate }}</a>
+		</p-tabpanel>
+	</p-tabpanels>
+</p-tabs>
+<h2>{{ 'APP.COMPONENTS.MENU_BAR.ITEMS.STREETS' | translate }}</h2>
+<p-tabs value="0">
+	<p-tablist>
+		<p-tab value="0">{{ "APP.COMPONENTS.MENU_BAR.ITEMS.LIST" | translate}}</p-tab>
+		<p-tab value="1">{{ "APP.COMPONENTS.MENU_BAR.ITEMS.MAP" | translate}}</p-tab>
+	</p-tablist>
+	<p-tabpanels>
+		<p-tabpanel value="0">
+			<div class="flex">
+				<img ngSrc="/assets/images/home/street.png" alt="" width="600" height="400">
+				<div class="tabs__information-content">
+					<p [innerHTML]="'APP.COMPONENTS.HOME.STREETS.LIST' | translate"></p>
+					<section>
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.TRAFFIC_ANALYTICS' | translate" />
+					</section>
+				</div>
+			</div>
+			<a routerLink="/streets" class="link-button">{{ "APP.COMPONENTS.HOME.GO_TO" | translate }}</a>
+		</p-tabpanel>
+		<p-tabpanel value="1">
+			<div class="flex">
+				<img ngSrc="/assets/images/home/street-map.jpg" alt="" width="600" height="400">
+				<div class="tabs__information-content">
+					<p [innerHTML]="'APP.COMPONENTS.HOME.STREETS.MAP' | translate"></p>
+					<section>
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.TRAFFIC_ANALYTICS' | translate" />
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.CHARTS' | translate" />
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.INCIDENT_DETAILS' | translate" />
+					</section>
+				</div>
+			</div>
+			<div class="city-box">
+				<h3>{{ "APP.COMPONENTS.HOME.JUMP_TO_POSITION" | translate }}:</h3>
+				@for(cityLink of CITY_POSITION_LINKS; track cityLink.position) {
+					<a [routerLink]="['streets', 'map']" [queryParams]="cityLink.position" class="link-button">{{ cityLink.label }}</a>
+					@if(!$last) {
+						,
+					}
+				}
+			</div>
+			</p-tabpanel>
+	</p-tabpanels>
+</p-tabs>
+
+<h2>{{ 'APP.COMPONENTS.MENU_BAR.ITEMS.INCIDENTS' | translate }}</h2>
+<p-tabs value="0">
+	<p-tablist>
+		<p-tab value="0">{{ "APP.COMPONENTS.MENU_BAR.ITEMS.MAP" | translate}}</p-tab>
+	</p-tablist>
+	<p-tabpanels>
+		<p-tabpanel value="0">
+			<div class="flex">
+				<img ngSrc="/assets/images/home/incident.jpg" alt="" width="600" height="400">
+				<div class="tabs__information-content">
+					<p [innerHTML]="'APP.COMPONENTS.HOME.INCIDENTS.MAP' | translate"></p>
+					<section>
+						<p-chip [label]="'APP.COMPONENTS.HOME.CHIPS.INCIDENT_DETAILS' | translate" />
+					</section>
+				</div>
+			</div>
+			<a [routerLink]="['incidents', 'map']" class="link-button">{{ "APP.COMPONENTS.HOME.GO_TO" | translate }}</a>
+		</p-tabpanel>
+	</p-tabpanels>
+</p-tabs>
