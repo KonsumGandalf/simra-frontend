@@ -1,7 +1,7 @@
 .o-streets-map {
-	position: relative; // ensure the container is relatively positioned
+	position: relative;
 
-	m-safety-metrics-panel {
+	.panel__card {
 		@screen md {
 			position: absolute;
 			top: 50%;
@@ -10,6 +10,20 @@
 			z-index: 500;
 			width: 17rem;
 		}
+	}
+
+	.map-overlay {
+		position: absolute;
+		top: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+		padding: 8px 12px;
+		border-radius: 4px;
+		font-size: 14px;
+		font-weight: 500;
+		z-index: 1000; /* Ensure it stays above the map */
+		pointer-events: none; /* Makes sure the map is still interactive */
 	}
 
 	m-dangerous-score-bar {

@@ -6,14 +6,16 @@ import {
 	computed,
 	effect,
 	inject,
-	Injector,
+	Injector, resource,
 	signal,
 	ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { DangerousScoreBarComponent, MapPage, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
-import { MapPositionInterface } from '@simra/common-models';
+import { IMapPosition } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
@@ -21,6 +23,7 @@ import { createIncidentMarker } from '@simra/incidents-ui';
 import { IGetStreetGrid } from '@simra/streets-common';
 import { SetStreet, StreetDetailState, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { Marker } from 'leaflet';
+import { Card } from 'primeng/card';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -31,6 +34,8 @@ import { firstValueFrom } from 'rxjs';
 		MapPage,
 		DangerousScoreBarComponent,
 		SafetyMetricsDigitPanelComponent,
+		Card,
+		TranslatePipe,
 	],
 	templateUrl: './streets-map.page.html',
 	styleUrl: './streets-map.page.scss',
@@ -46,11 +51,21 @@ export class StreetsMapPage {
 	private readonly _injector = inject(Injector);
 	private readonly _appRef = inject(ApplicationRef);
 
-	private _mapPosition = signal<MapPositionInterface>(undefined);
+	protected _mapPosition = signal<IMapPosition>(undefined);
 	protected readonly _filterState = this._store.selectSignal(MapFilterState.getMapFilterState);
 	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCache);
-	protected readonly hoveredStreetId$ = this._store.selectSignal(
-		StreetDetailState.getStreet,
+	protected readonly hoveredStreetId$ = this._store.selectSignal(StreetDetailState.getStreet);
+	protected readonly safetyMetrics$ = resource({
+		request: () => this.hoveredStreetId$(),
+		loader: async ({ request }) => {
+			const safetyMetrics = await firstValueFrom(this._streetsMapFacade.fetchSafetyMetricsForStreet(request.id));
+			this.showOverlay$.set(false);
+			return safetyMetrics;
+		}
+	});
+	protected readonly showOverlay$ = signal(true);
+	protected readonly lastRun$ = toSignal(
+		this._streetsMapFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
 	);
 
 	protected readonly incidents$ = asyncComputed(() => {
@@ -91,7 +106,7 @@ export class StreetsMapPage {
 		});
 	}
 
-	onMapPositionChanged(position: MapPositionInterface) {
+	onMapPositionChanged(position: IMapPosition) {
 		this._mapPosition.set(position);
 	}
 }

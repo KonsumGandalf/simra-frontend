@@ -6,6 +6,7 @@ import {
 	signal,
 	ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
@@ -13,11 +14,11 @@ import {
 	EnumColumn,
 	EnumMultiSelectComponent,
 	isEnumColumn,
-	isNumberColumn,
+	isNumberColumn, AutocompleteComponent,
 	NumberColumn,
 	NumberFilterComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
-	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION,
+	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION, AutocompleteColumn, isAutocompleteColumn,
 } from '@simra/common-components';
 import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { IStreetsSafetyMetricsRequest } from '@simra/streets-common';
@@ -30,7 +31,7 @@ import { TableLazyLoadEvent } from 'primeng/table';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { Tooltip } from 'primeng/tooltip';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway-types-to-translation';
 
 @Component({
@@ -49,6 +50,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway
 		NumberFilterComponent,
 		EnumMultiSelectComponent,
 		RouterLink,
+		AutocompleteComponent,
 	],
 	templateUrl: './street-list-view.page.html',
 	styleUrl: './street-list-view.page.scss',
@@ -77,8 +79,21 @@ export class StreetListViewPage {
 	 * @protected
 	 */
 	protected readonly _cols: Column[] = [
-		{ header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID`, field: 'id', sortable: true },
-		{ header: `${this._headerPrefix}.NAME`, field: 'name' },
+		{
+			header: `COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID`,
+			field: 'id',
+			sortable: true,
+			fetchFunction: (query: string): Observable<string[]> => {
+				return this._streetListViewFace.fetchStreetIds(query);
+			}
+		} as AutocompleteColumn,
+		{
+			header: `${this._headerPrefix}.NAME`,
+			field: 'name',
+			fetchFunction: (query: string): Observable<string[]> => {
+				return this._streetListViewFace.fetchStreetNames(query);
+			}
+		} as AutocompleteColumn,
 		{
 			header: `${this._headerPrefix}.HIGHWAY_TYPE`,
 			field: 'highway',
@@ -130,6 +145,9 @@ export class StreetListViewPage {
 		} as EnumColumn<EYear>,
 	];
 
+	public fetchRegionNames = (query: string): Observable<string[]> => {
+		return this._streetListViewFace.fetchRegionNames(query);
+	};
 	protected readonly filtering = signal<IStreetsSafetyMetricsRequest>({
 		size: 20,
 		weekDay: [EWeekDays.ALL_WEEK],
@@ -142,7 +160,7 @@ export class StreetListViewPage {
 		request: () => ({ ...this.filtering() }),
 		loader: async ({ request }) => {
 			this.loading.set(true);
-			request.id = 1;
+			console.log(request);
 			const response = await firstValueFrom(
 				this._streetListViewFace.fetchStreetList(request),
 			);
@@ -150,6 +168,9 @@ export class StreetListViewPage {
 			return response;
 		},
 	});
+	protected readonly _lastRun$ = toSignal(
+		this._streetDetailViewFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+	);
 
 	/**
 	 * Called when paginating the table
@@ -172,7 +193,12 @@ export class StreetListViewPage {
 		let newFilter = {};
 		if (event.filters) {
 			for (const filter in event.filters) {
-				newFilter[filter] = event.filters[filter].value;
+				const numericValue = +event.filters[filter].value;
+				if (isNaN(numericValue)) {
+					newFilter[filter] = numericValue;
+				} else {
+					newFilter[filter] = event.filters[filter].value;
+				}
 			}
 		} else {
 			newFilter = event;
@@ -221,4 +247,5 @@ export class StreetListViewPage {
 	}
 
 	protected readonly YEAR_TO_TRANSLATION = YEAR_TO_TRANSLATION;
+	protected readonly isAutocompleteColumn = isAutocompleteColumn;
 }

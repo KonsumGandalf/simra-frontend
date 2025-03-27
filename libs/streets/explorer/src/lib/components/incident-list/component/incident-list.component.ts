@@ -1,4 +1,4 @@
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -43,7 +43,6 @@ export class IncidentListComponent {
 	private readonly _store = inject(Store);
 	private readonly _router = inject(Router);
 	private readonly _translateService = inject(TranslateService);
-	protected readonly _viewportScroller = inject(ViewportScroller);
 
 	private readonly _street$ = this._store.selectSignal(StreetDetailState.getStreet);
 	protected readonly _loading$ = computed(() => {

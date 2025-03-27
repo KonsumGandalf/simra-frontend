@@ -1,6 +1,17 @@
+@if(showOverlay$()) {
+	<div class="map-overlay">
+		{{ "COMPONENTS.MOLECULES.SAFETY_METRICS_DIGIT_PANEL.NO_STREET_SELECTED" | translate}}
+	</div>
+}
 <t-map-component
 	[overlayLayers]="combinedOverlay$()"
 	(positionChange)="onMapPositionChanged($event)"
+	[isNavigable]="true"
+	[lastRun]="lastRun$()"
 ></t-map-component>
 <m-dangerous-score-bar></m-dangerous-score-bar>
-<m-safe-metrics-digit-panel></m-safe-metrics-digit-panel>
+@if(_mapPosition()?.zoom > 11 && !showOverlay$()) {
+	<p-card class="panel__card">
+		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetrics$.value()" ></m-safe-metrics-digit-panel>
+	</p-card>
+}

@@ -19,6 +19,7 @@ describe('StreetDetailViewPage', () => {
 					provide: StreetDetailViewFacade,
 					useValue: {
 						getAndSetStreet: jest.fn().mockReturnValue(of({})),
+						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
 					}
 				},
 				{

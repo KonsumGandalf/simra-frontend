@@ -16,12 +16,14 @@ describe('ListViewComponent', () => {
 					provide: StreetListViewFacade,
 					useValue: {
 						fetchStreetList: jest.fn().mockReturnValue(of({})),
+						fetchRegionNames: jest.fn().mockReturnValue(of([])),
 					},
 				},
 				{
 					provide: StreetDetailViewFacade,
 					useValue: {
 						getAndSetStreet: jest.fn().mockReturnValue(of({})),
+						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
 					},
 				},
 			],

@@ -20,10 +20,6 @@
 
         .simple-table{
             @extend .simple-table;
-
-            p-skeleton {
-                @apply mb-4;
-            }
         }
 
         .street-information-card__maps {
