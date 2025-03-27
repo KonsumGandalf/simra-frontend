@@ -1,5 +1,18 @@
 {
     "COMPONENTS": {
+        "ABOUT": {
+            "HEADER": "SimRa: Sicherheit im Radverkehr",
+            "MAIN_BODY": "Alle interessierten Fahrradfahrerer*innen sind herzlich eingeladen, die kostenlose App auf dem Smartphone zu installieren und so unkompliziert einen wichtigen Teil zu dem Forschungsprojekt für mehr Sicherheit im Radverkehr beizutragen.<br/><br/>Im Projekt SimRa sammeln wir – auf datenschutzkompatible Art und Weise – Daten darüber, wo es in der Stadt für Radfahrende zu Gefahrenhäufungen kommt, welcher Art diese sind, ob diese zeitlich oder lokal gehäuft auftreten und wo sich die Hauptverkehrsflüsse auf dem Rad bewegen. Hierfür wurde im Projekt eine Smartphone-App entwickelt, die mittels GPS-Daten Fahrtrouten aufzeichnet und dabei Beschleunigungssensoren zum Detektieren von Gefahrensituationen nutzt – bspw. plötzliches Bremsen, Ausweichen oder gar einen Sturz. Im Anschluss an die Fahrt werden Radfahrende gebeten, diese detektierten Gefahrensituationen zu kategorisieren und zu annotieren, etwaige nicht detektierte Gefahrensituationen zu ergänzen und einen Upload auf die Projektserver frei zu geben.<br/><br/>Um den Teilnehmenden zu jedem Zeitpunkt volle Kontrolle über ihre Daten zu geben, werden alle Daten zunächst nur lokal in der App erfasst. Erst im Anschluss an die Fahrt können Teilnehmende die erfassten Daten einsehen und pro Fahrt einzeln pseudonymisiert zum Upload freigeben. Mit Hilfe dieser Daten wird es möglich, einen umfassenden Überblick über Radverkehr in Berlin sowie dabei auftretende Gefahrensituationen zu gewinnen. Zusätzlich können ungünstige Verkehrsflüsse oder Ampelschaltungen erkannt und optimiert werden, sodass die Fahrradnutzung mittelfristig attraktiver und sicherer wird. Die im Projekt gewonnenen Daten werden gemeinsam mit Partnern aus anderen Fachbereichen wie bspw. Stadt- und Regionalplanung aber auch unter Einbeziehung interessierter Bürger ausgewertet, um mit Hilfe der Berliner Senatsverwaltung für Umwelt, Verkehr und Klimaschutz nachhaltige Veränderungen zu erreichen.",
+            "PARTICIPATE_NOW": "Jetzt teilnehmen!",
+            "AWARDS": {
+                "FAHRRAD_PREIS_2022": {
+                    "TITLE": "Deutscher Fahrradpreis 2022",
+                    "LINK": "Bericht",
+                    "SUBTITLE": "Kategorie Service & Kommunikation",
+                    "BODY": "Gemeinsam mit dem OpenBikeSensor haben wir den Deutschen Fahrradpreis 2022 in der Kategorie Service & Kommunikation gewonnen!"
+                }
+            }
+        },
         "MENU_BAR": {
             "ITEMS": {
                 "HOME": "Home",
@@ -29,8 +42,8 @@
         "FOOTER": {
             "PROJECT": {
                 "TITLE": "Das Projekt",
-                "ABOUT_US": "Über uns",
-                "PARTNER": "Strategische Partnerschaften"
+                "ABOUT_THE_INITIATIVE": "Über die Initiative",
+                "PROCESSING_DETAILS": "Verarbeitungsdetails"
             },
             "CONTACT": {
                 "TITLE": "Kontakt",
@@ -45,6 +58,35 @@
             "COPYRIGHT": {
                 "TITLE": "SimRa | Ein Projekt der TU Berlin & ECDF"
             }
+        },
+        "HOME": {
+            "GO_TO": "Weiter zur Seite",
+            "JUMP_TO_POSITION": "Springe zur Position",
+            "INFORMATION_BOX": {
+                "TEXT": "Willkommen bei SimRa, Ihrem Werkzeug zur Verbesserung der Radfahrsicherheit durch datengestützte Erkenntnisse. Durch das Sammeln und Analysieren von Fahr- und Unfalldaten hilft SimRa, Risikobereiche zu identifizieren und die städtische Radverkehrsinfrastruktur zu verbessern. Melden Sie gefährliche Situationen, untersuchen Sie Verkehrsmuster und tragen Sie zu einer sichereren Fahrradumgebung bei. Treten Sie der Community bei und werden Sie Teil der Bewegung für bessere und sicherere Radwege.",
+                "LINK_TEXT": "Erfahren Sie mehr über die <a class='link-button' href='/about'>Initiative</a> und wie wir deine <a class='link-button' href='/processing-details'>Daten</a> analysieren und verarbeiten."
+            },
+            "CHIPS": {
+                "INCIDENT_DETAILS": "Incident Details",
+                "TRAFFIC_ANALYTICS": "Traffic Analytics",
+                "CHARTS": "Charts",
+                "PROFILE_ANALYTICS": "Profile Analytics"
+            },
+            "REGIONS": {
+                "ADMINISTRATIVE_REGIONS": "Verwaltungsregionen sind offiziell festgelegte Gebiete, die sich an den Landesgrenzen orientieren. Dazu gehören Städte und benachbarte Bezirke oder Stadtstaaten wie Berlin. Sie bieten eine strukturierte Möglichkeit zur Analyse der Radverkehrsaktivitäten innerhalb fester Grenzen.",
+                "SIMRA_REGIONS": "SimRa-Regionen sind größere Gebiete, die mehrere Verwaltungsregionen kombinieren, um reale Mobilitätsmuster widerzuspiegeln. Diese Regionen, wie z.B. Berlin-Potsdam, fassen Orte zusammen, zwischen denen häufige Fahrten stattfinden, und gewährleisten so ein umfassenderes Verständnis des Radverkehrsverhaltens und der Infrastrukturnutzung."
+            },
+            "STREETS": {
+                "LIST": "Die Straßenliste bietet einen Überblick über die gefährlichsten Straßen in der Region. Sie enthält eine Rangfolge der Straßen auf der Grundlage einer Sicherheitsanalyse, die es Ihnen ermöglicht, risikoreiche Bereiche zu identifizieren und deren Gefahrenstufe zu bewerten. Die filter und sortierbare Liste hilft dabei, zu verstehen, welche Straßen die meisten gemeldeten Vorfälle aufweisen und Aufmerksamkeit erfordern.",
+                "MAP": "Die Straßenkarte stellt die Sicherheit im Straßenverkehr visuell dar, indem sie ein Gefahrengitter anzeigt. Verschiedene Farben zeigen unterschiedliche Risikostufen an und helfen Ihnen, gefährliche Bereiche schnell zu erkennen. Diese interaktive Ansicht bietet eine geografische Perspektive der Fahrradsicherheit und ermöglicht eine bessere Planung und Sensibilisierung."
+            },
+            "INCIDENTS": {
+                "MAP": "Die Unfallkarte zeigt gemeldete Vorfälle gruppiert auf einer interaktiven Karte an, so dass gefährliche Bereiche schnell erkannt werden können."
+            }
+        },
+        "PROCESSING_DETAILS": {
+            "TITLE": "Verarbeitungsdetails",
+            "MASTER_THESIS": "Masterarbeit"
         }
     }
 }
