@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { MethodRunService } from '@simra/common-domain';
 import { IIncident, IIncidentMarker } from '@simra/incidents-models';
 import { Observable, tap } from 'rxjs';
 import { IncidentRequestService } from '../../infrastructure/incident-request.service';
@@ -8,6 +9,7 @@ import { SetIncidentMarker } from '../state/incidents.actions';
 @Injectable({ providedIn: 'root' })
 export class IncidentsMapFacade {
 	private readonly _incidentRepository = inject(IncidentRequestService);
+	private readonly _lastMethodRun = inject(MethodRunService);
 	private readonly _store = inject(Store);
 
 	public getIncidentMarker(): Observable<IIncidentMarker[]> {
@@ -20,5 +22,9 @@ export class IncidentsMapFacade {
 
 	public getIncidentDetails(id: number): Observable<IIncident> {
 		return this._incidentRepository.getIncidentDetails(id);
+	}
+
+	public fetchLastMethodRun(methodName: string) {
+		return this._lastMethodRun.getDateOfLastMethodRun(methodName);
 	}
 }

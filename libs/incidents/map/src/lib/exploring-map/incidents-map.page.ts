@@ -8,6 +8,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngxs/store';
 import { IncidentsMapFacade, IncidentsState} from '@simra/incidents-domain';
@@ -17,15 +18,15 @@ import { firstValueFrom } from 'rxjs';
 import { MarkerClusterMapPage } from '@simra/common-components';
 
 @Component({
-    selector: 'incident-map',
-    imports: [CommonModule, LeafletModule, MarkerClusterMapPage],
-    templateUrl: './incidents-map.page.html',
-    styleUrl: './incidents-map.page.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'o-incidents-map',
-    }
+	selector: 'incident-map',
+	imports: [CommonModule, LeafletModule, MarkerClusterMapPage],
+	templateUrl: './incidents-map.page.html',
+	styleUrl: './incidents-map.page.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None,
+	host: {
+		class: 'o-incidents-map',
+	},
 })
 export class IncidentsMapPage {
 	private readonly _incidentsMapFacade = inject(IncidentsMapFacade);
@@ -38,9 +39,17 @@ export class IncidentsMapPage {
 	protected readonly _markers$: Signal<Layer[]> = computed(() => {
 		const incidents = this._incidentMarker$() || [];
 		return incidents.map((incident) =>
-			createIncidentMarker(incident, this._injector, this._appRef, this._incidentsMapFacade.getIncidentDetails.bind(this._incidentsMapFacade))
+			createIncidentMarker(
+				incident,
+				this._injector,
+				this._appRef,
+				this._incidentsMapFacade.getIncidentDetails.bind(this._incidentsMapFacade),
+			),
 		);
 	});
+	protected readonly _lastRun$ = toSignal(
+		this._incidentsMapFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+	);
 
 	constructor() {
 		effect(async () => {
