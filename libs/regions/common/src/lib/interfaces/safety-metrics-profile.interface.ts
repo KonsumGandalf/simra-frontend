@@ -4,4 +4,5 @@ export interface ISafetyMetricsProfile {
 	totalRides: number;
 	dangerousScore: number;
 	groupName: string;
+	lastModified: Date;
 }
