@@ -1,21 +1,25 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { MethodRunService } from '@simra/common-domain';
 import { IIncident } from '@simra/incidents-models';
-import { IGetStreetGrid } from '@simra/streets-common';
+import { IGetStreetGrid, SafetyMetricsDto } from '@simra/streets-common';
 import { Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
 import { firstValueFrom, Observable, take, tap } from 'rxjs';
 import { IncidentsRequestService } from '../../infrastructure/incidents-request.service';
+import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics-request.service';
 import { StreetsRequestService } from '../../infrastructure/streets-request.service';
 import { StreetInformationDto } from '../../models/dtos/street-information.dto';
 import * as L from 'leaflet';
-import { SetStreet } from '../store/street-detail.actions';
+import { SetSelectedSafetyMetrics, SetStreet } from '../store/street-detail.actions';
 import { AddToStreetCache } from '../store/street-map.actions';
 
 @Injectable({ providedIn: 'root' })
 export class StreetsMapFacade {
 	private readonly _streetsRequestService = inject(StreetsRequestService);
 	private readonly _incidentRequestService = inject(IncidentsRequestService);
+	private readonly _safetyMetricsRequestService = inject(SafetyMetricsRequestService);
+	private readonly _methodRunService = inject(MethodRunService);
 	private readonly _store = inject(Store);
 
 	private toGeoJSON(street: StreetInformationDto): GeoJSON<any, Geometry> {
@@ -48,8 +52,21 @@ export class StreetsMapFacade {
 		);
 	}
 
+	public fetchSafetyMetricsForStreet(streetId: number): Observable<SafetyMetricsDto> {
+		return this._safetyMetricsRequestService.getSafetyMetricsForStreet(streetId).pipe(
+			take(1),
+			tap((response: SafetyMetricsDto) => {
+				this._store.dispatch(new SetSelectedSafetyMetrics(response));
+			})
+		);
+	}
+
 
 	public fetchIncidentsForStreet(streetId: number): Observable<IIncident[]> {
 		return this._incidentRequestService.getIncidentForStreet(streetId)
+	}
+
+	public fetchLastMethodRun(methodName: string) {
+		return this._methodRunService.getDateOfLastMethodRun(methodName);
 	}
 }
