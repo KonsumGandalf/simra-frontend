@@ -8,3 +8,10 @@
     }
 
 }
+
+.last-run {
+    @apply opacity-60 text-sm text-right right-2;
+
+    position: absolute;
+    top: -4.25rem;
+}

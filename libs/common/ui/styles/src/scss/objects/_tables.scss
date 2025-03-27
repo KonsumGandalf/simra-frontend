@@ -15,8 +15,9 @@
         }
 
         p-skeleton {
-            height: 0.625rem;
-            margin-block: 0.0625rem 0.3125rem;
+            @apply p-0;
+
+            margin-block: 0.125rem;
         }
 
         &:last-child {
