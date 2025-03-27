@@ -6,12 +6,13 @@ import { BaseRegionDetailViewComponent } from './base-region-detail-view.compone
 
 @Component({
 	selector: 'm-test-host-component',
-	template: '<t-base-region-detail-view [detailedRegion]="detailedRegion" [safetyMetrics]="safetyMetrics"></t-base-region-detail-view>',
+	template: '<t-base-region-detail-view [detailedRegion]="detailedRegion" [safetyMetrics]="safetyMetrics" [lastRun]="lastRun"></t-base-region-detail-view>',
 	imports: [BaseRegionDetailViewComponent],
 })
 class TestHostComponent {
 	detailedRegion = undefined as IRegion;
 	safetyMetrics = {} as ISafetyMetricsRegion;
+	lastRun = new Date();
 }
 describe('Integration Test BaseRegionDetailViewComponent', () => {
 	let component: TestHostComponent;

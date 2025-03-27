@@ -1,17 +1,34 @@
 .t-street-list-view {
 	.p-card {
-		.street-list__table-container {
-			@apply w-full;
-		}
-
 		table {
 
 			thead {
 				z-index: 1;
 
+
 				input {
 					@apply w-full;
 				}
+			}
+		}
+
+		.street-list__table-container {
+			@apply w-full;
+		}
+
+		.p-datatable-header {
+			@apply pt-0;
+		}
+
+		.table__autocomplete {
+			.p-autocomplete-input {
+				@apply min-w-40;
+			}
+		}
+
+		.region__autocomplete {
+			.p-autocomplete-input {
+				@apply min-w-64;
 			}
 		}
 	}

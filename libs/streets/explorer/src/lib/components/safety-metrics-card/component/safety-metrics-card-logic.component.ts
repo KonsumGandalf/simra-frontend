@@ -9,14 +9,16 @@ import {
 	ModelSignal,
 	ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { EnumSelectButtonComponent, SafetyMetricsCardComponent, CARD_MODE_TO_TRANSLATION_MAP } from '@simra/common-components';
 import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import {
 	SetSelectedIncidents,
 	SetSelectedSafetyMetrics,
-	StreetDetailState,
+	StreetDetailState, StreetDetailViewFacade,
 } from '@simra/streets-domain';
 import { find, first, last } from 'lodash';
 import { firstValueFrom } from 'rxjs';
@@ -26,7 +28,13 @@ import { ECardMode } from '../models/card-mode.enum';
 
 @Component({
 	selector: 't-safety-metrics-card-logic',
-	imports: [CommonModule, SafetyMetricsCardComponent, FormsModule, EnumSelectButtonComponent],
+	imports: [
+		CommonModule,
+		SafetyMetricsCardComponent,
+		FormsModule,
+		EnumSelectButtonComponent,
+		TranslatePipe,
+	],
 	templateUrl: './safety-metrics-card-logic.component.html',
 	styleUrl: './safety-metrics-card-logic.component.scss',
 	host: {
@@ -39,7 +47,11 @@ export class SafetyMetricsCardLogicComponent {
 	private readonly _safetyMetricsService = inject(SafetyMetricsService);
 	private readonly _store = inject(Store);
 	private readonly _analyticsService = inject(StreetAnalyticsService);
+	private readonly _streetDetailViewFacade = inject(StreetDetailViewFacade);
 
+	protected readonly _lastRun$ = toSignal(
+		this._streetDetailViewFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+	);
 	protected _mode$: ModelSignal<ECardMode> = model<ECardMode>(ECardMode.PRECOMPUTED);
 	protected readonly _datetime$ = model<Date[]>([new Date('2019-01-01T00:00'), new Date()]);
 	protected readonly _parsedDatetime$ = computed(() => {

@@ -1,4 +1,9 @@
-<t-base-region-detail-view [detailedRegion]="_detailedRegion.value()" [safetyMetrics]="_safetyMetrics()"  [(queryOptions)]="queryOptions" (changeDetails)="changeDetails($event)">
+<t-base-region-detail-view
+	[detailedRegion]="_detailedRegion.value()"
+	[safetyMetrics]="_safetyMetrics()"
+	[lastRun]="_lastRunRegionMetrics()"
+	[(queryOptions)]="queryOptions"
+	(changeDetails)="changeDetails($event)">
 	<div class="box__button-container">
 		<a pButton
 		   [href]="'https://en.wikipedia.org/wiki/'+regionName()"

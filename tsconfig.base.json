@@ -16,6 +16,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@simra/common-components": ["libs/common/ui/components/src/index.ts"],
+			"@simra/common-domain": ["libs/common/domain/src/index.ts"],
 			"@simra/common-models": ["libs/common/models/src/index.ts"],
 			"@simra/common-state": ["libs/common/state/src/index.ts"],
 			"@simra/common-utils": ["libs/common/utils/src/index.ts"],

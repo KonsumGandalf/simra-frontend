@@ -1,17 +1,14 @@
 <div class="region__detail-view">
-	<p-card class="region__detail-card" [header]="(detailedRegion()?.name === 'All' ? 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.ALL' : detailedRegion()?.name) | translate">
+	<p-card class="region__detail-card"
+			[header]="(detailedRegion()?.name === 'All' ? 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.ALL' : detailedRegion()?.name) | translate"
+			subheader="{{ 'COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED' | translate }}: {{ lastRun() | date: 'dd.MM.yyyy HH:mm':'Europe/Berlin' }}">
 		<div class="detail-card__absolute-box">
 			<div class="box__table-container">
 				<table class="simple-table">
 					@if (_generalSafetyMetrics() && detailedRegion(); as region) {
 						<tr>
-							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.AVERAGE_LENGTH" | translate }}</td>
-							<td>{{ region.avgSegmentDistance | number: '1.0-2' }} m</td>
-						</tr>
-						<p-divider/>
-						<tr>
-							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE" | translate }}</td>
-							<td>{{ (_generalSafetyMetrics()?.totalDistance / 1000) | number: '1.0-2' }} km</td>
+							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE' | translate }}</td>
+							<td>{{ _generalSafetyMetrics()?.dangerousScore | number: '1.2-3' }}</td>
 						</tr>
 						<p-divider/>
 						<tr>
@@ -28,6 +25,11 @@
 							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCARY_INCIDENTS' | translate }}</td>
 							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents }}</td>
 						</tr>
+						<p-divider/>
+						<tr>
+							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE" | translate }}</td>
+							<td>{{ (_generalSafetyMetrics()?.totalDistance / 1000) | number: '1.0-2' }} km</td>
+						</tr>
 					} @else {
 						<tr>
 							<p-skeleton class="w-2/12"></p-skeleton>
@@ -35,7 +37,7 @@
 						</tr>
 						<p-divider/>
 						<tr>
-							<p-skeleton class="w-3/12"></p-skeleton>
+							<p-skeleton class="w-2/12"></p-skeleton>
 							<p-skeleton class="w-2/12"></p-skeleton>
 						</tr>
 						<p-divider/>
@@ -46,17 +48,12 @@
 						<p-divider/>
 						<tr>
 							<p-skeleton class="w-6/12"></p-skeleton>
-							<p-skeleton class="w-1/12"></p-skeleton>
-						</tr>
-						<p-divider/>
-						<tr>
-							<p-skeleton class="w-4/12"></p-skeleton>
-							<p-skeleton class="w-1/12"></p-skeleton>
+							<p-skeleton class="w-2/12"></p-skeleton>
 						</tr>
 						<p-divider/>
 						<tr>
 							<p-skeleton class="w-6/12"></p-skeleton>
-							<p-skeleton class="w-1/12"></p-skeleton>
+							<p-skeleton class="w-6/12"></p-skeleton>
 						</tr>
 					}
 				</table>
@@ -133,7 +130,7 @@
 		[(_selectedTrafficTime$)]="_selectedTrafficTime"
 		[(_selectedWeekDays$)]="_selectedWeekDays"
 		[_selectedSafetyMetrics$]="safetyMetrics()"
-		[_pieChartData$]="_pieMetricsIncidentTypesData()"
-		[_barChartData$]="_barMetricsRideIncidentDistributionData()">
+		[pieChartData$]="_pieMetricsIncidentTypesData()"
+		[barChartData$]="_barMetricsRideIncidentDistributionData()">
 	</t-safety-metrics-card>
 </div>

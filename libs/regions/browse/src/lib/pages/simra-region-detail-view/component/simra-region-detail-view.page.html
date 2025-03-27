@@ -1,4 +1,9 @@
-<t-base-region-detail-view [detailedRegion]="_detailedRegion.value()" [safetyMetrics]="_safetyMetrics()" [(queryOptions)]="_queryOptions" (changeDetails)="changeDetails($event)">
+<t-base-region-detail-view
+	[detailedRegion]="_detailedRegion.value()"
+	[safetyMetrics]="_safetyMetrics()"
+	[lastRun]="_lastRunSimraRegionMetrics$()"
+	[(queryOptions)]="_queryOptions"
+	(changeDetails)="changeDetails($event)">
 	<div class="box__button-container">
 		@if (_detailedRegion.value(); as simraRegion) {
 
@@ -6,7 +11,7 @@
 				{{ 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SUB_REGIONS' | translate }}:
 				@for(subRegion of simraRegion.regions; track subRegion) {
 					@if ($index > 0) {, }
-					<a [routerLink]="['/regions/', subRegion.name]" class="link-button">{{ subRegion.name }}</a>
+					<a [routerLink]="['/administrative-districts/', subRegion.name]" class="link-button">{{ subRegion.name }}</a>
 				}
 			</div>
 			<a pButton
@@ -25,4 +30,4 @@
 		}
 	</div>
 </t-base-region-detail-view>
-<t-profile-card [groupedProfileSafetyMetrics]="_profileSafetyMetrics$.value()"></t-profile-card>
+<t-profile-card [groupedProfileSafetyMetrics]="_profileSafetyMetrics$.value()" [lastRun]="_lastRunProfileMetrics$()"></t-profile-card>

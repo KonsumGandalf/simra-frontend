@@ -1,5 +1,18 @@
 {
     "COMPONENTS": {
+        "ABOUT": {
+            "HEADER": "SimRa: Safety in Bicycle Traffic",
+            "MAIN_BODY": "All interested cyclists are invited to install the free app on their smartphone and thus contribute an important part to the research project for more safety in cycling.<br><br>Comparable to other major cities worldwide, Berlin aims to reduce traffic emissions. Foremost mechanism for this is to increase the share of bicycle traffic. However, polls show that a lack of safety and fear of accidents keeps people from using their bikes more frequently. Furthermore, it also quite hard from a city planning perspective to get a good overview of location, time, frequency, and kind of hazards in bicycle traffic since official accident statistics only cover crashes but do not provide information on near crashes.<br><br>\n    In this project, we collect – with a strong focus on data protection and privacy – data on such near crashes to identify when and where bicyclists are especially at risk. We also aim to identify the main routes of bicycle traffic in Berlin. To obtain such data, we have developed a smartphone app that uses GPS information to track routes of bicyclists and the built-in acceleration sensors to pre-categorize near crashes. After their trip, users are asked to annotate and upload the collected data, pseudonymized per trip.",
+            "PARTICIPATE_NOW": "Participate now!",
+            "AWARDS": {
+                "FAHRRAD_PREIS_2022": {
+                    "TITLE": "German Bicycle Award 2022",
+                    "LINK": "Report",
+                    "SUBTITLE": "Service & Communication Category",
+                    "BODY": "We won the German Bicycle Award 2022 in the Service & Communication category together with the OpenBikeSensor!"
+                }
+            }
+        },
         "MENU_BAR": {
             "ITEMS": {
                 "HOME": "Home",
@@ -29,8 +42,8 @@
         "FOOTER": {
             "PROJECT": {
                 "TITLE": "The Project",
-                "ABOUT_US": "About Us",
-                "PARTNER": "Strategic Partnerships"
+                "ABOUT_THE_INITIATIVE": "About the Initiative",
+                "PROCESSING_DETAILS": "Processing Details"
             },
             "DOWNLOADS": {
                 "TITLE": "Downloads",
@@ -41,6 +54,35 @@
             "COPYRIGHT": {
                 "TITLE": "SimRa | A project of TU Berlin & ECDF"
             }
+        },
+        "HOME": {
+            "GO_TO": "Go to page",
+            "JUMP_TO_POSITION": "Jump to position",
+            "INFORMATION_BOX": {
+                "TEXT": "Welcome to SimRa, your tool for improving cycling safety through data-driven insights. By collecting and analyzing ride and incident data, SimRa helps identify risk areas and enhance urban cycling infrastructure. Report dangerous situations, explore traffic patterns, and contribute to a safer cycling environment. Join the community and be part of the movement towards better and safer cycling routes.",
+                "LINK_TEXT": "Learn more about the <a class='link-button' href='/about'>initiative</a> and how we analyze and process your ride <a class='link-button' href='/processing-details'>data</a>."
+            },
+            "CHIPS": {
+                "INCIDENT_DETAILS": "Incident Details",
+                "TRAFFIC_ANALYTICS": "Traffic Analytics",
+                "CHARTS": "Charts",
+                "PROFILE_ANALYTICS": "Profile Analytics"
+            },
+            "REGIONS": {
+                "ADMINISTRATIVE_REGIONS": "Administrative regions are officially defined areas based on national borders. These include cities and neighbouring districts or city states such as Berlin. They provide a structured way of analysing cycling activity within fixed boundaries.",
+                "SIMRA_REGIONS": "SimRa regions are larger areas that combine multiple administrative regions to reflect real-world mobility patterns. These regions, such as Berlin-Potsdam, group places with frequent travel between them, ensuring a more comprehensive understanding of cycling behavior and infrastructure usage."
+            },
+            "STREETS": {
+                "LIST": "The road list provides an overview of the most dangerous roads in the region. It contains a ranking of roads based on a safety analysis that allows you to identify high-risk areas and assess their danger level. The filterable and sortable list helps to understand which roads have the most reported incidents and require attention.",
+                "MAP": "The streets map visually represents road safety by displaying a danger grid. Different colors indicate varying levels of risk, helping you quickly identify hazardous areas. This interactive view provides a geographical perspective on cycling safety, allowing for better planning and awareness."
+            },
+            "INCIDENTS": {
+                "MAP": "The incident map shows reported incidents grouped together on an interactive map so that dangerous areas can be quickly recognised."
+            }
+        },
+        "PROCESSING_DETAILS": {
+            "TITLE": "Processing details",
+            "MASTER_THESIS": "Master thesis"
         }
     }
 }

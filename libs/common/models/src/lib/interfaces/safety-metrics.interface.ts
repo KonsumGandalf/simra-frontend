@@ -16,4 +16,5 @@ export interface ISafetyMetrics {
 	numberOfTailgating: number;
 	numberOfNearDoorings: number;
 	numberOfObstacleDodges: number;
+	lastModified: Date;
 }

@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
+import { of } from 'rxjs';
 import { SafetyMetricsCardLogicComponent } from './safety-metrics-card-logic.component';
-import { StreetDetailState } from '@simra/streets-domain';
+import { StreetDetailState, StreetDetailViewFacade } from '@simra/streets-domain';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 import { StreetAnalyticsService } from '../../../services/street-analytics.service';
 
@@ -22,6 +23,12 @@ describe('SafetyMetricsCardLogicComponent', () => {
 						pieMetricsIncidentTypesData$: jest.fn(),
 						getBarMetricsRideIncidentDistributionOptions: jest.fn(),
 						barMetricsRideIncidentDistributionData$: jest.fn(),
+					}
+				},
+				{
+					provide: StreetDetailViewFacade,
+					useValue: {
+						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
 					}
 				},
 				{

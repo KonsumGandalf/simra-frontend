@@ -1,6 +1,6 @@
 import { CoordinateInterface } from './coordinate.interface';
 
-export interface MapPositionInterface extends CoordinateInterface {
+export interface IMapPosition extends CoordinateInterface {
 	/**
 	 * Zoom level of the leaflet map
 	 */

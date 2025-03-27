@@ -33,14 +33,14 @@
 		</div>
 	</div>
 </div>
-<p-card [header]="'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.TITLE' | translate">
+<p-card [header]="'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.TITLE' | translate" [subheader]="lastRun$()">
 
 	<m-safe-metrics-digit-panel [safetyMetrics]="_selectedSafetyMetrics$()"></m-safe-metrics-digit-panel>
 
 	<p-chart
 		type="bar"
 		height="21rem"
-		[data]="_barChartData$()"
+		[data]="barChartData$()"
 		[responsive]="true"
 		[options]="_barChartOptions">
 	</p-chart>
@@ -48,7 +48,7 @@
 	<p-chart
 		type="pie"
 		height="21rem"
-		[data]="_pieChartData$()"
+		[data]="pieChartData$()"
 		[responsive]="true"
 		[options]="_pieChartOptions">
 	</p-chart>

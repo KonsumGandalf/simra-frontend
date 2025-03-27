@@ -6,10 +6,10 @@ import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
 import { StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { polyline } from 'leaflet';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { StreetsMapPage } from './streets-map.page';
 
-describe('StreetsExploringMapPage', () => {
+describe('StreetsMapPage', () => {
 	let component: StreetsMapPage;
 	let fixture: ComponentFixture<StreetsMapPage>;
 
@@ -29,6 +29,7 @@ describe('StreetsExploringMapPage', () => {
 								]),
 							]),
 						),
+						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
 					},
 				},
 				{

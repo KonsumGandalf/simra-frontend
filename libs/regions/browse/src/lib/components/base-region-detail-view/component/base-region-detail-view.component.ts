@@ -10,7 +10,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
-import { ETrafficTimes, EWeekDays, EYear, MapPositionInterface } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear, IMapPosition } from '@simra/common-models';
 import { IRegion, ISafetyMetricsRegion } from '@simra/models';
 import { area, centroid, polygon as turfPolygon } from '@turf/turf';
 import { LatLng, latLng, Layer, MapOptions, polygon } from 'leaflet';
@@ -55,6 +55,7 @@ export class BaseRegionDetailViewComponent {
 	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 
+	public readonly lastRun = input.required<Date>();
 	public readonly changeDetails  = output<IDetailViewChange>();
 
 	public readonly safetyMetrics = input.required<ISafetyMetricsRegion>();
@@ -102,7 +103,7 @@ export class BaseRegionDetailViewComponent {
 
 		return { zoom, center: latLng(lat, lng) };
 	});
-	public readonly queryOptions = model<MapPositionInterface>();
+	public readonly queryOptions = model<IMapPosition>();
 
 	constructor() {
 		effect(async () => {

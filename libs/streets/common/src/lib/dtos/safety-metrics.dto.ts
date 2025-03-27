@@ -1,5 +1,5 @@
 import { ETrafficTimes, EWeekDays, EYear, ISafetyMetricsStreet } from '@simra/common-models';
-import { IsEnum, IsHexColor, IsNumber } from 'class-validator';
+import { IsDate, IsEnum, IsHexColor, IsNumber } from 'class-validator';
 
 export class SafetyMetricsDto implements ISafetyMetricsStreet {
 	@IsNumber()
@@ -52,4 +52,7 @@ export class SafetyMetricsDto implements ISafetyMetricsStreet {
 
 	@IsEnum(EYear)
 	year: EYear;
+
+	@IsDate()
+	lastModified: Date;
 }

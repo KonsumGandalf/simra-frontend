@@ -27,6 +27,14 @@ export class StreetsRequestService {
 		);
 	}
 
+	public getStreetNames(prefix: string): Observable<string[]> {
+		return this._http.get<string[]>(`/api/streets/name/${prefix}`);
+	}
+
+	public getStreetIds(prefix: string): Observable<string[]> {
+		return this._http.get<string[]>(`/api/streets/id/${prefix}`);
+	}
+
 	public getStreet(streetId: number): Observable<IResponseStreet> {
 		return this._http.get<IResponseStreet>(`/api/streets/${streetId}`).pipe(
 			map((response)=> {

@@ -69,8 +69,9 @@ export class SafetyMetricsCardComponent {
 		this._safetyMetricsService.getPieMetricsIncidentTypesOptions();
 	protected readonly _barChartOptions =
 		this._safetyMetricsService.getBarMetricsRideIncidentDistributionOptions();
-	public readonly _pieChartData$ = input<ChartData>();
-	public readonly _barChartData$ = input<ChartData>();
+	public readonly pieChartData$ = input<ChartData>();
+	public readonly barChartData$ = input<ChartData>();
+	public readonly lastRun$ = input<string | undefined>();
 
 	// references for template
 	protected readonly ECardMode = ECardMode;

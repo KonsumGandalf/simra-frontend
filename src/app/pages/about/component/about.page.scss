@@ -1,0 +1,52 @@
+.app-about {
+    .p-card-content {
+        display: inline-flex;
+    }
+
+    .about__award-box {
+        @apply flex flex-wrap mt-6 gap-3 justify-between w-full;
+
+        .award-box {
+            @apply w-full md:w-1/4 md:max-w-64;
+
+            p-card {
+                .p-card-header {
+                    @apply flex justify-center pt-2;
+                }
+            }
+
+        }
+
+        .video-box {
+            @apply flex-grow;
+
+            p-card {
+                @apply w-full;
+                .p-card {
+                    @apply h-full ;
+
+                    .p-card-body {
+                        @apply h-full justify-center;
+
+                        .p-card-content {
+                            @apply  justify-center;
+                        }
+
+                        youtube-player {
+                            @apply object-cover w-full;
+                            width: 100%;
+
+                            .youtube-player-placeholder {
+                                width: 100% !important;
+                            }
+                        }
+                    }
+                }
+
+                .p-card-header {
+                    @apply flex justify-center pt-2;
+                }
+            }
+        }
+    }
+}

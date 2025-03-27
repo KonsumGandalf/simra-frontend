@@ -2,7 +2,7 @@
 	<p-card>
 		<p-table
 			#dt
-			[value]="regions()?.content"
+			[value]="safetyMetrics()?.content"
 			[paginator]="true"
 			[lazy]="true"
 			[rowHover]="true"
@@ -10,7 +10,7 @@
 			[showLoader]="false"
 			[(first)]="index"
 			[rows]="_filtering$()?.size"
-			[totalRecords]="regions()?.totalElements"
+			[totalRecords]="safetyMetrics()?.totalElements"
 			[rowsPerPageOptions]="[10, 20, 50]"
 			(onSort)="onSort($event)"
 			(onFilter)="onFilterChange($event)"

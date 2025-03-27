@@ -20,6 +20,12 @@
 			[sortOrder]="-1"
 			[tableStyle]="{'min-height': '23rem'}"
 		>
+			<ng-template pTemplate="caption" class="pt-0">
+				<div class="flex justify-evenly items-center gap-x-8">
+					<m-autocomplete class="region__autocomplete" [fetchFunction]="fetchRegionNames" [placeholder]="'COMPONENTS.GENERAL.TABLE.HEADER.REGION' | translate" (selectionChange)="onFilterChange($event)" field="region" [showDropdown]="true" />
+					<h4 class="opacity-75">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ _lastRun$() | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
+				</div>
+			</ng-template>
 			<ng-template pTemplate="header">
 				<tr>
 					@for(header of _cols; track header.field) {
@@ -43,23 +49,18 @@
 							[selected]="filtering()[enumHeader.field]"
 							[translationMap]="enumHeader.translationMap"
 							[filter]="enumHeader?.filter"
-							(selectionChange)="onFilterChange($event)"
-						>
+							(selectionChange)="onFilterChange($event)">
 						</m-enum-multi-select-component>
 						} @if (isNumberColumn(header); as numberHeader) {
-						<m-number-filter
-							[field]="numberHeader.field"
-							[step]="numberHeader.step"
-							[defaultValue]="filtering()['min' + numberHeader.field.charAt(0).toUpperCase() + numberHeader.field.slice(1)]"
-							[min]="numberHeader.min"
-							(filterChange)="onFilterChange($event)"
-						>
-						</m-number-filter>
-						} @if(isBasicColumn(header); as basicHeader) {
-						<p-columnFilter
-							[field]="basicHeader.field"
-							[showMenu]="false"
-						></p-columnFilter>
+							<m-number-filter
+								[field]="numberHeader.field"
+								[step]="numberHeader.step"
+								[defaultValue]="filtering()['min' + numberHeader.field.charAt(0).toUpperCase() + numberHeader.field.slice(1)]"
+								[min]="numberHeader.min"
+								(filterChange)="onFilterChange($event)">
+							</m-number-filter>
+						} @if(isAutocompleteColumn(header); as autocompleteColumn) {
+							<m-autocomplete class="table__autocomplete" [fetchFunction]="autocompleteColumn.fetchFunction" (selectionChange)="onFilterChange($event)" [field]="autocompleteColumn.field" />
 						}
 					</th>
 					}
@@ -89,7 +90,7 @@
 			<ng-template pTemplate="loadingbody" let-street>
 				@for(_ of times(filtering().size); track _) {
 				<tr>
-					@for(width of ['6rem', '6rem', '3rem', '1rem', '1rem', '1rem', '5rem', '8rem'];
+					@for(width of ['6rem', '6rem', '8rem', '1rem', '1rem', '1rem', '5rem', '8rem', '4rem'];
 					track width) {
 					<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
 					}

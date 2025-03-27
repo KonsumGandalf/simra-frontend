@@ -9,9 +9,6 @@ export class RegionDto implements IRegion {
 	@IsNumber()
 	id: number;
 
-	@IsNumber()
-	avgSegmentDistance: number;
-
 	@IsString()
 	way: IWayPolygon;
 }

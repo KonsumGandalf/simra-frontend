@@ -1,6 +1,6 @@
 import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { ISafetyMetricsRegion } from '@simra/models';
-import { IsEnum, IsHexColor, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsDate, IsEnum, IsHexColor, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { RegionDto } from './region.dto';
 
 export class SafetyMetricsRegionDto implements ISafetyMetricsRegion {
@@ -54,4 +54,7 @@ export class SafetyMetricsRegionDto implements ISafetyMetricsRegion {
 
 	@IsNumber()
 	totalDistance: number;
+
+	@IsDate()
+	lastModified: Date;
 }

@@ -14,7 +14,7 @@ export const APP_ROUTES: Route[] = [
 		loadChildren: () => import('@simra/streets-shell').then((m) => m.STREET_SHELL_ROUTES),
 	},
 	{
-		path: 'regions',
+		path: 'administrative-districts',
 		loadChildren: () => import('@simra/regions-shell').then((m) => m.REGION_SHELL_ROUTES),
 	},
 	{
@@ -22,8 +22,21 @@ export const APP_ROUTES: Route[] = [
 		loadChildren: () => import('@simra/regions-shell').then((m) => m.SIMRA_REGION_SHELL_ROUTES),
 	},
 	{
+		path: '',
+		pathMatch: 'full',
+		loadComponent: () => import('./pages/home/components/home.page').then((m) => m.HomePage),
+	},
+	{
 		path: 'not-found',
 		loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),
+	},
+	{
+		path: 'about',
+		loadComponent: () => import('./pages/about/component/about.page').then((m) => m.AboutPage),
+	},
+	{
+		path: 'processing-details',
+		loadComponent: () => import('./pages/processing-details/compoments/processing-details.page').then((m) => m.ProcessingDetailsPage),
 	},
 	{
 		path: '**',

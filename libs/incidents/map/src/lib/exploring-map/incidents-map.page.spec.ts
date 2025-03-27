@@ -23,6 +23,7 @@ describe('IncidentExploringMapPage', () => {
 					useValue: {
 						getIncidents: jest.fn().mockReturnValue(of([])),
 						getIncidentMarker: jest.fn().mockReturnValue(of([])),
+						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
 					},
 				},
 			],

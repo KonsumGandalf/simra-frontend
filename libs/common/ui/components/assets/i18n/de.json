@@ -9,7 +9,8 @@
             "LEFT": "Links",
             "RIGHT": "Rechts",
             "WIDTH": "Breite",
-            "TYPE": "Typ"
+            "TYPE": "Typ",
+            "LAST_MODIFIED": "Letzte Aktualisierung"
         },
         "TABLE": {
             "ITEMS": {
@@ -17,6 +18,7 @@
             },
             "HEADER": {
                 "PLACEHOLDER": "Nichts ausgewählt",
+                "REGION": "Wähle Verwaltungsbezirke aus",
                 "COLUMNS": {
                     "ID": "ID",
                     "OSM_ID": "OSM ID",

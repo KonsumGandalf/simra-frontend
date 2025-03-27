@@ -20,6 +20,7 @@ import { ProfileSafetyMetricsService } from '../services/profile-safety-metrics.
 })
 export class ProfileCardComponent {
 	groupedProfileSafetyMetrics = input.required<IProfileGroupAssociation[]>();
+	lastRun = input.required<Date>();
 
 	private readonly _profileSafetyMetricsService = inject(ProfileSafetyMetricsService);
 
