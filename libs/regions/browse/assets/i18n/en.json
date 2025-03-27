@@ -7,6 +7,8 @@
                 "AGE": {
                     "TITLE": "Birth Year Group",
                     "DESCRIPTION": "The cyclist's birth year category, used to analyze trends in cycling habits, safety concerns, and risk factors across different age groups. Younger and older cyclists may face unique challenges, such as differences in riding confidence, route choices, or vulnerability in traffic.",
+                    "BEFORE_1950": "Before 1950",
+                    "BETWEEN_1950_AND_1954": "1950 - 1954",
                     "BETWEEN_1955_AND_1959": "1955 - 1959",
                     "BETWEEN_1960_AND_1964": "1960 - 1964",
                     "BETWEEN_1965_AND_1969": "1965 - 1969",
@@ -25,7 +27,8 @@
                     "DESCRIPTION": "The gender of the cyclist, helping to uncover disparities in safety, infrastructure preferences, and cycling participation rates among different groups. Understanding gender-based patterns can inform improvements in urban planning and traffic safety measures tailored to diverse needs.",
                     "MALE": "Male",
                     "FEMALE": "Female",
-                    "OTHER": "Other"
+                    "OTHER": "Other",
+                    "NOT_CHOSEN": "Not chosen"
                 },
                 "EXPERIENCE": {
                     "TITLE": "Experience Level",
@@ -39,10 +42,11 @@
                 "BEHAVIOR": {
                     "TITLE": "Behavior",
                     "DESCRIPTION": "A self-assessed rating from 0 (never) to 5 (always) that measures how closely the cyclist follows traffic rules. This metric is crucial for evaluating the relationship between rule adherence and safety, identifying risky behavior patterns, and improving awareness campaigns to promote responsible cycling.",
-                    "0": "Not chosen",
-                    "1": "Never (1)",
-                    "2": "Rarely (2)",
-                    "3": "Sometimes (3)",
+                    "-1": "Not chosen",
+                    "0": "Never (0)",
+                    "1": "Rarely (1)",
+                    "2": "Sometimes (2)",
+                    "3": "Regularly (3)",
                     "4": "Often (4)",
                     "5": "Always (5)"
                 }
