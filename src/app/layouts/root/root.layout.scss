@@ -3,7 +3,7 @@
 
     .app-root-layout__main{
 
-        @apply border-t border-gray-200 dark:border-gray-700;
+        @apply border-t border-gray-200;
         background-color: var(--p-surface-100, white);
 
         .app-rout-layout__container{

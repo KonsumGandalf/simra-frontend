@@ -93,7 +93,7 @@
 			<ng-template pTemplate="loadingbody" let-street>
 				@for(_ of times(_filtering$().size); track _) {
 					<tr>
-						@for(width of ['6rem', '6rem', '3rem', '1rem', '1rem', '1rem', '5rem', '8rem'];
+						@for(width of ['6rem', '3rem', '1rem', '1rem', '1rem', '5rem', '8rem'];
 							track width) {
 							<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
 						}
