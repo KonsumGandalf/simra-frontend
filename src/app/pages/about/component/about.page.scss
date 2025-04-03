@@ -1,4 +1,6 @@
 .app-about {
+    @apply flex flex-col items-center;
+
     .p-card-content {
         display: inline-flex;
     }
@@ -33,7 +35,7 @@
                         }
 
                         youtube-player {
-                            @apply object-cover w-full;
+                            @apply object-cover w-full flex justify-center;
                             width: 100%;
 
                             .youtube-player-placeholder {

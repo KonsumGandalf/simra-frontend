@@ -1,13 +1,17 @@
 import { Route } from '@angular/router';
+import { environment } from '../environments/environment';
 
-export const APP_ROUTES: Route[] = [
-	{
-		path: 'incidents',
-		loadChildren: () => import('@simra/incidents-shell').then((m) => m.RIDE_INCIDENT_SHELL_ROUTES),
-	},
+const DEV_ROUTES: Route[] = [
 	{
 		path: 'rides',
 		loadChildren: () => import('@simra/rides-shell').then((m) => m.RIDES_SHELL_ROUTES),
+	},
+];
+
+const PRODUCTION_ROUTES: Route[] = [
+	{
+		path: 'incidents',
+		loadChildren: () => import('@simra/incidents-shell').then((m) => m.RIDE_INCIDENT_SHELL_ROUTES),
 	},
 	{
 		path: 'streets',
@@ -43,3 +47,5 @@ export const APP_ROUTES: Route[] = [
 		redirectTo: 'not-found',
 	},
 ];
+
+export const APP_ROUTES = [...(environment.production ? []: DEV_ROUTES), ...PRODUCTION_ROUTES];

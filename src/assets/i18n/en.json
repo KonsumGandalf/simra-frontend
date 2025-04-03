@@ -69,15 +69,30 @@
                 "PROFILE_ANALYTICS": "Profile Analytics"
             },
             "REGIONS": {
-                "ADMINISTRATIVE_REGIONS": "Administrative regions are officially defined areas based on national borders. These include cities and neighbouring districts or city states such as Berlin. They provide a structured way of analysing cycling activity within fixed boundaries.",
-                "SIMRA_REGIONS": "SimRa regions are larger areas that combine multiple administrative regions to reflect real-world mobility patterns. These regions, such as Berlin-Potsdam, group places with frequent travel between them, ensuring a more comprehensive understanding of cycling behavior and infrastructure usage."
+                "ADMINISTRATIVE_REGIONS": {
+                    "IMAGE_ALT": "Brandenburg Gate",
+                    "DESCRIPTION": "Administrative regions are officially defined areas based on national borders. These include cities and neighbouring districts or city states such as Berlin. They provide a structured way of analysing cycling activity within fixed boundaries."
+                },
+                "SIMRA_REGIONS": {
+                    "IMAGE_ALT": "Map of Berlin-Potsdam",
+                    "DESCRIPTION": "SimRa regions are larger areas that combine multiple administrative regions to reflect real-world mobility patterns. These regions, such as Berlin-Potsdam, group places with frequent travel between them, ensuring a more comprehensive understanding of cycling behavior and infrastructure usage."
+                }
             },
             "STREETS": {
-                "LIST": "The road list provides an overview of the most dangerous roads in the region. It contains a ranking of roads based on a safety analysis that allows you to identify high-risk areas and assess their danger level. The filterable and sortable list helps to understand which roads have the most reported incidents and require attention.",
-                "MAP": "The streets map visually represents road safety by displaying a danger grid. Different colors indicate varying levels of risk, helping you quickly identify hazardous areas. This interactive view provides a geographical perspective on cycling safety, allowing for better planning and awareness."
+                "LIST": {
+                    "IMAGE_ALT": "Biker in New York",
+                    "DESCRIPTION": "The road list provides an overview of the most dangerous roads in the region. It contains a ranking of roads based on a safety analysis that allows you to identify high-risk areas and assess their danger level. The filterable and sortable list helps to understand which roads have the most reported incidents and require attention."
+                },
+                "MAP": {
+                    "IMAGE_ALT": "Map of the London road network",
+                    "DESCRIPTION": "The streets map visually represents road safety by displaying a danger grid. Different colors indicate varying levels of risk, helping you quickly identify hazardous areas. This interactive view provides a geographical perspective on cycling safety, allowing for better planning and awareness."
+                }
             },
             "INCIDENTS": {
-                "MAP": "The incident map shows reported incidents grouped together on an interactive map so that dangerous areas can be quickly recognised."
+                "MAP": {
+                    "IMAGE_ALT": "Dented bicycle lying on the road",
+                    "DESCRIPTION": "The incident map shows reported incidents grouped together on an interactive map so that dangerous areas can be quickly recognised."
+                }
             }
         },
         "PROCESSING_DETAILS": {
