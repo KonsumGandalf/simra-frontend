@@ -5,7 +5,7 @@ import { IWay } from './way-line.interface';
 
 export interface IResponseStreet {
 	id: number;
-	safetyMetrics: ISafetyMetricsStreet[];
+	safetyMetricPlanetOsmLines: ISafetyMetricsStreet[];
 	rideIncident: IIncident[];
 	way: IWay;
 	highway: string;

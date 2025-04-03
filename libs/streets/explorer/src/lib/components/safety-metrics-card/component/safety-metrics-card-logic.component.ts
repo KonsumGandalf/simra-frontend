@@ -92,7 +92,7 @@ export class SafetyMetricsCardLogicComponent {
 
 				const selectedTrafficTimes = this._selectedTrafficTime();
 
-				const selectedMetrics = find(street.safetyMetrics, (metrics) => {
+				const selectedMetrics = find(street.safetyMetricPlanetOsmLines, (metrics) => {
 					return (
 						metrics.weekDay === selectedWeekDay &&
 						metrics.trafficTime === selectedTrafficTimes &&
