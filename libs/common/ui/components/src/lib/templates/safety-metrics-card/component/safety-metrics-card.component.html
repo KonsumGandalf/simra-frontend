@@ -3,7 +3,7 @@
 		<ng-content></ng-content>
 	</div>
 	<div class="p-card p-component p-2">
-		<div class="flex flex-row gap-x-4 ">
+		<div class="flex flex-row flex-wrap gap-4 justify-center">
 			@if(_mode$() === ECardMode.PRECOMPUTED) {
 				<m-enum-select-component
 					[optionEnum]="EYear"

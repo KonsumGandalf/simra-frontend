@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { EDangerousColors } from '@simra/common-models';
 import { Tooltip } from 'primeng/tooltip';
 import { RangePipe } from '../pipes/range.pipe';
@@ -8,15 +9,15 @@ import { RangePipe } from '../pipes/range.pipe';
  * The displays a horizontal color block with the given color
  */
 @Component({
-    selector: 'a-color-block',
-    imports: [CommonModule, RangePipe, Tooltip],
-    templateUrl: './color-block.component.html',
-    styleUrl: './color-block.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'a-color-block',
-    }
+	selector: 'a-color-block',
+	imports: [CommonModule, RangePipe, Tooltip, TranslatePipe],
+	templateUrl: './color-block.component.html',
+	styleUrl: './color-block.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None,
+	host: {
+		class: 'a-color-block',
+	},
 })
 export class ColorBlockComponent {
 	/**

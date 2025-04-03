@@ -1,4 +1,6 @@
 .t-safety-metrics-card {
+    @apply w-full;
+
     p-card {
         .p-card {
             @apply w-full rounded-lg border;

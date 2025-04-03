@@ -1,5 +1,6 @@
 import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { ColorBlockComponent } from './color-block.component';
 
 describe('ColorBlockComponent', () => {
@@ -9,7 +10,11 @@ describe('ColorBlockComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [ColorBlockComponent],
+			imports: [
+				ColorBlockComponent,
+
+				TranslateModule.forRoot(),
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ColorBlockComponent);

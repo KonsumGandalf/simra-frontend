@@ -1,6 +1,6 @@
-<p-floatlabel variant="on" class="inline-block w-auto">
+<p-floatlabel variant="on" class="inline-block w-auto flex-grow">
 	<p-autocomplete
-		class="w-96"
+		class="w-full"
 		inputId="autocomplete"
 		[(ngModel)]="selected"
 		[size]="size()"
@@ -8,9 +8,13 @@
 		[dropdown]="showDropdown()"
 		[showClear]="true"
 		[lazy]="true"
+		(onFocus)="isFloating = true"
+		(onBlur)="isFloating = false"
 		(completeMethod)="onComplete($event)"
 		(onClear)="onSelectionChange(null)"
 		(onSelect)="onSelectionChange($event)">
 	</p-autocomplete>
-	<label for="autocomplete">{{ placeholder() }}</label>
+	<label
+		for="autocomplete"
+	>{{ placeholder() }}</label>
 </p-floatlabel>

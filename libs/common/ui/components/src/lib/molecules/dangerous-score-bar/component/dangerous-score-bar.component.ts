@@ -30,7 +30,7 @@ import { EnumSelectComponent } from '../../enum-select/component/enum-select.com
 		Popover,
 		TranslatePipe,
 		EnumSelectComponent,
-		EnumSelectButtonComponent,
+		EnumSelectButtonComponent
 	],
 	templateUrl: './dangerous-score-bar.component.html',
 	styleUrl: './dangerous-score-bar.component.scss',

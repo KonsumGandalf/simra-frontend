@@ -1,3 +1,11 @@
 .m-autocomplete-component {
+    .p-autocomplete-input {
+        @apply md:min-w-60;
+    }
+}
 
+.placeholder-label {
+    label {
+        @apply w-8/12 truncate md:min-w-64 sm:w-9/12;
+    }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, model, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, input, model, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,6 +34,8 @@ export class AutocompleteComponent {
 	@Output()
 	public selectionChange = new EventEmitter<Record<string, string>>();
 
+	isFloating = false;
+
 	/**
 	 * Emits the selected values
 	 */
@@ -63,7 +65,11 @@ export class AutocompleteComponent {
 				switchMap(fetchFunction)
 			)
 		);
-		console.log(options);
 		this.filteredOptions.set(options);
+	}
+
+	@HostBinding('class.placeholder-label')
+	get applyMinWidth() {
+		return !this.isFloating;
 	}
 }
