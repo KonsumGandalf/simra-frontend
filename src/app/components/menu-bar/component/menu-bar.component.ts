@@ -18,6 +18,7 @@ import { Button } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { Ripple } from 'primeng/ripple';
 import { TieredMenu } from 'primeng/tieredmenu';
+import { environment } from '../../../../environments/environment';
 import { PrefetchService } from '../../../services/prefetch.service';
 
 @Component({
@@ -47,7 +48,7 @@ export class MenuBarComponent {
 	private readonly _prefetchService = inject(PrefetchService);
 	private readonly _router = inject(Router);
 
-	protected readonly _items: MenuItem[] = [
+	private readonly _prodItems: MenuItem[] = [
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.HOME',
 			icon: 'ph-bold ph-house-simple',
@@ -129,13 +130,16 @@ export class MenuBarComponent {
 			icon: 'ph-bold ph-warning-diamond',
 			routerLink: '/incidents',
 			prefetch: async () => await this._prefetchService.prefetchIncidents(),
-		},
+		}
+	];
+	private readonly _devItems: MenuItem[] = [
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.RIDES',
 			icon: 'ph-bold ph-person-simple-bike',
 			routerLink: '/rides',
 		},
 	];
+	protected readonly _items = [...(environment.production ? []: this._devItems), ...this._prodItems];
 
 	protected readonly _settings: MenuItem[] = [
 		{
@@ -154,7 +158,7 @@ export class MenuBarComponent {
 				},
 			],
 		},
-		/*
+		/* If you want to add a theme switcher, you can use the following code:
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.THEME.TITLE',
 			icon: 'ph-bold ph-moon-stars',

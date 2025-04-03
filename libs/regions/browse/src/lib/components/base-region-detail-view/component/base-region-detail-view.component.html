@@ -13,17 +13,17 @@
 						<p-divider/>
 						<tr>
 							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.RIDES' | translate }}</td>
-							<td>{{ _generalSafetyMetrics()?.numberOfRides }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfRides | number }}</td>
 						</tr>
 						<p-divider/>
 						<tr>
 							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.INCIDENTS' | translate }}</td>
-							<td>{{ _generalSafetyMetrics()?.numberOfIncidents }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfIncidents | number }}</td>
 						</tr>
 						<p-divider/>
 						<tr>
 							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCARY_INCIDENTS' | translate }}</td>
-							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents }}</td>
+							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents | number }}</td>
 						</tr>
 						<p-divider/>
 						<tr>
@@ -52,8 +52,8 @@
 						</tr>
 						<p-divider/>
 						<tr>
-							<p-skeleton class="w-6/12"></p-skeleton>
-							<p-skeleton class="w-6/12"></p-skeleton>
+							<p-skeleton class="w-5/12"></p-skeleton>
+							<p-skeleton class="w-4/12"></p-skeleton>
 						</tr>
 					}
 				</table>

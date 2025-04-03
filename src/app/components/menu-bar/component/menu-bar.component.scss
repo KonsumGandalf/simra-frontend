@@ -12,7 +12,7 @@
            }
 
            .menu-bar__start {
-               @apply mr-2;
+               @apply lg:mr-2;
 
                h1 {
                    @apply font-bold text-4xl leading-none tracking-tight text-gray-900 underline underline-offset-2 decoration-8 decoration-primary-400;

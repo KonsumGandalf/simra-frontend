@@ -1,4 +1,4 @@
-<p-menubar [model]="_items">
+<p-menubar [model]="_items" breakpoint="820px">
 			<ng-template #start>
 				<div class="menu-bar__start">
 					<h1>SimRa</h1>
@@ -10,7 +10,7 @@
 				   (focus)="item?.prefetch?.()"
 				   [routerLink]="item.routerLink"
 				   [queryParams]="item.queryParams"
-				   [queryParamsHandling]="'merge'">
+				   [queryParamsHandling]="'replace'">
 					<i [class]="item.icon"></i>
 					<span>{{ item.label | translate }}</span>
 					<p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />

@@ -3,7 +3,7 @@
         @apply flex flex-col gap-4;
 
         .button-container__sub-regions {
-            @apply flex;
+            @apply flex flex-wrap;
 
             a {
                 @apply ml-1;

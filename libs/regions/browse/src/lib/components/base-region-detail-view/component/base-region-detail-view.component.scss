@@ -1,7 +1,7 @@
 .t-base-region-detail-view {
     @apply flex justify-center;
     .region__detail-view {
-        @apply flex flex-row flex-wrap gap-8 max-w-screen-2xl;
+        @apply flex flex-row flex-wrap gap-8 max-w-screen-2xl w-full;
 
         .region__detail-card {
             .p-card {

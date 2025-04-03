@@ -52,7 +52,7 @@ export class ChartDirective {
 					ctx.fillStyle = this._primaryTextColor;
 					ctx.fillText(noDataText, centerX, centerY);
 				}
-				if (this.type === 'bar') {
+				if (this.type === 'bar' || this.type === 'line') {
 					ctx.save();
 
 					ctx.fillStyle = this._backgroundColor;

@@ -10,6 +10,14 @@
 			z-index: 500;
 			width: 17rem;
 		}
+
+		.p-card {
+			@apply rounded-t-none;
+
+			@screen md {
+				@apply rounded-t-lg;
+			}
+		}
 	}
 
 	.map-overlay {
@@ -17,22 +25,22 @@
 		top: 2rem;
 		left: 50%;
 		transform: translateX(-50%);
-		background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+		background: rgba(255, 255, 255, 0.8);
 		padding: 8px 12px;
 		border-radius: 4px;
 		font-size: 14px;
 		font-weight: 500;
-		z-index: 1000; /* Ensure it stays above the map */
-		pointer-events: none; /* Makes sure the map is still interactive */
+		z-index: 1000;
+		pointer-events: none;
 	}
 
 	m-dangerous-score-bar {
+		@apply w-full px-2 sm:px-0 sm:w-1/2 lg:w-1/3;
+
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%) translateY(-140%);
-		z-index: 5000;
-		width: 30%;
-		min-width: 25rem;
+		z-index: 500;
 	}
 
 	t-map-component {
@@ -46,12 +54,6 @@
 	}
 
 	p-card {
-		.p-card {
-			@apply rounded-t-none;
 
-			@screen md {
-				@apply rounded-t-lg;
-			}
-		}
 	}
 }

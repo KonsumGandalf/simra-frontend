@@ -81,14 +81,14 @@ export class BaseRegionListViewComponent {
 		{
 			header: `${this._headerPrefix}.RIDES`,
 			field: 'numberOfRides',
-			min: 0,
+			min: 1,
 			step: 10,
 			sortable: true,
 		} as NumberColumn,
 		{
 			header: `${this._headerPrefix}.INCIDENTS`,
 			field: 'numberOfIncidents',
-			min: 0,
+			min: 1,
 			step: 10,
 			sortable: true,
 		} as NumberColumn,
@@ -120,7 +120,7 @@ export class BaseRegionListViewComponent {
 		weekDay: [EWeekDays.ALL_WEEK],
 		trafficTime: [ETrafficTimes.ALL_DAY],
 		year: [EYear.ALL],
-		minNumberOfRides: 2,
+		minNumberOfRides: 100,
 		sort: 'dangerousScore,DESC',
 	});
 	public filtering = output<ISafetyMetricsRequest>();

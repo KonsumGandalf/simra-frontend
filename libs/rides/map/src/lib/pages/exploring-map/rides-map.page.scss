@@ -6,10 +6,9 @@
 
     p-card {
         position: absolute;
-        bottom: 2%;
-        right: 1%;
-        top: 60%;
-        transform: translateY(-50%);
+        top: 56%;
+        left: 6rem;
+        transform: translate(-50%, -50%);
         z-index: 500;
     }
 }

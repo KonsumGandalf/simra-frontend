@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ChartDirective } from '@simra/common-components';
 import { IProfileGroupAssociation } from '@simra/models';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
@@ -9,7 +10,7 @@ import { ProfileSafetyMetricsService } from '../services/profile-safety-metrics.
 
 @Component({
 	selector: 't-profile-card',
-	imports: [CommonModule, Divider, UIChart, Card, TranslatePipe],
+	imports: [CommonModule, Divider, UIChart, Card, TranslatePipe, ChartDirective],
 	templateUrl: './profile-card.component.html',
 	styleUrl: './profile-card.component.scss',
 	host: {

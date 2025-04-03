@@ -6,7 +6,6 @@ export const SIMRA_REGION_SHELL_ROUTES: Route[] = [
 		children: [
 			{
 				path: '',
-				pathMatch: 'full',
 				loadComponent: () =>
 					import("@simra/regions-browse").then((m) => m.SimraRegionListViewPage)
 			},
