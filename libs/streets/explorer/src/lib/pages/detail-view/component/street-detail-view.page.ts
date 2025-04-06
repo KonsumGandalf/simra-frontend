@@ -3,7 +3,7 @@ import {
 	Component,
 	effect,
 	inject,
-	input,
+	input, resource,
 	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -39,14 +39,20 @@ export class StreetDetailViewPage {
 	 */
 	streetId = input<number>();
 
-	constructor() {
-		effect(() => {
-			const streetId = this.streetId();
-			if (!streetId) {
+	streetInformations = resource({
+		request: () => this.streetId(),
+		loader: async ({ request }) => {
+			if (!request) {
 				return;
 			}
 
-			void firstValueFrom(this._facade.getAndSetStreet(streetId));
+			return await firstValueFrom(this._facade.getAndSetStreet(request));
+		},
+	})
+
+	constructor() {
+		effect(() => {
+			this.streetInformations.value()
 		});
 	}
 }

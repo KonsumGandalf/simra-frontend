@@ -12,7 +12,6 @@ export class GroupAssociationRequestService {
 	public getGroupAssociation(simraRegion: string) {
 		return this._httpClient.get<IProfileGroupAssociation[]>(`/api/group-association/${simraRegion}`).pipe(
 			map((groupAssociation) => {
-				console.log(simraRegion);
 				return groupAssociation.filter((group) => group.groupValue);
 			})
 		);

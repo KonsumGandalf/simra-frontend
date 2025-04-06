@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { of } from 'rxjs';
@@ -13,7 +14,11 @@ describe('SafetyMetricsCardLogicComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [SafetyMetricsCardLogicComponent, TranslateModule.forRoot()],
+			imports: [
+				SafetyMetricsCardLogicComponent,
+				TranslateModule.forRoot(),
+				RouterModule.forRoot([])
+			],
 			providers: [
 				provideStore([StreetDetailState]),
 				{

@@ -5,13 +5,14 @@ import { ISafetyMetrics } from '@simra/common-models';
 
 export function safetyMetricsDisplayArray<T extends ISafetyMetrics>(
 	safetyMetrics: T,
-): { label: string; data: any }[] {
+): { label: string; data: any, link?: string }[] {
 	const specificAttributes = [];
 
 	if ('osmId' in safetyMetrics) {
 		specificAttributes.push({
 			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
 			data: safetyMetrics.osmId,
+			link: `/streets/${safetyMetrics.osmId}`,
 		});
 	}
 	if ('name' in safetyMetrics) {

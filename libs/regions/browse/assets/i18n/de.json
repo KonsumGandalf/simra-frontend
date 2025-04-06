@@ -75,6 +75,9 @@
         "REGIONS": {
             "TITLE": "Regionen",
             "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen."
+        },
+        "ANALYSIS": {
+            "PERCENTAGE_SCARY": "Prozentsatz der beängstigenden Vorfälle"
         }
     }
 }

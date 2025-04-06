@@ -60,7 +60,8 @@
 					"ON_KERB": "On sidewalk",
 					"HALF_ON_KERB": "Half on sidewalk",
 					"SHOULDER": "On shoulder",
-					"SEPARATE": "Separate area"
+					"SEPARATE": "Separate area",
+					"NO": "No parking"
 				}
 			}
 		},
@@ -121,7 +122,7 @@
 			},
 			"BUTTONS": {
 				"GOOGLE_MAPS": "Google Maps",
-				"OSM": "OpenStreetMap",
+				"OSM": "Details on OSM",
 				"SIMRA_MAP": "SimRa Map"
 			}
 		}

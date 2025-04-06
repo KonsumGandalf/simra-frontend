@@ -91,7 +91,7 @@
 				@for(_ of times(filtering().size); track _) {
 				<tr>
 					@for(width of ['6rem', '6rem', '8rem', '1rem', '1rem', '1rem', '5rem', '8rem', '4rem'];
-					track width) {
+					track $index) {
 					<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
 					}
 				</tr>

@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { IIncidentMapState } from '../../models/interfaces/incident-map-state.interface';
 import { SetIncidentMarker } from './incidents.actions';
@@ -8,6 +9,7 @@ import { SetIncidentMarker } from './incidents.actions';
 		incidentMarker: [],
 	},
 })
+@Injectable()
 export class IncidentsState {
 	@Selector()
 	static getIncidentMarkers(state: IIncidentMapState) {

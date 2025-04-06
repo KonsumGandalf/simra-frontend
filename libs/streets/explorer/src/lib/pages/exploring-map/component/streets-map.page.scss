@@ -35,9 +35,10 @@
 	}
 
 	m-dangerous-score-bar {
-		@apply w-full px-2 sm:px-0 sm:w-1/2 lg:w-1/3;
+		@apply w-full px-2 sm:px-0 sm:w-1/2 lg:w-5/12;
 
 		position: absolute;
+		min-width: 21rem;
 		left: 50%;
 		transform: translateX(-50%) translateY(-140%);
 		z-index: 500;

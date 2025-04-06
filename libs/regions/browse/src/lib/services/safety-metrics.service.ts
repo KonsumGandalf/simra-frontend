@@ -1,6 +1,8 @@
 import { Injectable, Signal, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import {
+	ChartColors,
 	safetyMetricsDisplayArray,
 	TRAFFIC_TIMES_TO_TRANSLATION,
 	TTranslationMap,
@@ -17,8 +19,11 @@ import { drop, map, orderBy, values } from 'lodash';
 })
 export class SafetyMetricsService {
 	private readonly _translationService = inject(TranslateService);
+	private readonly _onLangChange$ = toSignal(this._translationService.onLangChange);
 	public readonly _singleSafetyMetrics$ = signal<ISafetyMetricsRegion | undefined>(undefined);
 	public readonly safetyMetrics$ = signal<ISafetyMetricsRegion[]>([]);
+
+	const
 
 	/**
 	 * Generates pie chart data for incident types
@@ -63,7 +68,6 @@ export class SafetyMetricsService {
 			datasets: [
 				{
 					data: displayMetrics.map((value) => value.data),
-					backgroundColor: ['#36a2eb', '#ffcd56', '#ff6483'],
 				},
 			],
 			labels: values(translatedLabels),
@@ -149,7 +153,15 @@ export class SafetyMetricsService {
 		(metric) => getEnumOrder(ETrafficTimes, metric.trafficTime) // ✅ Ensure it returns a value, not a function
 	);
 
-	/** Generates common stacked bar chart data */
+	/**
+	 * Generates common line chart data
+	 *
+	 * @param key
+	 * @param translationMap
+	 * @param filterFn
+	 * @param orderFn
+	 * @private
+	 */
 	private createStackedBarChartData(
 		key: string,
 		translationMap?: TTranslationMap<string>,
@@ -157,6 +169,7 @@ export class SafetyMetricsService {
 		orderFn?: (m: ISafetyMetricsRegion) => number,
 	) {
 		return computed(() => {
+			this._onLangChange$();
 			let metrics = this.safetyMetrics$();
 			if (filterFn) metrics = metrics.filter(filterFn);
 			metrics = orderBy(metrics, orderFn ? [(m) => orderFn(m)] : [key], ['asc']);
@@ -164,9 +177,7 @@ export class SafetyMetricsService {
 			if (metrics.length < 1) return;
 
 			const labels = this.getTranslatedLabels(metrics, key, translationMap);
-			const datasets = this.createIncidentTypesDatasets(metrics);
-
-			datasets.push({
+			let datasets = [{
 				type: 'line',
 				label: this._translationService.instant(
 					'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
@@ -174,6 +185,13 @@ export class SafetyMetricsService {
 				data: metrics.map((metric) => metric.dangerousScore),
 				yAxisID: 'y1',
 				tension: 0.3,
+			}, ...this.createIncidentTypesDatasets(metrics)];
+			datasets = datasets.map((data, index) => {
+				return {
+					...data,
+					backgroundColor: ChartColors.INCIDENT_TYPES_WITH_SCORE[index],
+					borderColor: ChartColors.INCIDENT_TYPES_WITH_SCORE[index],
+				}
 			});
 
 			return { labels, datasets };
@@ -196,6 +214,7 @@ export class SafetyMetricsService {
 		orderFn?: (m: ISafetyMetricsRegion) => boolean | number,
 	) {
 		return computed(() => {
+			this._onLangChange$();
 			let metrics = this.safetyMetrics$();
 			if (filterFn) metrics = metrics.filter(filterFn);
 			metrics = orderBy(metrics, orderFn ? [(m) => orderFn(m)] : [key], ['asc']);
@@ -203,35 +222,43 @@ export class SafetyMetricsService {
 			if (metrics.length < 1) return;
 
 			const labels = this.getTranslatedLabels(metrics, key, translationMap);
-			const datasets = this.createRidesDatasets(metrics);
+			const lineDatasets = [
+				{
+					type: 'line',
+					label: this._translationService.instant(
+						'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
+					),
+					data: metrics.map((metric) => metric.dangerousScore),
+					yAxisID: 'y2',
+				},
+				{
+					type: 'line',
+					label: this._translationService.instant(
+						'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.DISTANCE_PER_RIDE',
+					),
+					data: metrics.map((metric) => (metric.totalDistance / metric.numberOfRides) / 1000),
+					yAxisID: 'y1',
+				},
+				{
+					type: 'line',
+					label: this._translationService.instant(
+						'REGIONS.BROWSE.GENERAL.ANALYSIS.PERCENTAGE_SCARY'
+					),
+					data: metrics.map((metric) => metric.numberOfScaryIncidents / metric.numberOfIncidents),
+					yAxisID: 'y3',
+				}
+			];
 
-			datasets.push({
-				type: 'line',
-				label: this._translationService.instant(
-					'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.DISTANCE_PER_RIDE',
-				),
-				data: metrics.map((metric) => (metric.totalDistance / metric.numberOfRides) / 1000),
-				yAxisID: 'y1',
+			const barDatasets = this.createRidesDatasets(metrics);
+			let datasets = [...lineDatasets, ...barDatasets];
+
+			datasets = datasets.map((data, index) => ({
+				...data,
+				backgroundColor: ChartColors.RIDE_METRICS_DISTRIBUTION_WITH_SCORE[index],
+				borderColor: ChartColors.RIDE_METRICS_DISTRIBUTION_WITH_SCORE[index],
 				tension: 0.3,
-			});
-			datasets.push({
-				type: 'line',
-				label: this._translationService.instant(
-					'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
-				),
-				data: metrics.map((metric) => metric.dangerousScore),
-				yAxisID: 'y2',
-				tension: 0.3,
-			});
-			datasets.push({
-				type: 'line',
-				label: this._translationService.instant(
-					'percentage is scary incidents',
-				),
-				data: metrics.map((metric) => metric.numberOfScaryIncidents / metric.numberOfIncidents),
-				yAxisID: 'y3',
-				tension: 0.3,
-			});
+			}));
+
 
 			return { labels, datasets };
 		});
@@ -345,7 +372,7 @@ export class SafetyMetricsService {
 					display: false,
 					grid: { drawOnChartArea: false },
 				}
-			},
+			}
 		};
 	}
 }

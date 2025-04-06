@@ -43,6 +43,9 @@ export class MapillaryComponent {
 		request: () => this._routeParams(),
 		loader: async ({ request }) => {
 			const { lat, lng } = request;
+			if (!lat || !lng) {
+				return;
+			}
 			return await firstValueFrom(this._streetDetailViewFacade.getIdOfNearestImage(lat, lng));
 		},
 	});

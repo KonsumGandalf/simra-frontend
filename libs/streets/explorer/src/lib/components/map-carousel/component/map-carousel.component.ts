@@ -2,7 +2,7 @@ import {
 	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
-	computed,
+	computed, effect,
 	inject,
 	Injector, signal,
 	Signal,
@@ -53,27 +53,27 @@ export class MapCarouselComponent {
 		StreetDetailState.getSelectedIncidents,
 	);
 
-	protected readonly _geometries$: Signal<Layer[]> = computed(() => {
+	protected readonly convertedCoordinates = computed(() => {
 		const street = this._street$();
-		const safetyMetrics = this._safetyMetrics$();
 		if (!street) {
 			return;
 		}
 
-		const convertedCoordinates = street.way.coordinates
+		return street.way.coordinates
 			.map((coordinate) => proj4('EPSG:3857', 'EPSG:4326', [coordinate[0], coordinate[1]]))
 			.map(([lng, lat]) => [lat, lng]);
+	});
+
+	protected readonly _geometries$: Signal<Layer[]> = computed(() => {
+		const convertedCoordinates = this.convertedCoordinates();
+		const safetyMetrics = this._safetyMetrics$();
+		if (!convertedCoordinates || !safetyMetrics) {
+			return;
+		}
 
 		const latLngs = convertedCoordinates.map(([lat, lng]) => latLng(lat, lng));
 
 		const streetLine = polyline(latLngs, { color: safetyMetrics.dangerousColor });
-		const line = lineString(convertedCoordinates);
-		const midpoint = along(line, length(line) / 2);
-		const center = midpoint.geometry.coordinates;
-		this._router.navigate([], {
-			queryParams: { lat: center[0], lng: center[1], zoom: 16 },
-			queryParamsHandling: 'merge',
-		});
 
 		const incidents = this._incidents$();
 		let incidentsMarkers = [];
@@ -85,6 +85,23 @@ export class MapCarouselComponent {
 
 		return [...incidentsMarkers, streetLine];
 	});
+
+	constructor() {
+		effect(() => {
+			const convertedCoordinates = this.convertedCoordinates();
+			if (!convertedCoordinates) {
+				return;
+			}
+
+			const line = lineString(convertedCoordinates);
+			const midpoint = along(line, length(line) / 2);
+			const center = midpoint.geometry.coordinates;
+			this._router.navigate([], {
+				queryParams: { lat: center[0], lng: center[1], zoom: 16 },
+				queryParamsHandling: 'merge',
+			});
+		});
+	}
 
 	protected hasMapillaryImage = signal<boolean>(false);
 

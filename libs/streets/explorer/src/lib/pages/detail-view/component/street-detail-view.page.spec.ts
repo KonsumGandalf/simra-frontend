@@ -13,7 +13,10 @@ describe('StreetDetailViewPage', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [StreetDetailViewPage, TranslateModule.forRoot()],
+			imports: [
+				StreetDetailViewPage,
+				TranslateModule.forRoot()
+			],
 			providers: [
 				{
 					provide: StreetDetailViewFacade,
@@ -31,7 +34,8 @@ describe('StreetDetailViewPage', () => {
 				{
 					provide: ActivatedRoute,
 					useValue: {
-						queryParams: of({})
+						queryParams: of({}),
+						url: of('map')
 					},
 				},
 				provideStore([StreetDetailState])

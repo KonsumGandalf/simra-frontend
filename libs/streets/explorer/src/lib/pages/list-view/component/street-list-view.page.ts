@@ -160,7 +160,6 @@ export class StreetListViewPage {
 		request: () => ({ ...this.filtering() }),
 		loader: async ({ request }) => {
 			this.loading.set(true);
-			console.log(request);
 			const response = await firstValueFrom(
 				this._streetListViewFace.fetchStreetList(request),
 			);

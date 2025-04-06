@@ -70,7 +70,7 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Straßentyp",
-					"SCORE": "Bewertung",
+					"SCORE": "Score",
 					"INCIDENTS": "Vorfälle",
 					"SCARY_INCIDENTS": "Beängstigende Vorfälle",
 					"RIDES": "Fahrten",
@@ -122,7 +122,7 @@
 			},
 			"BUTTONS": {
 				"GOOGLE_MAPS": "Google Maps",
-				"OSM": "OpenStreetMap",
+				"OSM": "Details auf OSM",
 				"SIMRA_MAP": "SimRa Karte"
 			}
 		}

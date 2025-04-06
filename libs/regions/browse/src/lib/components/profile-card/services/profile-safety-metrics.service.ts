@@ -68,8 +68,6 @@ export class ProfileSafetyMetricsService {
 						['asc']
 					);
 					break;
-
-
 			}
 
 
@@ -120,29 +118,6 @@ export class ProfileSafetyMetricsService {
 					display: false,
 					grid: { drawOnChartArea: false },
 				}
-			},
-		};
-	}
-
-	/**
-	 * Chart options for age-based safety metrics
-	 */
-	public lineChartOptions(): ChartOptions {
-		return {
-			responsive: true,
-			maintainAspectRatio: false,
-			scales: {
-				x: { stacked: false, offset: true },
-				y: { stacked: false },
-				y1: {
-					position: 'right',
-					display: true,
-					grid: { drawOnChartArea: false },
-					title: {
-						display: true,
-						text: this._translationService.instant('Dangerous Score'),
-					},
-				},
 			},
 		};
 	}

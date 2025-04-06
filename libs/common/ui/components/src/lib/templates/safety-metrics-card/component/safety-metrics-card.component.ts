@@ -66,9 +66,9 @@ export class SafetyMetricsCardComponent {
 	// data for charts
 	private readonly _safetyMetricsService = inject(SafetyMetricsService);
 	protected readonly _pieChartOptions =
-		this._safetyMetricsService.getPieMetricsIncidentTypesOptions();
+		this._safetyMetricsService.getPieMetricsIncidentTypesOptions;
 	protected readonly _barChartOptions =
-		this._safetyMetricsService.getBarMetricsRideIncidentDistributionOptions();
+		this._safetyMetricsService.getBarMetricsRideIncidentDistributionOptions;
 	public readonly pieChartData$ = input<ChartData>();
 	public readonly barChartData$ = input<ChartData>();
 	public readonly lastRun$ = input<string | undefined>();

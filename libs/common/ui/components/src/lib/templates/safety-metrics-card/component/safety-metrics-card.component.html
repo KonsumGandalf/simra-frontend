@@ -42,7 +42,7 @@
 		height="21rem"
 		[data]="barChartData$()"
 		[responsive]="true"
-		[options]="_barChartOptions">
+		[options]="_barChartOptions()">
 	</p-chart>
 
 	<p-chart
@@ -50,6 +50,6 @@
 		height="21rem"
 		[data]="pieChartData$()"
 		[responsive]="true"
-		[options]="_pieChartOptions">
+		[options]="_pieChartOptions()">
 	</p-chart>
 </p-card>

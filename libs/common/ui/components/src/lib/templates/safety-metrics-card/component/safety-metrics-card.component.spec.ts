@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
-import { SafetyMetricsService } from '../services/safety-metrics.service';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';import { SafetyMetricsService } from '../services/safety-metrics.service';
 import { SafetyMetricsCardComponent } from './safety-metrics-card.component';
 
 describe('SafetyMetricsCardComponent', () => {
@@ -9,7 +9,11 @@ describe('SafetyMetricsCardComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [SafetyMetricsCardComponent, TranslateModule.forRoot()],
+			imports: [
+				SafetyMetricsCardComponent,
+				TranslateModule.forRoot(),
+				RouterModule.forRoot([])
+			],
 			providers: [
 				{
 					provide: SafetyMetricsService,

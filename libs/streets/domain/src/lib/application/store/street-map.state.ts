@@ -16,7 +16,6 @@ export interface StreetMapStateModel {
 })
 @Injectable()
 export class StreetMapState {
-	protected static CACHE_LIMIT = 50_000;
 
 	@Selector()
 	static getStreetCache(state: StreetMapStateModel) {
@@ -25,16 +24,8 @@ export class StreetMapState {
 
 	@Action(AddToStreetCache)
 	addToStreetCache(ctx: StateContext<StreetMapStateModel>, action: AddToStreetCache) {
-		// const state = ctx.getState();
-		//let newCache = uniq(concat(state.streets, action.batch))
-		const newCache = action.batch;
-
-		// while(newCache.length > StreetMapState.CACHE_LIMIT) {
-		// 	newCache = newCache.slice(newCache.length - StreetMapState.CACHE_LIMIT);
-		// }
-
 		ctx.patchState({
-			streetGrid: newCache
+			streetGrid: action.batch
 		})
 	}
 
