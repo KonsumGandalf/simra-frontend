@@ -48,7 +48,7 @@ export class IncidentsMapPage {
 		);
 	});
 	protected readonly _lastRun$ = toSignal(
-		this._incidentsMapFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+		this._incidentsMapFacade.fetchLastMethodRun('calculateSafetyMetricsHighway'),
 	);
 
 	constructor() {

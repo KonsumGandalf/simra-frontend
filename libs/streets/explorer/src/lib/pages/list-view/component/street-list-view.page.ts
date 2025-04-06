@@ -168,7 +168,7 @@ export class StreetListViewPage {
 		},
 	});
 	protected readonly _lastRun$ = toSignal(
-		this._streetDetailViewFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+		this._streetDetailViewFacade.fetchLastMethodRun('calculateSafetyMetricsHighway'),
 	);
 
 	/**

@@ -65,7 +65,7 @@ export class StreetsMapPage {
 	});
 	protected readonly showOverlay$ = signal(true);
 	protected readonly lastRun$ = toSignal(
-		this._streetsMapFacade.fetchLastMethodRun('updateSafetyMetricsHighway'),
+		this._streetsMapFacade.fetchLastMethodRun('calculateSafetyMetricsHighway'),
 	);
 
 	protected readonly incidents$ = asyncComputed(() => {

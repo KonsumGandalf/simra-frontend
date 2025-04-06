@@ -54,6 +54,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '@simra/streets-explorer';
 })
 export class BaseRegionListViewComponent {
 	safetyMetrics = model.required<IPage<ISafetyMetrics>>();
+	lastRun = model.required<Date>();
 
 	/**
 	 * The index of the current page

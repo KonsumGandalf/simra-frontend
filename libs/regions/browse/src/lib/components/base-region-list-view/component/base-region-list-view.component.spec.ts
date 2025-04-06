@@ -9,11 +9,12 @@ import { BaseRegionListViewComponent } from './base-region-list-view.component';
 
 @Component({
 	selector: 'm-test-host-component',
-	template: '<t-base-region-list-view [safetyMetrics]="safetyMetrics"></t-base-region-list-view>',
+	template: '<t-base-region-list-view [safetyMetrics]="safetyMetrics" [lastRun]="lastRun"></t-base-region-list-view>',
 	imports: [BaseRegionListViewComponent],
 })
 class TestHostComponent {
 	safetyMetrics = {} as IPage<ISafetyMetrics>;
+	lastRun = new Date();
 }
 describe('Integration Test BaseRegionListViewComponent', () => {
 	let component: TestHostComponent;

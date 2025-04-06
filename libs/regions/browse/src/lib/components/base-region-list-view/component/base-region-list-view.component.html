@@ -20,6 +20,11 @@
 			[sortOrder]="-1"
 			[tableStyle]="{'min-height': '23rem'}"
 		>
+			<ng-template pTemplate="caption">
+				<div class="flex flex-wrap flex-row gap-y-4 justify-evenly items-center gap-x-8">
+					<h4 class="opacity-75">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ lastRun() | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
+				</div>
+			</ng-template>
 			<ng-template pTemplate="header">
 				<tr>
 					@for(header of _cols; track header.field) {
