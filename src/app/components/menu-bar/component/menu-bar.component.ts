@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import {
@@ -11,13 +12,13 @@ import {
 	RUHRGEBIET_POSITION,
 	WALLDORF_POSITION, WUPPERTAL_POSITION,
 } from '@simra/common-components';
-import { MenuItem, PrimeTemplate } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { Breadcrumb } from 'primeng/breadcrumb';
-import { Button } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { Ripple } from 'primeng/ripple';
-import { TieredMenu } from 'primeng/tieredmenu';
+import { SelectButton, SelectButtonChangeEvent } from 'primeng/selectbutton';
+import { Tooltip } from 'primeng/tooltip';
 import { environment } from '../../../../environments/environment';
 import { PrefetchService } from '../../../services/prefetch.service';
 
@@ -29,11 +30,12 @@ import { PrefetchService } from '../../../services/prefetch.service';
 		Badge,
 		Ripple,
 		TranslatePipe,
-		Button,
-		TieredMenu,
-		PrimeTemplate,
 		RouterLink,
 		Breadcrumb,
+		FormsModule,
+		ReactiveFormsModule,
+		SelectButton,
+		Tooltip,
 	],
 	templateUrl: './menu-bar.component.html',
 	styleUrl: './menu-bar.component.scss',
@@ -119,9 +121,10 @@ export class MenuBarComponent {
 						return {
 							...item,
 							routerLink: '/streets/map',
-							prefetch: async () => await this._prefetchService.prefetchStreetGrid(item.queryParams),
-						}
-					})
+							prefetch: async () =>
+								await this._prefetchService.prefetchStreetGrid(item.queryParams),
+						};
+					}),
 				},
 			],
 		},
@@ -130,7 +133,7 @@ export class MenuBarComponent {
 			icon: 'ph-bold ph-warning-diamond',
 			routerLink: '/incidents',
 			prefetch: async () => await this._prefetchService.prefetchIncidents(),
-		}
+		},
 	];
 	private readonly _devItems: MenuItem[] = [
 		{
@@ -139,46 +142,25 @@ export class MenuBarComponent {
 			routerLink: '/rides',
 		},
 	];
-	protected readonly _items = [...(environment.production ? []: this._devItems), ...this._prodItems];
-
-	protected readonly _settings: MenuItem[] = [
-		{
-			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.TITLE',
-			icon: 'ph-bold ph-translate',
-			items: [
-				{
-					icon: 'fi fi-gb',
-					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.EN',
-					command: () => this._translateService.use('en'),
-				},
-				{
-					icon: 'fi fi-de',
-					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.DE',
-					command: () => this._translateService.use('de'),
-				},
-			],
-		},
-		/* If you want to add a theme switcher, you can use the following code:
-		{
-			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.THEME.TITLE',
-			icon: 'ph-bold ph-moon-stars',
-			items: [
-				{
-					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.THEME.DARK',
-					command: () => {
-						document.body.classList.add('dark');
-					},
-				},
-				{
-					label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.THEME.LIGHT',
-					command: () => {
-						document.body.classList.remove('dark');
-					},
-				},
-			],
-		},
-		*/
+	protected readonly _items = [
+		...(environment.production ? [] : this._devItems),
+		...this._prodItems,
 	];
+	protected readonly _languages: MenuItem[] = [
+		{
+			id: 'en',
+			icon: 'fi fi-gb',
+			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.EN',
+		},
+		{
+			id: 'de',
+			icon: 'fi fi-de',
+			label: 'APP.COMPONENTS.MENU_BAR.SETTINGS.LANGUAGE.DE',
+		},
+	];
+	protected readonly _selectedLanguage = signal<MenuItem>(
+		this._languages.find((ele) => ele.id === this._translateService.currentLang) || this._languages[0],
+	);
 
 	private readonly _routerEvents = toSignal(this._router.events);
 	protected _breadcrumbItems$ = signal<MenuItem[]>([]);
@@ -203,7 +185,9 @@ export class MenuBarComponent {
 
 			for (const segment of pathSegments) {
 				accumulatedUrl += `/${segment}`;
-				const capitalizedSegment = decodeURIComponent(this.capitalizeAfterHyphen(segment[0].toUpperCase() + segment.slice(1)));
+				const capitalizedSegment = decodeURIComponent(
+					this.capitalizeAfterHyphen(segment[0].toUpperCase() + segment.slice(1)),
+				);
 				breadcrumbs.push({ label: capitalizedSegment, routerLink: accumulatedUrl });
 			}
 
@@ -211,10 +195,14 @@ export class MenuBarComponent {
 		});
 	}
 
-	private capitalizeAfterHyphen (input: string): string {
+	private capitalizeAfterHyphen(input: string): string {
 		return input
 			.split('-')
-			.map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
+			.map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
 			.join('-');
-	};
+	}
+
+	protected selectLanguage(language: SelectButtonChangeEvent): void {
+		this._translateService.use(language.value?.id);
+	}
 }
