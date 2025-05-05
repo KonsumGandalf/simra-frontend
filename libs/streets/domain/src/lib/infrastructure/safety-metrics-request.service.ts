@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IPage } from '@simra/common-models';
+import { IPage, MapFilterOptionsInterface } from '@simra/common-models';
 import {
 	SafetyMetricsDto,
 	IStreetsSafetyMetricsRequest,
@@ -17,8 +17,9 @@ import { map, Observable } from 'rxjs';
 export class SafetyMetricsRequestService {
 	private readonly _http = inject(HttpClient);
 
-	public getSafetyMetricsForStreet(streetId: number): Observable<SafetyMetricsDto> {
-		return this._http.get(`/api/safety-metrics/streets/${streetId}`).pipe(
+	public getSafetyMetricsForStreet(streetId: number, filter: MapFilterOptionsInterface): Observable<SafetyMetricsDto> {
+		const params = defaults(pickBy(filter, isNumber), omitBy(filter, isEmpty));
+		return this._http.get(`/api/safety-metrics/streets/${streetId}`, { params }).pipe(
 			map((response) => plainToInstance(SafetyMetricsDto, response)),
 		);
 	}

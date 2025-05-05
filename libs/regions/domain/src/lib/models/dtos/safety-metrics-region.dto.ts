@@ -1,7 +1,6 @@
 import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
-import { ISafetyMetricsRegion } from '@simra/models';
-import { IsDate, IsEnum, IsHexColor, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { RegionDto } from './region.dto';
+import { IsDate, IsEnum, IsHexColor, IsNumber, IsString } from 'class-validator';
+import { ISafetyMetricsRegion } from '@simra/common-models';
 
 export class SafetyMetricsRegionDto implements ISafetyMetricsRegion {
 	@IsHexColor()
@@ -40,8 +39,8 @@ export class SafetyMetricsRegionDto implements ISafetyMetricsRegion {
 	@IsNumber()
 	numberOfTailgating: number;
 
-	@ValidateNested({ each: true })
-	region: RegionDto;
+	@IsString()
+	name: string;
 
 	@IsEnum(ETrafficTimes)
 	trafficTime: ETrafficTimes;

@@ -6,7 +6,7 @@
 	[(_datetime$)]="_datetime$"
 	[barChartData$]="_barMetricsRideIncidentDistributionData$()"
 	[pieChartData$]="_pieMetricsIncidentTypesData$()"
-	lastRun$="{{ 'COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED' | translate }}: {{ _lastRun$() | date: 'dd.MM.yyyy HH:mm':'Europe/Berlin' }}">
->
+	[(_mode$)]="_mode$"
+	[lastRun$]="_lastRun$()">
 	<m-enum-select-button [optionEnum]="ECardMode" [translationMap]="CARD_MODE_TO_TRANSLATION_MAP" [(selected)]="_mode$"></m-enum-select-button>
 </t-safety-metrics-card>

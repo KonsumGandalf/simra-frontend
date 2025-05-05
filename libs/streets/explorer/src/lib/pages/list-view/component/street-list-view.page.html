@@ -23,7 +23,7 @@
 			<ng-template pTemplate="caption" class="pt-0">
 				<div class="flex flex-wrap flex-row gap-y-4 justify-evenly items-center gap-x-8">
 					<m-autocomplete class="region__autocomplete" [fetchFunction]="fetchRegionNames" [placeholder]="'COMPONENTS.GENERAL.TABLE.HEADER.REGION' | translate" (selectionChange)="onFilterChange($event)" field="region" [showDropdown]="true" />
-					<h4 class="opacity-75">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ _lastRun$() | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
+					<a-last-run [date]="_lastRun$()"></a-last-run>
 				</div>
 			</ng-template>
 			<ng-template pTemplate="header">

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IPage } from '@simra/common-models';
-import { ISafetyMetricsRegion } from '@simra/regions-common';
+import { IPage, ISafetyMetricsRegion } from '@simra/common-models';
 import { ISafetyMetricsRequest, ISafetyMetrics } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, isEmpty, isNumber, omitBy, pickBy } from 'lodash';

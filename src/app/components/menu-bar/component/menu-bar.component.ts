@@ -4,14 +4,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import {
-	BERLIN_POSITION,
-	HANNOVER_POSITION,
-	HEIDELBERG_POSITION, MUNICH_POSITION,
-	NUREMBERG_POSITION,
-	RUHRGEBIET_POSITION,
-	WALLDORF_POSITION, WUPPERTAL_POSITION,
-} from '@simra/common-components';
+
+import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { IGetStreetGrid } from '@simra/streets-common';
 import { MenuItem } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { Breadcrumb } from 'primeng/breadcrumb';
@@ -20,6 +15,7 @@ import { Ripple } from 'primeng/ripple';
 import { SelectButton, SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Tooltip } from 'primeng/tooltip';
 import { environment } from '../../../../environments/environment';
+import { CITY_POSITION_LINKS } from '../../../pages/home/models/const';
 import { PrefetchService } from '../../../services/prefetch.service';
 
 @Component({
@@ -84,45 +80,22 @@ export class MenuBarComponent {
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.MAP',
 					icon: 'ph-bold ph-map-trifold',
-					items: [
-						{
-							label: 'Berlin',
-							queryParams: BERLIN_POSITION,
-						},
-						{
-							label: 'Nürnberg',
-							queryParams: NUREMBERG_POSITION,
-						},
-						{
-							label: 'Hannover',
-							queryParams: HANNOVER_POSITION,
-						},
-						{
-							label: 'Walldorf',
-							queryParams: WALLDORF_POSITION,
-						},
-						{
-							label: 'Heidelberg',
-							queryParams: HEIDELBERG_POSITION,
-						},
-						{
-							label: 'Ruhrgebiet',
-							queryParams: RUHRGEBIET_POSITION,
-						},
-						{
-							label: 'Wuppertal',
-							queryParams: WUPPERTAL_POSITION,
-						},
-						{
-							label: 'Munich',
-							queryParams: MUNICH_POSITION,
-						},
-					].map((item) => {
+					items: CITY_POSITION_LINKS.map((item) => {
 						return {
-							...item,
+							label: item.label,
+							queryParams: item.position,
 							routerLink: '/streets/map',
-							prefetch: async () =>
-								await this._prefetchService.prefetchStreetGrid(item.queryParams),
+							prefetch: () => {
+								const { lat, lng, zoom} = item.position;
+								return this._prefetchService.prefetchStreetGrid({
+									lat: `${lat}`,
+									lng: `${lng}`,
+									zoom: `${zoom}`,
+									trafficTime: ETrafficTimes.ALL_DAY,
+									weekDay: EWeekDays.ALL_WEEK,
+									year: '2000'
+								} as unknown as IGetStreetGrid);
+							}
 						};
 					}),
 				},
@@ -131,8 +104,14 @@ export class MenuBarComponent {
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.INCIDENTS',
 			icon: 'ph-bold ph-warning-diamond',
-			routerLink: '/incidents',
-			prefetch: async () => await this._prefetchService.prefetchIncidents(),
+			items: CITY_POSITION_LINKS.map((item) => {
+				return {
+					label: item.label,
+					queryParams: item.position,
+					routerLink: '/incidents',
+					prefetch: async () => await this._prefetchService.prefetchIncidents(),
+				};
+			}),
 		},
 	];
 	private readonly _devItems: MenuItem[] = [

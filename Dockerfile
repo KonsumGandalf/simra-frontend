@@ -54,3 +54,24 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=github_builder /usr/src/app/dist/simra/browser /usr/share/nginx/html
 
 EXPOSE 80
+
+FROM node:23-alpine AS local_test
+
+ARG SIMRA_API_URL
+ARG MAPILLARY_URL
+ARG MAPILLARY_ACCESS_TOKEN
+
+ENV SIMRA_API_URL=$SIMRA_API_URL
+ENV MAPILLARY_URL=$MAPILLARY_URL
+ENV MAPILLARY_ACCESS_TOKEN=$MAPILLARY_ACCESS_TOKEN
+ENV NX_DAEMON=false
+
+COPY package*.json ./
+
+RUN npm ci --ignore-scripts
+RUN npm install -g nx
+
+COPY . .
+
+RUN nx serve
+EXPOSE 4200

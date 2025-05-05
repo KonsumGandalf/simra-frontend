@@ -20,8 +20,7 @@
     .projection-card {
         @apply p-2;
 
-        &:empty,
-        &:not(:has(.p-card-body)) {
+        &:empty {
             @apply hidden;
         }
     }

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { createIncidentMarker } from '@simra/incidents-ui';
 import { StreetDetailState } from '@simra/streets-domain';
@@ -29,7 +30,8 @@ import { MapillaryComponent } from '../../mapillar/component/mapillary.component
 		MapillaryComponent,
 		TabList,
 		TabPanels,
-		MapPage
+		MapPage,
+		TranslatePipe,
 	],
 	templateUrl: './map-carousel.component.html',
 	styleUrl: './map-carousel.component.scss',
@@ -99,6 +101,7 @@ export class MapCarouselComponent {
 			this._router.navigate([], {
 				queryParams: { lat: center[0], lng: center[1], zoom: 16 },
 				queryParamsHandling: 'merge',
+				replaceUrl: true,
 			});
 		});
 	}

@@ -1,11 +1,10 @@
-@if(lastRun(); as run) {
-	<h4 class="last-run">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ run | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
-}
+<a-last-run class="last-run" [date]="lastRun()"/>
 <div class="leaflet-map"
 	leaflet
 	 [leafletLayersControl]="_layerControl"
 	 [leafletOptions]="_mapOptions"
 	 [leafletMarkerCluster]="_markersWithLayer$()"
-	(leafletMapMoveEnd)="onMapChange($event)"
-	(leafletMapZoom)="onMapChange($event)">
+	 (leafletMapMoveEnd)="onMapChange($event)"
+	 (leafletMapReady)="onMapReady($event)"
+	 (leafletMapZoom)="onMapChange($event)">
 </div>

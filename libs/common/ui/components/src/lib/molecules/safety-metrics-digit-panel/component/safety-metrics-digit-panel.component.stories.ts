@@ -1,4 +1,5 @@
-import { ETrafficTimes, EWeekDays } from '@simra/common-models';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { StorybookTranslateModule } from '@simra/helpers';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SafetyMetricsDigitPanelComponent } from './safety-metrics-digit-panel.component';
@@ -8,7 +9,7 @@ const meta: Meta<SafetyMetricsDigitPanelComponent> = {
 	title: 'SafetyMetricsDigitPanel',
 	decorators: [
 		moduleMetadata({
-			imports: [StorybookTranslateModule],
+			imports: [StorybookTranslateModule, RouterTestingModule],
 		}),
 	],
 };
@@ -19,7 +20,6 @@ type Story = StoryObj<SafetyMetricsDigitPanelComponent>;
 export const Primary: Story = {
 	args: {
 		safetyMetrics: {
-			osmId: 21314,
 			numberOfRides: 206,
 			numberOfIncidents: 7,
 			numberOfScaryIncidents: 3,
@@ -34,6 +34,8 @@ export const Primary: Story = {
 			dangerousColor: '#FF0000',
 			weekDay: EWeekDays.WEEK,
 			trafficTime: ETrafficTimes.ALL_DAY,
+			year: EYear.ALL,
+			lastModified: new Date(),
 		},
 	},
 };

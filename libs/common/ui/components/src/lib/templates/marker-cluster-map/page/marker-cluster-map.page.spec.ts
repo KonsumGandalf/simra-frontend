@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { MarkerClusterMapPage } from './marker-cluster-map.page';
 
 @Component({
@@ -17,7 +18,7 @@ describe('Integration Test MarkerClusterMapComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [TestHostPage],
+			imports: [TestHostPage, TranslateModule.forRoot()],
 			providers: [provideRouter([])]
 		}).compileComponents();
 

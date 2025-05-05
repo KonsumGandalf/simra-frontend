@@ -39,7 +39,7 @@ export class StreetDetailViewPage {
 	 */
 	streetId = input<number>();
 
-	streetInformations = resource({
+	streetInformation = resource({
 		request: () => this.streetId(),
 		loader: async ({ request }) => {
 			if (!request) {
@@ -52,7 +52,7 @@ export class StreetDetailViewPage {
 
 	constructor() {
 		effect(() => {
-			this.streetInformations.value()
+			this.streetInformation.value()
 		});
 	}
 }

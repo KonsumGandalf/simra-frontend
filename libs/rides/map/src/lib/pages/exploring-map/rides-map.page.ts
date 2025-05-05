@@ -92,6 +92,7 @@ export class RidesMapPage {
 		this._router.navigate([], {
 			queryParams: { lat: center[1], lng: center[0], zoom: 14 },
 			queryParamsHandling: 'merge',
+			replaceUrl: true,
 		})
 		return [visitedWay, ...assignedWays, ...incidentWays, ...incidentMarkers];
 	});

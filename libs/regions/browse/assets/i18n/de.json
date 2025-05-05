@@ -74,10 +74,16 @@
         },
         "REGIONS": {
             "TITLE": "Regionen",
-            "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen."
+            "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen.",
+            "ADMIN_LEVEL": {
+                "PLACEHOLDER": "Wähle eine Verwaltungsebene",
+                "DISTRICT": "Stadtbezirk",
+                "COUNTY": "Landkreis",
+                "FEDERAL_COUNTY": "Bundesland"
+            }
         },
         "ANALYSIS": {
-            "PERCENTAGE_SCARY": "Prozentsatz der beängstigenden Vorfälle"
+            "PERCENTAGE_SCARY": "Prozentsatz der beängstigenden Beinahunfälle"
         }
     }
 }

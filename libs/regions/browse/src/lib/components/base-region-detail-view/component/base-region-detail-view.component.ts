@@ -9,14 +9,13 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
-import { ETrafficTimes, EWeekDays, EYear, IMapPosition } from '@simra/common-models';
-import { IRegion, ISafetyMetricsRegion } from '@simra/models';
+import { LastRunComponent, MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
+import { ETrafficTimes, EWeekDays, EYear, IMapPosition, ISafetyMetricsRegion } from '@simra/common-models';
+import { IRegion } from '@simra/models';
 import { area, centroid, polygon as turfPolygon } from '@turf/turf';
 import { LatLng, latLng, Layer, MapOptions, polygon } from 'leaflet';
 import { find, first } from 'lodash';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { ButtonDirective } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
 import { Divider } from 'primeng/divider';
@@ -36,9 +35,9 @@ import { IDetailViewChange } from '../models/interfaces/detail-view-change.inter
 		UIChart,
 		Card,
 		Divider,
-		ButtonDirective,
 		MapPage,
 		Skeleton,
+		LastRunComponent,
 	],
 	templateUrl: './base-region-detail-view.component.html',
 	styleUrl: './base-region-detail-view.component.scss',
@@ -56,7 +55,7 @@ export class BaseRegionDetailViewComponent {
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
 
 	public readonly lastRun = input.required<Date>();
-	public readonly changeDetails  = output<IDetailViewChange>();
+	public readonly changeDetails = output<IDetailViewChange>();
 
 	public readonly safetyMetrics = input.required<ISafetyMetricsRegion>();
 	protected readonly _generalSafetyMetrics: Signal<ISafetyMetricsRegion | undefined> = computed(

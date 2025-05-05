@@ -1,7 +1,9 @@
 <div class="region__detail-view">
 	<p-card class="region__detail-card"
-			[header]="(detailedRegion()?.name === 'All' ? 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.ALL' : detailedRegion()?.name) | translate"
-			subheader="{{ 'COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED' | translate }}: {{ lastRun() | date: 'dd.MM.yyyy HH:mm':'Europe/Berlin' }}">
+			[header]="(detailedRegion()?.name === 'All' ? 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.ALL' : detailedRegion()?.name) | translate">
+		<ng-template pTemplate="subtitle">
+			<a-last-run [date]="lastRun()"/>
+		</ng-template>
 		<div class="detail-card__absolute-box">
 			<div class="box__table-container">
 				<table class="simple-table">
@@ -98,13 +100,6 @@
 					19:00 - 7:30
 				</span>
 			</div>
-			<a pButton
-			   href="https://www.berlin.de/sen/uvk/_assets/verkehr/verkehrsmanagement/verkehrserhebungen/ergebnisbericht-2019-teil-a.pdf"
-			   target="_blank"
-			   icon="ph-bold ph-file-pdf"
-			   size="small">
-				{{ 'Berliner Verkehrerhebung' | translate }}
-			</a>
 		</div>
 		<p-chart type="bar" [data]="_stackedBarChartTrafficTimesMetrics$()" [options]="stackedBarChartOptions" height="21rem"/>
 		<p-chart type="line" [data]="_lineChartTrafficTimesMetrics$()" [options]="lineChartOptions" height="21rem"/>
@@ -126,6 +121,7 @@
 		<p class="text-sm text-center opacity-60" [innerHTML]="'REGIONS.BROWSE.COMPONENTS.BASE_REGION_DETAIL_VIEW.TEMPORAL_METRICS.DESCRIPTION' | translate"></p>
 	</p-card>
 	<t-safety-metrics-card
+		[lastRun$]="lastRun()"
 		[(_selectedYear$)]="_selectedYear"
 		[(_selectedTrafficTime$)]="_selectedTrafficTime"
 		[(_selectedWeekDays$)]="_selectedWeekDays"

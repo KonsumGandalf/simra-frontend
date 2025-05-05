@@ -19,6 +19,7 @@ export function safetyMetricsDisplayArray<T extends ISafetyMetrics>(
 		specificAttributes.push({
 			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.NAME',
 			data: safetyMetrics.name,
+			link: `/administrative-districts/${safetyMetrics.name}`,
 		});
 	}
 

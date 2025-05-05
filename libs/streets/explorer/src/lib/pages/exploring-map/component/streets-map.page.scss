@@ -2,13 +2,18 @@
 	position: relative;
 
 	.panel__card {
-		@screen md {
+		@screen lg {
 			position: absolute;
 			top: 50%;
 			left: 10rem;
 			transform: translate(-50%, -50%);
 			z-index: 500;
 			width: 17rem;
+
+			@supports (-moz-appearance: none) {
+				top: 0;
+				transform: translateX(-50%) translateY(-180%);
+			}
 		}
 
 		.p-card {
@@ -23,8 +28,8 @@
 	.map-overlay {
 		position: absolute;
 		top: 2rem;
-		left: 50%;
-		transform: translateX(-50%);
+		left: calc(50vw - 16.5rem);
+		transform: translateX(50%);
 		background: rgba(255, 255, 255, 0.8);
 		padding: 8px 12px;
 		border-radius: 4px;
@@ -32,16 +37,39 @@
 		font-weight: 500;
 		z-index: 1000;
 		pointer-events: none;
+		text-wrap: nowrap;
+		width: 16.5rem;
+		text-align: center;
 	}
 
 	m-dangerous-score-bar {
 		@apply w-full px-2 sm:px-0 sm:w-1/2 lg:w-5/12;
 
 		position: absolute;
-		min-width: 21rem;
-		left: 50%;
-		transform: translateX(-50%) translateY(-140%);
+		width: 22rem;
+		height: 3.5rem;
+		left: calc(50vw - 22rem);
+		transform: translateX(50%) translateY(-140%);
 		z-index: 500;
+
+		@screen md {
+			width: 30rem;
+			left: calc(50vw - 30rem);
+		}
+		@screen lg {
+			width: 30rem;
+			left: calc(50vw - 30rem);
+		}
+
+		@screen xl {
+			width: 44rem;
+			left: calc(50vw - 44rem);
+		}
+
+		@screen 2xl {
+			width: 50rem;
+			left: calc(50vw - 50rem);
+		}
 	}
 
 	t-map-component {
@@ -52,9 +80,5 @@
 				@apply rounded-b-lg;
 			}
 		}
-	}
-
-	p-card {
-
 	}
 }

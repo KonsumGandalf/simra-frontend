@@ -8,9 +8,8 @@ import {
 	TTranslationMap,
 	WEEK_DAYS_TO_TRANSLATION,
 } from '@simra/common-components';
-import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
+import { ETrafficTimes, EWeekDays, EYear, ISafetyMetricsRegion } from '@simra/common-models';
 import { getEnumOrder } from '@simra/common-utils';
-import { ISafetyMetricsRegion } from '@simra/models';
 import { ChartData, ChartDataset, ChartOptions } from 'chart.js';
 import { drop, map, orderBy, values } from 'lodash';
 

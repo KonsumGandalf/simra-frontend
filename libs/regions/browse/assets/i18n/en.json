@@ -75,7 +75,13 @@
         },
         "REGIONS": {
             "TITLE": "Regions",
-            "TOOLTIP": "Here you can find all regions that are currently available in the SimRa app. You can select a region to see more details about it."
+            "TOOLTIP": "Here you can find all regions that are currently available in the SimRa app. You can select a region to see more details about it.",
+            "ADMIN_LEVEL": {
+                "PLACEHOLDER": "Select the administrative level",
+                "DISTRICT": "District",
+                "COUNTY": "County",
+                "FEDERAL_COUNTY": "Federal county"
+            }
         },
         "ANALYSIS": {
             "PERCENTAGE_SCARY": "Percentage of scary incidents"

@@ -6,14 +6,15 @@ import { EnumSelectComponent } from './enum-select.component';
 
 @Component({
 	selector: 'm-test-host-component',
-	template: '<m-enum-multi-select-component [field]="field" [translationMap]="translationMap" [optionEnum]="optionEnum"></m-enum-multi-select-component>',
+	template:
+		'<m-enum-select-component [field]="field" [translationMap]="translationMap" [optionEnum]="optionEnum"></m-enum-select-component>',
 	imports: [EnumSelectComponent],
 })
 class TestHostComponent {
 	field = 'field';
 	translationMap: TTranslationMap<string> = {
-		'key1': { label: 'label1' },
-		'key2': { label: 'label2' },
+		key1: { label: 'label1' },
+		key2: { label: 'label2' },
 	};
 	optionEnum = { key1: 'value1', key2: 'value2' };
 }

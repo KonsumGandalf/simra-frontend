@@ -1,6 +1,6 @@
 import {
 	ChangeDetectionStrategy,
-	Component,
+	Component, computed,
 	effect,
 	ElementRef,
 	inject, output,
@@ -37,10 +37,26 @@ export class MapillaryComponent {
 	hasMapillaryImage = output<boolean>();
 
 	private readonly _accessToken = inject(APP_CONFIG).mapillaryAccessToken;
-	private readonly _routeParams = toSignal(this._activeRoute.queryParams);
+
+	private readonly _routeParamsRaw = toSignal(this._activeRoute.queryParams, { manualCleanup: true });
+
+	/**
+	 * Angular does create new instances of the component when the route params change.
+	 * Therefor we need to create an internal signal to patch the change object reference correctly.
+	 *
+	 * @private
+	 */
+	private readonly _coords = computed(() => {
+		const { lat, lng } = this._routeParamsRaw();
+		if (!lat || !lng) {
+			return;
+		}
+
+		return { lat, lng };
+	});
 
 	private readonly _mapillaryImageId$ = resource({
-		request: () => this._routeParams(),
+		request: () => this._coords(),
 		loader: async ({ request }) => {
 			const { lat, lng } = request;
 			if (!lat || !lng) {

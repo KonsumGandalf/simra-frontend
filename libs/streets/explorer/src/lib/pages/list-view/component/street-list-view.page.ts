@@ -18,7 +18,7 @@ import {
 	NumberColumn,
 	NumberFilterComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
-	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION, AutocompleteColumn, isAutocompleteColumn,
+	WEEK_DAYS_TO_TRANSLATION, YEAR_TO_TRANSLATION, AutocompleteColumn, isAutocompleteColumn, LastRunComponent,
 } from '@simra/common-components';
 import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
 import { IStreetsSafetyMetricsRequest } from '@simra/streets-common';
@@ -51,6 +51,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway
 		EnumMultiSelectComponent,
 		RouterLink,
 		AutocompleteComponent,
+		LastRunComponent,
 	],
 	templateUrl: './street-list-view.page.html',
 	styleUrl: './street-list-view.page.scss',
@@ -85,14 +86,14 @@ export class StreetListViewPage {
 			sortable: true,
 			fetchFunction: (query: string): Observable<string[]> => {
 				return this._streetListViewFace.fetchStreetIds(query);
-			}
+			},
 		} as AutocompleteColumn,
 		{
 			header: `${this._headerPrefix}.NAME`,
 			field: 'name',
 			fetchFunction: (query: string): Observable<string[]> => {
 				return this._streetListViewFace.fetchStreetNames(query);
-			}
+			},
 		} as AutocompleteColumn,
 		{
 			header: `${this._headerPrefix}.HIGHWAY_TYPE`,
@@ -111,7 +112,7 @@ export class StreetListViewPage {
 		{
 			header: `${this._headerPrefix}.RIDES`,
 			field: 'numberOfRides',
-			min: 0,
+			min: 5,
 			step: 10,
 			sortable: true,
 		} as NumberColumn,
@@ -145,6 +146,9 @@ export class StreetListViewPage {
 		} as EnumColumn<EYear>,
 	];
 
+	protected readonly _lastRun$ = toSignal(
+		this._streetDetailViewFacade.fetchLastMethodRun('calculateSafetyMetricsHighway'),
+	);
 	public fetchRegionNames = (query: string): Observable<string[]> => {
 		return this._streetListViewFace.fetchRegionNames(query);
 	};
@@ -153,7 +157,7 @@ export class StreetListViewPage {
 		weekDay: [EWeekDays.ALL_WEEK],
 		trafficTime: [ETrafficTimes.ALL_DAY],
 		year: [EYear.ALL],
-		minNumberOfRides: 2,
+		minNumberOfRides: 40,
 		sort: 'dangerousScore,DESC',
 	});
 	protected readonly _streets$ = resource({
@@ -167,9 +171,6 @@ export class StreetListViewPage {
 			return response;
 		},
 	});
-	protected readonly _lastRun$ = toSignal(
-		this._streetDetailViewFacade.fetchLastMethodRun('calculateSafetyMetricsHighway'),
-	);
 
 	/**
 	 * Called when paginating the table

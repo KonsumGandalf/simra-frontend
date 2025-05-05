@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
-import { TranslatePipe } from '@ngx-translate/core';
 import {
 	Control,
 	latLng,
@@ -21,6 +20,7 @@ import {
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { IMapPosition } from '@simra/common-models';
 import { PopoverModule } from 'primeng/popover';
+import { LastRunComponent } from '../../../atoms/last-run/component/last-run.component';
 import { BERLIN_POSITION, DEFAULT_LAYER_CONFIG } from '../../models/const';
 import { EBaseLayerTypes } from '../../models/enums/base-layer-types';
 import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
@@ -30,7 +30,7 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
  */
 @Component({
 	selector: 't-map-component',
-	imports: [CommonModule, LeafletModule, PopoverModule, TranslatePipe],
+	imports: [CommonModule, LeafletModule, PopoverModule, LastRunComponent],
 	templateUrl: './map.page.html',
 	styleUrl: './map.page.scss',
 	host: {

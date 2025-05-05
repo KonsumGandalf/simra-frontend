@@ -47,7 +47,8 @@
             },
             "CONTACT": {
                 "TITLE": "Kontakt",
-                "GERMANY": "Deutschland"
+                "GERMANY": "Deutschland",
+                "SCALABLE_SOFTWARE_SYSTEMS": "Skalierbare Softwaresysteme"
             },
             "DOWNLOADS": {
                 "TITLE": "Downloads",

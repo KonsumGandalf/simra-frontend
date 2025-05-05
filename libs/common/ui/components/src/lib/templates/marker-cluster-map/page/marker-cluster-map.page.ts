@@ -1,12 +1,11 @@
-import { TranslatePipe } from '@ngx-translate/core';
-import { latLng, Layer, LeafletEvent, MapOptions } from 'leaflet';
+import { latLng, Layer, LeafletEvent, Map, MapOptions } from 'leaflet';
 import 'leaflet.markercluster';
 
 import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
-	computed,
+	computed, effect,
 	inject,
 	input,
 	Signal,
@@ -17,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@bluehalo/ngx-leaflet-markercluster';
 import { IMapPosition } from '@simra/common-models';
+import { LastRunComponent } from '../../../atoms/last-run/component/last-run.component';
 
 import { BERLIN_POSITION, DEFAULT_LAYER_CONFIG } from '../../models/const';
 import { EBaseLayerTypes } from '../../models/enums/base-layer-types';
@@ -24,7 +24,12 @@ import { BASE_MAP_LAYER } from '../../models/maps/base-map-layer';
 
 @Component({
 	selector: 't-marker-cluster-map-page',
-	imports: [CommonModule, LeafletMarkerClusterModule, LeafletModule, TranslatePipe],
+	imports: [
+		CommonModule,
+		LeafletMarkerClusterModule,
+		LeafletModule,
+		LastRunComponent,
+	],
 	templateUrl: './marker-cluster-map.page.html',
 	styleUrl: './marker-cluster-map.page.scss',
 	host: {
@@ -37,6 +42,8 @@ export class MarkerClusterMapPage {
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
 
+	private map?: Map;
+
 	private queryParams = toSignal(this.route.queryParams);
 
 	public readonly leafletPosition: Signal<IMapPosition> = computed(() => {
@@ -48,6 +55,7 @@ export class MarkerClusterMapPage {
 
 		return { ...BERLIN_POSITION, lat, lng, zoom };
 	});
+
 	public readonly markers = input.required<Layer[]>();
 	public readonly lastRun = input<Date>();
 
@@ -67,12 +75,31 @@ export class MarkerClusterMapPage {
 		return layers;
 	});
 
+	constructor() {
+		effect(() => {
+			const position = this.leafletPosition();
+
+			if (this.map) {
+				this.map.setView(latLng(position.lat, position.lng), position.zoom);
+			}
+		});
+	}
+
 	protected onMapChange(event: LeafletEvent) {
 		const center = event.sourceTarget.getCenter();
 		const zoom = event.sourceTarget.getZoom();
+
 		this.router.navigate([], {
-			queryParams: { lat: center.lat, lng: center.lng, zoom },
+			queryParams: {
+				lat: center.lat.toFixed(5),
+				lng: center.lng.toFixed(5),
+				zoom,
+			},
 			queryParamsHandling: 'merge',
 		});
+	}
+
+	protected onMapReady(map: Map): void {
+		this.map = map;
 	}
 }

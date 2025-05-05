@@ -38,7 +38,7 @@ export const CITY_POSITION_LINKS: ICityLink[] = [
 			position: WUPPERTAL_POSITION
 		},
 		{
-			label: 'Munich',
+			label: 'München',
 			position: MUNICH_POSITION
 		},
 	]

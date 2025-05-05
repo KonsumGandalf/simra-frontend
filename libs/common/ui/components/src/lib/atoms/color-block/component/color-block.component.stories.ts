@@ -1,10 +1,16 @@
 import { EDangerousColors } from '@simra/common-models';
-import type { Meta, StoryObj } from '@storybook/angular';
+import { StorybookTranslateModule } from '@simra/helpers';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { ColorBlockComponent } from './color-block.component';
 
 const meta: Meta<ColorBlockComponent> = {
 	component: ColorBlockComponent,
 	title: 'ColorBlock',
+	decorators: [
+		moduleMetadata({
+			imports: [StorybookTranslateModule]
+		})
+	]
 };
 export default meta;
 type Story = StoryObj<ColorBlockComponent>;

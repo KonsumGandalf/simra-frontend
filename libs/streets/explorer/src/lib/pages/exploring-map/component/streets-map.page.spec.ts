@@ -4,7 +4,7 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { MapFilterState } from '@simra/common-state';
-import { StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
+import { RegionDetailState, StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject, of } from 'rxjs';
 import { StreetsMapPage } from './streets-map.page';
@@ -38,7 +38,7 @@ describe('StreetsMapPage', () => {
 						getIdOfNearestImage: jest.fn(),
 					}
 				},
-				provideStore([StreetMapState, MapFilterState, StreetDetailState]),
+				provideStore([StreetMapState, MapFilterState, StreetDetailState, RegionDetailState]),
 			],
 		}).compileComponents();
 

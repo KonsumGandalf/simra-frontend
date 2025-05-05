@@ -12,6 +12,10 @@
 <m-dangerous-score-bar></m-dangerous-score-bar>
 @if(_mapPosition()?.zoom > 11 && !showOverlay$()) {
 	<p-card class="panel__card">
-		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetrics$.value()" ></m-safe-metrics-digit-panel>
+		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetricsStreet$.value()" ></m-safe-metrics-digit-panel>
+	</p-card>
+} @else {
+	<p-card class="panel__card">
+		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetricsRegion$.value()" ></m-safe-metrics-digit-panel>
 	</p-card>
 }

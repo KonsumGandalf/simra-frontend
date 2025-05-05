@@ -34,11 +34,14 @@ export const Primary: Story = {
 					name: 'Main Street2',
 					highway: EHighwayTypes.Primary,
 					way: {
+						type: 'LineString',
 						coordinates: [
 							[1491204.67354953, 6890863.81900039],
 							[1491201.06679802, 6890875.77793645],
 						],
 					},
+					rideIncident: [],
+					safetyMetricPlanetOsmLines: [],
 					tags: {
 						maxSpeed: 50,
 						lit: true,

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { IRegion, ISafetyMetricsRegion } from '@simra/models';
+import { ISafetyMetricsRegion } from '@simra/common-models';
+import { IRegion } from '@simra/models';
 import { BaseRegionDetailViewComponent } from './base-region-detail-view.component';
 
 @Component({

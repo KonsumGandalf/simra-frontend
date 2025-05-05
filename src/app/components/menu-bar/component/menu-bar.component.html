@@ -25,7 +25,7 @@
 		<ng-template #end>
 			<p-selectbutton [options]="_languages" [unselectable]="true" [(ngModel)]="_selectedLanguage" optionLabel="justify" (onChange)="selectLanguage($event)" >
 				<ng-template #item let-item>
-					<i class="opacity-90 rounded" [pTooltip]="item.label | translate"   [class]="item.icon"></i>
+					<i class="opacity-90 rounded" [pTooltip]="item.label | translate"  [class]="item.icon"></i>
 				</ng-template>
 			</p-selectbutton>
 		</ng-template>

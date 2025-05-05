@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { EnumSelectButtonComponent, SafetyMetricsCardComponent, CARD_MODE_TO_TRANSLATION_MAP } from '@simra/common-components';
 import { ETrafficTimes, EWeekDays, EYear } from '@simra/common-models';
@@ -32,8 +31,7 @@ import { ECardMode } from '../models/card-mode.enum';
 		CommonModule,
 		SafetyMetricsCardComponent,
 		FormsModule,
-		EnumSelectButtonComponent,
-		TranslatePipe,
+		EnumSelectButtonComponent
 	],
 	templateUrl: './safety-metrics-card-logic.component.html',
 	styleUrl: './safety-metrics-card-logic.component.scss',

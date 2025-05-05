@@ -1,7 +1,5 @@
-@if(lastRun(); as run) {
-	<h4 class="last-run">{{ "COMPONENTS.GENERAL.GENERAL.LAST_MODIFIED" | translate }}: {{ run | date: "dd.MM.yyyy HH:mm":"Europe/Berlin" }}</h4>
-}
 @if (layerControl(); as control) {
+	<a-last-run class="last-run" [date]="lastRun()"/>
 	<div
 		class="leaflet-map"
 		leaflet

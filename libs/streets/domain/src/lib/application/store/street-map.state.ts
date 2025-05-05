@@ -28,5 +28,4 @@ export class StreetMapState {
 			streetGrid: action.batch
 		})
 	}
-
 }

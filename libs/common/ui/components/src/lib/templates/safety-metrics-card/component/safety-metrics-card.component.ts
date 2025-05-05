@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ETrafficTimes, EWeekDays, EYear, ISafetyMetrics } from '@simra/common-models';
 import { ChartData } from 'chart.js';
+import { PrimeTemplate } from 'primeng/api';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
 import { DatePicker } from 'primeng/datepicker';
@@ -18,7 +19,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import {
 	ChartDirective,
 	EnumSelectButtonComponent,
-	EnumSelectComponent,
+	EnumSelectComponent, LastRunComponent,
 	SafetyMetricsDigitPanelComponent,
 	TRAFFIC_TIMES_TO_TRANSLATION,
 	WEEK_DAYS_TO_TRANSLATION,
@@ -42,6 +43,8 @@ import { SafetyMetricsService } from '../services/safety-metrics.service';
 		TranslatePipe,
 		UIChart,
 		FormsModule,
+		PrimeTemplate,
+		LastRunComponent,
 	],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -71,7 +74,7 @@ export class SafetyMetricsCardComponent {
 		this._safetyMetricsService.getBarMetricsRideIncidentDistributionOptions;
 	public readonly pieChartData$ = input<ChartData>();
 	public readonly barChartData$ = input<ChartData>();
-	public readonly lastRun$ = input<string | undefined>();
+	public readonly lastRun$ = input<Date>();
 
 	// references for template
 	protected readonly ECardMode = ECardMode;

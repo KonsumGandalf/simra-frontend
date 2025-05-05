@@ -26,14 +26,18 @@
 					<label for="endTime">{{ 'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.MODE.REALTIME.END_TIME' | translate}}</label>
 				</p-float-label>
 				<p-floatlabel variant="on">
-					<p-datepicker size="small" [showIcon]="true" inputId="calendar" selectionMode="range" [(ngModel)]="_datetime$"/>
+					<p-datepicker size="small" [showIcon]="true" inputId="calendar" selectionMode="range" [(ngModel)]="_datetime$" dateFormat="dd/mm/yy"/>
 					<label for="calendar">{{ 'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.MODE.REALTIME.DATE_RANGE' | translate}}</label>
 				</p-floatlabel>
 			}
 		</div>
 	</div>
 </div>
-<p-card [header]="'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.TITLE' | translate" [subheader]="lastRun$()">
+<p-card [header]="'STREETS.EXPLORER.COMPONENTS.SAFETY_METRICS_CARD.TITLE' | translate">
+
+	<ng-template pTemplate="subtitle">
+		<a-last-run [date]="lastRun$()"/>
+	</ng-template>
 
 	<m-safe-metrics-digit-panel [safetyMetrics]="_selectedSafetyMetrics$()"></m-safe-metrics-digit-panel>
 

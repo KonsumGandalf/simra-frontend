@@ -1,5 +1,6 @@
 import { computed, inject, Injectable, Signal, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ChartColors } from '@simra/common-components';
 import { EGroupType, IProfileGroupAssociation, ISafetyMetricsProfile } from '@simra/models';
 import { ChartData, ChartDataset, ChartOptions } from 'chart.js';
 import { orderBy } from 'lodash';
@@ -76,6 +77,12 @@ export class ProfileSafetyMetricsService {
 
 			let datasets: ChartDataset[] = [
 				{
+					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.SCORE`),
+					data: sortedData.map((entry) => entry.dangerousScore),
+					yAxisID: 'y1',
+					type: 'line',
+				},
+				{
 					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.INCIDENTS`),
 					data: sortedData.map((entry) => entry.totalIncidents),
 				},
@@ -87,18 +94,14 @@ export class ProfileSafetyMetricsService {
 					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.RIDES`),
 					data: sortedData.map((entry) => entry.totalRides),
 				},
-				{
-					label: this._translationService.instant(`${this._translationEntityKeyPrefix}.SCORE`),
-					data: sortedData.map((entry) => entry.dangerousScore),
-					yAxisID: 'y1',
-					type: 'line',
-				},
 			];
 
-			datasets = datasets.map((data) => ({
+			datasets = datasets.map((data, index) => ({
 				...data,
 				fill: false,
 				tension: 0.3,
+				backgroundColor: ChartColors.PROFILE_METRICS_DISTRIBUTION_WITH_SCORE[index],
+				borderColor: ChartColors.PROFILE_METRICS_DISTRIBUTION_WITH_SCORE[index],
 			}));
 
 			return { labels, datasets };
