@@ -21,7 +21,7 @@ export class StreetsRequestService {
 	private readonly _http = inject(HttpClient);
 
 	public getStreetGrid(): Observable<IStreetGrid[]> {
-		return this._http.get<IStreetGrid[]>('/assets/leaflet/street-map.json').pipe(
+		return this._http.get<IStreetGrid[]>('/assets/maplibre/street-map.json').pipe(
 			map((response) => {
 				return plainToInstance(StreetGridDto, response);
 			}),
