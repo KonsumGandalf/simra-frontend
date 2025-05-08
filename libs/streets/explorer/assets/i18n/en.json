@@ -70,7 +70,8 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Street Type",
-					"SCORE": "Score",
+					"SCORE": "Safety Score",
+					"SCORE_FORMULA": "$$\n\\text{score} = \\frac{4.4 \\cdot \\text{total scary incidents} + \\text{total non-scary incidents}}{\\text{total rides}}\n$$",
 					"INCIDENTS": "Incidents",
 					"SCARY_INCIDENTS": "Scary Incidents",
 					"RIDES": "Rides",

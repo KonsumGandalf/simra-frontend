@@ -18,3 +18,7 @@ yarn-error.log
 # Ignore Docker-specific files
 .dockerignore
 docker-compose.yml
+
+# Ignore Json files
+./src/assets/leaflet/region-map.json
+./src/assets/leaflet/street-map.json

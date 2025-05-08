@@ -10,4 +10,9 @@ export interface IMapPosition extends CoordinateInterface {
 	 * ID of the street
 	 */
 	osm_id?: number;
+
+	/**
+	 * Indicates if a jump or fly is performed
+	 */
+	isNavigated?: boolean;
 }

@@ -4,4 +4,5 @@ export interface IRegion {
 	name: string;
 	id: number;
 	way: IWayPolygon;
+	adminLevel: number;
 }

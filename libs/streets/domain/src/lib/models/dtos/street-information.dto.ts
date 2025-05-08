@@ -20,4 +20,8 @@ export class StreetInformationDto {
 	@IsString()
 	@IsOptional()
 	name?: string;
+
+	@IsString()
+	@IsOptional()
+	highway?: string;
 }

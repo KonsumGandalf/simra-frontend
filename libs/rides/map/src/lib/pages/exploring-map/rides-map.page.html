@@ -1,5 +1,5 @@
 <p-card>
-	<p-inputnumber [(ngModel)]="_counter" [min]="1" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" [inputStyle]="{ width: '3rem' }">
+	<p-inputnumber [(ngModel)]="_counter" [min]="0" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" [inputStyle]="{ width: '3rem' }">
 		<ng-template #incrementbuttonicon>
 			<span class="pi pi-plus"></span>
 		</ng-template>
@@ -8,4 +8,4 @@
 		</ng-template>
 	</p-inputnumber>
 </p-card>
-<t-map-component [overlayLayers]="_geometries$()"></t-map-component>
+<t-map-component [rideCollection]="_rideFeatureCollection$()" [streets]="[]" [isNavigable]="true"></t-map-component>

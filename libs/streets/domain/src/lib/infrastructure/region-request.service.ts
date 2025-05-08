@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ISafetyMetricsRegion, MapFilterOptionsInterface } from '@simra/common-models';
+import { IRegionMap } from '@simra/streets-common';
+import { plainToInstance } from 'class-transformer';
 import { defaults, find } from 'lodash';
 import { map, Observable } from 'rxjs';
+import { RegionMapDto } from '../../../../common/src/lib/dtos/region-map.dto';
+import { StreetGridDto } from '../../../../common/src/lib/dtos/street-grid.dto';
 
 @Injectable({
 	  providedIn: 'root'
@@ -19,6 +23,14 @@ export class RegionRequestService {
 			map((data) => {
 				return find(data, defaults({ year: +filter.year }, filter));
 			})
+		);
+	}
+
+	public getRegionMap(): Observable<IRegionMap[]> {
+		return this._httpClient.get<IRegionMap[]>('/assets/leaflet/region-map.json').pipe(
+			map((response) => {
+				return plainToInstance(RegionMapDto, response);
+			}),
 		);
 	}
 }

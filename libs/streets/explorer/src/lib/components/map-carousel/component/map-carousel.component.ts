@@ -1,25 +1,25 @@
+import { CommonModule } from '@angular/common';
 import {
 	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
-	computed, effect,
+	computed,
+	effect,
 	inject,
-	Injector, signal,
-	Signal,
+	Injector,
+	signal,
 	ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
-import { createIncidentMarker } from '@simra/incidents-ui';
+import { EMapViewMode, MapPage } from '@simra/common-components';
+import { IEnrichedStreet } from '@simra/streets-common';
 import { StreetDetailState } from '@simra/streets-domain';
 import { along, length, lineString } from '@turf/turf';
-import { latLng, Layer, polyline } from 'leaflet';
+import { times } from 'lodash';
 import { TabList, TabPanels, TabsModule } from 'primeng/tabs';
 import proj4 from 'proj4';
-import { times } from 'lodash';
-import { MapPage } from '@simra/common-components';
 import { MapillaryComponent } from '../../mapillar/component/mapillary.component';
 
 @Component({
@@ -66,26 +66,28 @@ export class MapCarouselComponent {
 			.map(([lng, lat]) => [lat, lng]);
 	});
 
-	protected readonly _geometries$: Signal<Layer[]> = computed(() => {
-		const convertedCoordinates = this.convertedCoordinates();
+	protected readonly _streets$ = computed<IEnrichedStreet[]>(() => {
+		const street = this._street$();
 		const safetyMetrics = this._safetyMetrics$();
-		if (!convertedCoordinates || !safetyMetrics) {
-			return;
+		const convertedCoordinates = this.convertedCoordinates();
+
+		if (!street) {
+			return [];
 		}
 
-		const latLngs = convertedCoordinates.map(([lat, lng]) => latLng(lat, lng));
+		const way = {
+			type: 'LineString',
+			coordinates: convertedCoordinates.map(([lat, lng]) => [lng, lat]),
+		};
 
-		const streetLine = polyline(latLngs, { color: safetyMetrics.dangerousColor });
-
-		const incidents = this._incidents$();
-		let incidentsMarkers = [];
-		if (incidents) {
-			incidentsMarkers = this._incidents$().map((incident) => {
-				return createIncidentMarker(incident, this._injector, this._appRef);
-			});
-		}
-
-		return [...incidentsMarkers, streetLine];
+		return [
+			{
+				highway: street.highway,
+				way: JSON.stringify(way),
+				osmId: street.id,
+				dangerousColor: safetyMetrics.dangerousColor,
+			} as IEnrichedStreet,
+		];
 	});
 
 	constructor() {
@@ -99,7 +101,7 @@ export class MapCarouselComponent {
 			const midpoint = along(line, length(line) / 2);
 			const center = midpoint.geometry.coordinates;
 			this._router.navigate([], {
-				queryParams: { lat: center[0], lng: center[1], zoom: 16 },
+				queryParams: { lat: center[0], lng: center[1], zoom: 16, isNavigated: true },
 				queryParamsHandling: 'merge',
 				replaceUrl: true,
 			});
@@ -109,4 +111,5 @@ export class MapCarouselComponent {
 	protected hasMapillaryImage = signal<boolean>(false);
 
 	protected readonly times = times;
+	protected readonly EMapViewMode = EMapViewMode;
 }

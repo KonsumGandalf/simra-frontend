@@ -9,9 +9,26 @@
 				<table class="simple-table">
 					@if (_generalSafetyMetrics() && detailedRegion(); as region) {
 						<tr>
-							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE' | translate }}</td>
-							<td>{{ _generalSafetyMetrics()?.dangerousScore | number: '1.2-3' }}</td>
+							<td [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+								{{ 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL' | translate }}
+							</td>
+							<ng-template #scoreFormula>
+								<markdown
+									katex
+									[data]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.FORMULA' | translate">
+								</markdown>
+							</ng-template>
+							<td [pTooltip]="usedFormula" [tooltipStyleClass]="'security-tooltip'">
+								{{ _generalSafetyMetrics()?.dangerousScore | number: '1.2-3' }}
+							</td>
+							<ng-template #usedFormula>
+								<markdown
+									katex
+									[data]="_scoreMarkdown()">
+								</markdown>
+							</ng-template>
 						</tr>
+
 						<p-divider/>
 						<tr>
 							<td>{{ 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.RIDES' | translate }}</td>
@@ -28,8 +45,8 @@
 							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents | number }}</td>
 						</tr>
 						<p-divider/>
-						<tr>
-							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE" | translate }}</td>
+						<tr [pTooltip]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE.TOOLTIP' | translate">
+							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE.LABEL" | translate }}</td>
 							<td>{{ (_generalSafetyMetrics()?.totalDistance / 1000) | number: '1.0-2' }} km</td>
 						</tr>
 					} @else {
@@ -64,7 +81,7 @@
 		</div>
 		<div class="w-full md:w-3/5">
 			@if (_generalSafetyMetrics() && detailedRegion(); as region) {
-				<t-map-component [overlayLayers]="_regionGeometry()" [customMapOptions]="_mapOptions$()"></t-map-component>
+				<t-map-component [regionCollection]="_regionCollection()" [viewMode]="EMapViewMode.REGION" [isNavigable]="true"></t-map-component>
 			} @else {
 				<p-skeleton class="w-full rounded-xl" height="18rem"/>
 			}

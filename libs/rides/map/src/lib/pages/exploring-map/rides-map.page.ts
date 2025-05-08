@@ -3,9 +3,9 @@ import {
 	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
-	computed,
+	computed, effect,
 	inject, Injector,
-	model, Signal,
+	model, signal, Signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,11 +15,15 @@ import { MapPage } from '@simra/common-components';
 import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
 import { RidesFacade } from '@simra/rides-domain';
+import { IEnrichedStreet, IEnrichedWithWidth } from '@simra/streets-common';
 import { along, length, lineString } from '@turf/turf';
+import { FeatureCollection, Geometry } from 'geojson';
 
 import { geoJSON, Layer} from 'leaflet';
+import { isEmpty } from 'lodash';
 import { Card } from 'primeng/card';
 import { InputNumber } from 'primeng/inputnumber';
+
 
 @Component({
     selector: 'p-streets-exploring-map',
@@ -50,51 +54,79 @@ export class RidesMapPage {
 		return this._ridesExploringFacade.getRideGeometries(counter);
 	});
 
+	constructor() {
+		effect(() => {
+			const rides = this._ridesGeometries$();
 
-	protected readonly _geometries$: Signal<Layer[]> = computed(() => {
-		const incidents = this._ridesGeometries$();
+			if (!rides) {
+				return;
+			}
 
-		if (!incidents) {
-			return [];
+			const lineStringJSON = JSON.parse(rides.visitedWay);
+			const line = lineString(lineStringJSON.coordinates);
+			const midpoint = along(line, length(line) / 2);
+			const center = midpoint.geometry.coordinates;
+			this._router.navigate([], {
+				queryParams: { lat: center[1], lng: center[0], zoom: 12, isNavigated: true },
+				queryParamsHandling: 'merge',
+				replaceUrl: true,
+			})
+		});
+	}
+
+	protected readonly _rideFeatureCollection$ = computed(() => {
+		const geometries = this._ridesGeometries$();
+
+		if(!geometries) {
+			return;
 		}
 
-		const visitedWay = geoJSON(JSON.parse(incidents.visitedWay), {
-			style: {
-				color: '#FBBF24',
-				weight: 3,
+		const ways: Partial<IEnrichedWithWidth>[] = [{
+			way: geometries.visitedWay,
+			dangerousColor: '#FBBF24',
+			width: 2
+		}];
+		for (const way of geometries.assignedWays) {
+			ways.push({
+				way: way,
+				width: 3,
+				dangerousColor: '#F97316',
+			});
+		}
+		for (const way of geometries.incidentWays) {
+			ways.push({
+				way: way,
+				width: 5,
+				dangerousColor: '#EF4444',
+			});
+		}
+		const lineFeatures = ways.map((l) => ({
+			type: 'Feature',
+			geometry: JSON.parse(`${l.way}`),
+			properties: {
+				dangerousColor: l.dangerousColor,
+				type: 'line',
+				width: l.width,
 			},
-		});
-		const assignedWays = incidents.assignedWays.map((way) =>
-			geoJSON(JSON.parse(way), {
-				style: {
-					color: '#F97316',
-					weight: 3.5,
-				},
-			}),
-		);
-		const incidentWays = incidents.incidentWays.map((way) =>
-			geoJSON(JSON.parse(way), {
-				style: {
-					color: '#EF4444',
-					weight: 4.5,
-				},
-			}),
-		);
+		}));
 
-		const incidentMarkers = incidents.incidentLocations.map((incident) =>{
-			return createIncidentMarker(incident, this._injector, this._appRef, this._ridesExploringFacade.getIncidentDetails.bind(this._ridesExploringFacade))
-			}
-		);
-		const lineStringJSON = JSON.parse(incidents.visitedWay);
-		const line = lineString(lineStringJSON.coordinates);
-		const midpoint = along(line, length(line) / 2);
-		const center = midpoint.geometry.coordinates;
-		this._router.navigate([], {
-			queryParams: { lat: center[1], lng: center[0], zoom: 14 },
-			queryParamsHandling: 'merge',
-			replaceUrl: true,
-		})
-		return [visitedWay, ...assignedWays, ...incidentWays, ...incidentMarkers];
+		const markerFeatures = geometries.incidentLocations.map((m) => ({
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [m.lng, m.lat],
+			},
+			properties: {
+				id: m.id,
+				scary: m.scary,
+				type: 'marker',
+			},
+		}));
+
+		return {
+			type: 'FeatureCollection',
+			features: [...lineFeatures, ...markerFeatures],
+		} as  FeatureCollection<Geometry, any> | undefined;
 	});
 
 }

@@ -70,7 +70,8 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Straßentyp",
-					"SCORE": "Score",
+					"SCORE": "Sicherheitsscore",
+					"SCORE_FORMULA": "$$\n\\text{Punktzahl} = \\frac{4{,}4 \\cdot \\text{Beängstigende Beinaheunfälle} + \\text{Nicht beängstigende Beinaheunfälle}}{\\text{Anzahl der Fahrten}}\n$$",
 					"INCIDENTS": "Beinahunfälle",
 					"SCARY_INCIDENTS": "Beängstigende Beinahunfälle",
 					"RIDES": "Fahrten",

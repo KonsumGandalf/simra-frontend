@@ -80,38 +80,14 @@ export class MenuBarComponent {
 				{
 					label: 'APP.COMPONENTS.MENU_BAR.ITEMS.MAP',
 					icon: 'ph-bold ph-map-trifold',
-					items: CITY_POSITION_LINKS.map((item) => {
-						return {
-							label: item.label,
-							queryParams: item.position,
-							routerLink: '/streets/map',
-							prefetch: () => {
-								const { lat, lng, zoom} = item.position;
-								return this._prefetchService.prefetchStreetGrid({
-									lat: `${lat}`,
-									lng: `${lng}`,
-									zoom: `${zoom}`,
-									trafficTime: ETrafficTimes.ALL_DAY,
-									weekDay: EWeekDays.ALL_WEEK,
-									year: '2000'
-								} as unknown as IGetStreetGrid);
-							}
-						};
-					}),
+					routerLink: '/streets/map'
 				},
 			],
 		},
 		{
 			label: 'APP.COMPONENTS.MENU_BAR.ITEMS.INCIDENTS',
 			icon: 'ph-bold ph-warning-diamond',
-			items: CITY_POSITION_LINKS.map((item) => {
-				return {
-					label: item.label,
-					queryParams: item.position,
-					routerLink: '/incidents',
-					prefetch: async () => await this._prefetchService.prefetchIncidents(),
-				};
-			}),
+			routerLink: '/incidents',
 		},
 	];
 	private readonly _devItems: MenuItem[] = [

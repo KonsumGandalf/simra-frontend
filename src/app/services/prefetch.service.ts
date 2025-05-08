@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { MapFilterOptionsInterface } from '@simra/common-models';
 import { IncidentsMapFacade } from '@simra/incidents-domain';
 import { IGetStreetGrid } from '@simra/streets-common';
 import { StreetsMapFacade } from '@simra/streets-domain';
@@ -15,7 +16,8 @@ export class PrefetchService {
         await firstValueFrom(this._incidentsMapFacade.getIncidentMarker());
     }
 
-    public prefetchStreetGrid(position: IGetStreetGrid): void {
-        this._streetMapFacade.fetchStreetInformation(position);
+    public prefetchStreetGrid(position: MapFilterOptionsInterface): void {
+        this._streetMapFacade.fetchStreetGrid();
+        this._streetMapFacade.updateMap(position);
     }
 }

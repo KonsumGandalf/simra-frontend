@@ -15,11 +15,11 @@ import { IncidentsMapFacade, IncidentsState} from '@simra/incidents-domain';
 import { createIncidentMarker } from '@simra/incidents-ui';
 import { Layer } from 'leaflet';
 import { firstValueFrom } from 'rxjs';
-import { MarkerClusterMapPage } from '@simra/common-components';
+import { EMapViewMode, MapPage, MarkerClusterMapPage } from '@simra/common-components';
 
 @Component({
 	selector: 'incident-map',
-	imports: [CommonModule, LeafletModule, MarkerClusterMapPage],
+	imports: [CommonModule, LeafletModule, MarkerClusterMapPage, MapPage],
 	templateUrl: './incidents-map.page.html',
 	styleUrl: './incidents-map.page.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,10 +34,10 @@ export class IncidentsMapPage {
 	private readonly _injector = inject(Injector);
 	private readonly _appRef = inject(ApplicationRef);
 
-	private readonly _incidentMarker$ = this._store.selectSignal(IncidentsState.getIncidentMarkers);
+	protected readonly incidentMarker$ = this._store.selectSignal(IncidentsState.getIncidentMarkers);
 
 	protected readonly _markers$: Signal<Layer[]> = computed(() => {
-		const incidents = this._incidentMarker$() || [];
+		const incidents = this.incidentMarker$() || [];
 		return incidents.map((incident) =>
 			createIncidentMarker(
 				incident,
@@ -56,4 +56,6 @@ export class IncidentsMapPage {
 			await firstValueFrom(this._incidentsMapFacade.getIncidentMarker());
 		});
 	}
+
+	protected readonly EMapViewMode = EMapViewMode;
 }

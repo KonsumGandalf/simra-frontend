@@ -5,11 +5,13 @@ import {
 	IResponseStreet,
 	ICycleway,
 	IParking,
-	ITags,
+	ITags, IStreetGrid,
 } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, isEmpty, isUndefined, omitBy } from 'lodash';
 import { map, Observable } from 'rxjs';
+import { StreetGridDto } from '../../../../common/src/lib/dtos/street-grid.dto';
+import { IRegionMap } from '../../../../common/src/lib/interfaces/region-map.interface';
 import { StreetInformationDto } from '../models/dtos/street-information.dto';
 import { StreetRideEntitiesResponseDto } from '../models/dtos/street-ride-entities-response.dto';
 import { TRideTime } from '../models/interfaces/ride-time.type';
@@ -21,9 +23,11 @@ import { TRideTime } from '../models/interfaces/ride-time.type';
 export class StreetsRequestService {
 	private readonly _http = inject(HttpClient);
 
-	public getStreetGrid(requestParams: IGetStreetGrid): Observable<StreetInformationDto[]> {
-		return this._http.get<StreetInformationDto[]>('/api/streets/grid', { params: { ...omitBy(requestParams, isUndefined) } }).pipe(
-			map((response) => plainToInstance(StreetInformationDto, response)),
+	public getStreetGrid(): Observable<IStreetGrid[]> {
+		return this._http.get<IStreetGrid[]>('/assets/leaflet/street-map.json').pipe(
+			map((response) => {
+				return plainToInstance(StreetGridDto, response);
+			}),
 		);
 	}
 

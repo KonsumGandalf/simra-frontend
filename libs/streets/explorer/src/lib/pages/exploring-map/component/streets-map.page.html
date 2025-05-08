@@ -4,18 +4,18 @@
 	</div>
 }
 <t-map-component
-	[overlayLayers]="combinedOverlay$()"
-	(positionChange)="onMapPositionChanged($event)"
+	[streets]="rawStreetGrid()"
+	[regionCollection]="regionCollection$()"
+	[incidents]="incidents.value()"
 	[isNavigable]="true"
 	[lastRun]="lastRun$()"
+	(streetSelected)="onStreetSelected($event)"
+	(regionSelected)="onRegionSelected($event)"
 ></t-map-component>
 <m-dangerous-score-bar></m-dangerous-score-bar>
-@if(_mapPosition()?.zoom > 11 && !showOverlay$()) {
+@if(!showOverlay$()) {
 	<p-card class="panel__card">
-		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetricsStreet$.value()" ></m-safe-metrics-digit-panel>
-	</p-card>
-} @else {
-	<p-card class="panel__card">
-		<m-safe-metrics-digit-panel [safetyMetrics]="safetyMetricsRegion$.value()" ></m-safe-metrics-digit-panel>
+		<m-safe-metrics-digit-panel [safetyMetrics]="lastSafetyMetrics$()" ></m-safe-metrics-digit-panel>
 	</p-card>
 }
+

@@ -2,6 +2,7 @@
 	position: relative;
 
 	.panel__card {
+
 		@screen lg {
 			position: absolute;
 			top: 50%;
@@ -26,6 +27,12 @@
 	}
 
 	.map-overlay {
+		@apply hidden;
+
+		@screen lg {
+			@apply block;
+		}
+
 		position: absolute;
 		top: 2rem;
 		left: calc(50vw - 16.5rem);

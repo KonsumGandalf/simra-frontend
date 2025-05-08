@@ -62,7 +62,6 @@ export class RegionListViewPage {
 			adminLevel: this.selectedAdminLevel()?.key,
 		};
 
-		console.log(requestWithAdminLevel);
 		this._regions$.set(
 			await firstValueFrom(this._facade.getRegionListSafetyMetrics(requestWithAdminLevel)),
 		);

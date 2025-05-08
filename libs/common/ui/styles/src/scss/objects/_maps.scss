@@ -1,5 +1,5 @@
 .leaflet-map {
-    @apply w-full rounded-lg;
+    @apply w-full;
 
     height: 80vh;
 
@@ -45,4 +45,8 @@ a-last-run {
     &.last-run {
         @apply items-end justify-end;
     }
+}
+
+canvas {
+    @apply rounded-lg;
 }

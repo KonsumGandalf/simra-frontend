@@ -5,7 +5,9 @@
 	</p-tablist>
 	<p-tabpanels>
 		<p-tabpanel value="0">
-			<t-map-component [overlayLayers]="_geometries$()" [layerControl]="undefined"></t-map-component>
+			@if (_incidents$() && _streets$()) {
+				<t-map-component [incidents]="_incidents$()" [streets]="_streets$()" [viewMode]="EMapViewMode.STREET" />
+			}
 		</p-tabpanel>
 		<p-tabpanel value="1">
 			<a-mapillary (hasMapillaryImage)="this.hasMapillaryImage.set($event)"></a-mapillary>

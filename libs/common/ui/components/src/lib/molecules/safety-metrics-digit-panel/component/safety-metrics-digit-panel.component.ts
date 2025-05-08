@@ -11,13 +11,24 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ISafetyMetrics } from '@simra/common-models';
 import { isNumber } from 'lodash';
+import { MarkdownComponent } from 'ngx-markdown';
 import { Divider } from 'primeng/divider';
 import { Skeleton } from 'primeng/skeleton';
+import { Tooltip } from 'primeng/tooltip';
+import { scoreFormulaMarkdownSegment } from '../../../../../../../../streets/explorer/src/lib/utils/markdown';
 import { safetyMetricsDisplayArray } from '../../../models/const';
 
 @Component({
 	selector: 'm-safe-metrics-digit-panel',
-	imports: [CommonModule, TranslatePipe, Divider, Skeleton, RouterLink],
+	imports: [
+		CommonModule,
+		TranslatePipe,
+		Divider,
+		Skeleton,
+		RouterLink,
+		MarkdownComponent,
+		Tooltip,
+	],
 	templateUrl: './safety-metrics-digit-panel.component.html',
 	styleUrl: './safety-metrics-digit-panel.component.scss',
 	host: {
@@ -40,6 +51,16 @@ export class SafetyMetricsDigitPanelComponent {
 		return safetyMetricsDisplayArray(metrics);
 	});
 	activatedUrl = toSignal(this._activatedRoute?.url);
+
+	protected readonly _scoreMarkdown = computed(() => {
+		const metrics = this.safetyMetrics();
+		if (!metrics) {
+			return undefined;
+		}
+
+		const { numberOfIncidents, numberOfScaryIncidents, numberOfRides, dangerousScore } = metrics;
+		return scoreFormulaMarkdownSegment(numberOfIncidents, numberOfScaryIncidents, numberOfRides, dangerousScore);
+	})
 
 	protected readonly isNumber = isNumber;
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
-	Component,
+	Component, computed,
 	effect,
 	model,
 	output,
@@ -24,12 +24,14 @@ import {
 import { Column, ESortOrder, ETrafficTimes, EWeekDays, EYear, IPage } from '@simra/common-models';
 import { ISafetyMetricsRequest } from '@simra/streets-common';
 import { times } from 'lodash';
+import { MarkdownComponent } from 'ngx-markdown';
 import { Card } from 'primeng/card';
 import { Skeleton } from 'primeng/skeleton';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { Tooltip } from 'primeng/tooltip';
 import { ISafetyMetrics } from '@simra/streets-common';
 import { HIGHWAY_TYPES_TO_TRANSLATION } from '@simra/streets-explorer';
+import { scoreFormulaMarkdownRegion } from '../../utils/markdown';
 
 @Component({
 	selector: 't-base-region-list-view',
@@ -44,6 +46,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '@simra/streets-explorer';
 		Tooltip,
 		Skeleton,
 		LastRunComponent,
+		MarkdownComponent,
 	],
 	templateUrl: './base-region-list-view.component.html',
 	styleUrl: './base-region-list-view.component.scss',
@@ -74,7 +77,7 @@ export class BaseRegionListViewComponent {
 	protected readonly _cols: Column[] = [
 		{ header: `${this._headerPrefix}.NAME`, field: 'name' },
 		{
-			header: `${this._headerPrefix}.SCORE`,
+			header: `REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL`,
 			field: 'dangerousScore',
 			min: 0,
 			step: 0.05,
@@ -199,4 +202,6 @@ export class BaseRegionListViewComponent {
 		}
 		return undefined;
 	}
+
+	protected readonly scoreFormulaMarkdownRegion = scoreFormulaMarkdownRegion;
 }

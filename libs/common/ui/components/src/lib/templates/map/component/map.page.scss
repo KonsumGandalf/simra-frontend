@@ -1,3 +1,15 @@
 .t-map-component {
     @apply relative;
 }
+
+
+.maplibregl-popup-content {
+    @apply rounded-lg p-5;
+    min-width: 200px;
+
+    .maplibregl-popup-close-button {
+        @apply p-2 text-xl;
+
+        z-index: 5;
+    }
+}

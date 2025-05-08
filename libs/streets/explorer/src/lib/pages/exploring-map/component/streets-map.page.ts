@@ -6,7 +6,7 @@ import {
 	computed,
 	effect,
 	inject,
-	Injector, resource,
+	Injector, input, resource,
 	signal,
 	ViewEncapsulation,
 } from '@angular/core';
@@ -15,17 +15,20 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { DangerousScoreBarComponent, MapPage, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
-import { IMapPosition } from '@simra/common-models';
+import { IMapPosition, MapFilterOptionsInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
 import { createIncidentMarker } from '@simra/incidents-ui';
 
-import { IGetStreetGrid } from '@simra/streets-common';
-import { SetStreet, StreetDetailState, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
+import { IEnrichedStreet, IGetStreetGrid, IResponseStreet, IStreetGrid } from '@simra/streets-common';
+import { RegionMapState, SetStreet, SetStreetIdLoading, StreetDetailState, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
+import loader from '@storybook/builder-webpack5/dist/loaders/export-order-loader';
 import { Marker } from 'leaflet';
+import { isNil, isEmpty, omitBy, some } from 'lodash';
 import { Card } from 'primeng/card';
 import { firstValueFrom } from 'rxjs';
 import { RegionDetailState } from '@simra/streets-domain';
+import { SetRegionName } from '../../../../../../domain/src/lib/application/store/region-detail.action';
 
 @Component({
 	selector: 'streets-map',
@@ -40,6 +43,7 @@ import { RegionDetailState } from '@simra/streets-domain';
 	],
 	templateUrl: './streets-map.page.html',
 	styleUrl: './streets-map.page.scss',
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	host: {
@@ -54,10 +58,14 @@ export class StreetsMapPage {
 
 	protected _mapPosition = signal<IMapPosition>(undefined);
 	protected readonly _filterState = this._store.selectSignal(MapFilterState.getMapFilterState);
-	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCache);
+	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCollection);
 	protected readonly hoveredStreet$ = this._store.selectSignal(StreetDetailState.getStreet);
 	protected readonly hoveredRegion$ = this._store.selectSignal(RegionDetailState.getRegionName);
-	protected readonly safetyMetricsStreet$ = resource({
+	protected readonly rawStreetGrid = this._store.selectSignal(StreetMapState.getEnrichedStreets);
+	protected readonly regionCollection$ = this._store.selectSignal(RegionMapState.getRegionCollection);
+	protected readonly lastSafetyMetrics$ = signal<any>(null);
+
+	protected readonly safetyMetricsStreets$ = resource({
 		request: () => {
 			const street = this.hoveredStreet$();
 			const filter = this._filterState();
@@ -73,8 +81,9 @@ export class StreetsMapPage {
 			const safetyMetrics = await firstValueFrom(
 				this._streetsMapFacade.fetchSafetyMetricsForStreet(street.id, filter),
 			);
+
 			this.showOverlay$.set(false);
-			return safetyMetrics;
+			this.lastSafetyMetrics$.set(safetyMetrics);
 		},
 	});
 	protected readonly safetyMetricsRegion$ = resource({
@@ -86,6 +95,7 @@ export class StreetsMapPage {
 		},
 		loader: async ({ request }) => {
 			const { regionName, filter } = request;
+
 			if (!regionName || !filter) {
 				return;
 			}
@@ -93,8 +103,9 @@ export class StreetsMapPage {
 			const safetyMetrics = await firstValueFrom(
 				this._streetsMapFacade.fetchSafetyMetricsForRegion(regionName, filter),
 			);
+
 			this.showOverlay$.set(false);
-			return safetyMetrics;
+			this.lastSafetyMetrics$.set(safetyMetrics);
 		},
 	});
 
@@ -114,37 +125,54 @@ export class StreetsMapPage {
 			this._streetsMapFacade.fetchIncidentsForStreet(hoveredStreet.id, filter),
 		);
 	});
-	public readonly combinedOverlay$ = computed(() => {
-		let incidentsMarker: Marker[] = [];
-		const incidents = this.incidents$();
-		if (incidents) {
-			incidentsMarker = this.incidents$().map((incident) => {
-				return createIncidentMarker(incident, this._injector, this._appRef);
-			});
-		}
-
-		return [...incidentsMarker, ...this.streets$()];
-	});
 
 	constructor() {
 		this._store.dispatch(new SetStreet(undefined));
+		this._streetsMapFacade.fetchStreetGrid();
+		this._streetsMapFacade.fetchRegionMap();
+	}
 
-		effect(async () => {
-			const lp = this._mapPosition();
-			const filter = this._filterState();
+	safetyMetricsStreets = resource({
+		request: () => this._filterState(),
+		loader: async ({ request }) => {
+			const filter = request;
 
-			if (!lp || !filter) {
+			if (!filter || isEmpty(omitBy(filter, isEmpty))) {
 				return;
 			}
 
-			await this._streetsMapFacade.fetchStreetInformation({
-				...filter,
-				...lp,
-			} as IGetStreetGrid);
-		});
-	}
+			await firstValueFrom(
+				this._streetsMapFacade.updateMap(filter),
+			);
+
+			await firstValueFrom(
+				this._streetsMapFacade.updateRegionMap(filter),
+			)
+		},
+	});
 
 	onMapPositionChanged(position: IMapPosition) {
 		this._mapPosition.set(position);
 	}
+
+	async onStreetSelected(id: number) {
+		this._store.dispatch(new SetStreet({ id } as IResponseStreet));
+	}
+
+	async onRegionSelected(name: string) {
+		this._store.dispatch(new SetRegionName({ name }));
+	}
+
+	incidents = resource({
+		request: () => this.hoveredStreet$(),
+		loader: async ({ request }) => {
+			if (!request) {
+				return;
+			}
+
+			return await firstValueFrom(
+				this._streetsMapFacade.fetchIncidentsForStreet(request.id, this._filterState()),
+			);
+		},
+	})
 }

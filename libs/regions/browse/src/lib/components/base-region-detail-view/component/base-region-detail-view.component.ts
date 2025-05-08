@@ -1,26 +1,33 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import {
 	ChangeDetectionStrategy,
 	Component, computed,
-	effect,
+	effect, importProvidersFrom,
 	inject, input,
 	model, output, Signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LastRunComponent, MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
+import { EMapViewMode, LastRunComponent, MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
 import { ETrafficTimes, EWeekDays, EYear, IMapPosition, ISafetyMetricsRegion } from '@simra/common-models';
 import { IRegion } from '@simra/models';
+import { IEnrichedRegion } from '@simra/streets-common';
 import { area, centroid, polygon as turfPolygon } from '@turf/turf';
+import { FeatureCollection, Geometry } from 'geojson';
 import { LatLng, latLng, Layer, MapOptions, polygon } from 'leaflet';
 import { find, first } from 'lodash';
+import { MarkdownComponent } from 'ngx-markdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
 import { Divider } from 'primeng/divider';
 import { Skeleton } from 'primeng/skeleton';
+import { Tooltip } from 'primeng/tooltip';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
+import { scoreFormulaMarkdownRegion } from '../../utils/markdown';
 import { getZoomLevelByArea } from '../models/functions/zoom.util';
 import { IDetailViewChange } from '../models/interfaces/detail-view-change.interface';
 
@@ -38,6 +45,8 @@ import { IDetailViewChange } from '../models/interfaces/detail-view-change.inter
 		MapPage,
 		Skeleton,
 		LastRunComponent,
+		Tooltip,
+		MarkdownComponent,
 	],
 	templateUrl: './base-region-detail-view.component.html',
 	styleUrl: './base-region-detail-view.component.scss',
@@ -49,6 +58,7 @@ import { IDetailViewChange } from '../models/interfaces/detail-view-change.inter
 })
 export class BaseRegionDetailViewComponent {
 	private readonly _metricsService = inject(SafetyMetricsService);
+	protected readonly _router = inject(Router);
 
 	protected readonly _selectedYear = model<EYear>(EYear.ALL);
 	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
@@ -75,16 +85,30 @@ export class BaseRegionDetailViewComponent {
 		},
 	);
 	public readonly detailedRegion = input.required<IRegion>();
-	protected readonly _regionGeometry: Signal<Layer[]> = computed(() => {
+	protected readonly _regionCollection = computed(() => {
 		const region = this.detailedRegion();
 		if (!region) {
-			return [];
+			return;
 		}
 
 		const latLngPolygon = region.way.coordinates.map((ring) =>
-			ring.map(([lng, lat]) => latLng(lat, lng)),
+			ring.map(([lng, lat]) => [lng, lat]),
 		);
-		return [polygon(latLngPolygon) as Layer];
+		return {
+			type: 'FeatureCollection',
+			features: [{
+				type: 'Feature',
+				geometry: {
+					type: 'Polygon',
+					coordinates: latLngPolygon,
+				},
+				properties: {
+					name: region.name,
+					dangerousColor: '#FBBF24',
+					adminLevel: region?.adminLevel,
+				},
+			}],
+		} as FeatureCollection<Geometry, IEnrichedRegion>;
 	});
 	protected readonly _mapOptions$ = computed<MapOptions | undefined>(() => {
 		const region = this.detailedRegion();
@@ -100,7 +124,7 @@ export class BaseRegionDetailViewComponent {
 			},
 		} = centroid(tPoly);
 
-		return { zoom, center: latLng(lat, lng) };
+		return { zoom , center: latLng(lat, lng) };
 	});
 	public readonly queryOptions = model<IMapPosition>();
 
@@ -142,8 +166,23 @@ export class BaseRegionDetailViewComponent {
 
 			const center = mapOptions.center as LatLng;
 			this.queryOptions.set({ zoom: mapOptions.zoom + 5, lat: center.lat, lng: center.lng });
+			this._router.navigate([], {
+				queryParams: { lat: center.lat, lng: center.lng, zoom: mapOptions.zoom },
+				queryParamsHandling: 'merge',
+				replaceUrl: true,
+			});
 		});
 	}
+
+	protected readonly _scoreMarkdown = computed(() => {
+		const safetyMetrics = this._generalSafetyMetrics();
+		if (!safetyMetrics) {
+			return;
+		}
+
+		const { numberOfIncidents, numberOfScaryIncidents, totalDistance, dangerousScore } = safetyMetrics;
+		return scoreFormulaMarkdownRegion(numberOfIncidents, numberOfScaryIncidents, totalDistance, dangerousScore);
+	});
 
 	protected readonly _pieMetricsIncidentTypesData =
 		this._metricsService.pieMetricsIncidentTypesData$;
@@ -162,4 +201,5 @@ export class BaseRegionDetailViewComponent {
 	protected stackedBarChartOptions = this._metricsService.stackBarChartOptions();
 	protected lineChartOptions = this._metricsService.lineChartOptions();
 	protected readonly _headerPrefix = 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS';
+	protected readonly EMapViewMode = EMapViewMode;
 }

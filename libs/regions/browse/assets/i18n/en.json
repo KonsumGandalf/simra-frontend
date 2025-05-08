@@ -67,11 +67,19 @@
     "GENERAL": {
         "ENTITY_ATTRIBUTES": {
             "REGION": {
+                "SCORE": {
+                    "LABEL": "Safety score (km)",
+                    "FORMULA": "$$\n\\text{score} = \\frac{4.4 \\cdot \\text{scary incidents} + \\text{non-scary incidents}}{\\text{length of traversed OSM segments in km}}\n$$"
+                },
                 "AVERAGE_LENGTH": "Average length of street segments",
-                "TRAVELLED_DISTANCE": "Travelled distance",
+                "TRAVELLED_DISTANCE": {
+                    "LABEL": "Length of traversed OSM segments",
+                    "TOOLTIP": "Total length of all OSM segments that were used by at least one cyclist in the selected region."
+                },
                 "SUB_REGIONS": "Sub regions",
                 "ALL": "All regions"
             }
+
         },
         "REGIONS": {
             "TITLE": "Regions",

@@ -1,11 +1,12 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { provideStore } from '@ngxs/store';
 import { APP_CONFIG, AppEnvironmentInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
-import { StreetDetailState, StreetMapState, RegionDetailState } from '@simra/streets-domain';
+import { StreetDetailState, StreetMapState, RegionDetailState, RegionMapState } from '@simra/streets-domain';
+import { MarkdownModule, provideMarkdown } from 'ngx-markdown';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { providePrimeNG } from 'primeng/config';
 import { IncidentsState } from '@simra/incidents-domain';
@@ -32,10 +33,11 @@ export const appConfig: ApplicationConfig = {
 				apiUrl: process.env.SIMRA_API_URL,
 				mapillaryUrl: process.env.MAPILLARY_URL,
 				mapillaryAccessToken: process.env.MAPILLARY_ACCESS_TOKEN,
+				mapTilerToken: process.env.MAP_TILER_TOKEN,
 			} as AppEnvironmentInterface,
 		},
 		provideHttpClient(withInterceptors([backendUrlInterceptor, mapillaryInterceptor])),
-		provideStore([StreetMapState, StreetDetailState, RegionDetailState, MapFilterState, IncidentsState], {
+		provideStore([StreetMapState, StreetDetailState, RegionDetailState, MapFilterState, IncidentsState, RegionMapState], {
 			developmentMode: false,
 		}),
 
@@ -51,10 +53,13 @@ export const appConfig: ApplicationConfig = {
 				},
 			},
 		}),
+		provideMarkdown(),
 
 		/**
 		 * Language dependencies
 		 */
-		importProvidersFrom([AppTranslationModule])
+		importProvidersFrom([
+			AppTranslationModule,
+		])
 	],
 };

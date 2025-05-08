@@ -31,10 +31,23 @@
 					@for(header of _cols; track header.field) {
 						<th>
 							@if (header.sortable) {
-								<div [pSortableColumn]="header.field">
-									{{ header.header | translate }}
-									<p-sortIcon [field]="header.field"></p-sortIcon>
-								</div>
+								@if (header.field === 'dangerousScore') {
+									<div [pSortableColumn]="header.field" [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+										{{ header.header | translate }}
+										<p-sortIcon [field]="header.field"></p-sortIcon>
+									</div>
+									<ng-template #scoreFormula>
+										<markdown
+											katex
+											[data]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.FORMULA' | translate">
+										</markdown>
+									</ng-template>
+								} @else {
+									<div [pSortableColumn]="header.field">
+										{{ header.header | translate }}
+										<p-sortIcon [field]="header.field"></p-sortIcon>
+									</div>
+								}
 							} @else { {{ header.header | translate }} }
 						</th>
 					}

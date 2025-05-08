@@ -24,6 +24,7 @@ import { Column, EHighwayTypes, ESortOrder, ETrafficTimes, EWeekDays, EYear } fr
 import { IStreetsSafetyMetricsRequest } from '@simra/streets-common';
 import { StreetDetailViewFacade, StreetListViewFacade } from '@simra/streets-domain';
 import { times } from 'lodash';
+import { MarkdownComponent } from 'ngx-markdown';
 import { PrimeTemplate } from 'primeng/api';
 import { Card } from 'primeng/card';
 import { Skeleton } from 'primeng/skeleton';
@@ -52,6 +53,7 @@ import { HIGHWAY_TYPES_TO_TRANSLATION } from '../../../translations/maps/highway
 		RouterLink,
 		AutocompleteComponent,
 		LastRunComponent,
+		MarkdownComponent,
 	],
 	templateUrl: './street-list-view.page.html',
 	styleUrl: './street-list-view.page.scss',
@@ -236,6 +238,9 @@ export class StreetListViewPage {
 	protected readonly times = times;
 
 	protected async preloadStreet(id: number) {
+		if (!id) {
+			return;
+		}
 		await firstValueFrom(this._streetDetailViewFacade.getAndSetStreet(id));
 	}
 

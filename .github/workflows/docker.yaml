@@ -37,5 +37,6 @@ jobs:
                   secrets: |
                     "simra_api_url=${{ secrets.SIMRA_API_URL }}"
                     "mapillary_access_token=${{ secrets.MAPILLARY_ACCESS_TOKEN }}"    
+                    "map_tiler_token=${{ secrets.MAP_TILER_TOKEN }}"    
 
 
