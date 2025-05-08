@@ -20,7 +20,6 @@ import { firstValueFrom } from 'rxjs';
 import { SimraRegionDetailViewFacade } from '@simra/regions-domain';
 import { BaseRegionDetailViewComponent } from '../../../components/base-region-detail-view/component/base-region-detail-view.component';
 import { IDetailViewChange } from '../../../components/base-region-detail-view/models/interfaces/detail-view-change.interface';
-import { ProfileCardComponent } from '../../../components/profile-card/component/profile-card.component';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 
 @Component({
