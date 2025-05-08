@@ -81,7 +81,7 @@
 		</div>
 		<div class="w-full md:w-3/5">
 			@if (_generalSafetyMetrics() && detailedRegion(); as region) {
-				<t-map-component [regionCollection]="_regionCollection()" [viewMode]="EMapViewMode.REGION" [isNavigable]="true"></t-map-component>
+				<t-map-component (mapReady)="onMapReady($event)" [isNavigable]="true"></t-map-component>
 			} @else {
 				<p-skeleton class="w-full rounded-xl" height="18rem"/>
 			}

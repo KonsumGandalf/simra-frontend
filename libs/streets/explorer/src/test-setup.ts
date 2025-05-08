@@ -13,3 +13,8 @@ global.ResizeObserver = class {
 	unobserve() {}
 	disconnect() {}
 };
+
+Object.defineProperty(global.URL, 'createObjectURL', {
+	writable: true,
+	value: jest.fn(() => 'mocked-url'),
+});

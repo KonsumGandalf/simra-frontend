@@ -10,12 +10,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ISafetyMetrics } from '@simra/common-models';
+import { scoreFormulaMarkdownSegment } from '@simra/common-utils';
 import { isNumber } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Divider } from 'primeng/divider';
 import { Skeleton } from 'primeng/skeleton';
 import { Tooltip } from 'primeng/tooltip';
-import { scoreFormulaMarkdownSegment } from '../../../../../../../../streets/explorer/src/lib/utils/markdown';
 import { safetyMetricsDisplayArray } from '../../../models/const';
 
 @Component({

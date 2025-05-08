@@ -5,8 +5,8 @@
 	</p-tablist>
 	<p-tabpanels>
 		<p-tabpanel value="0">
-			@if (_incidents$() && _streets$()) {
-				<t-map-component [incidents]="_incidents$()" [streets]="_streets$()" [viewMode]="EMapViewMode.STREET" />
+			@if (_incidents$() && _enrichedStreet$()) {
+				<t-map-component (mapReady)="onMapLoaded($event)" />
 			}
 		</p-tabpanel>
 		<p-tabpanel value="1">

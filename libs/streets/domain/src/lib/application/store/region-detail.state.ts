@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State } from '@ngxs/store';
-import { SetRegionName } from './region-detail.action';
+import { SetRegionName } from './region-detail.actions';
 
 export interface IRegionDetailState {
 	name?: string;

@@ -82,7 +82,7 @@
 			</ng-template>
 			<ng-template pTemplate="body" let-street>
 				<tr>
-					<td><a [routerLink]="['/streets', street.id]" (mouseover)="preloadStreet(+street.id)" class="link-button">{{ street.id }}</a></td>
+					<td><a [routerLink]="['/streets', street.id]" (mouseover)="preloadStreet(+street.id)" (focus)="preloadStreet(+street.id)" class="link-button">{{ street.id }}</a></td>
 					<td>{{ street.name }}</td>
 					<td>{{ HIGHWAY_TYPES_TO_TRANSLATION[street.highway]?.label | translate }}</td>
 					<td style="color: {{ street.dangerousColor}}">

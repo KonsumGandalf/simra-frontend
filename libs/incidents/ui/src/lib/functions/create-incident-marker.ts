@@ -1,7 +1,7 @@
 import { ApplicationRef, ComponentFactoryResolver, Injector } from '@angular/core';
 import { IIncident } from '@simra/incidents-models';
-import { MarkerContentComponent } from '@simra/incidents-ui';
-import maplibregl from 'maplibre-gl';
+import { MarkerContentComponent } from '../marker-content/component/marker-content.component';
+import * as maplibregl from 'maplibre-gl';
 import { firstValueFrom, Observable } from 'rxjs';
 
 export async function createIncidentMarker(

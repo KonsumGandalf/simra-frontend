@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ISafetyMetricsRegion } from '@simra/common-models';
+import { APP_CONFIG, ISafetyMetricsRegion } from '@simra/common-models';
 import { IRegion } from '@simra/models';
 import { BaseRegionDetailViewComponent } from './base-region-detail-view.component';
 
@@ -23,6 +23,14 @@ describe('Integration Test BaseRegionDetailViewComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [BaseRegionDetailViewComponent, TranslateModule.forRoot(), RouterModule.forRoot([])],
+			providers: [
+				{
+					provide: APP_CONFIG,
+					useValue: {
+						mapTilerToken: '123'
+					}
+				},
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TestHostComponent);

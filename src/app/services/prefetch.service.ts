@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MapFilterOptionsInterface } from '@simra/common-models';
 import { IncidentsMapFacade } from '@simra/incidents-domain';
-import { IGetStreetGrid } from '@simra/streets-common';
 import { StreetsMapFacade } from '@simra/streets-domain';
 import { firstValueFrom } from 'rxjs';
 

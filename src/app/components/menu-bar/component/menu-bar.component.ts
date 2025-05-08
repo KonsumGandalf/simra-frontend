@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
-import { ETrafficTimes, EWeekDays } from '@simra/common-models';
-import { IGetStreetGrid } from '@simra/streets-common';
 import { MenuItem } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { Breadcrumb } from 'primeng/breadcrumb';
@@ -15,7 +13,6 @@ import { Ripple } from 'primeng/ripple';
 import { SelectButton, SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Tooltip } from 'primeng/tooltip';
 import { environment } from '../../../../environments/environment';
-import { CITY_POSITION_LINKS } from '../../../pages/home/models/const';
 import { PrefetchService } from '../../../services/prefetch.service';
 
 @Component({

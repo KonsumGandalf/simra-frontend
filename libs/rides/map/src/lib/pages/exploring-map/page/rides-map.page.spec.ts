@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { APP_CONFIG } from '@simra/common-models';
 import { RidesFacade } from '@simra/rides-domain';
 import { polyline } from 'leaflet';
 import { of } from 'rxjs';
@@ -26,6 +27,12 @@ describe('RidesMapPage', () => {
 						getRideGeometries: jest.fn().mockReturnValue(of([
 							polyline([[0, 0], [1, 1]]),
 						])),
+					}
+				},
+				{
+					provide: APP_CONFIG,
+					useValue: {
+						mapTilerToken: '123'
 					}
 				},
 			]

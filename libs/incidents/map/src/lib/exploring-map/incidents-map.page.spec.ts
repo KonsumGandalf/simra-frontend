@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
+import { APP_CONFIG } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { IncidentsMapFacade, IncidentsState } from '@simra/incidents-domain';
 import { of } from 'rxjs';
@@ -24,6 +25,12 @@ describe('IncidentExploringMapPage', () => {
 						getIncidents: jest.fn().mockReturnValue(of([])),
 						getIncidentMarker: jest.fn().mockReturnValue(of([])),
 						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
+					},
+				},
+				{
+					provide: APP_CONFIG,
+					useValue: {
+						mapTilerToken: '123',
 					},
 				},
 			],

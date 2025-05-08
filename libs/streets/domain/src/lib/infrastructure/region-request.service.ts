@@ -5,8 +5,7 @@ import { IRegionMap } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, find } from 'lodash';
 import { map, Observable } from 'rxjs';
-import { RegionMapDto } from '../../../../common/src/lib/dtos/region-map.dto';
-import { StreetGridDto } from '../../../../common/src/lib/dtos/street-grid.dto';
+import { RegionMapDto } from '@simra/streets-common';
 
 @Injectable({
 	  providedIn: 'root'

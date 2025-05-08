@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
-	Component, computed,
+	Component,
 	effect,
 	model,
 	output,

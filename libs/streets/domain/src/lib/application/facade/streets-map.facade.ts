@@ -1,28 +1,24 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
 import { MethodRunService } from '@simra/common-domain';
 import { ISafetyMetricsRegion, MapFilterOptionsInterface } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
-import { IEnrichedRegion, IEnrichedStreet, IGetStreetGrid, IStreetGrid, SafetyMetricsDto } from '@simra/streets-common';
+import { IEnrichedRegion, IEnrichedStreet, IStreetGrid, SafetyMetricsDto } from '@simra/streets-common';
 import { FeatureCollection, Geometry } from 'geojson';
 import { GeoJSON } from 'leaflet';
-import { deepEquals } from 'nx/src/utils/json-diff';
-import { debounceTime, distinctUntilChanged, map, Observable, Subject, switchMap, take, tap } from 'rxjs';
-import { IRegionMap } from '../../../../../common/src/lib/interfaces/region-map.interface';
+import { Observable, Subject, take, tap } from 'rxjs';
+import { IRegionMap } from '@simra/streets-common';
 import { IncidentsRequestService } from '../../infrastructure/incidents-request.service';
 import { RegionRequestService } from '../../infrastructure/region-request.service';
 import { SafetyMetricsRequestService } from '../../infrastructure/safety-metrics-request.service';
 import { StreetsRequestService } from '../../infrastructure/streets-request.service';
 import { StreetInformationDto } from '../../models/dtos/street-information.dto';
 import * as L from 'leaflet';
-import { ZOOM_DISTANCE_MAP } from '../../models/maps/zoom-distance.map';
-import { ZOOM_ROAD_TYPE_MAP } from '../../models/maps/zoom-road-type.map';
-import { SetRegionName } from '../store/region-detail.action';
+import { SetRegionName } from '../store/region-detail.actions';
 import { SetEnrichedRegions, SetRegionCollection, SetRegions, SetRegionSafetyMetrics } from '../store/region-map.actions';
 import { RegionMapState } from '../store/region-map.state';
 import { SetSelectedSafetyMetrics, SetStreet } from '../store/street-detail.actions';
-import { SetEnrichedStreets, SetStreetCollection, SetStreets, SetStreetSafetyMetrics } from '../store/street-map.actions';
+import { SetEnrichedStreets, SetStreets, SetStreetSafetyMetrics } from '../store/street-map.actions';
 import { StreetMapState } from '../store/street-map.state';
 
 @Injectable({ providedIn: 'root' })

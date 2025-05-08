@@ -1,4 +1,4 @@
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withPreloading } from '@angular/router';
@@ -6,7 +6,7 @@ import { provideStore } from '@ngxs/store';
 import { APP_CONFIG, AppEnvironmentInterface } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { StreetDetailState, StreetMapState, RegionDetailState, RegionMapState } from '@simra/streets-domain';
-import { MarkdownModule, provideMarkdown } from 'ngx-markdown';
+import { provideMarkdown } from 'ngx-markdown';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { providePrimeNG } from 'primeng/config';
 import { IncidentsState } from '@simra/incidents-domain';

@@ -1,32 +1,29 @@
 import { CommonModule } from '@angular/common';
 import {
-	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
-	computed, effect,
-	inject, Injector,
-	model, signal, Signal,
+	effect,
+	inject,
+	model, signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { MapPage } from '@simra/common-components';
+import { EPin, MapPage, MapUtils } from '@simra/common-components';
 import { asyncComputed } from '@simra/common-utils';
-import { createIncidentMarker } from '@simra/incidents-ui';
+import { RidesGeometriesInterface } from '@simra/rides-common-models';
 import { RidesFacade } from '@simra/rides-domain';
-import { IEnrichedStreet, IEnrichedWithWidth } from '@simra/streets-common';
 import { along, length, lineString } from '@turf/turf';
 import { FeatureCollection, Geometry } from 'geojson';
-
-import { geoJSON, Layer} from 'leaflet';
-import { isEmpty } from 'lodash';
+import * as maplibregl from 'maplibre-gl';
 import { Card } from 'primeng/card';
 import { InputNumber } from 'primeng/inputnumber';
+import { linesLayer, rideSource, markerLayer,  } from '../models/const';
 
 
 @Component({
-    selector: 'p-streets-exploring-map',
+    selector: 'p-ride-exploring-map',
     imports: [CommonModule, LeafletModule, MapPage, FormsModule, InputNumber, Card],
     templateUrl: './rides-map.page.html',
     styleUrl: './rides-map.page.scss',
@@ -39,9 +36,8 @@ import { InputNumber } from 'primeng/inputnumber';
 export class RidesMapPage {
 	private readonly _router = inject(Router);
 	private readonly _ridesExploringFacade = inject(RidesFacade);
-	private readonly _injector = inject(Injector);
-	private readonly _appRef = inject(ApplicationRef);
 
+	private readonly _mlMap = signal<maplibregl.Map>(undefined);
 	protected _counter = model<number>(1);
 	protected readonly _ridesGeometries$ = asyncComputed(() => {
 		let counter = this._counter();
@@ -72,16 +68,22 @@ export class RidesMapPage {
 				replaceUrl: true,
 			})
 		});
+
+		effect(() => {
+			const mlMap = this._mlMap();
+			const geometries = this._ridesGeometries$();
+
+			if (!mlMap || !geometries) {
+				return;
+			}
+
+			this.addLayer(mlMap, geometries);
+		});
 	}
 
-	protected readonly _rideFeatureCollection$ = computed(() => {
-		const geometries = this._ridesGeometries$();
+	private addLayer(mlMap: maplibregl.Map, geometries: RidesGeometriesInterface) {
 
-		if(!geometries) {
-			return;
-		}
-
-		const ways: Partial<IEnrichedWithWidth>[] = [{
+		const ways = [{
 			way: geometries.visitedWay,
 			dangerousColor: '#FBBF24',
 			width: 2
@@ -100,7 +102,7 @@ export class RidesMapPage {
 				dangerousColor: '#EF4444',
 			});
 		}
-		const lineFeatures = ways.map((l) => ({
+		const lineFeature = ways.map((l) => ({
 			type: 'Feature',
 			geometry: JSON.parse(`${l.way}`),
 			properties: {
@@ -110,7 +112,7 @@ export class RidesMapPage {
 			},
 		}));
 
-		const markerFeatures = geometries.incidentLocations.map((m) => ({
+		const incidentFeature = geometries.incidentLocations.map((m) => ({
 			type: 'Feature',
 			geometry: {
 				type: 'Point',
@@ -121,12 +123,69 @@ export class RidesMapPage {
 				scary: m.scary,
 				type: 'marker',
 			},
-		}));
+		}))
 
-		return {
+		const collection = {
 			type: 'FeatureCollection',
-			features: [...lineFeatures, ...markerFeatures],
-		} as  FeatureCollection<Geometry, any> | undefined;
-	});
+			features: [...lineFeature, ...incidentFeature]
+		} as FeatureCollection<Geometry, unknown>;
+
+		const source = mlMap.getSource(rideSource) as maplibregl.GeoJSONSource;
+		if (source) {
+			source.setData(collection);
+			return;
+		}
+
+		mlMap.addSource(rideSource, {
+			type: 'geojson',
+			data: collection,
+		});
+
+		mlMap.addLayer({
+			id: linesLayer,
+			type: 'line',
+			source: rideSource,
+			paint: {
+				'line-color': ['get', 'dangerousColor'],
+				'line-width': ['get', 'width'],
+			},
+			filter: ['==', '$type', 'LineString']
+		});
+
+		mlMap.addLayer({
+			id: markerLayer,
+			type: 'symbol',
+			source: rideSource,
+			filter: ['==', '$type', 'Point'],
+			layout: {
+				'icon-allow-overlap': true,
+				'icon-ignore-placement': true,
+				'icon-image': [
+					'case',
+					['==', ['get', 'scary'], true],
+					EPin.RED,
+					EPin.BLUE,
+				],
+				'icon-size': [
+					'interpolate',
+					['linear'],
+					['zoom'],
+					10, 0.1,
+					14, 0.15,
+					17, 0.3
+				]
+			},
+			paint: {
+				'icon-opacity': 1
+			}
+		});
+
+		MapUtils.changeCursor(mlMap, linesLayer);
+		MapUtils.changeCursor(mlMap, markerLayer);
+	}
+
+	onMapReady(mlMap: maplibregl.Map) {
+		this._mlMap.set(mlMap);
+	}
 
 }

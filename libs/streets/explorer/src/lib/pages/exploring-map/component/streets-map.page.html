@@ -4,13 +4,9 @@
 	</div>
 }
 <t-map-component
-	[streets]="rawStreetGrid()"
-	[regionCollection]="regionCollection$()"
-	[incidents]="incidents.value()"
 	[isNavigable]="true"
 	[lastRun]="lastRun$()"
-	(streetSelected)="onStreetSelected($event)"
-	(regionSelected)="onRegionSelected($event)"
+	(mapReady)="onMapReady($event)"
 ></t-map-component>
 <m-dangerous-score-bar></m-dangerous-score-bar>
 @if(!showOverlay$()) {

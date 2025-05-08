@@ -3,8 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
+import { APP_CONFIG } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
-import { RegionDetailState, StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
+import {
+	RegionDetailState,
+	RegionMapState,
+	StreetDetailState,
+	StreetDetailViewFacade,
+	StreetMapState,
+	StreetsMapFacade,
+} from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject, of } from 'rxjs';
 import { StreetsMapPage } from './streets-map.page';
@@ -30,6 +38,8 @@ describe('StreetsMapPage', () => {
 							]),
 						),
 						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
+						fetchStreetGrid: jest.fn().mockReturnValue([]),
+						fetchRegionMap: jest.fn().mockReturnValue([]),
 					},
 				},
 				{
@@ -38,7 +48,13 @@ describe('StreetsMapPage', () => {
 						getIdOfNearestImage: jest.fn(),
 					}
 				},
-				provideStore([StreetMapState, MapFilterState, StreetDetailState, RegionDetailState]),
+				{
+					provide: APP_CONFIG,
+					useValue: {
+						mapTilerToken: '123'
+					}
+				},
+				provideStore([StreetMapState, MapFilterState, StreetDetailState, RegionDetailState, RegionMapState]),
 			],
 		}).compileComponents();
 

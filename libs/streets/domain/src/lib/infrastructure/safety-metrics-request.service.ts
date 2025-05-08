@@ -8,7 +8,7 @@ import {
 } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, isEmpty, isNumber, omitBy, pickBy } from 'lodash';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 /**
  * Service to fetch safety metrics information for the '/api/safety-metrics' endpoint

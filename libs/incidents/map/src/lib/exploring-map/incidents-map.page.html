@@ -1,1 +1,1 @@
-<t-map-component [incidents]="incidentMarker$()" [isNavigable]="true" [lastRun]="_lastRun$()" [viewMode]="EMapViewMode.CLUSTERED"></t-map-component>
+<t-map-component [isSearchable]="true" [isNavigable]="true" [lastRun]="_lastRun$()" (mapReady)="onMapReady($event)"></t-map-component>
