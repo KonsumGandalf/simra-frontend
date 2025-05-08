@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { EPin, MapPage, MapUtils } from '@simra/common-components';
 import { asyncComputed } from '@simra/common-utils';
 import { RidesGeometriesInterface } from '@simra/rides-common-models';
@@ -24,7 +23,7 @@ import { linesLayer, rideSource, markerLayer,  } from '../models/const';
 
 @Component({
     selector: 'p-ride-exploring-map',
-    imports: [CommonModule, LeafletModule, MapPage, FormsModule, InputNumber, Card],
+    imports: [CommonModule, MapPage, FormsModule, InputNumber, Card],
     templateUrl: './rides-map.page.html',
     styleUrl: './rides-map.page.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -149,7 +149,7 @@ export class SafetyMetricsService {
 			metric.trafficTime !== ETrafficTimes.ALL_DAY &&
 			metric.weekDay === EWeekDays.ALL_WEEK &&
 			metric.year === EYear.ALL,
-		(metric) => getEnumOrder(ETrafficTimes, metric.trafficTime) // ✅ Ensure it returns a value, not a function
+		(metric) => getEnumOrder(ETrafficTimes, metric.trafficTime)
 	);
 
 	/**

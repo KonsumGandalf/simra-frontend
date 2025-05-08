@@ -8,7 +8,6 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { FeatureCollection, Geometry } from 'geojson';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
@@ -30,7 +29,6 @@ import { polygonLayerLarge, polygonLayerMedium, polygonSource, streetsLayer, str
 	selector: 'streets-map',
 	imports: [
 		CommonModule,
-		LeafletModule,
 		MapPage,
 		DangerousScoreBarComponent,
 		SafetyMetricsDigitPanelComponent,

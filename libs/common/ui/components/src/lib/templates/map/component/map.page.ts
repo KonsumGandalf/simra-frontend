@@ -15,13 +15,12 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { LeafletControlLayersConfig, LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Deck } from '@deck.gl/core';
 import { GeocodingControl } from '@maptiler/geocoding-control/maplibregl';
 import { APP_CONFIG, IMapPosition } from '@simra/common-models';
 import * as maplibregl from 'maplibre-gl';
 import { PopoverModule } from 'primeng/popover';
-import { BERLIN_POSITION, DEFAULT_LAYER_CONFIG } from '../../models/const';
+import { BERLIN_POSITION } from '../../models/const';
 import { EPin } from '../models/enum/pin.enum';
 
 /**
@@ -29,7 +28,7 @@ import { EPin } from '../models/enum/pin.enum';
  */
 @Component({
 	selector: 't-map-component',
-	imports: [CommonModule, LeafletModule, PopoverModule],
+	imports: [CommonModule, PopoverModule],
 	templateUrl: './map.page.html',
 	styleUrl: './map.page.scss',
 	host: {
@@ -88,8 +87,6 @@ export class MapPage implements OnDestroy, OnInit {
 			}
 		});
 	}
-
-	public layerControl = input<LeafletControlLayersConfig>(DEFAULT_LAYER_CONFIG);
 
 	async ngOnInit() {
 		const position = this.routerPosition();

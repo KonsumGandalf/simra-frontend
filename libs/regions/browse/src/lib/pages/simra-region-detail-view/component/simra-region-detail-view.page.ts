@@ -34,7 +34,6 @@ import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 		ButtonDirective,
 		TranslatePipe,
 		Skeleton,
-		ProfileCardComponent,
 	],
 	templateUrl: './simra-region-detail-view.page.html',
 	styleUrl: './simra-region-detail-view.page.scss',

@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngxs/store';
 import { IncidentsMapFacade, IncidentsState} from '@simra/incidents-domain';
 import { IIncidentMarker } from '@simra/incidents-models';
@@ -19,7 +18,7 @@ import { incidentsLayer, incidentsLayerCluster, incidentsLayerClusterCount, inci
 
 @Component({
 	selector: 'incident-map',
-	imports: [CommonModule, LeafletModule, MapPage],
+	imports: [CommonModule, MapPage],
 	templateUrl: './incidents-map.page.html',
 	styleUrl: './incidents-map.page.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

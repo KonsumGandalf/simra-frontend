@@ -71,15 +71,11 @@
         ],
         "styles": [
           "./src/styles.scss",
-          "./node_modules/leaflet/dist/leaflet.css",
-          "./node_modules/leaflet-geosearch/dist/geosearch.css",
-          "./node_modules/leaflet.markercluster/dist/MarkerCluster.css",
-          "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
           "./node_modules/flag-icons/css/flag-icons.min.css",
           "./libs/common/ui/styles/src/css/mapillary.css",
           "./node_modules/maplibre-gl/dist/maplibre-gl.css",
-          "./node_modules/katex/dist/katex.css",
-          "./node_modules/@maptiler/geocoding-control/style.css"
+          "./node_modules/@maptiler/geocoding-control/style.css",
+          "./node_modules/katex/dist/katex.css"
         ],
         "stylePreprocessorOptions": {
           "includePaths": [

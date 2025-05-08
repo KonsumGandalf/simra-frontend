@@ -111,7 +111,6 @@ export class StreetsMapFacade {
 				weight: 2.5,
 			},
 			onEachFeature: (feature, layer) => {
-				// @TODO is click or hover better?
 				layer.on('click', () => {
 					if (zoom <= 11) {
 						this._store.dispatch(new SetRegionName({ name: street?.name}))

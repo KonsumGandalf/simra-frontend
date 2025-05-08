@@ -3,11 +3,11 @@ import { Transform } from 'class-transformer';
 import { IsString } from 'class-validator';
 
 export class RideDto implements Pick<IRide, 'rideStart' | 'rideEnd'> {
-	@IsString() // Keep this if input is originally a string
-	@Transform(({ value }) => new Date(value), { toClassOnly: true }) // Converts string to Date
+	@IsString()
+	@Transform(({ value }) => new Date(value), { toClassOnly: true })
 	public rideStart: Date;
 
-	@IsString() // Keep this if input is originally a string
-	@Transform(({ value }) => new Date(value), { toClassOnly: true }) // Converts string to Date
+	@IsString()
+	@Transform(({ value }) => new Date(value), { toClassOnly: true })
 	public rideEnd: Date;
 }
