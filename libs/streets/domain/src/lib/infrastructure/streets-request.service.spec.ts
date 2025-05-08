@@ -23,10 +23,10 @@ describe('StreetsRequestService', () => {
 	});
 
 	describe('getStreetInformation', () => {
-		it('should call the correct api endpoint', () => {
-			service.getStreetGrid({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined });
+		it('should call the correct json file', () => {
+			service.getStreetGrid();
 			expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
-			expect(httpClientSpy.get).toHaveBeenCalledWith('/api/streets/grid', { params: { zoom: 14, lat: 10, lng: 12 } });
+			expect(httpClientSpy.get).toHaveBeenCalledWith('/assets/leaflet/street-map.json');
 		});
 
 		it('should return the correct street information', async () => {
@@ -44,9 +44,9 @@ describe('StreetsRequestService', () => {
 			httpClientSpy.get.mockReturnValue(of([response]));
 
 
-			const streetInformation = await service.getStreetGrid({ zoom: 14, lat: 10, lng: 12, trafficTime: undefined, weekDay: undefined }).toPromise();
+			const streetInformation = await service.getStreetGrid().toPromise();
 			expect(streetInformation).toMatchObject([{
-				osm_id: 1,
+				osmId: 1,
 				way: {
 					type: 'LineString',
 					coordinates: [

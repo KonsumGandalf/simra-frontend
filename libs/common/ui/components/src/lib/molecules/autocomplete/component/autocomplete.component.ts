@@ -43,7 +43,7 @@ export class AutocompleteComponent {
 		const field = this.field();
 		if (!field) return;
 
-		this.selectionChange.emit({ [field]: values?.value || '' }); // Emit empty string when cleared
+		this.selectionChange.emit({ [field]: values?.value || '' });
 	}
 
 	protected async onComplete(event: AutoCompleteCompleteEvent) {

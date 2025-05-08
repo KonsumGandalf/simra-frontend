@@ -20,15 +20,34 @@
 			[sortOrder]="-1"
 			[tableStyle]="{'min-height': '23rem'}"
 		>
+			<ng-template pTemplate="caption">
+				<div class="flex flex-wrap flex-row gap-y-4 justify-evenly items-center gap-x-8">
+					<ng-content></ng-content>
+					<a-last-run [date]="lastRun()"/>
+				</div>
+			</ng-template>
 			<ng-template pTemplate="header">
 				<tr>
 					@for(header of _cols; track header.field) {
 						<th>
 							@if (header.sortable) {
-								<div [pSortableColumn]="header.field">
-									{{ header.header | translate }}
-									<p-sortIcon [field]="header.field"></p-sortIcon>
-								</div>
+								@if (header.field === 'dangerousScore') {
+									<div [pSortableColumn]="header.field" [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+										{{ header.header | translate }}
+										<p-sortIcon [field]="header.field"></p-sortIcon>
+									</div>
+									<ng-template #scoreFormula>
+										<markdown
+											katex
+											[data]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.FORMULA' | translate">
+										</markdown>
+									</ng-template>
+								} @else {
+									<div [pSortableColumn]="header.field">
+										{{ header.header | translate }}
+										<p-sortIcon [field]="header.field"></p-sortIcon>
+									</div>
+								}
 							} @else { {{ header.header | translate }} }
 						</th>
 					}
@@ -94,7 +113,7 @@
 				@for(_ of times(_filtering$().size); track _) {
 					<tr>
 						@for(width of ['6rem', '3rem', '1rem', '1rem', '1rem', '5rem', '8rem'];
-							track width) {
+							track $index) {
 							<td><p-skeleton height="1.5rem" [width]="width"></p-skeleton></td>
 						}
 					</tr>

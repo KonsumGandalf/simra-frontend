@@ -1,41 +1,67 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Geometry } from 'geojson';
-import { GeoJSON } from 'leaflet';
-import { AddToStreetCache } from './street-map.actions';
+import { IEnrichedStreet, IStreetGrid } from '@simra/streets-common';
+import { FeatureCollection, Geometry } from 'geojson';
+import { SetEnrichedStreets, SetStreets, SetStreetCollection, SetStreetSafetyMetrics } from './street-map.actions';
 
 export interface StreetMapStateModel {
-	streetGrid: GeoJSON<any, Geometry>[];
+	streetCollection: FeatureCollection<Geometry, IEnrichedStreet>;
+	enrichedStreets: IEnrichedStreet[];
+	streets: IStreetGrid[];
+	safetyMetrics: Map<number, string>;
 }
 
 @State<StreetMapStateModel>({
 	name: 'street_map',
-	defaults: {
-		streetGrid: []
-	}
 })
 @Injectable()
 export class StreetMapState {
-	protected static CACHE_LIMIT = 50_000;
 
 	@Selector()
-	static getStreetCache(state: StreetMapStateModel) {
-		return state.streetGrid;
+	static getStreetCollection(state: StreetMapStateModel) {
+		return state.streetCollection;
 	}
 
-	@Action(AddToStreetCache)
-	addToStreetCache(ctx: StateContext<StreetMapStateModel>, action: AddToStreetCache) {
-		// const state = ctx.getState();
-		//let newCache = uniq(concat(state.streets, action.batch))
-		const newCache = action.batch;
-
-		// while(newCache.length > StreetMapState.CACHE_LIMIT) {
-		// 	newCache = newCache.slice(newCache.length - StreetMapState.CACHE_LIMIT);
-		// }
-
+	@Action(SetStreetCollection)
+	setStreetCollection(ctx: StateContext<StreetMapStateModel>, action: SetStreetCollection) {
 		ctx.patchState({
-			streetGrid: newCache
+			streetCollection: action.batch
 		})
 	}
 
+	@Selector()
+	static getStreets(state: StreetMapStateModel) {
+		return state.streets;
+	}
+
+	@Action(SetStreets)
+	setStreets(ctx: StateContext<StreetMapStateModel>, action: SetStreets) {
+		ctx.patchState({
+			streets: action.batch
+		})
+	}
+
+	@Action(SetEnrichedStreets)
+	setEnrichedStreets(ctx: StateContext<StreetMapStateModel>, action: SetEnrichedStreets) {
+		ctx.patchState({
+			enrichedStreets: action.batch
+		})
+	}
+
+	@Selector()
+	static getEnrichedStreets(state: StreetMapStateModel) {
+		return state.enrichedStreets;
+	}
+
+	@Selector()
+	static getSafetyMetrics(state: StreetMapStateModel) {
+		return state.safetyMetrics;
+	}
+
+	@Action(SetStreetSafetyMetrics)
+	setSafetyMetrics(ctx: StateContext<StreetMapStateModel>, action: SetStreetSafetyMetrics) {
+		ctx.patchState({
+			safetyMetrics: action.batch
+		})
+	}
 }

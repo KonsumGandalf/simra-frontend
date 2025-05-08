@@ -14,11 +14,12 @@
         },
         "TABLE": {
             "ITEMS": {
-                "SELECTED": "Elemente ausgewählt"
+                "SELECTED": "Elemente ausgewählt",
+                "NO_DATA": "Keine Daten"
             },
             "HEADER": {
                 "PLACEHOLDER": "Nichts ausgewählt",
-                "REGION": "Wähle Verwaltungsbezirke aus",
+                "REGION": "Wähle den Verwaltungsbezirk",
                 "COLUMNS": {
                     "ID": "ID",
                     "OSM_ID": "OSM ID",
@@ -74,6 +75,9 @@
                 "LOW_RISK": "Niedriges Risiko",
                 "HIGH_RISK": "Hohes Risiko"
             }
+        },
+        "SAFETY_METRICS_DIGIT_PANEL": {
+            "NO_STREET_SELECTED": "Keine Straßensegment ausgewählt"
         }
     },
     "ORGANISMS": {

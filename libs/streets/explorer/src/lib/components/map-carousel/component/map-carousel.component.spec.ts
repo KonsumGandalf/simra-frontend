@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
 import { APP_CONFIG } from '@simra/common-models';
 import { StreetDetailState, StreetDetailViewFacade } from '@simra/streets-domain';
@@ -12,7 +13,7 @@ describe('MapCarouselComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [MapCarouselComponent],
+			imports: [MapCarouselComponent, TranslateModule.forRoot()],
 			providers: [
 				provideRouter([]),
 				provideStore([StreetDetailState]),

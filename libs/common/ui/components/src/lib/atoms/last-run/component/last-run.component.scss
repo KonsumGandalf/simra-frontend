@@ -1,0 +1,13 @@
+.a-last-run {
+    @apply flex flex-nowrap opacity-75 gap-4;
+
+    .loading__container {
+        @apply block;
+
+        width: 8.25rem;
+    }
+
+    & > * {
+        @apply text-nowrap;
+    }
+}

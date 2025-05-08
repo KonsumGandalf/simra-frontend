@@ -6,15 +6,14 @@ import { IncidentMarkerDTO } from '@simra/incidents-domain';
 export class RidesGeometriesResponseDto implements RidesGeometriesInterface{
 	@IsArray()
 	@Expose({ name: 'incident_locations' })
-	@ValidateNested({ each: true }) // ✅ Validates each item against IncidentMarkerDTO
+	@ValidateNested({ each: true })
 	@Type(() => IncidentMarkerDTO)
 	@Transform(({ value }) => {
-		// ✅ Ensure it's an array, parse JSON strings into objects
 		if (!Array.isArray(value)) return [];
 
 		return value.map((item) => {
-			return (typeof item === 'string') ? JSON.parse(item) : item; // Return object as is
-		}).filter(Boolean); // Remove null values from invalid JSON
+			return (typeof item === 'string') ? JSON.parse(item) : item;
+		}).filter(Boolean);
 	})
 	incidentLocations: IncidentMarkerDTO[] = [];
 

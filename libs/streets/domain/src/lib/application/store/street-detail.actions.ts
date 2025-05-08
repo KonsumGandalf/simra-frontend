@@ -16,3 +16,8 @@ export class SetSelectedIncidents {
 	static readonly type = '[StreetDetail] Set selected incidents';
 	constructor(public incidents: IIncident[]) {}
 }
+
+export class SetStreetIdLoading {
+	static readonly type = '[StreetDetail] Set loading';
+	constructor(public loadingId: number) {}
+}

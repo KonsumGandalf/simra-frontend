@@ -4,24 +4,31 @@ import {
 	Component, computed,
 	effect,
 	inject, input,
-	model, output, Signal,
+	model, output, signal, Signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MapPage, SafetyMetricsCardComponent } from '@simra/common-components';
-import { ETrafficTimes, EWeekDays, EYear, IMapPosition } from '@simra/common-models';
-import { IRegion, ISafetyMetricsRegion } from '@simra/models';
+import { LastRunComponent, MapPage, MapUtils, SafetyMetricsCardComponent } from '@simra/common-components';
+import { ETrafficTimes, EWeekDays, EYear, IMapPosition, ISafetyMetricsRegion } from '@simra/common-models';
+import { IRegion } from '@simra/models';
+import { IEnrichedRegion } from '@simra/streets-common';
 import { area, centroid, polygon as turfPolygon } from '@turf/turf';
-import { LatLng, latLng, Layer, MapOptions, polygon } from 'leaflet';
+import { FeatureCollection, Geometry } from 'geojson';
+import { LatLng, latLng,  MapOptions } from 'leaflet';
 import { find, first } from 'lodash';
+import * as maplibregl from 'maplibre-gl';
+import { MarkdownComponent } from 'ngx-markdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { ButtonDirective } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { UIChart } from 'primeng/chart';
 import { Divider } from 'primeng/divider';
 import { Skeleton } from 'primeng/skeleton';
+import { Tooltip } from 'primeng/tooltip';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
+import { scoreFormulaMarkdownRegion } from '../../utils/markdown';
+import { regionLayer, regionSource } from '../models/const';
 import { getZoomLevelByArea } from '../models/functions/zoom.util';
 import { IDetailViewChange } from '../models/interfaces/detail-view-change.interface';
 
@@ -36,9 +43,11 @@ import { IDetailViewChange } from '../models/interfaces/detail-view-change.inter
 		UIChart,
 		Card,
 		Divider,
-		ButtonDirective,
 		MapPage,
 		Skeleton,
+		LastRunComponent,
+		Tooltip,
+		MarkdownComponent,
 	],
 	templateUrl: './base-region-detail-view.component.html',
 	styleUrl: './base-region-detail-view.component.scss',
@@ -50,13 +59,16 @@ import { IDetailViewChange } from '../models/interfaces/detail-view-change.inter
 })
 export class BaseRegionDetailViewComponent {
 	private readonly _metricsService = inject(SafetyMetricsService);
+	protected readonly _router = inject(Router);
 
 	protected readonly _selectedYear = model<EYear>(EYear.ALL);
 	protected readonly _selectedWeekDays = model<EWeekDays[]>([EWeekDays.WEEK, EWeekDays.WEEKEND]);
 	protected readonly _selectedTrafficTime = model<ETrafficTimes>(ETrafficTimes.ALL_DAY);
+	public readonly queryOptions = model<IMapPosition>();
+	private readonly _mlMap= signal<maplibregl.Map>(undefined);
 
 	public readonly lastRun = input.required<Date>();
-	public readonly changeDetails  = output<IDetailViewChange>();
+	public readonly changeDetails = output<IDetailViewChange>();
 
 	public readonly safetyMetrics = input.required<ISafetyMetricsRegion>();
 	protected readonly _generalSafetyMetrics: Signal<ISafetyMetricsRegion | undefined> = computed(
@@ -76,17 +88,6 @@ export class BaseRegionDetailViewComponent {
 		},
 	);
 	public readonly detailedRegion = input.required<IRegion>();
-	protected readonly _regionGeometry: Signal<Layer[]> = computed(() => {
-		const region = this.detailedRegion();
-		if (!region) {
-			return [];
-		}
-
-		const latLngPolygon = region.way.coordinates.map((ring) =>
-			ring.map(([lng, lat]) => latLng(lat, lng)),
-		);
-		return [polygon(latLngPolygon) as Layer];
-	});
 	protected readonly _mapOptions$ = computed<MapOptions | undefined>(() => {
 		const region = this.detailedRegion();
 		if (!region) {
@@ -101,9 +102,8 @@ export class BaseRegionDetailViewComponent {
 			},
 		} = centroid(tPoly);
 
-		return { zoom, center: latLng(lat, lng) };
+		return { zoom , center: latLng(lat, lng) };
 	});
-	public readonly queryOptions = model<IMapPosition>();
 
 	constructor() {
 		effect(async () => {
@@ -143,7 +143,61 @@ export class BaseRegionDetailViewComponent {
 
 			const center = mapOptions.center as LatLng;
 			this.queryOptions.set({ zoom: mapOptions.zoom + 5, lat: center.lat, lng: center.lng });
+			this._router.navigate([], {
+				queryParams: { lat: center.lat, lng: center.lng, zoom: mapOptions.zoom },
+				queryParamsHandling: 'merge',
+				replaceUrl: true,
+			});
 		});
+
+		effect(() => {
+			const map = this._mlMap();
+			const region = this.detailedRegion();
+
+			if (!map || !region) {
+				return;
+			}
+
+			const latLngPolygon = region.way.coordinates.map((ring) =>
+				ring.map(([lng, lat]) => [lng, lat]),
+			);
+			const collection = {
+				type: 'FeatureCollection',
+				features: [{
+					type: 'Feature',
+					geometry: {
+						type: 'Polygon',
+						coordinates: latLngPolygon,
+					},
+					properties: {
+						name: region.name,
+						dangerousColor: '#FBBF24',
+						adminLevel: region?.adminLevel,
+					},
+				}],
+			} as FeatureCollection<Geometry, IEnrichedRegion>;
+
+			map.addSource(regionSource, {
+				type: 'geojson',
+				data: collection,
+			});
+
+			map.addLayer({
+				id: regionLayer,
+				type: 'fill',
+				source: regionSource,
+				paint: {
+					'fill-color': ['get', 'dangerousColor'],
+					'fill-opacity': 0.5,
+				},
+			});
+
+			MapUtils.changeCursor(map, regionLayer);
+		});
+	}
+
+	onMapReady(map: maplibregl.Map) {
+		this._mlMap.set(map);
 	}
 
 	protected readonly _pieMetricsIncidentTypesData =
@@ -163,4 +217,14 @@ export class BaseRegionDetailViewComponent {
 	protected stackedBarChartOptions = this._metricsService.stackBarChartOptions();
 	protected lineChartOptions = this._metricsService.lineChartOptions();
 	protected readonly _headerPrefix = 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS';
+
+	protected readonly _scoreMarkdown = computed(() => {
+		const safetyMetrics = this._generalSafetyMetrics();
+		if (!safetyMetrics) {
+			return;
+		}
+
+		const { numberOfIncidents, numberOfScaryIncidents, totalDistance, dangerousScore } = safetyMetrics;
+		return scoreFormulaMarkdownRegion(numberOfIncidents, numberOfScaryIncidents, totalDistance, dangerousScore);
+	});
 }

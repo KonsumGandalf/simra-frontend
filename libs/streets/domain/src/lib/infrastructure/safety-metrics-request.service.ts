@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IPage } from '@simra/common-models';
+import { IPage, MapFilterOptionsInterface } from '@simra/common-models';
 import {
 	SafetyMetricsDto,
 	IStreetsSafetyMetricsRequest,
@@ -17,8 +17,9 @@ import { map, Observable } from 'rxjs';
 export class SafetyMetricsRequestService {
 	private readonly _http = inject(HttpClient);
 
-	public getSafetyMetricsForStreet(streetId: number): Observable<SafetyMetricsDto> {
-		return this._http.get(`/api/safety-metrics/streets/${streetId}`).pipe(
+	public getSafetyMetricsForStreet(streetId: number, filter: MapFilterOptionsInterface): Observable<SafetyMetricsDto> {
+		const params = defaults(pickBy(filter, isNumber), omitBy(filter, isEmpty));
+		return this._http.get(`/api/safety-metrics/streets/${streetId}`, { params }).pipe(
 			map((response) => plainToInstance(SafetyMetricsDto, response)),
 		);
 	}
@@ -31,5 +32,15 @@ export class SafetyMetricsRequestService {
 	public getStreetList(requestParams: IStreetsSafetyMetricsRequest): Observable<IPage<IStreetsSafetyMetrics>> {
 		const params = defaults(pickBy(requestParams, isNumber), omitBy(requestParams, isEmpty));
 		return this._http.get<IPage<IStreetsSafetyMetrics>>('/api/safety-metrics/streets', { params });
+	}
+
+	public getColorOfStreet(requestParams: MapFilterOptionsInterface) {
+		const params = defaults(pickBy(requestParams, isNumber), omitBy(requestParams, isEmpty));
+		return this._http.get<Map<number, string>>('/api/safety-metrics/streets-grid', { params } );
+	}
+
+	public getColorOfMap(requestParams: MapFilterOptionsInterface) {
+		const params = defaults(pickBy(requestParams, isNumber), omitBy(requestParams, isEmpty));
+		return this._http.get<Map<number, string>>('/api/safety-metrics/region-map', { params } );
 	}
 }

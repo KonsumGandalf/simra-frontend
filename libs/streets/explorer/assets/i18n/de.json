@@ -70,9 +70,10 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Straßentyp",
-					"SCORE": "Bewertung",
-					"INCIDENTS": "Vorfälle",
-					"SCARY_INCIDENTS": "Beängstigende Vorfälle",
+					"SCORE": "Sicherheitsscore",
+					"SCORE_FORMULA": "$$\n\\text{Punktzahl} = \\frac{4{,}4 \\cdot \\text{Beängstigende Beinaheunfälle} + \\text{Nicht beängstigende Beinaheunfälle}}{\\text{Anzahl der Fahrten}}\n$$",
+					"INCIDENTS": "Beinahunfälle",
+					"SCARY_INCIDENTS": "Beängstigende Beinahunfälle",
 					"RIDES": "Fahrten",
 					"WEEKDAY": "Wochentag",
 					"TRAFFIC_TIME": "Verkehrszeit",
@@ -122,7 +123,7 @@
 			},
 			"BUTTONS": {
 				"GOOGLE_MAPS": "Google Maps",
-				"OSM": "OpenStreetMap",
+				"OSM": "Details auf OSM",
 				"SIMRA_MAP": "SimRa Karte"
 			}
 		}

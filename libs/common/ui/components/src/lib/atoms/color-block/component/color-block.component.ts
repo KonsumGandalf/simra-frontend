@@ -23,7 +23,7 @@ export class ColorBlockComponent {
 	/**
 	 * Determines the color of the block
 	 */
-	color = input.required<EDangerousColors>(); // Default color
+	color = input.required<EDangerousColors>();
 
 	@HostBinding('style.--color') get hostColor() {
 		return this.color();

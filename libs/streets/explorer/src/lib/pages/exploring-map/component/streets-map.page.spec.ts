@@ -1,10 +1,18 @@
 import 'reflect-metadata';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngxs/store';
+import { APP_CONFIG } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
-import { StreetDetailState, StreetDetailViewFacade, StreetMapState, StreetsMapFacade } from '@simra/streets-domain';
+import {
+	RegionDetailState,
+	RegionMapState,
+	StreetDetailState,
+	StreetDetailViewFacade,
+	StreetMapState,
+	StreetsMapFacade,
+} from '@simra/streets-domain';
 import { polyline } from 'leaflet';
 import { BehaviorSubject, of } from 'rxjs';
 import { StreetsMapPage } from './streets-map.page';
@@ -15,7 +23,7 @@ describe('StreetsMapPage', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [StreetsMapPage, TranslateModule.forRoot()],
+			imports: [StreetsMapPage, TranslateModule.forRoot(), RouterModule.forRoot([])],
 			providers: [
 				provideRouter([]),
 				{
@@ -30,6 +38,8 @@ describe('StreetsMapPage', () => {
 							]),
 						),
 						fetchLastMethodRun: jest.fn().mockReturnValue(of(new Date())),
+						fetchStreetGrid: jest.fn().mockReturnValue([]),
+						fetchRegionMap: jest.fn().mockReturnValue([]),
 					},
 				},
 				{
@@ -38,7 +48,13 @@ describe('StreetsMapPage', () => {
 						getIdOfNearestImage: jest.fn(),
 					}
 				},
-				provideStore([StreetMapState, MapFilterState, StreetDetailState]),
+				{
+					provide: APP_CONFIG,
+					useValue: {
+						mapTilerToken: '123'
+					}
+				},
+				provideStore([StreetMapState, MapFilterState, StreetDetailState, RegionDetailState, RegionMapState]),
 			],
 		}).compileComponents();
 

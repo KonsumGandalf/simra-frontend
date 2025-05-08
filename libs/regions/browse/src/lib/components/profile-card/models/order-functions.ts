@@ -12,8 +12,8 @@ export function getAgeSortOrder(groupName: string): number {
 		'BETWEEN_1990_AND_1994',
 		'BETWEEN_1995_AND_1999',
 		'BETWEEN_2000_AND_2004',
-		'AFTER_2004', // This should be last before NOT_CHOSEN
-		'NOT_CHOSEN' // Always last
+		'AFTER_2004',
+		'NOT_CHOSEN'
 	];
 
 	return order.indexOf(groupName) !== -1 ? order.indexOf(groupName) : 999;
@@ -25,7 +25,7 @@ export function getExperienceSortOrder(groupName: string): number {
 		'INTERMEDIATE',
 		'ADVANCED',
 		'EXPERT',
-		'NOT_CHOSEN' // Always last
+		'NOT_CHOSEN'
 	];
 
 	return order.indexOf(groupName) !== -1 ? order.indexOf(groupName) : 999;

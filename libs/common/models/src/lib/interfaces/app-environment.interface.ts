@@ -6,4 +6,5 @@ export interface AppEnvironmentInterface extends Environment {
 	apiUrl: string;
 	mapillaryUrl: string;
 	mapillaryAccessToken: string;
+	mapTilerToken: string;
 }

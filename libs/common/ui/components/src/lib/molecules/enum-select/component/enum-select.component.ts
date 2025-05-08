@@ -29,7 +29,7 @@ import { $enum } from 'ts-enum-util';
 export class EnumSelectComponent {
 	public readonly field = input<string>();
 	public readonly size = input<'small' | 'large'>('small');
-	public readonly translationMap = input.required<TTranslationMap<string>>(); // Translation map
+	public readonly translationMap = input.required<TTranslationMap<string>>();
 	public readonly optionEnum = input.required({
 		transform: (enumType: object) => {
 			return $enum(enumType).getValues() as [];
@@ -38,7 +38,7 @@ export class EnumSelectComponent {
 	public readonly selected = model();
 	public readonly filter = input<boolean>(false);
 	@Output()
-	public selectionChange = new EventEmitter<Record<string, string[]>>(); // Event when selection changes
+	public selectionChange = new EventEmitter<Record<string, string[]>>();
 
 	/**
 	 * Emits the selected values

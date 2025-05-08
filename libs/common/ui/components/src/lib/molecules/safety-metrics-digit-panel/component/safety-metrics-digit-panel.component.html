@@ -1,16 +1,48 @@
 <table class="simple-table">
 	@if (safetyMetricsDisplay()) {
-		@for (metric of safetyMetricsDisplay(); track metric) {
+		@for (metric of safetyMetricsDisplay(); track metric.label) {
 			<tr>
-				<td>{{ metric.label | translate }}</td>
 				<td>
-					@if(isNumber(metric.data)) {
-						{{
-							metric?.data % 1 !== 0
-								? (metric.data | number: '1.2-2')
-								: (metric.data | number: '1.0-0')
-						}}
-					} @else {
+					@if(metric.label.includes('SCORE')) {
+						<div [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+							{{ metric.label | translate }}
+						</div>
+						<ng-template #scoreFormula>
+							<markdown
+								katex
+								[data]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE_FORMULA' | translate">
+							</markdown>
+						</ng-template>
+					}
+					@else {
+					{{ metric.label | translate }}
+					}
+				</td>
+				<td>
+					@if (metric.link) {
+						@if(!(+activatedUrl() === metric.data)) {
+							<a [routerLink]="metric.link" queryParamsHandling="replace" class="link-button">{{ metric.data }}</a>
+						}
+						@else {
+							{{ metric.data }}
+						}
+					}
+					@else if(isNumber(metric.data)) {
+						@if (metric.data % 1 !== 0) {
+							<div [pTooltip]="usedFormula" [tooltipStyleClass]="'security-tooltip'">
+								{{ metric.data | number: '1.2-2' }}
+							</div>
+							<ng-template #usedFormula>
+								<markdown
+									katex
+									[data]="_scoreMarkdown()">
+								</markdown>
+							</ng-template>
+						} @else {
+							{{ metric.data | number: '1.0-0' }}
+						}
+					}
+					@else {
 						{{ metric.data }}
 					}
 				</td>

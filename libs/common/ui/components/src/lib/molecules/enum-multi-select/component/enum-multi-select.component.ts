@@ -28,7 +28,7 @@ export class EnumMultiSelectComponent {
 	private readonly _translationService = inject(TranslateService);
 
 	field = input.required<string>();
-	translationMap = input.required<TTranslationMap<string>>(); // Translation map
+	translationMap = input.required<TTranslationMap<string>>();
 	optionEnum = input.required({
 		transform: (enumType: object) => {
 			return $enum(enumType).getValues() as [];
@@ -37,7 +37,7 @@ export class EnumMultiSelectComponent {
 	selected = model<string[] | number[]>([]);
 	filter = input<boolean>(false);
 	maxSelectedDisplay = input<number>(1);
-	@Output() selectionChange = new EventEmitter<Record<string, string[]>>(); // Event when selection changes
+	@Output() selectionChange = new EventEmitter<Record<string, string[]>>();
 
 	/**
 	 * Gets the selected translations

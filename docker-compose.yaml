@@ -13,7 +13,8 @@ services:
                 SIMRA_API_URL: ${SIMRA_API_URL}
                 MAPILLARY_URL: ${MAPILLARY_URL}
                 MAPILLARY_ACCESS_TOKEN: ${MAPILLARY_ACCESS_TOKEN}
+                MAP_TILER_TOKEN: ${MAP_TILER_TOKEN}
         ports:
-        - "4200:80"
+        - "4200:4200"
         env_file:
             -   .env

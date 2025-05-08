@@ -1,5 +1,7 @@
-import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { Directive, effect, ElementRef, inject, input, Renderer2, resource } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 
 @Directive({
 	selector: '[aFallbackValue]',
@@ -11,15 +13,22 @@ export class FallbackValueDirective {
 
 	fallback = input('COMPONENTS.GENERAL.TABLE.ITEMS.NO_DATA');
 
+	private readonly langSignal = toSignal(this._translateService.onLangChange);
+
+	private readonly _translation$ = resource({
+		request: () => this.langSignal() ?? this._translateService.currentLang,
+		loader: async () => {
+			return await firstValueFrom(this._translateService.get(this.fallback()));
+		}
+	});
+
 	constructor() {
 		effect(() => {
-			const value = this._elementRef.nativeElement.textContent.trim();
-			if (value) {
-				return ;
+			const translated = this._translation$.value();
+			if (translated) {
+				this._renderer.setProperty(this._elementRef.nativeElement, 'textContent', translated);
 			}
-
-			const translatedFallback = this._translateService.instant(this.fallback());
-			this._renderer.setProperty(this._elementRef.nativeElement, 'textContent', translatedFallback);
 		});
+
 	}
 }

@@ -66,15 +66,32 @@
     "GENERAL": {
         "ENTITY_ATTRIBUTES": {
             "REGION": {
+                "SCORE": {
+                    "LABEL": "Sicherheitscore (km)",
+                    "FORMULA": "$$\n\\text{Punktzahl} = \\frac{4{,}4 \\cdot \\text{Beängstigende Beinaheunfälle} + \\text{Nicht beängstigende Beinaheunfälle}}{\\text{Länge der durchquerten OSM-Segmente in km}}\n$$"
+                },
                 "AVERAGE_LENGTH": "Durchschnittslänge der Straßensegmente",
-                "TRAVELLED_DISTANCE": "Zurückgelegte Distanz",
+                "TRAVELLED_DISTANCE":{
+                    "TOOLTIP": "Gesamtlänge aller OSM-Segmente, die von mindestens einem Radfahrer in der ausgewählten Region genutzt wurden.",
+                    "LABEL": "Länge der Bewerteten Distanz"
+                },
                 "SUB_REGIONS": "Unterregionen",
                 "ALL": "Alle Regionen"
             }
         },
         "REGIONS": {
             "TITLE": "Regionen",
-            "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen."
+            "TOOLTIP": "Hier findest du alle Regionen, die derzeit in der SimRa-App verfügbar sind. Du kannst eine Region auswählen, um weitere Details zu sehen.",
+            "ADMIN_LEVEL": {
+                "PLACEHOLDER": "Wähle eine Verwaltungsebene",
+                "DISTRICT": "Stadtbezirk",
+                "COUNTY": "Landkreis",
+                "FEDERAL_COUNTY": "Bundesland"
+            }
+        },
+        "ANALYSIS": {
+            "PERCENTAGE_SCARY": "Prozentsatz der beängstigenden Beinahunfälle"
         }
     }
 }
+

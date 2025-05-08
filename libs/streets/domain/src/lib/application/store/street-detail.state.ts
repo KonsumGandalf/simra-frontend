@@ -3,12 +3,13 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ISafetyMetricsStreet } from '@simra/common-models';
 import { IIncident } from '@simra/incidents-models';
 import { IResponseStreet } from '@simra/streets-common';
-import { SetSelectedIncidents, SetSelectedSafetyMetrics, SetStreet } from './street-detail.actions';
+import { SetSelectedIncidents, SetSelectedSafetyMetrics, SetStreet, SetStreetIdLoading } from './street-detail.actions';
 
 export interface StreetDetailStateModel {
 	street?: IResponseStreet;
 	selectedSafetyMetric?: ISafetyMetricsStreet;
 	selectedIncidents?: IIncident[];
+	loadingId?: number;
 }
 
 @State<StreetDetailStateModel>({
@@ -53,6 +54,18 @@ export class StreetDetailState {
 	setSelectedIncidents(ctx: StateContext<StreetDetailStateModel>, action: SetSelectedIncidents) {
 		ctx.patchState({
 			selectedIncidents: action.incidents
+		});
+	}
+
+	@Selector()
+	static getLoadingId(state: StreetDetailStateModel): number {
+		return state.loadingId
+	}
+
+	@Action(SetStreetIdLoading)
+	setLoading(ctx: StateContext<StreetDetailStateModel>, action: SetStreetIdLoading) {
+		ctx.patchState({
+			loadingId: action.loadingId
 		});
 	}
 }

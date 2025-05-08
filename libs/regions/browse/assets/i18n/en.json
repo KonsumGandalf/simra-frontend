@@ -62,20 +62,37 @@
                 "TITLE": "Temporal Safety Metrics",
                 "DESCRIPTION": "This section provides a comprehensive overview of cycling trends across different time periods. By filtering data by year, time of day, and days of the week, you can identify patterns in traffic flow, safety risks, and cyclist behavior. This allows for a deeper understanding of when and where cycling conditions may be safer or more challenging."
             }
-        },
-        "GENERAL": {
-            "ENTITY_ATTRIBUTES": {
-                "REGION": {
-                    "AVERAGE_LENGTH": "Average length of street segments",
-                    "TRAVELLED_DISTANCE": "Travelled distance",
-                    "SUB_REGIONS": "Sub regions",
-                    "ALL": "All regions"
-                }
-            },
-            "REGIONS": {
-                "TITLE": "Regions",
-                "TOOLTIP": "Here you can find all regions that are currently available in the SimRa app. You can select a region to see more details about it."
+        }
+    },
+    "GENERAL": {
+        "ENTITY_ATTRIBUTES": {
+            "REGION": {
+                "SCORE": {
+                    "LABEL": "Safety score (km)",
+                    "FORMULA": "$$\n\\text{score} = \\frac{4.4 \\cdot \\text{scary incidents} + \\text{non-scary incidents}}{\\text{length of traversed OSM segments in km}}\n$$"
+                },
+                "AVERAGE_LENGTH": "Average length of street segments",
+                "TRAVELLED_DISTANCE": {
+                    "LABEL": "Length of traversed OSM segments",
+                    "TOOLTIP": "Total length of all OSM segments that were used by at least one cyclist in the selected region."
+                },
+                "SUB_REGIONS": "Sub regions",
+                "ALL": "All regions"
             }
+
+        },
+        "REGIONS": {
+            "TITLE": "Regions",
+            "TOOLTIP": "Here you can find all regions that are currently available in the SimRa app. You can select a region to see more details about it.",
+            "ADMIN_LEVEL": {
+                "PLACEHOLDER": "Select the administrative level",
+                "DISTRICT": "District",
+                "COUNTY": "County",
+                "FEDERAL_COUNTY": "Federal county"
+            }
+        },
+        "ANALYSIS": {
+            "PERCENTAGE_SCARY": "Percentage of scary incidents"
         }
     }
 }

@@ -1,14 +1,16 @@
 <p-tabs value="0" [scrollable]="true">
 	<p-tablist>
-		<p-tab value="0">SimRa Map</p-tab>
+		<p-tab value="0">{{ 'STREETS.EXPLORER.COMPONENTS.STREET_INFORMATION_CARD.BUTTONS.SIMRA_MAP' | translate }}</p-tab>
 		<p-tab value="1" [disabled]="!hasMapillaryImage()">Mapillary Street View</p-tab>
 	</p-tablist>
 	<p-tabpanels>
 		<p-tabpanel value="0">
-			<t-map-component [overlayLayers]="_geometries$()" [layerControl]="undefined"></t-map-component>
+			@if (_incidents$() && _enrichedStreet$()) {
+				<t-map-component (mapReady)="onMapLoaded($event)" />
+			}
 		</p-tabpanel>
 		<p-tabpanel value="1">
-			<a-mapillary (hasMapillaryImage)="this.hasMapillaryImage.set(true)"></a-mapillary>
+			<a-mapillary (hasMapillaryImage)="this.hasMapillaryImage.set($event)"></a-mapillary>
 		</p-tabpanel>
 	</p-tabpanels>
 </p-tabs>

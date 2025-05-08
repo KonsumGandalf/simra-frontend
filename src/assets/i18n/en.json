@@ -45,6 +45,11 @@
                 "ABOUT_THE_INITIATIVE": "About the Initiative",
                 "PROCESSING_DETAILS": "Processing Details"
             },
+            "CONTACT": {
+                "TITLE": "Contact",
+                "GERMANY": "Germany",
+                "SCALABLE_SOFTWARE_SYSTEMS": "Scalable Software Systems"
+            },
             "DOWNLOADS": {
                 "TITLE": "Downloads",
                 "PLAYSTORE": "Google Playstore",

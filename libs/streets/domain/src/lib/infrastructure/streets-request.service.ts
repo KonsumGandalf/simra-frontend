@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {
-	IGetStreetGrid,
 	IResponseStreet,
 	ICycleway,
 	IParking,
-	ITags,
+	ITags, IStreetGrid,
 } from '@simra/streets-common';
 import { plainToInstance } from 'class-transformer';
 import { defaults, isEmpty, isUndefined, omitBy } from 'lodash';
 import { map, Observable } from 'rxjs';
-import { StreetInformationDto } from '../models/dtos/street-information.dto';
+import { StreetGridDto } from '@simra/streets-common';
 import { StreetRideEntitiesResponseDto } from '../models/dtos/street-ride-entities-response.dto';
 import { TRideTime } from '../models/interfaces/ride-time.type';
 
@@ -21,9 +20,11 @@ import { TRideTime } from '../models/interfaces/ride-time.type';
 export class StreetsRequestService {
 	private readonly _http = inject(HttpClient);
 
-	public getStreetGrid(requestParams: IGetStreetGrid): Observable<StreetInformationDto[]> {
-		return this._http.get<StreetInformationDto[]>('/api/streets/grid', { params: { ...omitBy(requestParams, isUndefined) } }).pipe(
-			map((response) => plainToInstance(StreetInformationDto, response)),
+	public getStreetGrid(): Observable<IStreetGrid[]> {
+		return this._http.get<IStreetGrid[]>('/assets/leaflet/street-map.json').pipe(
+			map((response) => {
+				return plainToInstance(StreetGridDto, response);
+			}),
 		);
 	}
 
@@ -60,7 +61,7 @@ export class StreetsRequestService {
 			);
 	}
 
-	private _processTags(tags: any): ITags {
+	private _processTags(tags: unknown): ITags {
 		const constructedTags: ITags = {};
 		constructedTags.maxSpeed = (tags['maxspeed']) ? parseInt(tags['maxspeed']) : undefined;
 		constructedTags.lanes = (tags['lanes']) ? parseInt(tags['lanes']) : undefined;
@@ -81,7 +82,7 @@ export class StreetsRequestService {
 		return constructedTags;
 	}
 
-	private _processParking(tags: any, identifier: string): IParking {
+	private _processParking(tags: unknown, identifier: string): IParking {
 		if (!tags[`parking:${identifier}`]) {
 			return;
 		}
@@ -91,7 +92,7 @@ export class StreetsRequestService {
 		}, isUndefined) as IParking;
 	}
 
-	private _processCycleway(tags: any, identifier: string): ICycleway {
+	private _processCycleway(tags: unknown, identifier: string): ICycleway {
 		if (!tags[`cycleway:${identifier}`]) {
 			return;
 		}

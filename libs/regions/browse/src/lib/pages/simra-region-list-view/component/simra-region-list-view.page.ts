@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, model, signal, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { IPage } from '@simra/common-models';
 import { ISafetyMetricsRequest } from '@simra/streets-common';
 import { TableModule } from 'primeng/table';
@@ -28,6 +29,7 @@ export class SimraRegionListViewPage {
 
 	protected readonly loading = signal<boolean>(false);
 	protected readonly _regions$ = model<IPage<ISafetyMetrics>>();
+	protected readonly _lastRun$ = toSignal(this._facade.getLastRun('calculateSafetyMetricsSimraRegion'));
 
 	async onFilter(event: ISafetyMetricsRequest) {
 		this.loading.set(true);

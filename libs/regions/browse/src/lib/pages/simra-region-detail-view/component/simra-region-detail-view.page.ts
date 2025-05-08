@@ -11,8 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { IMapPosition } from '@simra/common-models';
-import { ISafetyMetricsRegion } from '@simra/models';
+import { IMapPosition, ISafetyMetricsRegion } from '@simra/common-models';
 import { find } from 'lodash';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonDirective } from 'primeng/button';
@@ -21,7 +20,6 @@ import { firstValueFrom } from 'rxjs';
 import { SimraRegionDetailViewFacade } from '@simra/regions-domain';
 import { BaseRegionDetailViewComponent } from '../../../components/base-region-detail-view/component/base-region-detail-view.component';
 import { IDetailViewChange } from '../../../components/base-region-detail-view/models/interfaces/detail-view-change.interface';
-import { ProfileCardComponent } from '../../../components/profile-card/component/profile-card.component';
 import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 
 @Component({
@@ -35,7 +33,6 @@ import { SafetyMetricsService } from '../../../services/safety-metrics.service';
 		ButtonDirective,
 		TranslatePipe,
 		Skeleton,
-		ProfileCardComponent,
 	],
 	templateUrl: './simra-region-detail-view.page.html',
 	styleUrl: './simra-region-detail-view.page.scss',

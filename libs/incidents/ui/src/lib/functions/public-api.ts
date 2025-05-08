@@ -1,1 +1,1 @@
-export * from './incident-marker';
+export * from './create-incident-marker';

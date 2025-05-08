@@ -60,7 +60,8 @@
 					"ON_KERB": "On sidewalk",
 					"HALF_ON_KERB": "Half on sidewalk",
 					"SHOULDER": "On shoulder",
-					"SEPARATE": "Separate area"
+					"SEPARATE": "Separate area",
+					"NO": "No parking"
 				}
 			}
 		},
@@ -69,7 +70,8 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Street Type",
-					"SCORE": "Score",
+					"SCORE": "Safety Score",
+					"SCORE_FORMULA": "$$\n\\text{score} = \\frac{4.4 \\cdot \\text{total scary incidents} + \\text{total non-scary incidents}}{\\text{total rides}}\n$$",
 					"INCIDENTS": "Incidents",
 					"SCARY_INCIDENTS": "Scary Incidents",
 					"RIDES": "Rides",
@@ -121,7 +123,7 @@
 			},
 			"BUTTONS": {
 				"GOOGLE_MAPS": "Google Maps",
-				"OSM": "OpenStreetMap",
+				"OSM": "Details on OSM",
 				"SIMRA_MAP": "SimRa Map"
 			}
 		}

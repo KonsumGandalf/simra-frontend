@@ -1,5 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
+import { ChartColors } from '../../../models/chart-colors';
 import { ChartOptions } from 'chart.js';
 import { Tick } from 'chart.js/dist/types';
 
@@ -8,11 +10,14 @@ import { Tick } from 'chart.js/dist/types';
 })
 export class SafetyMetricsService {
 	private readonly _translationService = inject(TranslateService);
+	private readonly _langChange = toSignal(this._translationService.onLangChange)
 
 	/**
 	 * Options for the pie chart displaying the incident types
 	 */
-	public getPieMetricsIncidentTypesOptions(): ChartOptions {
+	public getPieMetricsIncidentTypesOptions = computed<ChartOptions>(() => {
+		this._langChange();
+
 		return {
 			responsive: true,
 			maintainAspectRatio: false,
@@ -27,16 +32,20 @@ export class SafetyMetricsService {
 					},
 				},
 			},
+			backgroundColor: ChartColors.INCIDENT_TYPES
 		};
-	}
+	});
 
 	/**
 	 * Options for the bar chart displaying the incident distribution
 	 */
-	public getBarMetricsRideIncidentDistributionOptions(): ChartOptions {
+	public getBarMetricsRideIncidentDistributionOptions =  computed<ChartOptions> (() => {
+		this._langChange();
+
 		return {
 			responsive: true,
 			aspectRatio: 0.6,
+			backgroundColor: ChartColors.RIDE_METRICS_DISTRIBUTION,
 			plugins: {
 				title: {
 					display: true,
@@ -72,5 +81,5 @@ export class SafetyMetricsService {
 				},
 			},
 		}
-	};
+	});
 }

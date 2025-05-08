@@ -2,10 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { MethodRunService } from '@simra/common-domain';
 import { IResponseStreet } from '@simra/streets-common';
-import { Observable, take, tap } from 'rxjs';
+import { Observable, of, take, tap } from 'rxjs';
 import { MapillaryRequestService } from '../../infrastructure/mapillary-request.service';
 import { StreetsRequestService } from '../../infrastructure/streets-request.service';
-import { SetStreet } from '../store/street-detail.actions';
+import { SetStreet, SetStreetIdLoading } from '../store/street-detail.actions';
 import { StreetDetailState } from '../store/street-detail.state';
 
 @Injectable({
@@ -18,20 +18,24 @@ export class StreetDetailViewFacade {
 
 	private readonly _store = inject(Store);
 
-	private readonly _street = this._store.selectSignal(StreetDetailState.getStreet);
-
 	getAndSetStreet(streetId: number) {
-		const street = this._street();
-		if (street && +streetId === +(street?.id)) {
-			return;
+		const loadingId = this._store.selectSnapshot(StreetDetailState.getLoadingId);
+
+		if (loadingId === +streetId) {
+			const street = this._store.selectSnapshot(StreetDetailState.getStreet);
+
+			if (street.id === streetId) {
+				return of(street);
+			}
+			return of({ id: streetId } as IResponseStreet);
 		}
 
-		this._store.dispatch(new SetStreet({ id: streetId } as IResponseStreet));
+		this._store.dispatch(new SetStreetIdLoading(streetId));
 
 		return this._streetsRequestService.getStreet(streetId).pipe(
 			take(1),
-			tap((streets) => {
-				this._store.dispatch(new SetStreet(streets));
+			tap((street) => {
+				this._store.dispatch(new SetStreet(street));
 			})
 		);
 	}

@@ -3,11 +3,11 @@
 		<div class="about__info-box">
 			<h1 class="text-3xl inline-block font-bold underline underline-offset-2 decoration-4 decoration-primary-400 mb-4">{{ "APP.COMPONENTS.ABOUT.HEADER" | translate}}</h1>
 			<div>
-				<img class="w-96 float-left mr-4 mb-4 rounded-lg" ngSrc="/assets/images/about/bike-large-image.jpg" alt="" width="600" height="400">
+				<img class="w-96 float-left mr-4 mb-4 rounded-lg" ngSrc="/assets/images/about/bike-large-image.avif" alt="" width="600" height="400">
 				<p [innerHTML]="'APP.COMPONENTS.ABOUT.MAIN_BODY' | translate"></p>
 				<a pButton
 				   severity="contrast"
-				   class="mt-4 px-8"
+				   class="w-full md:w-auto mt-4 px-8"
 				   href="https://simra-project.github.io/mitmachen.html"
 				   target="_blank"><i class="ph ph-person-simple-bike"></i>{{ "APP.COMPONENTS.ABOUT.PARTICIPATE_NOW" | translate}}</a>
 			</div>
@@ -17,7 +17,7 @@
 		<div class="award-box">
 			<p-card [header]="'APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.TITLE' | translate">
 				<ng-template #header>
-					<img [alt]="'APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.TITLE' | translate" class="h-40" src="/assets/images/about/award-2022.png"/>
+					<img [alt]="'APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.TITLE' | translate" class="h-40" src="/assets/images/about/award-2022.avif"/>
 				</ng-template>
 				<p>{{ "APP.COMPONENTS.ABOUT.AWARDS.FAHRRAD_PREIS_2022.BODY" | translate }}</p>
 				<ng-template #footer>

@@ -1,1 +1,11 @@
-<t-base-region-list-view [safetyMetrics]="_regions$()" (filtering)="onFilter($event)" [loading]="loading()"></t-base-region-list-view>
+<t-base-region-list-view [safetyMetrics]="_regions$()" [lastRun]="_lastRun()" (filtering)="onFilter($event)" [loading]="loading()">
+	<p-select [options]="transformMapToList(AdminLevelTranslationMap)" [(ngModel)]="selectedAdminLevel" (onChange)="onFilter(undefined)" [placeholder]="'REGIONS.BROWSE.GENERAL.REGIONS.ADMIN_LEVEL.PLACEHOLDER' | translate" class="w-full md:w-56">
+		<ng-template let-option pTemplate="item">
+			{{ option.label | translate }}
+		</ng-template>
+
+		<ng-template let-selected pTemplate="selectedItem">
+			{{ selected.label | translate }}
+		</ng-template>
+	</p-select>
+</t-base-region-list-view>
