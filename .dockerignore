@@ -19,6 +19,5 @@ yarn-error.log
 .dockerignore
 docker-compose.yml
 
-# Ignore Json files
-./src/assets/leaflet/region-map.json
-./src/assets/leaflet/street-map.json
+# Ignore Grid Json files
+/src/assets/maplibre

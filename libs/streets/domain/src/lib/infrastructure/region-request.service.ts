@@ -26,7 +26,7 @@ export class RegionRequestService {
 	}
 
 	public getRegionMap(): Observable<IRegionMap[]> {
-		return this._httpClient.get<IRegionMap[]>('/assets/leaflet/region-map.json').pipe(
+		return this._httpClient.get<IRegionMap[]>('/assets/maplibre/region-map.json').pipe(
 			map((response) => {
 				return plainToInstance(RegionMapDto, response);
 			}),

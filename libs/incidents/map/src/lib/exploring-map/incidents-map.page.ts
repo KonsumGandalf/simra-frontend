@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
 import { IncidentsMapFacade, IncidentsState} from '@simra/incidents-domain';
-import { IIncidentMarker } from '@simra/incidents-models';
+import { IIncident, IIncidentMarker } from '@simra/incidents-models';
+import { createIncidentMarker } from '@simra/incidents-ui';
 import { FeatureCollection, Geometry } from 'geojson';
 import * as maplibregl from 'maplibre-gl';
 import { firstValueFrom } from 'rxjs';
-import { ChartColors, EPin, MapPage } from '@simra/common-components';
+import { ChartColors, EPin, MapPage, MapUtils } from '@simra/common-components';
 import { incidentsLayer, incidentsLayerCluster, incidentsLayerClusterCount, incidentsSource } from '../models/const';
 
 @Component({
@@ -67,6 +68,12 @@ export class IncidentsMapPage {
 				})),
 			} as FeatureCollection<Geometry, IIncidentMarker>;
 
+			const source = mlMap.getSource(incidentsSource) as maplibregl.GeoJSONSource;
+			if (source) {
+				source.setData(markerCollection);
+				return;
+			}
+
 			mlMap.addSource(incidentsSource, {
 				type: 'geojson',
 				data: markerCollection,
@@ -100,6 +107,22 @@ export class IncidentsMapPage {
 					'icon-opacity': 1
 				}
 			});
+
+			MapUtils.changeCursor(mlMap, incidentsLayer);
+			mlMap.on('click', incidentsLayer, async (evt) => {
+				const f = evt.features?.[0];
+				if (f?.properties) {
+					await createIncidentMarker(
+						f.properties as IIncident,
+						this._injector,
+						this._appRef,
+						this._incidentsMapFacade.getIncidentDetails.bind(this._incidentsMapFacade),
+						mlMap,
+					);
+				}
+			});
+
+
 			mlMap.addLayer({
 				id: incidentsLayerCluster,
 				type: 'circle',

@@ -26,7 +26,7 @@ describe('StreetsRequestService', () => {
 		it('should call the correct json file', () => {
 			service.getStreetGrid();
 			expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
-			expect(httpClientSpy.get).toHaveBeenCalledWith('/assets/leaflet/street-map.json');
+			expect(httpClientSpy.get).toHaveBeenCalledWith('/assets/maplibre/street-map.json');
 		});
 
 		it('should return the correct street information', async () => {

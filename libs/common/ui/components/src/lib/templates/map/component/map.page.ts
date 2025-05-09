@@ -47,7 +47,6 @@ export class MapPage implements OnDestroy, OnInit {
 	private readonly _activatedRoute = inject(ActivatedRoute);
 
 	public readonly lastRun = input<Date>();
-	public readonly isSearchable = input<boolean>(false);
 	public readonly isNavigable = input<boolean>(false);
 
 	@Output()
