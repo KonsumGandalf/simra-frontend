@@ -67,6 +67,12 @@ export class IncidentsMapPage {
 				})),
 			} as FeatureCollection<Geometry, IIncidentMarker>;
 
+			const source = mlMap.getSource(incidentsSource) as maplibregl.GeoJSONSource;
+			if (source) {
+				source.setData(markerCollection);
+				return;
+			}
+
 			mlMap.addSource(incidentsSource, {
 				type: 'geojson',
 				data: markerCollection,
