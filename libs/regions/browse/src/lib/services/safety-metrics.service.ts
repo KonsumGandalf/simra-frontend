@@ -179,7 +179,7 @@ export class SafetyMetricsService {
 			let datasets = [{
 				type: 'line',
 				label: this._translationService.instant(
-					'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
+					'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL',
 				),
 				data: metrics.map((metric) => metric.dangerousScore),
 				yAxisID: 'y1',
@@ -225,19 +225,19 @@ export class SafetyMetricsService {
 				{
 					type: 'line',
 					label: this._translationService.instant(
-						'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
+						'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL',
 					),
 					data: metrics.map((metric) => metric.dangerousScore),
 					yAxisID: 'y2',
 				},
-				{
-					type: 'line',
-					label: this._translationService.instant(
-						'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.DISTANCE_PER_RIDE',
-					),
-					data: metrics.map((metric) => (metric.totalDistance / metric.numberOfRides) / 1000),
-					yAxisID: 'y1',
-				},
+				// {
+				// 	type: 'line',
+				// 	label: this._translationService.instant(
+				// 		'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.DISTANCE_PER_RIDE',
+				// 	),
+				// 	data: metrics.map((metric) => (metric.totalDistance / metric.numberOfRides) / 1000),
+				// 	yAxisID: 'y1',
+				// },
 				{
 					type: 'line',
 					label: this._translationService.instant(
@@ -245,7 +245,15 @@ export class SafetyMetricsService {
 					),
 					data: metrics.map((metric) => metric.numberOfScaryIncidents / metric.numberOfIncidents),
 					yAxisID: 'y3',
-				}
+				},
+				{
+					type: 'bar',
+					label: this._translationService.instant(
+						'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELED_DISTANCE.LABEL',
+					),
+					data: metrics.map((metric) => metric.totalDistance / 1000),
+					yAxisID: 'y1',
+				},
 			];
 
 			const barDatasets = this.createRidesDatasets(metrics);
@@ -339,17 +347,17 @@ export class SafetyMetricsService {
 				y: { stacked: false },
 				y1: {
 					position: 'right',
-					display: false,
+					beginAtZero: true,
 					grid: { drawOnChartArea: false },
 				},
 				y2: {
 					position: 'right',
-					display: false,
+					beginAtZero: true,
 					grid: { drawOnChartArea: false },
 				},
 				y3: {
 					position: 'right',
-					display: false,
+					beginAtZero: true,
 					grid: { drawOnChartArea: false },
 				}
 			},
@@ -368,7 +376,6 @@ export class SafetyMetricsService {
 				y: { stacked: true },
 				y1: {
 					position: 'right',
-					display: false,
 					grid: { drawOnChartArea: false },
 				}
 			}

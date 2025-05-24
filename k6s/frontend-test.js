@@ -2,12 +2,12 @@ import http from 'k6/http';
 import { sleep, check } from 'k6';
 
 export const options = {
-	vus: 10,
+	vus: 100,
 	duration: '30s',
 };
 
 export default function () {
-	const res = http.get('https://konsumpi:8081/streets/map?lat=52.522&lng=13.413&zoom=14');
+	const res = http.get('http://konsumpi:4200/streets/map');
 
 	check(res, {
 		'Status ist 200': (r) => r.status === 200,

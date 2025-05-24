@@ -15,7 +15,6 @@ import { FeatureCollection, Geometry } from 'geojson';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { DangerousScoreBarComponent, EPin, MapPage, MapUtils, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
-import { IMapPosition } from '@simra/common-models';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
 
@@ -27,8 +26,8 @@ import { firstValueFrom } from 'rxjs';
 import { RegionDetailState } from '@simra/streets-domain';
 import * as maplibregl from 'maplibre-gl';
 import {
-	polygonLayerLarge,
-	polygonLayerMedium,
+	polygonLayerLarge, polygonLayerLargeLabel,
+	polygonLayerMedium, polygonLayerMediumLabel,
 	polygonSource,
 	selectedStreetLayer,
 	selectedStreetSource,
@@ -179,11 +178,31 @@ export class StreetsMapPage {
 			source: polygonSource,
 			paint: {
 				'fill-color': ['get', 'dangerousColor'],
+				'fill-outline-color': '#000',
 				'fill-opacity': 0.5,
 			},
 			filter: ['>=', ['get', 'adminLevel'], 6],
 			maxzoom: 11,
 			minzoom: 8,
+		});
+		mlMap.addLayer({
+			id: polygonLayerMediumLabel,
+			type: 'symbol',
+			source: polygonSource,
+			layout: {
+				'text-field': ['get', 'name'],
+				'text-size': 12,
+				'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+				'text-anchor': 'center',
+			},
+			paint: {
+				'text-color': '#000000',
+				'text-halo-color': '#ffffff',
+				'text-halo-width': 1,
+			},
+			filter: ['>=', ['get', 'adminLevel'], 6],
+			minzoom: 8,
+			maxzoom: 11,
 		});
 
 		mlMap.on('click', polygonLayerMedium, (e) => {
@@ -199,6 +218,24 @@ export class StreetsMapPage {
 			paint: {
 				'fill-color': ['get', 'dangerousColor'],
 				'fill-opacity': 0.5,
+			},
+			filter: ['==', ['get', 'adminLevel'], 4],
+			maxzoom: 8,
+		});
+		mlMap.addLayer({
+			id: polygonLayerLargeLabel,
+			type: 'symbol',
+			source: polygonSource,
+			layout: {
+				'text-field': ['get', 'name'],
+				'text-size': 12,
+				'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+				'text-anchor': 'center',
+			},
+			paint: {
+				'text-color': '#000000',
+				'text-halo-color': '#ffffff',
+				'text-halo-width': 1,
 			},
 			filter: ['==', ['get', 'adminLevel'], 4],
 			maxzoom: 8,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { first } from 'lodash';
+import { first, orderBy } from 'lodash';
 import { map, Observable } from 'rxjs';
 import { INearestImageResponse } from '../models/interfaces/nearest-image-response.interface';
 
@@ -22,13 +22,14 @@ export class MapillaryRequestService {
 		const maxLng = +lng + threshold;
 
         const queryParams = {
-			fields: 'id',
-			limit: 1,
+			fields: 'id,captured_at',
 			bbox: `${minLng},${minLat},${maxLng},${maxLat}`,
 		}
 
-        return this._httpClient.get<INearestImageResponse>(`/mapillary/images`, { params: queryParams }).pipe(
-			map((response) => first(response.data).id)
+		return this._httpClient.get<INearestImageResponse>(`/mapillary/images`, { params: queryParams }).pipe(
+			map((response) =>
+				first(orderBy(response.data, ['captured_at'], ['desc'])).id
+			)
 		);
-    }
+	}
 }

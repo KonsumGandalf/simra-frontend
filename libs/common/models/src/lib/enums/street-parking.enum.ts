@@ -10,4 +10,5 @@ export enum EParking {
 	SHOULDER = 'shoulder',
 	SEPARATE = 'separate',
 	NO = 'no',
+	YES = 'yes',
 }

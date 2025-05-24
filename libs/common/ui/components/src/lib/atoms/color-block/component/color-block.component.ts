@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
 import { EDangerousColors } from '@simra/common-models';
 import { Tooltip } from 'primeng/tooltip';
 import { RangePipe } from '../pipes/range.pipe';
@@ -10,7 +9,7 @@ import { RangePipe } from '../pipes/range.pipe';
  */
 @Component({
 	selector: 'a-color-block',
-	imports: [CommonModule, RangePipe, Tooltip, TranslatePipe],
+	imports: [CommonModule, RangePipe, Tooltip],
 	templateUrl: './color-block.component.html',
 	styleUrl: './color-block.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

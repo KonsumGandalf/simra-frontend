@@ -5,29 +5,39 @@ import { ISafetyMetrics } from '@simra/common-models';
 
 export function safetyMetricsDisplayArray<T extends ISafetyMetrics>(
 	safetyMetrics: T,
-): { label: string; data: any, link?: string }[] {
+): { label: string; data: any, link?: string, tooltip?: string }[] {
 	const specificAttributes = [];
 
 	if ('osmId' in safetyMetrics) {
-		specificAttributes.push({
-			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
-			data: safetyMetrics.osmId,
-			link: `/streets/${safetyMetrics.osmId}`,
-		});
+		specificAttributes.push(
+			{
+				label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.OSM_ID',
+				data: safetyMetrics.osmId,
+				link: `/streets/${safetyMetrics.osmId}`,
+			},
+			{
+				label: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
+				data: safetyMetrics.dangerousScore,
+				tooltip: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE_FORMULA'
+			},
+		);
 	}
 	if ('name' in safetyMetrics) {
-		specificAttributes.push({
-			label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.NAME',
-			data: safetyMetrics.name,
-			link: `/administrative-districts/${safetyMetrics.name}`,
-		});
+		specificAttributes.push(
+			{
+				label: 'COMPONENTS.GENERAL.TABLE.HEADER.COLUMNS.NAME',
+				data: safetyMetrics.name,
+				link: `/administrative-districts/${safetyMetrics.name}`,
+			},
+			{
+				label: 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL',
+				data: safetyMetrics.dangerousScore,
+				tooltip: 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.FORMULA'
+			},
+		);
 	}
 
 	const generalAttributes = [
-		{
-			label: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE',
-			data: safetyMetrics.dangerousScore,
-		},
 		{
 			label: 'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.RIDES',
 			data: safetyMetrics.numberOfRides,

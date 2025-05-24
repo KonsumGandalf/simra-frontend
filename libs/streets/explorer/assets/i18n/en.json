@@ -47,10 +47,16 @@
 			},
 			"CYCLEWAY_TYPES": {
 				"LABEL": {
-					"ADVISORY": "Advisory Lane",
-					"EXCLUSIVE": "Exclusive Lane",
-					"PICTOGRAM": "Pictogram Lane",
-					"NO": "No Cycleway"
+					"ADVISORY": "Advisory lane",
+					"EXCLUSIVE": "Bikes only",
+					"PICTOGRAM": "Pictogram marking",
+					"LANE": "Marked lane",
+					"TRACK": "Physically separated",
+					"SHARED_LANE": "Shared with cars",
+					"SHARE_BUSWAY": "Shared with buses",
+					"SEPARATE": "Beside sidewalk",
+					"NO": "No cycleway",
+					"UNKNOWN": "Unknown"
 				}
 			},
 			"PARKING": {
@@ -70,7 +76,7 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Street Type",
-					"SCORE": "Safety Score",
+					"SCORE": "Segment Risk Score",
 					"SCORE_FORMULA": "$$\n\\text{score} = \\frac{4.4 \\cdot \\text{total scary incidents} + \\text{total non-scary incidents}}{\\text{total rides}}\n$$",
 					"INCIDENTS": "Incidents",
 					"SCARY_INCIDENTS": "Scary Incidents",

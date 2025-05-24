@@ -5,7 +5,7 @@
 
 .maplibregl-popup-content {
     @apply rounded-lg p-5;
-    min-width: 200px;
+    min-width: 14rem;
 
     .maplibregl-popup-close-button {
         @apply p-2 text-xl;

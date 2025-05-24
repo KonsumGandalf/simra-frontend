@@ -74,11 +74,28 @@ export class MapillaryComponent {
 			}
 
 			this.hasMapillaryImage.emit(true);
-			new Viewer({
-				accessToken: this._accessToken,
-				container: this.mapillaryContainer.nativeElement,
-				imageId: `${imageId}`,
-			} as ViewerOptions);
+
+			this._waitForLayoutAndInit(imageId);
 		});
 	}
+
+	/**
+	 * This function waits for the layout to be ready and then initializes the Mapillary viewer otherwise race conditions can occur.
+	 */
+	private _waitForLayoutAndInit(imageId: number)  {
+		const container = this.mapillaryContainer.nativeElement;
+
+		const width = container.clientWidth;
+		const height = container.clientHeight;
+
+		if (width > 0 && height > 0) {
+			new Viewer({
+				accessToken: this._accessToken,
+				container,
+				imageId: `${imageId}`,
+			} as ViewerOptions);
+		} else {
+			requestAnimationFrame(this._waitForLayoutAndInit.bind(this, imageId));
+		}
+	};
 }

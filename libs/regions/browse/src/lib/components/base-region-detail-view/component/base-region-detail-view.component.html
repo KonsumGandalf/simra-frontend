@@ -9,7 +9,7 @@
 				<table class="simple-table">
 					@if (_generalSafetyMetrics() && detailedRegion(); as region) {
 						<tr>
-							<td [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+							<td class="truncate" [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
 								{{ 'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.SCORE.LABEL' | translate }}
 							</td>
 							<ng-template #scoreFormula>
@@ -45,8 +45,8 @@
 							<td>{{ _generalSafetyMetrics()?.numberOfScaryIncidents | number }}</td>
 						</tr>
 						<p-divider/>
-						<tr [pTooltip]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE.TOOLTIP' | translate">
-							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELLED_DISTANCE.LABEL" | translate }}</td>
+						<tr [pTooltip]="'REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELED_DISTANCE.TOOLTIP' | translate">
+							<td>{{ "REGIONS.BROWSE.GENERAL.ENTITY_ATTRIBUTES.REGION.TRAVELED_DISTANCE.LABEL" | translate }}</td>
 							<td>{{ (_generalSafetyMetrics()?.totalDistance / 1000) | number: '1.0-2' }} km</td>
 						</tr>
 					} @else {

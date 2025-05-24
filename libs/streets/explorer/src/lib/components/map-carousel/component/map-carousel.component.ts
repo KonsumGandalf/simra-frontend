@@ -21,6 +21,7 @@ import { StreetDetailState } from '@simra/streets-domain';
 import { along, length, lineString } from '@turf/turf';
 import { FeatureCollection, Geometry } from 'geojson';
 import { times } from 'lodash';
+import * as maplibregl from 'maplibre-gl';
 import { TabList, TabPanels, TabsModule } from 'primeng/tabs';
 import proj4 from 'proj4';
 import {
@@ -145,6 +146,12 @@ export class MapCarouselComponent {
 			],
 		} as FeatureCollection<Geometry, IEnrichedStreet>;
 
+		const source = map.getSource(streetsSource) as maplibregl.GeoJSONSource;
+		if (source) {
+			source.setData(streetCollection);
+			return;
+		}
+
 		map.addSource(streetsSource, {
 			type: 'geojson',
 			data: streetCollection,
@@ -176,6 +183,12 @@ export class MapCarouselComponent {
 				properties: m,
 			})),
 		} as FeatureCollection<Geometry, IIncident>;
+
+		const source = map.getSource(incidentsSource) as maplibregl.GeoJSONSource;
+		if (source) {
+			source.setData(markerCollection);
+			return;
+		}
 
 		map.addSource(incidentsSource, {
 			type: 'geojson',

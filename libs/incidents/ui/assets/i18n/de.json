@@ -21,16 +21,16 @@
         "ELECTRIC_SCOOTER": "Elektroroller"
     },
     "INCIDENT_TYPES": {
-        "DUMMY_INCIDENT": "Dummy Vorfall",
-        "NOTHING": "Nichts",
-        "CLOSE_PASS": "Knappes Überholen",
-        "PULLING_IN_OUT": "Ein- und Ausfahren",
-        "NEAR_LEFT_RIGHT_HOOK": "Beinahe-Linker-Rechts-Haken",
-        "HEAD_ON_APPROACH": "Kopf-an-Kopf Annäherung",
-        "TAILGATING": "Heckauffahren",
-        "NEAR_DOORING": "Türöffnung",
-        "DODGING_OBSTACLE": "Ausweichen vor Hindernis",
-        "OTHER": "Andere"
+        "DUMMY_INCIDENT": "Platzhalter-Vorfall",
+        "NOTHING": "Kein Vorfall",
+        "CLOSE_PASS": "Gefährliches Überholen",
+        "PULLING_IN_OUT": "Ein-/Ausscherkonflikt",
+        "NEAR_LEFT_RIGHT_HOOK": "Abbiegekonflikt",
+        "HEAD_ON_APPROACH": "Gegenverkehrsgefahr",
+        "TAILGATING": "Auffahrvorfall",
+        "NEAR_DOORING": "Beinahe-Türkollision",
+        "DODGING_OBSTACLE": "Hindernis-Ausweichung",
+        "OTHER": "Sonstiger Vorfall"
     },
     "BIKE_TYPES": {
         "NOT_CHOSEN": "Nicht gewählt",

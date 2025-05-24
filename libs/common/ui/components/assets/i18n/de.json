@@ -55,7 +55,7 @@
                     "MORNING_RUSH_HOUR": "Beinhaltet Stunden zwischen 7:30 und 9:59 Uhr",
                     "MID_DAY": "Beinhaltet Stunden zwischen 10:00 und 15:29 Uhr",
                     "EVENING_RUSH_HOUR": "Beinhaltet Stunden zwischen 15:30 und 18:59 Uhr",
-                    "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 5:59 Uhr"
+                    "EVENING_NIGHT_MORNING": "Beinhaltet Stunden zwischen 19:00 und 7:29 Uhr"
                 }
             },
             "YEAR": {
@@ -66,9 +66,7 @@
             }
         }
     },
-    "ATOMS": {
-
-    },
+    "ATOMS": {},
     "MOLECULES": {
         "DANGEROUS_SCORE_BAR": {
             "BAR_LABEL": {
