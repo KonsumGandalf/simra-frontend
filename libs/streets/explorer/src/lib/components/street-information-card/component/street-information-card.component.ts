@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
 	Component,
-	computed,
+	computed, effect,
 	inject,
 	ViewEncapsulation,
 } from '@angular/core';
@@ -53,6 +53,13 @@ export class StreetInformationCardComponent {
 		}
 		return `https://www.google.com/maps?q=&layer=c&cbll=${lat},${lng}`;
 	});
+
+	constructor() {
+		effect(() => {
+			console.log(this._street$())
+		});
+	}
+
 
 	items: ITagCard[] = [
 		{

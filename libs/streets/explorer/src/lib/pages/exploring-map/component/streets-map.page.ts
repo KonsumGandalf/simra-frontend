@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import {
+	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
 	effect,
-	inject, resource,
+	inject, Injector, resource,
 	signal,
 	ViewEncapsulation,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { IIncident } from '@simra/incidents-models';
+import { createIncidentMarker } from '@simra/incidents-ui';
 import { FeatureCollection, Geometry } from 'geojson';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
-import { DangerousScoreBarComponent, MapPage, MapUtils, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
-import { IMapPosition } from '@simra/common-models';
+import { DangerousScoreBarComponent, EPin, MapPage, MapUtils, SafetyMetricsDigitPanelComponent } from '@simra/common-components';
 import { MapFilterState } from '@simra/common-state';
 import { asyncComputed } from '@simra/common-utils';
 
@@ -23,7 +25,15 @@ import { Card } from 'primeng/card';
 import { firstValueFrom } from 'rxjs';
 import { RegionDetailState } from '@simra/streets-domain';
 import * as maplibregl from 'maplibre-gl';
-import { polygonLayerLarge, polygonLayerMedium, polygonSource, streetsLayer, streetsSource } from '../models/const';
+import {
+	polygonLayerLarge, polygonLayerLargeLabel,
+	polygonLayerMedium, polygonLayerMediumLabel,
+	polygonSource,
+	selectedStreetLayer,
+	selectedStreetSource,
+	streetsLayer,
+	streetsSource,
+} from '../models/const';
 
 @Component({
 	selector: 'streets-map',
@@ -47,10 +57,10 @@ import { polygonLayerLarge, polygonLayerMedium, polygonSource, streetsLayer, str
 export class StreetsMapPage {
 	private readonly _streetsMapFacade = inject(StreetsMapFacade);
 	private readonly _store = inject(Store);
+	private readonly _appRef = inject(ApplicationRef);
+	private readonly _injector = inject(Injector);
 
-	protected _mapPosition = signal<IMapPosition>(undefined);
 	protected readonly _filterState = this._store.selectSignal(MapFilterState.getMapFilterState);
-	protected readonly streets$ = this._store.selectSignal(StreetMapState.getStreetCollection);
 	protected readonly hoveredStreet$ = this._store.selectSignal(StreetDetailState.getStreet);
 	protected readonly hoveredRegion$ = this._store.selectSignal(RegionDetailState.getRegionName);
 	protected readonly enrichedStreets = this._store.selectSignal(StreetMapState.getEnrichedStreets);
@@ -78,6 +88,17 @@ export class StreetsMapPage {
 
 			this.addStreetLayer(streets, mlMap);
 			this.addRegionLayer(enrichedRegions, mlMap);
+		});
+
+		effect(() => {
+			const mlMap = this._mlMap();
+			const incidents = this.incidents.value();
+
+			if (isNil(mlMap) || isNil(incidents)) {
+				return;
+			}
+
+			this.addIncidentsLayer(mlMap, incidents);
 		});
 	}
 
@@ -157,11 +178,31 @@ export class StreetsMapPage {
 			source: polygonSource,
 			paint: {
 				'fill-color': ['get', 'dangerousColor'],
+				'fill-outline-color': '#000',
 				'fill-opacity': 0.5,
 			},
 			filter: ['>=', ['get', 'adminLevel'], 6],
 			maxzoom: 11,
 			minzoom: 8,
+		});
+		mlMap.addLayer({
+			id: polygonLayerMediumLabel,
+			type: 'symbol',
+			source: polygonSource,
+			layout: {
+				'text-field': ['get', 'name'],
+				'text-size': 12,
+				'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+				'text-anchor': 'center',
+			},
+			paint: {
+				'text-color': '#000000',
+				'text-halo-color': '#ffffff',
+				'text-halo-width': 1,
+			},
+			filter: ['>=', ['get', 'adminLevel'], 6],
+			minzoom: 8,
+			maxzoom: 11,
 		});
 
 		mlMap.on('click', polygonLayerMedium, (e) => {
@@ -181,6 +222,24 @@ export class StreetsMapPage {
 			filter: ['==', ['get', 'adminLevel'], 4],
 			maxzoom: 8,
 		});
+		mlMap.addLayer({
+			id: polygonLayerLargeLabel,
+			type: 'symbol',
+			source: polygonSource,
+			layout: {
+				'text-field': ['get', 'name'],
+				'text-size': 12,
+				'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+				'text-anchor': 'center',
+			},
+			paint: {
+				'text-color': '#000000',
+				'text-halo-color': '#ffffff',
+				'text-halo-width': 1,
+			},
+			filter: ['==', ['get', 'adminLevel'], 4],
+			maxzoom: 8,
+		});
 
 		MapUtils.changeCursor(mlMap, polygonLayerLarge);
 
@@ -190,18 +249,77 @@ export class StreetsMapPage {
 		});
 	}
 
-	incidents = resource({
-		request: () => this.hoveredStreet$(),
-		loader: async ({ request }) => {
-			if (!request) {
-				return;
-			}
+	addIncidentsLayer(mlMap: maplibregl.Map, incidents: IIncident[]) {
+		const markerCollection = {
+			type: 'FeatureCollection',
+			features: incidents.map((m) => ({
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					coordinates: [m.lng, m.lat],
+				},
+				properties: m,
+			})),
+		} as FeatureCollection<Geometry, IIncident>;
 
-			return await firstValueFrom(
-				this._streetsMapFacade.fetchIncidentsForStreet(request.id, this._filterState()),
-			);
-		},
-	})
+		const source = mlMap.getSource(selectedStreetSource) as maplibregl.GeoJSONSource;
+
+		if (source) {
+			source.setData(markerCollection);
+			return;
+		}
+
+		mlMap.addSource(selectedStreetSource, {
+			type: 'geojson',
+			data: markerCollection
+		});
+
+		mlMap.addLayer({
+			id: selectedStreetLayer,
+			type: 'symbol',
+			source: selectedStreetSource,
+			layout: {
+				'icon-allow-overlap': true,
+				'icon-ignore-placement': true,
+				'icon-image': [
+					'case',
+					['==', ['get', 'scary'], true],
+					EPin.RED,
+					EPin.BLUE,
+				],
+				'icon-size': [
+					'interpolate',
+					['linear'],
+					['zoom'],
+					10, 0.15,
+					14, 0.2,
+					17, 0.3
+				]
+			},
+			minzoom: 11,
+			paint: {
+				'icon-opacity': 1
+			}
+		});
+
+		MapUtils.changeCursor(mlMap, selectedStreetLayer);
+		mlMap.on('click', selectedStreetLayer, async (evt) => {
+			const f = evt.features?.[0];
+
+			if (f?.properties) {
+				await createIncidentMarker(
+					{
+						...f.properties,
+						participantsInvolved: JSON.parse(f.properties['participantsInvolved']),
+					} as IIncident,
+					this._injector,
+					this._appRef,
+					undefined,
+					mlMap,
+				);
+			}
+		});
+	}
 
 	onMapReady(map: maplibregl.Map) {
 		this._mlMap.set(map);
@@ -283,4 +401,20 @@ export class StreetsMapPage {
 			)
 		},
 	});
+
+	/**
+	 * Query used data
+	 */
+	incidents = resource({
+		request: () => this.hoveredStreet$(),
+		loader: async ({ request }) => {
+			if (!request) {
+				return;
+			}
+
+			return await firstValueFrom(
+				this._streetsMapFacade.fetchIncidentsForStreet(request.id, this._filterState()),
+			);
+		},
+	})
 }

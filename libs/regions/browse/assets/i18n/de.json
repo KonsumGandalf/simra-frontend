@@ -67,11 +67,11 @@
         "ENTITY_ATTRIBUTES": {
             "REGION": {
                 "SCORE": {
-                    "LABEL": "Sicherheitscore (km)",
+                    "LABEL": "Regionaler Risikowert",
                     "FORMULA": "$$\n\\text{Punktzahl} = \\frac{4{,}4 \\cdot \\text{Beängstigende Beinaheunfälle} + \\text{Nicht beängstigende Beinaheunfälle}}{\\text{Länge der durchquerten OSM-Segmente in km}}\n$$"
                 },
                 "AVERAGE_LENGTH": "Durchschnittslänge der Straßensegmente",
-                "TRAVELLED_DISTANCE":{
+                "TRAVELED_DISTANCE":{
                     "TOOLTIP": "Gesamtlänge aller OSM-Segmente, die von mindestens einem Radfahrer in der ausgewählten Region genutzt wurden.",
                     "LABEL": "Länge der Bewerteten Distanz"
                 },

@@ -36,7 +36,7 @@
 					"SIDEWALK": "Gehweg",
 					"STEPS": "Treppen",
 					"STREET_LAMP": "Straßenlaterne",
-					"TERTIARY": "Kreisstraßen",
+					"TERTIARY": "Kreisstraße",
 					"TERTIARY_LINK": "Kreisstraßen-Zubringer",
 					"TRACK": "Feldweg",
 					"TRUNK": "Schnellstraße",
@@ -47,10 +47,16 @@
 			},
 			"CYCLEWAY_TYPES": {
 				"LABEL": {
-					"ADVISORY": "Empfohlene Spur",
-					"EXCLUSIVE": "Exklusive Spur",
-					"PICTOGRAM": "Piktogramm Spur",
-					"NO": "Kein Radweg"
+					"ADVISORY": "Radstreifen",
+					"EXCLUSIVE": "Baulich getrennter Radweg",
+					"PICTOGRAM": "Schutzstreifen",
+					"LANE": "Markiert",
+					"TRACK": "Baulich getrennt Radweg",
+					"SHARED_LANE": "Mischverkehr",
+					"SHARED_BUSWAY": "Mischverkehr in Busstreifen",
+					"SEPARATE": "Führung neben Fußweg",
+					"NO": "Keine Spur",
+					"UNKNOWN": "Unbekannt"
 				}
 			},
 			"PARKING": {
@@ -70,7 +76,7 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"HIGHWAY_TYPE": "Straßentyp",
-					"SCORE": "Sicherheitsscore",
+					"SCORE": "Segment Risikowert",
 					"SCORE_FORMULA": "$$\n\\text{Punktzahl} = \\frac{4{,}4 \\cdot \\text{Beängstigende Beinaheunfälle} + \\text{Nicht beängstigende Beinaheunfälle}}{\\text{Anzahl der Fahrten}}\n$$",
 					"INCIDENTS": "Beinahunfälle",
 					"SCARY_INCIDENTS": "Beängstigende Beinahunfälle",

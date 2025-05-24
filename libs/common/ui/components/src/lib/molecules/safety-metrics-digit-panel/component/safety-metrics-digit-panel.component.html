@@ -4,13 +4,13 @@
 			<tr>
 				<td>
 					@if(metric.label.includes('SCORE')) {
-						<div [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
+						<div class="truncate" [pTooltip]="scoreFormula" [tooltipStyleClass]="'security-tooltip'">
 							{{ metric.label | translate }}
 						</div>
 						<ng-template #scoreFormula>
 							<markdown
 								katex
-								[data]="'STREETS.EXPLORER.GENERAL.TABLE.HEADER.COLUMNS.SCORE_FORMULA' | translate">
+								[data]="metric?.tooltip | translate">
 							</markdown>
 						</ng-template>
 					}

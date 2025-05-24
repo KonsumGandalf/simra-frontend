@@ -88,8 +88,8 @@
 					<td style="color: {{ street.dangerousColor}}">
 						{{ street.dangerousScore | number: '1.2-2'}}
 					</td>
-					<td>{{ street.numberOfRides}}</td>
-					<td>{{ street.numberOfIncidents}}</td>
+					<td>{{ street.numberOfRides | number }}</td>
+					<td>{{ street.numberOfIncidents | number }}</td>
 					<td [pTooltip]="WEEK_DAYS_TO_TRANSLATION[street.weekDay]?.tooltip | translate">
 						{{ WEEK_DAYS_TO_TRANSLATION[street.weekDay]?.label | translate }}
 					</td>

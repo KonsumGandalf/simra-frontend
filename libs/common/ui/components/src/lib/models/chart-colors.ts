@@ -14,6 +14,6 @@ export class ChartColors {
 	];
 	static INCIDENT_TYPES_WITH_SCORE = [ChartColors.SCORE, ...ChartColors.INCIDENT_TYPES];
 	static RIDE_METRICS_DISTRIBUTION = ['#fef9c2', '#ffd6a7', '#ffc9c9'];
-	static RIDE_METRICS_DISTRIBUTION_WITH_SCORE = [ChartColors.SCORE, '#ddd6ff', '#e9d4ff', ...ChartColors.RIDE_METRICS_DISTRIBUTION];
+	static RIDE_METRICS_DISTRIBUTION_WITH_SCORE = [ChartColors.SCORE,  '#ddd6ff', '#ecfcca', ...ChartColors.RIDE_METRICS_DISTRIBUTION]; // '#ddd6ff', '#e9d4ff',
 	static PROFILE_METRICS_DISTRIBUTION_WITH_SCORE = [ChartColors.SCORE, ...ChartColors.RIDE_METRICS_DISTRIBUTION];
 }
