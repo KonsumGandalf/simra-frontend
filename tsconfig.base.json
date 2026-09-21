@@ -48,6 +48,10 @@
 			"@simra/streets-domain": ["libs/streets/domain/src/index.ts"],
 			"@simra/streets-explorer": ["libs/streets/explorer/src/index.ts"],
 			"@simra/streets-shell": ["libs/streets/shell/src/index.ts"],
+			"@simra/preference-avoidance-common": ["libs/preference-avoidance/common/src/index.ts"],
+			"@simra/preference-avoidance-domain": ["libs/preference-avoidance/domain/src/index.ts"],
+			"@simra/preference-avoidance-explorer": ["libs/preference-avoidance/explorer/src/index.ts"],
+			"@simra/preference-avoidance-shell": ["libs/preference-avoidance/shell/src/index.ts"],
 			"@simra/styles": ["libs/common/ui/styles/src/index.ts"]
 		}
 	},
